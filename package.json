@@ -1,0 +1,42 @@
+{
+  "name": "pagic",
+  "version": "0.0.0",
+  "description": "The easiest way to generate static html page from markdown",
+  "main": "src/index.js",
+  "bin": {
+    "pagic": "bin/pagic.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xcatliu/pagic.git"
+  },
+  "keywords": [
+    "pagic",
+    "static",
+    "page",
+    "generator",
+    "markdown"
+  ],
+  "author": "xcatliu <xcatliu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xcatliu/pagic/issues"
+  },
+  "homepage": "https://github.com/xcatliu/pagic#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb-base": "^5.0.3",
+    "eslint-plugin-import": "^1.14.0",
+    "find-parent-dir": "^0.3.0",
+    "fs-extra": "^2.0.0",
+    "glob": "^7.1.1",
+    "markdown-it": "^8.3.0",
+    "markdown-it-anchor": "^4.0.0",
+    "markdown-it-title": "^1.0.4"
+  }
+}
