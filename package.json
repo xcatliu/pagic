@@ -29,14 +29,16 @@
   "homepage": "https://github.com/xcatliu/pagic#readme",
   "dependencies": {
     "commander": "^2.9.0",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb-base": "^5.0.3",
-    "eslint-plugin-import": "^1.14.0",
     "find-parent-dir": "^0.3.0",
     "fs-extra": "^2.0.0",
     "glob": "^7.1.1",
     "markdown-it": "^8.3.0",
     "markdown-it-anchor": "^4.0.0",
     "markdown-it-title": "^1.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb-base": "^5.0.3",
+    "eslint-plugin-import": "^1.14.0"
   }
 }
