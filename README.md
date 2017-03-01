@@ -153,7 +153,7 @@ module.exports = function ({ title, content, relativeToRoot }) {
 There are some options while using the cli:
 
 - `-s <path>`, `--src-dir=<path>`: Change the src directory, default is `src`
-- `-d <path>`, `--dist-dir=<path>`: Change the dist directory, default is `dist`
+- `-d <path>`, `--dist-dir=<path>`: Change the dist directory, default is `public`
 - `-w`, `--watch`: Watch for src directory change
 
 ## Use It as a Node Module
