@@ -7,6 +7,7 @@
     "pagic": "bin/pagic.js"
   },
   "scripts": {
+    "start": "node bin/pagic.js -s site",
     "lint": "eslint .",
     "test": "npm run lint"
   },
@@ -30,6 +31,7 @@
   "dependencies": {
     "commander": "^2.9.0",
     "find-parent-dir": "^0.3.0",
+    "front-matter": "^2.1.2",
     "fs-extra": "^2.0.0",
     "glob": "^7.1.1",
     "markdown-it": "^8.3.0",

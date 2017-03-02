@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const fse = require('fs-extra');
 const glob = require('glob');
+const fm = require('front-matter');
 const findParentDir = require('find-parent-dir');
 
 const md = require('markdown-it')({
@@ -47,15 +48,20 @@ function buildMD(srcDir, distDir) {
     /* eslint global-require:0 */
     const layout = require(path.resolve(layoutDir, LAYOUT_FILENAME));
 
+    const originalContent = fs.readFileSync(fileResolvedPath, 'utf-8');
+    const fmResult = fm(originalContent);
+    const frontMatter = fmResult.attributes;
+
     const env = {};
-    const content = md.render(fs.readFileSync(fileResolvedPath, 'utf-8'), env);
+    const content = md.render(fmResult.body, env);
 
     const relativeToRoot = path.relative(
       path.resolve(fileResolvedPath, '..'),
       path.resolve(srcDir)
-    );
+    ) || '.';
 
     const html = layout({
+      frontMatter,
       title: env.title,
       content,
       relativeToRoot,
