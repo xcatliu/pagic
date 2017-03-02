@@ -127,6 +127,43 @@ docs/
         └── index.md
 ```
 
+### Front Matter
+
+Front matter allows us add extra meta data to markdown:
+
+```markdown
+---
+author: xcatliu
+published: 2017-03-02
+---
+
+# Pagic
+
+The easiest way to generate static html page from markdown
+```
+
+Then in `_layout.js`, we can get a `frontMatter` object which contains the meta data:
+
+```js
+module.exports = function ({ title, content, frontMatter }) {
+  return `
+    <!doctype html>
+    <html>
+      <head>
+        <title>${title}</title>
+      </head>
+      <body>
+        ${content}
+        <footer>
+          Author: ${frontMatter.author},
+          Published: ${frontMatter.published}
+        </footer>
+      </body>
+    </html>
+  `
+};
+```
+
 ### relativeToRoot
 
 The last thing, we can get the `relativeToRoot` variable in the `_layout.js`, this helps us insert the relative resources:
