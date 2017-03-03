@@ -207,5 +207,5 @@ const pagic = requrie('pagic');
 pagic({
   srcDir: 'src',
   distDir: 'public'
-});
+})();
 ```
