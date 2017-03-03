@@ -2,6 +2,8 @@
 
 const pkg = require('../package.json');
 const program = require('commander');
+const fs = require('fs');
+const Pagic = require('..').Pagic;
 
 program
   .version(pkg.version)
@@ -10,18 +12,15 @@ program
   .option('-w, --watch', 'Watch src dir change')
   .parse(process.argv);
 
-const config = {};
+const pagic = new Pagic({
+  srcDir: program.srcDir,
+  distDir: program.distDir,
+});
 
-if (program.srcDir) {
-  config.srcDir = program.srcDir;
-}
-if (program.distDir) {
-  config.distDir = program.distDir;
-}
+pagic.build();
+
 if (program.watch) {
-  config.watch = program.watch;
+  fs.watch(pagic.options.srcDir, () => {
+    pagic.build();
+  });
 }
-
-const pagic = require('..');
-
-pagic(config)();

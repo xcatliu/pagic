@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node bin/pagic.js -s site",
     "lint": "eslint .",
-    "test": "npm run lint"
+    "test": "npm run lint && mocha"
   },
   "repository": {
     "type": "git",
@@ -39,8 +39,12 @@
     "markdown-it-title": "^1.0.4"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint": "^3.4.0",
     "eslint-config-airbnb-base": "^5.0.3",
-    "eslint-plugin-import": "^1.14.0"
+    "eslint-plugin-import": "^1.14.0",
+    "mocha": "^3.2.0",
+    "proxyquire": "^1.7.11",
+    "sinon": "^1.17.7"
   }
 }

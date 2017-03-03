@@ -6,6 +6,8 @@ module.exports = function ({ title, content }) {
         <title>${title}</title>
       </head>
       <body>
+        <h1>Sub</h1>
+        <hr/>
         ${content}
       </body>
     </html>

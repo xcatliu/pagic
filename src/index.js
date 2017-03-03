@@ -1,96 +1,125 @@
+/* eslint no-console:0 */
+
 const path = require('path');
-const fs = require('fs');
 const fse = require('fs-extra');
 const glob = require('glob');
-const fm = require('front-matter');
 const findParentDir = require('find-parent-dir');
 
-const md = require('markdown-it')({
-  html: true,
-})
-.use(require('markdown-it-anchor'))
-.use(require('markdown-it-title'));
+const processors = [
+  require('./processor/parseFrontMatter'),
+  require('./processor/parseMarkdown'),
+  require('./processor/injectRelativeToRoot'),
+];
 
 const LAYOUT_FILENAME = '_layout.js';
-
-module.exports = ({
-  srcDir = 'src',
-  distDir = 'public',
-  watch = false,
-} = {}) => {
-  function build() {
-    /* eslint no-use-before-define:0 */
-    cleanDistDir(distDir);
-    buildMD(srcDir, distDir);
-    copyOtherFiles(srcDir, distDir);
-  }
-
-  return () => {
-    build();
-    if (watch) {
-      fs.watch(srcDir, build);
-    }
-  };
+const DEFAULT_OPTIONS = {
+  srcDir: 'src',
+  distDir: 'public',
 };
 
-function cleanDistDir(distDir) {
-  fse.emptyDirSync(distDir);
-}
+class Pagic {
+  constructor(options = {}) {
+    this.options = Object.assign({}, DEFAULT_OPTIONS, options);
 
-function buildMD(srcDir, distDir) {
-  const mdFiles = glob.sync('**/*.md', {
-    cwd: srcDir,
-  });
+    if (typeof this.options.srcDir === 'undefined' || this.options.srcDir === null) {
+      this.options.srcDir = DEFAULT_OPTIONS.srcDir;
+    }
+    if (typeof this.options.distDir === 'undefined' || this.options.distDir === null) {
+      this.options.distDir = DEFAULT_OPTIONS.distDir;
+    }
+  }
 
-  mdFiles.forEach(filePath => {
-    const fileResolvedPath = path.resolve(srcDir, filePath);
-    const layoutDir = findParentDir.sync(fileResolvedPath, LAYOUT_FILENAME);
+  build() {
+    this.clearDistDir();
+    this.buildMD();
+    this.copyStaticFiles();
+  }
+
+  clearDistDir() {
+    fse.emptyDirSync(this.options.distDir);
+  }
+
+  buildMD() {
+    const mdFiles = glob.sync('**/*.md', {
+      cwd: this.options.srcDir,
+    });
+
+    if (mdFiles.length === 0) {
+      console.log('No markdown files found');
+      return;
+    }
+
+    mdFiles.forEach(filePath => {
+      const resolvedFilePath = path.resolve(this.options.srcDir, filePath);
+      const resolvedDistPath = path.resolve(this.options.distDir, filePath)
+        .replace(/\.md$/, '.html');
+
+      const layout = this.getLayout(resolvedFilePath);
+
+      if (!layout) {
+        console.error(`CANNOT find a layout for ${resolvedFilePath}, will skip this file`);
+        return;
+      }
+
+      const originalContent = fse.readFileSync(resolvedFilePath, 'utf-8');
+
+      const context = processors.reduce((prevContext, processor) => processor(prevContext), {
+        path: filePath,
+        content: originalContent,
+        options: this.options,
+      });
+
+      const html = layout(context);
+
+      fse.outputFileSync(resolvedDistPath, html);
+
+      console.log(`Generated ${resolvedDistPath}`);
+    });
+  }
+
+  copyStaticFiles() {
+    const staticFiles = glob.sync('**/*', {
+      ignore: [
+        '**/*.md',
+        '**/_*',
+      ],
+      nodir: true,
+      cwd: this.options.srcDir,
+    });
+
+    if (staticFiles.length === 0) {
+      return;
+    }
+
+    staticFiles.forEach(filePath => {
+      const resolvedFilePath = path.resolve(this.options.srcDir, filePath);
+      const resolvedDistPath = path.resolve(this.options.distDir, filePath);
+
+      fse.copySync(resolvedFilePath, resolvedDistPath);
+
+      console.log(`Copied ${resolvedDistPath}`);
+    });
+  }
+
+  getLayout(currentPath) {
+    const layoutDir = findParentDir.sync(currentPath, LAYOUT_FILENAME);
+
+    if (!layoutDir) {
+      return null;
+    }
+
     /* eslint global-require:0 */
     const layout = require(path.resolve(layoutDir, LAYOUT_FILENAME));
 
-    const originalContent = fs.readFileSync(fileResolvedPath, 'utf-8');
-    const fmResult = fm(originalContent);
-    const frontMatter = fmResult.attributes;
-
-    const env = {};
-    const content = md.render(fmResult.body, env);
-
-    const relativeToRoot = path.relative(
-      path.resolve(fileResolvedPath, '..'),
-      path.resolve(srcDir)
-    ) || '.';
-
-    const html = layout({
-      frontMatter,
-      title: env.title,
-      content,
-      relativeToRoot,
-    });
-
-    const distPath = path.resolve(distDir, filePath).replace(/\.md$/, '.html');
-
-    fse.outputFileSync(distPath, html);
-
-    console.log(`Generated ${distPath}`);
-  });
+    return layout;
+  }
 }
 
-function copyOtherFiles(srcDir, distDir) {
-  const otherFiles = glob.sync('**/*', {
-    ignore: [
-      '**/*.md',
-      '**/_*',
-    ],
-    cwd: srcDir,
-  });
+module.exports = (...args) => {
+  const pagic = new Pagic(...args);
+  return () => {
+    pagic.build();
+  };
+};
 
-  otherFiles.forEach(filePath => {
-    const fileResolvedPath = path.resolve(srcDir, filePath);
-    const distPath = path.resolve(distDir, filePath);
-
-    fse.copySync(fileResolvedPath, distPath);
-
-    console.log(`Generated ${distPath}`);
-  });
-}
-
+module.exports.Pagic = Pagic;

@@ -46,7 +46,7 @@ module.exports = function ({ title, content }) {
         ${content}
       </body>
     </html>
-  `
+  `;
 };
 ```
 
@@ -168,7 +168,7 @@ module.exports = function ({ title, content, frontMatter }) {
         </footer>
       </body>
     </html>
-  `
+  `;
 };
 ```
 
@@ -189,7 +189,7 @@ module.exports = function ({ title, content, relativeToRoot }) {
         ${content}
       </body>
     </html>
-  `
+  `;
 };
 ```
 
@@ -216,6 +216,14 @@ const pagic = requrie('pagic')({
 });
 
 pagic();
+```
+
+## Development
+
+```shell
+npm install
+npm start
+npm test
 ```
 
 ## LICENSE
