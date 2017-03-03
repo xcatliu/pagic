@@ -2,6 +2,14 @@
 
 The easiest way to generate static html page from markdown
 
+## Features
+
+- [Markdown + Layout => HTML](#markdown--layout--html): `xxx.md` + `_layout.js` => `xxx.html`
+- [Copy Static Files](#copy-static-files): Copy other static files which are not ended with `.md` or start with `_`
+- [Sub Page and Sub Layout](#sub-page-and-sub-layout): For each markdown file, it will walk your file system looking for the nearest `_layout.js` as the template. It starts from the current directory of the markdown file and then moves to the parent directory until it finds the `_layout.js`
+- [Front Matter](#front-matter): Add extra meta data to markdown
+- [relativeToRoot](#relativetoroot): inject the `relativeToRoot` variable to the `_layout.js`
+
 ## Getting Started
 
 ### Installation
@@ -82,9 +90,9 @@ The content should be:
 
 Here we use [markdown-it](https://github.com/markdown-it/markdown-it) with plugins [markdown-it-anchor](https://github.com/valeriangalliat/markdown-it-anchor) and [markdown-it-title](https://github.com/valeriangalliat/markdown-it-title) to parse the markdown file.
 
-### Copy Other Files
+### Copy Static Files
 
-If there are other files which are not ended with `.md` or start with `_`, we will simply copy them:
+If there are other static files which are not ended with `.md` or start with `_`, we will simply copy them:
 
 ```shell
 docs/
@@ -105,9 +113,7 @@ We can have sub directory which contains markdown files.
 
 Sub directory can also have a `_layout.js` file.
 
-In this case, only markdown files in sub directory will use `sub/_layout.js` as the template.
-
-If we cannot find a `_layout.js` in the sub directory, we'll recursively find the `_layout.js` in the parent directory.
+For each markdown file, it will walk your file system looking for the nearest `_layout.js` as the template. It starts from the current directory of the markdown file and then moves to the parent directory until it finds the `_layout.js`
 
 ```shell
 docs/
@@ -202,10 +208,10 @@ npm install pagic --save
 ```
 
 ```js
-const pagic = requrie('pagic');
-
-pagic({
+const pagic = requrie('pagic')({
   srcDir: 'src',
   distDir: 'public'
-})();
+});
+
+pagic();
 ```
