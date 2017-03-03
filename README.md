@@ -1,5 +1,7 @@
 # Pagic
 
+[![Build Status](https://img.shields.io/travis/xcatliu/pagic.svg)](https://travis-ci.org/xcatliu/pagic) [![npm package](https://img.shields.io/npm/v/pagic.svg)](https://www.npmjs.org/package/pagic) [![npm downloads](http://img.shields.io/npm/dm/pagic.svg)](https://www.npmjs.org/package/pagic)
+
 The easiest way to generate static html page from markdown
 
 ## Features
