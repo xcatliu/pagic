@@ -215,3 +215,11 @@ const pagic = requrie('pagic')({
 
 pagic();
 ```
+
+## LICENSE
+
+MIT
+
+---
+
+Have fun with pagic!
