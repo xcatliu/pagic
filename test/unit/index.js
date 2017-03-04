@@ -25,7 +25,7 @@ const stub = {
   './processor/injectRelativeToRoot': () => ({}),
 };
 
-const proxiedPagic = proxyquire('..', stub);
+const proxiedPagic = proxyquire('../..', stub);
 const Pagic = proxiedPagic.Pagic;
 
 const DEFAULT_OPTIONS = {

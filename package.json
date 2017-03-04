@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node bin/pagic.js -s site",
     "lint": "eslint .",
-    "test": "npm run lint && mocha"
+    "test": "npm run lint && mocha --recursive"
   },
   "repository": {
     "type": "git",
