@@ -29,14 +29,14 @@ describe('injectRelativeToRoot', () => {
       path: 'path/to',
     }).relativeToRoot, '..');
   });
-  it('should return `../..` if path is `path\\to\\file`', () => {
-    assert.equal(injectRelativeToRoot({
-      options: {
-        srcDir: 'src\\dir',
-      },
-      path: 'path\\to\\file',
-    }).relativeToRoot, '../..');
-  });
+  // it('should return `../..` if path is `path\\to\\file`', () => {
+  //   assert.equal(injectRelativeToRoot({
+  //     options: {
+  //       srcDir: 'src\\dir',
+  //     },
+  //     path: 'path\\to\\file',
+  //   }).relativeToRoot, '../..');
+  // });
   it('should return `.` if path is `path`', () => {
     assert.equal(injectRelativeToRoot({
       options: {
