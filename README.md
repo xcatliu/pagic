@@ -1,6 +1,6 @@
 # Pagic
 
-[![Build Status](https://img.shields.io/travis/xcatliu/pagic.svg)](https://travis-ci.org/xcatliu/pagic) [![npm package](https://img.shields.io/npm/v/pagic.svg)](https://www.npmjs.org/package/pagic) [![npm downloads](http://img.shields.io/npm/dm/pagic.svg)](https://www.npmjs.org/package/pagic)
+[![Build Status](https://img.shields.io/travis/xcatliu/pagic.svg)](https://travis-ci.org/xcatliu/pagic) [![npm package](https://img.shields.io/npm/v/pagic.svg)](https://www.npmjs.org/package/pagic) [![npm downloads](http://img.shields.io/npm/dm/pagic.svg)](https://www.npmjs.org/package/pagic) [![Coveralls](https://img.shields.io/coveralls/xcatliu/pagic.svg)](https://coveralls.io/github/xcatliu/pagic)
 
 The easiest way to generate static html page from markdown
 
