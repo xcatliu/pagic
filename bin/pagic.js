@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 
-const pkg = require('../package.json');
-const program = require('commander');
 const fs = require('fs');
-const Pagic = require('..').Pagic;
+const program = require('commander');
+const pkg = require('../package.json');
+const Pagic = require('../src/Pagic');
 
 program
   .version(pkg.version)

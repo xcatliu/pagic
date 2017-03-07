@@ -25,8 +25,7 @@ const stub = {
   './processor/injectRelativeToRoot': () => ({}),
 };
 
-const proxiedPagic = proxyquire('../..', stub);
-const Pagic = proxiedPagic.Pagic;
+const Pagic = proxyquire('../../src/Pagic', stub);
 
 const DEFAULT_OPTIONS = {
   srcDir: 'src',
@@ -42,42 +41,42 @@ describe('Pagic Class', () => {
   });
 
   describe('constructor()', () => {
-    it('should have default srcDir and publicDir when pass 0 arguments', () => {
+    it('should have default srcDir and distDir when pass 0 arguments', () => {
       const pagic = new Pagic();
       verifySrcDirAndDistDir(pagic);
     });
-    it('should have default srcDir and publicDir when pass empty object', () => {
+    it('should have default srcDir and distDir when pass empty object', () => {
       const pagic = new Pagic({});
       verifySrcDirAndDistDir(pagic);
     });
 
-    it('should have custom srcDir and default publicDir when only pass srcDir', () => {
+    it('should have custom srcDir and default distDir when only pass srcDir', () => {
       const pagic = new Pagic({ srcDir: 'site' });
       verifySrcDirAndDistDir(pagic, { srcDir: 'site' });
     });
-    it('should have default srcDir and custom publicDir when only pass publicDir', () => {
-      const pagic = new Pagic({ publicDir: 'docs' });
-      verifySrcDirAndDistDir(pagic, { publicDir: 'docs' });
+    it('should have default srcDir and custom distDir when only pass distDir', () => {
+      const pagic = new Pagic({ distDir: 'docs' });
+      verifySrcDirAndDistDir(pagic, { distDir: 'docs' });
     });
-    it('should have custom srcDir and custom publicDir', () => {
-      const pagic = new Pagic({ srcDir: 'site', publicDir: 'docs' });
-      verifySrcDirAndDistDir(pagic, { srcDir: 'site', publicDir: 'docs' });
+    it('should have custom srcDir and custom distDir', () => {
+      const pagic = new Pagic({ srcDir: 'site', distDir: 'docs' });
+      verifySrcDirAndDistDir(pagic, { srcDir: 'site', distDir: 'docs' });
     });
 
     it('should have default srcDir when pass undefined srcDir', () => {
       const pagic = new Pagic({ srcDir: undefined });
       verifySrcDirAndDistDir(pagic);
     });
-    it('should have default publicDir when pass undefined publicDir', () => {
-      const pagic = new Pagic({ publicDir: undefined });
+    it('should have default distDir when pass undefined distDir', () => {
+      const pagic = new Pagic({ distDir: undefined });
       verifySrcDirAndDistDir(pagic);
     });
     it('should have default srcDir when pass null srcDir', () => {
       const pagic = new Pagic({ srcDir: null });
       verifySrcDirAndDistDir(pagic);
     });
-    it('should have default publicDir when pass null publicDir', () => {
-      const pagic = new Pagic({ publicDir: null });
+    it('should have default distDir when pass null distDir', () => {
+      const pagic = new Pagic({ distDir: null });
       verifySrcDirAndDistDir(pagic);
     });
   });
@@ -99,12 +98,14 @@ describe('Pagic Class', () => {
 
   describe('clearDistDir()', () => {
     it('should call emptyDirSync', function () {
+      this.sinon.spy(console, 'log');
       this.sinon.stub(stub['fs-extra'], 'emptyDirSync');
 
       const pagic = new Pagic();
 
       pagic.clearDistDir();
 
+      sinon.assert.calledWith(console.log, 'Clear public');
       sinon.assert.calledOnce(stub['fs-extra'].emptyDirSync);
     });
   });
