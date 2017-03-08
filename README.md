@@ -210,20 +210,20 @@ npm install pagic --save
 ```
 
 ```js
-const Pagic = requrie('pagic').Pagic;
+const Pagic = require('pagic').Pagic;
 
 const pagic = new Pagic({
   srcDir: 'src',
   distDir: 'public',
 });
 
-pagic();
+pagic.build();
 ```
 
 Or use the sugar method:
 
 ```js
-const pagic = requrie('pagic')({
+const pagic = require('pagic')({
   srcDir: 'src',
   distDir: 'public',
 });
