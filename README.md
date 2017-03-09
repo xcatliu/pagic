@@ -197,8 +197,6 @@ module.exports = function ({ title, content, relativeToRoot }) {
 
 There are some options while using the cli:
 
-- `-s <path>`, `--src-dir=<path>`: Change the src directory, default is `src`
-- `-d <path>`, `--dist-dir=<path>`: Change the dist directory, default is `public`
 - `-w`, `--watch`: Watch for src directory change
 
 ## Use It as a Node Module
@@ -210,25 +208,11 @@ npm install pagic --save
 ```
 
 ```js
-const Pagic = require('pagic').Pagic;
+const Pagic = require('pagic');
 
-const pagic = new Pagic({
-  srcDir: 'src',
-  distDir: 'public',
-});
+const pagic = new Pagic();
 
 pagic.build();
-```
-
-Or use the sugar method:
-
-```js
-const pagic = require('pagic')({
-  srcDir: 'src',
-  distDir: 'public',
-});
-
-pagic();
 ```
 
 ## Development

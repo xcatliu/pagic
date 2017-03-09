@@ -1,48 +1,36 @@
-/* eslint no-console:0 */
+/* eslint no-console:0, global-require:0 */
 
 const path = require('path');
 const fse = require('fs-extra');
 const glob = require('glob');
-const findParentDir = require('find-parent-dir');
 
-const processors = [
-  require('./processor/parseFrontMatter'),
-  require('./processor/parseMarkdown'),
-  require('./processor/injectRelativeToRoot'),
-];
-
-const LAYOUT_FILENAME = '_layout.js';
-const DEFAULT_OPTIONS = {
-  srcDir: 'src',
-  distDir: 'public',
-};
+const getConfig = require('./util/getConfig');
+const getLayout = require('./util/getLayout');
 
 class Pagic {
-  constructor(options = {}) {
-    this.options = Object.assign({}, DEFAULT_OPTIONS, options);
-
-    if (typeof this.options.srcDir === 'undefined' || this.options.srcDir === null) {
-      this.options.srcDir = DEFAULT_OPTIONS.srcDir;
-    }
-    if (typeof this.options.distDir === 'undefined' || this.options.distDir === null) {
-      this.options.distDir = DEFAULT_OPTIONS.distDir;
-    }
+  constructor() {
+    this.config = getConfig();
+    this.plugins = [
+      require('./plugin/parseFrontMatter'),
+      require('./plugin/parseMarkdown'),
+      require('./plugin/injectRelativeToRoot'),
+    ];
   }
 
   build() {
-    this.clearDistDir();
+    this.clearPublicDir();
     this.buildMD();
     this.copyStaticFiles();
   }
 
-  clearDistDir() {
-    console.log(`Clear ${this.options.distDir}`);
-    fse.emptyDirSync(this.options.distDir);
+  clearPublicDir() {
+    console.log(`Clear ${this.config.public_dir}`);
+    fse.emptyDirSync(this.config.public_dir);
   }
 
   buildMD() {
     const mdFiles = glob.sync('**/*.md', {
-      cwd: this.options.srcDir,
+      cwd: this.config.src_dir,
     });
 
     if (mdFiles.length === 0) {
@@ -51,11 +39,11 @@ class Pagic {
     }
 
     mdFiles.forEach(filePath => {
-      const resolvedFilePath = path.resolve(this.options.srcDir, filePath);
-      const resolvedDistPath = path.resolve(this.options.distDir, filePath)
+      const resolvedFilePath = path.resolve(this.config.src_dir, filePath);
+      const resolvedDestinationFilePath = path.resolve(this.config.public_dir, filePath)
         .replace(/\.md$/, '.html');
 
-      const layout = this.getLayout(resolvedFilePath);
+      const layout = getLayout(resolvedFilePath);
 
       if (!layout) {
         console.error(`CANNOT find a layout for ${resolvedFilePath}, will skip this file`);
@@ -64,17 +52,17 @@ class Pagic {
 
       const originalContent = fse.readFileSync(resolvedFilePath, 'utf-8');
 
-      const context = processors.reduce((prevContext, processor) => processor(prevContext), {
+      const context = this.plugins.reduce((prevContext, plugin) => plugin(prevContext), {
         path: filePath,
         content: originalContent,
-        options: this.options,
+        config: this.config,
       });
 
       const html = layout(context);
 
-      fse.outputFileSync(resolvedDistPath, html);
+      fse.outputFileSync(resolvedDestinationFilePath, html);
 
-      console.log(`Generated ${resolvedDistPath}`);
+      console.log(`Generated ${resolvedDestinationFilePath}`);
     });
   }
 
@@ -85,7 +73,7 @@ class Pagic {
         '**/_*',
       ],
       nodir: true,
-      cwd: this.options.srcDir,
+      cwd: this.config.src_dir,
     });
 
     if (staticFiles.length === 0) {
@@ -93,26 +81,13 @@ class Pagic {
     }
 
     staticFiles.forEach(filePath => {
-      const resolvedFilePath = path.resolve(this.options.srcDir, filePath);
-      const resolvedDistPath = path.resolve(this.options.distDir, filePath);
+      const resolvedFilePath = path.resolve(this.config.src_dir, filePath);
+      const resolvedDistPath = path.resolve(this.config.public_dir, filePath);
 
       fse.copySync(resolvedFilePath, resolvedDistPath);
 
       console.log(`Copied ${resolvedDistPath}`);
     });
-  }
-
-  getLayout(currentPath) {
-    const layoutDir = findParentDir.sync(currentPath, LAYOUT_FILENAME);
-
-    if (!layoutDir) {
-      return null;
-    }
-
-    /* eslint global-require:0 */
-    const layout = require(path.resolve(layoutDir, LAYOUT_FILENAME));
-
-    return layout;
   }
 }
 
