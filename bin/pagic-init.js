@@ -32,4 +32,4 @@ const initConfigPath = path.resolve(initDir, '_config.yml');
 fse.copySync(copySrcDir, initSrcDir);
 fse.copySync(defaultConfigPath, initConfigPath);
 console.log(`Init ${initDir} done
-Please cd ${initDir} and run pagic`);
+Please \`cd ${initDir}\` and run \`pagic build\``);

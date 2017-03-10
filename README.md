@@ -200,9 +200,11 @@ module.exports = function ({ title, content, relativeToRoot }) {
 We can use `pagic build` to build static page, there are some options while using build:
 
 ```shell
--w, --watch  watch src dir change
--s, --serve  serve public dir
--p, --port   override default port
+pagic build [options]
+
+# -w, --watch  watch src dir change
+# -s, --serve  serve public dir
+# -p, --port   override default port
 ```
 
 ### init
