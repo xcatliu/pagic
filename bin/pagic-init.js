@@ -14,7 +14,7 @@ program
   .parse(process.argv);
 
 if (typeof initDir === 'undefined') {
-  console.error('<dir> is undefined');
+  console.error('You must specify a dir');
   process.exit(1);
 }
 
@@ -31,4 +31,5 @@ const initConfigPath = path.resolve(initDir, '_config.yml');
 
 fse.copySync(copySrcDir, initSrcDir);
 fse.copySync(defaultConfigPath, initConfigPath);
-console.log(`Init ${initDir} done`);
+console.log(`Init ${initDir} done
+Please cd ${initDir} and run pagic`);

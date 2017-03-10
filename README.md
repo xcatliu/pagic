@@ -61,7 +61,7 @@ The easiest way to generate static html page from markdown
 Then run
 
 ```shell
-pagic
+pagic build
 ```
 
 We'll get an `index.html` file in `public` directory:
@@ -193,13 +193,27 @@ module.exports = function ({ title, content, relativeToRoot }) {
 };
 ```
 
-## Options
+## Use Pagic as CLI
 
-There are some options while using the cli:
+### build
 
-- `-w`, `--watch`: Watch for src directory change
+We can use `pagic build` to build static page, there are some options while using build:
 
-## Use It as a Node Module
+```shell
+-w, --watch  watch src dir change
+-s, --serve  serve public dir
+-p, --port   override default port
+```
+
+### init
+
+We can use `pagic init` to create a new Pagic folder
+
+```shell
+pagic init <dir>
+```
+
+## Use Pagic as a node module
 
 It's also able to use it as a node module:
 
@@ -211,7 +225,6 @@ npm install pagic --save
 const Pagic = require('pagic');
 
 const pagic = new Pagic();
-
 pagic.build();
 ```
 

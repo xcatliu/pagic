@@ -1,7 +1,5 @@
-/* eslint-env mocha */
-
 const assert = require('assert');
-const parseFrontMatter = require('../../../src/processor/parseFrontMatter');
+const parseFrontMatter = require('../../../src/plugin/parseFrontMatter');
 
 describe('parseFrontMatter', () => {
   it('should keep other properties on context', () => {

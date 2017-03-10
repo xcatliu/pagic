@@ -1,7 +1,4 @@
-/* eslint-env mocha */
-/* eslint no-use-before-define:0, import/no-extraneous-dependencies:0, max-len:0, func-names:0, no-console:0 */
-
-const assert = require('assert');
+const assert = require('chai').assert;
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 
@@ -17,22 +14,19 @@ const stub = {
   glob: {
     sync: () => ['path'],
   },
-  'find-parent-dir': {
-    sync: () => '/path/to/parent/dir',
-  },
+  './util/getLayout': () => () => 'getLayout result',
+  './util/getConfig': () => ({
+    src_dir: 'src',
+    public_dir: 'public',
+  }),
   './processor/parseFrontMatter': () => ({}),
   './processor/parseMarkdown': () => ({}),
   './processor/injectRelativeToRoot': () => ({}),
 };
 
-const Pagic = proxyquire('../../src/Pagic', stub);
+const Pagic = proxyquire('../..', stub);
 
-const DEFAULT_OPTIONS = {
-  srcDir: 'src',
-  distDir: 'public',
-};
-
-describe('Pagic Class', () => {
+describe('Pagic', () => {
   beforeEach(function () {
     this.sinon = sinon.sandbox.create();
   });
@@ -41,69 +35,36 @@ describe('Pagic Class', () => {
   });
 
   describe('constructor()', () => {
-    it('should have default srcDir and distDir when pass 0 arguments', () => {
+    it('should have config and plugins', function () {
       const pagic = new Pagic();
-      verifySrcDirAndDistDir(pagic);
-    });
-    it('should have default srcDir and distDir when pass empty object', () => {
-      const pagic = new Pagic({});
-      verifySrcDirAndDistDir(pagic);
-    });
-
-    it('should have custom srcDir and default distDir when only pass srcDir', () => {
-      const pagic = new Pagic({ srcDir: 'site' });
-      verifySrcDirAndDistDir(pagic, { srcDir: 'site' });
-    });
-    it('should have default srcDir and custom distDir when only pass distDir', () => {
-      const pagic = new Pagic({ distDir: 'docs' });
-      verifySrcDirAndDistDir(pagic, { distDir: 'docs' });
-    });
-    it('should have custom srcDir and custom distDir', () => {
-      const pagic = new Pagic({ srcDir: 'site', distDir: 'docs' });
-      verifySrcDirAndDistDir(pagic, { srcDir: 'site', distDir: 'docs' });
-    });
-
-    it('should have default srcDir when pass undefined srcDir', () => {
-      const pagic = new Pagic({ srcDir: undefined });
-      verifySrcDirAndDistDir(pagic);
-    });
-    it('should have default distDir when pass undefined distDir', () => {
-      const pagic = new Pagic({ distDir: undefined });
-      verifySrcDirAndDistDir(pagic);
-    });
-    it('should have default srcDir when pass null srcDir', () => {
-      const pagic = new Pagic({ srcDir: null });
-      verifySrcDirAndDistDir(pagic);
-    });
-    it('should have default distDir when pass null distDir', () => {
-      const pagic = new Pagic({ distDir: null });
-      verifySrcDirAndDistDir(pagic);
+      assert.property(pagic, 'config');
+      assert.property(pagic, 'plugins');
     });
   });
 
   describe('build()', () => {
-    it('should call clearDistDir, buildMD and copyStaticFiles', function () {
+    it('should call clearPublicDir, buildMD and copyStaticFiles', function () {
       const pagic = new Pagic();
-      this.sinon.stub(pagic, 'clearDistDir');
+      this.sinon.stub(pagic, 'clearPublicDir');
       this.sinon.stub(pagic, 'buildMD');
       this.sinon.stub(pagic, 'copyStaticFiles');
 
       pagic.build();
 
-      sinon.assert.calledOnce(pagic.clearDistDir);
+      sinon.assert.calledOnce(pagic.clearPublicDir);
       sinon.assert.calledOnce(pagic.buildMD);
       sinon.assert.calledOnce(pagic.copyStaticFiles);
     });
   });
 
-  describe('clearDistDir()', () => {
+  describe('clearPublicDir()', () => {
     it('should call emptyDirSync', function () {
       this.sinon.spy(console, 'log');
       this.sinon.stub(stub['fs-extra'], 'emptyDirSync');
 
       const pagic = new Pagic();
 
-      pagic.clearDistDir();
+      pagic.clearPublicDir();
 
       sinon.assert.calledWith(console.log, 'Clear public');
       sinon.assert.calledOnce(stub['fs-extra'].emptyDirSync);
@@ -123,9 +84,12 @@ describe('Pagic Class', () => {
     });
     it('should console.error `CANNOT find a layout for /path/to/file, will skip this file`', function () {
       this.sinon.spy(console, 'error');
+      // We need to craete a new proxyquire to override the stub
+      const ProxiedPagic = proxyquire('../..', Object.assign({}, stub, {
+        './util/getLayout': () => null,
+      }));
 
-      const pagic = new Pagic();
-      this.sinon.stub(pagic, 'getLayout', () => null);
+      const pagic = new ProxiedPagic();
 
       pagic.buildMD();
 
@@ -135,7 +99,6 @@ describe('Pagic Class', () => {
       this.sinon.spy(console, 'log');
 
       const pagic = new Pagic();
-      this.sinon.stub(pagic, 'getLayout', () => () => {});
 
       pagic.buildMD();
 
@@ -146,7 +109,6 @@ describe('Pagic Class', () => {
       this.sinon.stub(stub.glob, 'sync', () => ['path1', 'path2']);
 
       const pagic = new Pagic();
-      this.sinon.stub(pagic, 'getLayout', () => () => {});
 
       pagic.buildMD();
 
@@ -168,7 +130,6 @@ describe('Pagic Class', () => {
       this.sinon.spy(console, 'log');
 
       const pagic = new Pagic();
-      this.sinon.stub(pagic, 'getLayout', () => () => {});
 
       pagic.copyStaticFiles();
 
@@ -179,7 +140,6 @@ describe('Pagic Class', () => {
       this.sinon.stub(stub.glob, 'sync', () => ['path1', 'path2']);
 
       const pagic = new Pagic();
-      this.sinon.stub(pagic, 'getLayout', () => () => {});
 
       pagic.copyStaticFiles();
 
@@ -187,33 +147,4 @@ describe('Pagic Class', () => {
       sinon.assert.alwaysCalledWith(console.log, 'Copied /path/to/file');
     });
   });
-
-  describe('getLayou()', () => {
-    it('should return null when findParentDir.sync returns null', function () {
-      this.sinon.stub(stub['find-parent-dir'], 'sync', () => null);
-
-      const pagic = new Pagic();
-
-      assert.equal(pagic.getLayout(), null);
-    });
-    it('should return the required module', function () {
-      /* It's hard to stub a dynamic require, so here we require 'glob' as a test */
-      this.sinon.stub(stub.path, 'resolve', () => 'glob');
-      this.sinon.stub(stub, 'glob', () => 'Layout result');
-      const pagic = new Pagic();
-
-      assert.equal(pagic.getLayout(), stub.glob);
-    });
-  });
 });
-
-function verifySrcDirAndDistDir(
-  pagic,
-  {
-    srcDir = DEFAULT_OPTIONS.srcDir,
-    distDir = DEFAULT_OPTIONS.distDir,
-  } = DEFAULT_OPTIONS
-) {
-  assert.equal(pagic.options.srcDir, srcDir);
-  assert.equal(pagic.options.distDir, distDir);
-}

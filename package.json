@@ -32,6 +32,7 @@
   "homepage": "https://github.com/xcatliu/pagic#readme",
   "dependencies": {
     "commander": "^2.9.0",
+    "ecstatic": "^2.1.0",
     "find-parent-dir": "^0.3.0",
     "front-matter": "^2.1.2",
     "fs-extra": "^2.0.0",

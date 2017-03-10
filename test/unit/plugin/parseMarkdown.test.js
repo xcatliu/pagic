@@ -1,7 +1,5 @@
-/* eslint-env mocha */
-
 const assert = require('assert');
-const parseMarkdown = require('../../../src/processor/parseMarkdown');
+const parseMarkdown = require('../../../src/plugin/parseMarkdown');
 
 describe('parseMarkdown', () => {
   it('should keep other properties on context', () => {
