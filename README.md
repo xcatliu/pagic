@@ -193,9 +193,9 @@ module.exports = function ({ title, content, relativeToRoot }) {
 };
 ```
 
-## _config.yml
+## `_config.yml`
 
-We can set some configuration in `_config.yml`, the default is:
+We can set the configuration in `_config.yml`, the default is:
 
 ```yml
 src_dir: src
@@ -204,9 +204,9 @@ public_dir: public
 
 ## Use Pagic as CLI
 
-### build
+### `pagic build`
 
-We can use `pagic build` to build static page, there are some options while using build:
+We can use `pagic build` to build static page, there are some options while using build command:
 
 ```shell
 pagic build [options]
@@ -216,9 +216,9 @@ pagic build [options]
 # -p, --port   override default port
 ```
 
-### init
+### `pagic init`
 
-We can use `pagic init` to create a new Pagic folder
+We can use `pagic init` to create a new Pagic folder:
 
 ```shell
 pagic init <dir>
