@@ -7,7 +7,7 @@
     "pagic": "bin/pagic.js"
   },
   "scripts": {
-    "start": "node bin/pagic.js -s site",
+    "start": "node bin/pagic.js build",
     "lint": "eslint .",
     "test": "npm run lint && _mocha",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha",

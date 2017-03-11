@@ -10,6 +10,10 @@ module.exports = function getLayout(currentPath) {
     return null;
   }
 
-  const layout = require(path.resolve(layoutDir, '_layout.js'));
+  const requirePath = path.resolve(layoutDir, '_layout.js');
+  const layout = require(requirePath);
+
+  delete require.cache[require.resolve(requirePath)];
+
   return layout;
 };
