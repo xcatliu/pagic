@@ -193,6 +193,15 @@ module.exports = function ({ title, content, relativeToRoot }) {
 };
 ```
 
+## _config.yml
+
+We can set some configuration in `_config.yml`, the default is:
+
+```yml
+src_dir: src
+public_dir: public
+```
+
 ## Use Pagic as CLI
 
 ### build
