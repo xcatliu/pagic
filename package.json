@@ -7,7 +7,7 @@
     "pagic": "bin/pagic.js"
   },
   "scripts": {
-    "start": "node bin/pagic.js build",
+    "start": "node bin/pagic.js build -ws",
     "lint": "eslint .",
     "test": "npm run lint && _mocha",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha",
@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/xcatliu/pagic#readme",
   "dependencies": {
+    "chokidar": "^1.6.1",
     "commander": "^2.9.0",
     "ecstatic": "^2.1.0",
     "find-parent-dir": "^0.3.0",

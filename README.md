@@ -232,11 +232,23 @@ It's also able to use it as a node module:
 npm install pagic --save
 ```
 
+### Common Usage
+
 ```js
 const Pagic = require('pagic');
 
 const pagic = new Pagic();
 pagic.build();
+```
+
+### Watch File Change
+
+```js
+pagic.watch().build();
+
+setTimeout(() => {
+  pagic.unwatch();
+}, 10000);
 ```
 
 ## Development

@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-const fs = require('fs');
 const program = require('commander');
 const Pagic = require('..');
 const http = require('http');
@@ -16,13 +15,10 @@ program
 
 const pagic = new Pagic();
 
-pagic.build();
-
 if (program.watch) {
-  console.log(`Watching ${pagic.config.src_dir}`);
-  fs.watch(pagic.config.src_dir, () => {
-    pagic.build();
-  });
+  pagic.watch().build();
+} else {
+  pagic.build();
 }
 
 if (program.serve) {
