@@ -19,7 +19,7 @@ if (typeof initDir === 'undefined') {
 }
 
 if (fse.existsSync(initDir)) {
-  console.error(`${initDir} is not empty`);
+  console.error(`${initDir} already exists`);
   process.exit(1);
 }
 
