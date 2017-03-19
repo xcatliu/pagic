@@ -261,7 +261,7 @@ npm test
 
 ## LICENSE
 
-MIT
+[MIT](./LICENSE)
 
 ---
 
