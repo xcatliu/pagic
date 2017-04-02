@@ -2,6 +2,15 @@
 
 The easiest way to generate static html page from markdown
 
+```html
+<html>
+
+  <body>
+    <title>Heleo</title>
+  </body>
+</html>
+```
+
 ## Pages
 
 - [css/site.css](css/site.css)
