@@ -1,6 +1,6 @@
 {
   "name": "pagic",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "The easiest way to generate static html page from markdown",
   "main": "src/Pagic.js",
   "bin": {
