@@ -42,7 +42,7 @@
     "markdown-it": "^8.3.0",
     "markdown-it-anchor": "^4.0.0",
     "markdown-it-title": "^1.0.4",
-    "prismjs": "^1.6.0"
+    "node-prismjs": "^0.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

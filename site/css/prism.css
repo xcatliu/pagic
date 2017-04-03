@@ -35,7 +35,7 @@ code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-select
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	text-shadow: none;
-	background: #b3d4fc;
+	background: #b3d4fc;	
 }
 
 @media print {
@@ -48,7 +48,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 /* Code blocks */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #f5f2f0;
+	background: #f2f2f2;
 }
 
 .token.comment,
@@ -121,4 +121,3 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
-
