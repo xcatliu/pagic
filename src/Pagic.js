@@ -125,7 +125,7 @@ class Pagic {
     const originalContent = fse.readFileSync(resolvedFilePath, 'utf-8');
 
     const context = this.plugins.reduce((prevContext, plugin) => plugin(prevContext), {
-      path: filePath,
+      filePath: path.normalize(filePath),
       content: originalContent,
       config: this.config,
     });

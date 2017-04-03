@@ -184,7 +184,7 @@ public_dir: public
 
 ### Injected variables
 
-There are some variables other than `title` and `content` which are injected to `_layout.js`:
+The variables which are injected to `_layout.js`:
 
 <div class="scroll-view">
   <table class="table">
@@ -192,41 +192,32 @@ There are some variables other than `title` and `content` which are injected to 
       <tr>
         <th>Variable</th>
         <th>Interpretation</th>
-        <th>Sample value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>
-          <code>relativeToRoot</code>
-        </td>
-        <td>
-          The relative path from current markdown file to root directory
-        </td>
-        <td>
-          <code>../..</code>
-        </td>
+        <td><code>title</code></td>
+        <td>The title of current page, usually is the first <code># Title</code> in the markdown</td>
       </tr>
       <tr>
-        <td>
-          <code>config</code>
-        </td>
-        <td>
-          The json format of <code>_config.yml</code>
-        </td>
-        <td>
-
-```json
-{
-  src_dir: src
-  public_dir: public
-
-  custom_key: custom_value
-}
-```
-
-<div class="top-gap"></div>
-        </td>
+        <td><code>content</code></td>
+        <td>The content of current page</td>
+      </tr>
+      <tr>
+        <td><code>frontMatter</code></td>
+        <td>The frontMatter object of current markdown</td>
+      </tr>
+      <tr>
+        <td><code>relativeToRoot</code></td>
+        <td>The relative path from current markdown file to root directory</td>
+      </tr>
+      <tr>
+        <td><code>config</code></td>
+        <td>The json format of <code>_config.yml</code>. You can add your custom data to it</td>
+      </tr>
+      <tr>
+        <td><code>filePath</code></td>
+        <td>The current markdown file path</td>
       </tr>
     </tbody>
   </table>

@@ -154,45 +154,39 @@ The easiest way to generate static html page from markdown
 <span class="token key atrule">public_dir</span><span class="token punctuation">:</span> public
 </code></pre>
 <h3 id="injected-variables">Injected variables</h3>
-<p>There are some variables other than <code>title</code> and <code>content</code> which are injected to <code>_layout.js</code>:</p>
+<p>The variables which are injected to <code>_layout.js</code>:</p>
 <div class="scroll-view">
   <table class="table">
     <thead>
       <tr>
         <th>Variable</th>
         <th>Interpretation</th>
-        <th>Sample value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>
-          <code>relativeToRoot</code>
-        </td>
-        <td>
-          The relative path from current markdown file to root directory
-        </td>
-        <td>
-          <code>../..</code>
-        </td>
+        <td><code>title</code></td>
+        <td>The title of current page, usually is the first <code># Title</code> in the markdown</td>
       </tr>
       <tr>
-        <td>
-          <code>config</code>
-        </td>
-        <td>
-          The json format of <code>_config.yml</code>
-        </td>
-        <td>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-  src_dir<span class="token operator">:</span> src
-  public_dir<span class="token operator">:</span> public
-
-  custom_key<span class="token operator">:</span> custom_value
-<span class="token punctuation">}</span>
-</code></pre>
-<div class="top-gap"></div>
-        </td>
+        <td><code>content</code></td>
+        <td>The content of current page</td>
+      </tr>
+      <tr>
+        <td><code>frontMatter</code></td>
+        <td>The frontMatter object of current markdown</td>
+      </tr>
+      <tr>
+        <td><code>relativeToRoot</code></td>
+        <td>The relative path from current markdown file to root directory</td>
+      </tr>
+      <tr>
+        <td><code>config</code></td>
+        <td>The json format of <code>_config.yml</code>. You can add your custom data to it</td>
+      </tr>
+      <tr>
+        <td><code>filePath</code></td>
+        <td>The current markdown file path</td>
       </tr>
     </tbody>
   </table>

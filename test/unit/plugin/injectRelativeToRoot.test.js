@@ -8,7 +8,7 @@ describe('injectRelativeToRoot', () => {
         src_dir: 'src',
         public_dir: 'public',
       },
-      path: 'path/to/file',
+      filePath: 'path/to/file',
       otherKey: 'otherValue',
     }).otherKey, 'otherValue');
   });
@@ -18,7 +18,7 @@ describe('injectRelativeToRoot', () => {
         src_dir: 'src',
         public_dir: 'public',
       },
-      path: 'path/to/file',
+      filePath: 'path/to/file',
     }).relativeToRoot, '../..');
   });
   it('should return `..` if path is `path/to`', () => {
@@ -27,7 +27,7 @@ describe('injectRelativeToRoot', () => {
         src_dir: 'src',
         public_dir: 'public',
       },
-      path: 'path/to',
+      filePath: 'path/to',
     }).relativeToRoot, '..');
   });
   // it('should return `../..` if path is `path\\to\\file`', () => {
@@ -45,7 +45,7 @@ describe('injectRelativeToRoot', () => {
         src_dir: 'src',
         public_dir: 'public',
       },
-      path: 'path',
+      filePath: 'path',
     }).relativeToRoot, '.');
   });
 });
