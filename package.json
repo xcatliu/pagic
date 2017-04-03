@@ -41,7 +41,8 @@
     "js-yaml": "^3.8.2",
     "markdown-it": "^8.3.0",
     "markdown-it-anchor": "^4.0.0",
-    "markdown-it-title": "^1.0.4"
+    "markdown-it-title": "^1.0.4",
+    "node-prismjs": "^0.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
