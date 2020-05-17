@@ -1,59 +1,20 @@
 {
   "name": "pagic",
-  "version": "0.6.0",
-  "description": "The easiest way to generate static html page from markdown",
-  "main": "src/Pagic.js",
-  "bin": {
-    "pagic": "bin/pagic.js"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": ".prettierrc.js",
   "scripts": {
-    "start": "node bin/pagic.js build -ws",
-    "lint": "eslint .",
-    "test": "npm run lint && _mocha",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xcatliu/pagic.git"
-  },
-  "keywords": [
-    "pagic",
-    "static",
-    "page",
-    "generator",
-    "markdown"
-  ],
-  "author": "xcatliu <xcatliu@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/xcatliu/pagic/issues"
-  },
-  "homepage": "https://github.com/xcatliu/pagic#readme",
-  "dependencies": {
-    "chokidar": "^1.6.1",
-    "commander": "^2.9.0",
-    "ecstatic": "^2.1.0",
-    "find-parent-dir": "^0.3.0",
-    "front-matter": "^2.1.2",
-    "fs-extra": "^2.0.0",
-    "glob": "^7.1.1",
-    "js-yaml": "^3.8.2",
-    "markdown-it": "^8.3.0",
-    "markdown-it-anchor": "^4.0.0",
-    "markdown-it-title": "^1.0.4",
-    "node-prismjs": "^0.1.0"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.12.0",
-    "eslint": "^3.4.0",
-    "eslint-config-airbnb-base": "^5.0.3",
-    "eslint-plugin-import": "^1.14.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.3.0",
-    "proxyquire": "^1.7.11",
-    "sinon": "^1.17.7"
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "^7.0.0",
+    "eslint-config-alloy": "^3.7.2",
+    "eslint-plugin-react": "^7.20.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.2"
   }
 }
