@@ -27,9 +27,12 @@ const md = new window.markdownit({
       // eslint-disable-next-line no-param-reassign
       lang = 'autoit';
     }
+    const grammar = window.Prism.languages[lang];
+    window.Prism.hooks.run('before-highlight', { grammar });
     return `<pre class="language-${lang}"><code class="language-${lang}">${window.Prism.highlight(
       str,
-      window.Prism.languages[lang]
+      grammar,
+      lang
     )}</code></pre>`;
   },
   replaceLink: (link: string) => {
@@ -70,8 +73,8 @@ const mdPlugin: PagicPlugin = async (ctx) => {
     layoutPath: ctx.layoutPath,
     outputPath: ctx.outputPath.replace(/README\.html$/, 'index.html'),
     title: env.title,
-    ...frontMatter,
-    content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />,
+    ...frontMatter
   };
 };
 

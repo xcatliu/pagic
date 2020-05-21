@@ -10,12 +10,12 @@ const markdown: PagicPlugin = async (ctx) => {
   }
 
   const fullPagePath = path.resolve(ctx.config.srcDir, ctx.pagePath);
-  const ContentComponent = (await import(`file://${fullPagePath}`)).default;
+  const { default: ContentComponent, frontMatter } = await import(`file://${fullPagePath}`);
 
   return {
     ...ctx,
-    title: ContentComponent.title,
-    content: <ContentComponent />
+    content: <ContentComponent />,
+    ...frontMatter
   };
 };
 

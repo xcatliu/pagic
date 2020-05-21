@@ -1,0 +1,15 @@
+{
+  // 保存时自动格式化
+  "editor.formatOnSave": true,
+  // 默认使用 Prettier 格式化
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // ESLint 配置
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    // 保存时自动修复 ESLint 错误
+    "source.fixAll.eslint": true
+  },
+  // 使用项目的 ts 版本
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "deno.enable": true
+}

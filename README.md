@@ -5,7 +5,7 @@ The easiest way to generate static html page from markdown, built with Deno! �
 ## Features
 
 - Markdown + Layout => HTML
-- Component + Layout => HTML
+- React component as a page
 - Copy static files
 - Sub pages and layouts
 - Front matter
@@ -61,7 +61,7 @@ The `src/index.md` is a simple markdown file:
 The easiest way to generate static html page from markdown, built with Deno! 🦕
 ```
 
-Then run
+Then run:
 
 ```bash
 pagic build
@@ -95,9 +95,7 @@ The content should be:
 </html>
 ```
 
-Here we use [markdown-it](https://github.com/markdown-it/markdown-it) to parse the markdown file.
-
-### Component + Layout => HTML
+### React component as a page
 
 A react component can also be built to html:
 
@@ -112,7 +110,7 @@ docs/
     └── hello.tsx
 ```
 
-Here we build `src/hello.tsx` to `public/hello.html`.
+Here we build `src/hello.tsx` to `public/hello.html`, using `src/_layout.tsx` as the layout.
 
 `src/hello.tsx` is a simple react component:
 
@@ -120,9 +118,9 @@ Here we build `src/hello.tsx` to `public/hello.html`.
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
-export default function () {
-  return <h1>Hello World</h1>;
-}
+const Hello = () => <h1>Hello World</h1>;
+
+export default Hello;
 ```
 
 And `public/hello.html` would be:
@@ -165,7 +163,7 @@ We can have sub directory which contains markdown or component.
 
 Sub directory can also have a `_layout.tsx` file.
 
-For each markdown or component, it will walk your file system looking for the nearest `_layout.tsx`. It starts from the current directory and then moves to the parent directory until it finds the `_layout.tsx`.
+For each markdown or react component, it will walk your file system looking for the nearest `_layout.tsx`. It starts from the current directory and then moves to the parent directory until it finds the `_layout.tsx`.
 
 ```
 docs/
@@ -194,7 +192,7 @@ Front matter allows us add extra meta data to markdown:
 ```markdown
 ---
 author: xcatliu
-published: 2017-03-02
+published: 2020-05-20
 ---
 
 # Pagic
@@ -227,11 +225,30 @@ const Layout: PagicLayout = ({ title, content, author, published }) => (
 export default Layout;
 ```
 
+#### Front matter in react component
+
+In react component we can export a `frontMatter` variable:
+
+```tsx
+// @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
+import React from 'https://dev.jspm.io/react@16.13.1';
+
+const Hello = () => <h1>Hello World</h1>;
+
+export default Hello;
+
+export const frontMatter = {
+  title: 'Hello World',
+  author: 'xcatliu',
+  published: '2020-05-20'
+};
+```
+
 ## Use pagic as cli
 
 ### `pagic build`
 
-We can use `pagic build` to build static page, there are some options while using `build` command:
+We can use `pagic build` to build static pages, there are some options while using `build` command:
 
 ```bash
 pagic build [options]
