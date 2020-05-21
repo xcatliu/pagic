@@ -2,12 +2,12 @@
   "name": "pagic",
   "version": "1.0.0",
   "description": "",
-  "main": ".prettierrc.js",
+  "main": "pagic.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "xcatliu <xcatliu@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",

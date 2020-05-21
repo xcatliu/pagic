@@ -7,7 +7,7 @@ import { PagicPlugin } from '../Pagic.ts';
 const layout: PagicPlugin = async (ctx) => {
   const fullLayoutPath = path.resolve(ctx.config.srcDir, ctx.layoutPath);
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const Layout = (await import(fullLayoutPath)).default;
+  const Layout = (await import(`file://${fullLayoutPath}`)).default;
   return {
     ...ctx,
     content: <Layout {...ctx} />

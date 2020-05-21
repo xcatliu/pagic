@@ -81,26 +81,15 @@ export default class Pagic {
     };
   }
 
-  public async run() {
+  public async build() {
     await this.initProjectConfig();
-    await this.build();
+    await this.rebuild();
 
     if (this.config.serve) {
       this.serve();
     }
     if (this.config.watch) {
       this.watch();
-    }
-  }
-
-  public async build() {
-    await this.clean();
-    await this.initPaths();
-    for (const pagePath of this.pagePaths) {
-      await this.buildPage(pagePath);
-    }
-    for (const staticPath of this.staticPaths) {
-      await this.copyStatic(staticPath);
     }
   }
 
@@ -116,6 +105,17 @@ export default class Pagic {
 
     app.listen({ port: this.config.port });
     console.log(green('Serve'), underline(this.config.publicDir), `on http://127.0.0.1:${this.config.port}/`);
+  }
+
+  private async rebuild() {
+    await this.clean();
+    await this.initPaths();
+    for (const pagePath of this.pagePaths) {
+      await this.buildPage(pagePath);
+    }
+    for (const staticPath of this.staticPaths) {
+      await this.copyStatic(staticPath);
+    }
   }
 
   private async watch() {
@@ -152,7 +152,7 @@ export default class Pagic {
       }
       this.randomVersion = Math.random();
       if (needRebuild) {
-        this.build();
+        this.rebuild();
       } else {
         for (const fullChangedPath of filteredFullChangedPaths) {
           const changedPath = this.relativeToSrc(fullChangedPath);
@@ -168,13 +168,12 @@ export default class Pagic {
   }
 
   private async initProjectConfig() {
-    console.log(Deno.cwd())
-    const projectConfigPath = path.resolve(Deno.cwd(), 'pagic.config.ts');
+    const projectConfigPath = Deno.cwd() + '/pagic.config.ts';
     if (!fs.existsSync(projectConfigPath)) {
       return;
     }
 
-    this.projectConfig = (await import(projectConfigPath)).default;
+    this.projectConfig = (await import(`file://${projectConfigPath}`)).default;
   }
 
   private async clean() {

@@ -38,8 +38,9 @@ The `src/_layout.tsx` is a simple react component:
 ```tsx
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
+import { PagicLayout } from 'https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts';
 
-const Layout = ({ title, content }: any) => (
+const Layout: PagicLayout = ({ title, content }) => (
   <html>
     <head>
       <title>{title}</title>
@@ -63,7 +64,7 @@ The easiest way to generate static html page from markdown, built with Deno! �
 Then run
 
 ```bash
-pagic run
+pagic build
 ```
 
 We'll get an `index.html` file in `public` directory:
@@ -111,9 +112,9 @@ docs/
     └── hello.tsx
 ```
 
-Here we build `src/helle.tsx` to `public/hello.html`.
+Here we build `src/hello.tsx` to `public/hello.html`.
 
-`src/helle.tsx` is a simple react component:
+`src/hello.tsx` is a simple react component:
 
 ```tsx
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
@@ -201,13 +202,14 @@ published: 2017-03-02
 The easiest way to generate static html page from markdown, built with Deno! 🦕
 ```
 
-every item in the front matter will pass to the `_layout.tsx` as the props:
+Every item in the front matter will pass to the `_layout.tsx` as the props:
 
 ```tsx
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
+import { PagicLayout } from 'https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts';
 
-const Layout = ({ title, content, author, published }: any) => (
+const Layout: PagicLayout = ({ title, content, author, published }) => (
   <html>
     <head>
       <title>{title}</title>
@@ -225,14 +227,14 @@ const Layout = ({ title, content, author, published }: any) => (
 export default Layout;
 ```
 
-## Use Pagic as cli
+## Use pagic as cli
 
-### `pagic run`
+### `pagic build`
 
-We can use `pagic run` to build static page, there are some options while using run command:
+We can use `pagic build` to build static page, there are some options while using `build` command:
 
 ```bash
-pagic run [options]
+pagic build [options]
 
 # --watch  watch src dir change
 # --serve  serve public dir

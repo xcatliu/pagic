@@ -6,7 +6,7 @@ export * from './src/Pagic.ts';
 if (import.meta.main) {
   const [subCommand, ...restArgs] = Deno.args;
 
-  const validSubCommands = ['run'];
+  const validSubCommands = ['build'];
   if (!validSubCommands.includes(subCommand)) {
     throw new Error(`Invalid subCommand ${subCommand}`);
   }
@@ -24,7 +24,11 @@ if (import.meta.main) {
       if (typeof nextArg === 'undefined' || nextArg.startsWith('-')) {
         options[key] = true;
       } else {
-        options[key] = restArgs[i + 1];
+        if (Number(nextArg).toString() === nextArg) {
+          options[key] = Number(nextArg);
+        } else {
+          options[key] = nextArg;
+        }
         i++;
       }
     } else if (currentArg.startsWith('-')) {
@@ -34,11 +38,11 @@ if (import.meta.main) {
       }
       options[key] = true;
     } else {
-      throw new Error(`Invalid args ${restArgs[i]}`);
+      throw new Error(`Invalid args ${currentArg}`);
     }
   }
   const pagic = new Pagic(options);
-  if (subCommand === 'run') {
-    pagic.run();
+  if (subCommand === 'build') {
+    pagic.build();
   }
 }
