@@ -168,6 +168,7 @@ export default class Pagic {
   }
 
   private async initProjectConfig() {
+    console.log(Deno.cwd())
     const projectConfigPath = path.resolve(Deno.cwd(), 'pagic.config.ts');
     if (!fs.existsSync(projectConfigPath)) {
       return;

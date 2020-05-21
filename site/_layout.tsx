@@ -1,8 +1,8 @@
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicLayout } from '../pagic.ts';
+import { PagicLayout } from 'https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts';
 
-const Layout: PagicLayout = ({ title, content, author }: any) => (
+const Layout: PagicLayout = ({ title, content, author }) => (
   <html>
     <head>
       <title>{title}</title>

@@ -18,7 +18,7 @@ The easiest way to generate static html page from markdown, built with Deno! ðŸ¦
 # Install deno https://deno.land/#installation
 curl -fsSL https://deno.land/x/install/install.sh | sh
 # Install pagic
-deno install --unstable --allow-read --allow-write --allow-net pagic.ts
+deno install --unstable --allow-read --allow-write --allow-net https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts
 ```
 
 ### Markdown + Layout => HTML
