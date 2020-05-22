@@ -4,13 +4,13 @@ The easiest way to generate static html page from markdown, built with Deno! ðŸ¦
 
 ## Features
 
-- Markdown + Layout => HTML
-- React component as a page
-- Copy static files
-- Sub pages and layouts
-- Front matter
-- Configuration
-- Plugins and themes
+- [Markdown + Layout => HTML](#markdown--layout--html)
+- [React component as a page](#react-component-as-a-page)
+- [Copy static files](#copy-static-files)
+- [Sub pages and layouts](#sub-pages-and-layouts)
+- [Front matter](#front-matter)
+- [Configuration](#configuration)
+- [Plugins and themes](#plugins-and-themes)
 
 ## Getting started
 
