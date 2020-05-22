@@ -16,9 +16,11 @@ The easiest way to generate static html page from markdown, built with Deno! ðŸ¦
 
 ### Installation
 
+**WARNING**: there are some bugs when using deno `v1.0.1`, please use deno `v1.0.0` instead until we solve the issue.
+
 ```bash
 # Install deno https://deno.land/#installation
-curl -fsSL https://deno.land/x/install/install.sh | sh
+curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.0
 # Install pagic
 deno install --unstable --allow-read --allow-write --allow-net https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts
 ```
