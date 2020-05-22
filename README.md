@@ -9,6 +9,8 @@ The easiest way to generate static html page from markdown, built with Deno! ðŸ¦
 - Copy static files
 - Sub pages and layouts
 - Front matter
+- Configuration
+- Plugins and themes
 
 ## Getting started
 
@@ -243,6 +245,40 @@ export const frontMatter = {
   published: '2020-05-20'
 };
 ```
+
+### Configuration
+
+It's able to configurate pagic by adding a `pagic.config.ts` file. The default configuration is:
+
+```ts
+export default {
+  srcDir: 'src',
+  publicDir: 'public',
+  plugins: ['md', 'tsx', 'layout'],
+  watch: false,
+  port: 8000,
+  serve: false
+};
+```
+
+### Plugins and themes
+
+As you see there are three built-in plugins: `md`, `tsx` and `layout`.
+
+We can add our own plugin by changing the plugins config in the `pagic.config.ts` file:
+
+```ts
+import myPlugin from './myPlugin.ts';
+
+export default {
+  srcDir: 'site',
+  plugins: ['md', 'tsx', 'layout', myPlugin]
+};
+```
+
+To develop a `myPlugin` please checkout the [built-in plugins](https://github.com/xcatliu/pagic/tree/master/src/plugins).
+
+Themes is under development, please come back later!
 
 ## Use pagic as cli
 

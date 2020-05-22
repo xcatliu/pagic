@@ -16,7 +16,7 @@ The easiest way to generate static html page from markdown, built with Deno! ðŸ¦
 
 ```bash
 # Install deno https://deno.land/#installation
-curl -fsSL https://deno.land/x/install/install.sh | sh
+curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.0
 # Install pagic
 deno install --unstable --allow-read --allow-write --allow-net https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts
 ```
@@ -159,7 +159,7 @@ docs/
 
 ### Sub pages and layouts
 
-We can have sub directory which contains markdown or component.
+We can have sub directory which contains markdown or react component.
 
 Sub directory can also have a `_layout.tsx` file.
 
