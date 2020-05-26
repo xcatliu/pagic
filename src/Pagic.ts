@@ -17,6 +17,8 @@ const REGEXP_LAYOUT = /\/_layout\.tsx$/;
 const REGEXP_PAGE = /\.(md|tsx)$/;
 // /_foo.css
 const REGEXP_DASH = /\/_[^\/]+$/;
+// blacklist static files
+const REGEXP_BLACKLIST = /^\.[^\.]+\.swp$|^\.DS_Store$|^\.git$|^\.hg$|^\.npmrc$|^\.lock-wscript$|^\.svn$|^\.wafpickle-|config\.gypi|^npm-debug\.log$/;
 
 type AnyFunction = (...args: any[]) => any;
 
@@ -158,7 +160,7 @@ export default class Pagic {
           const changedPath = this.relativeToSrc(fullChangedPath);
           if (REGEXP_PAGE.test(fullChangedPath)) {
             this.buildPage(changedPath);
-          } else if (REGEXP_DASH.test(fullChangedPath) === false) {
+          } else if (REGEXP_DASH.test(fullChangedPath) === false && REGEXP_BLACKLIST.test(fullChangedPath) === false) {
             this.copyStatic(changedPath);
           }
         }
@@ -192,7 +194,7 @@ export default class Pagic {
     });
     this.staticPaths = await this.walk(this.config.srcDir, {
       includeDirs: false,
-      skip: [REGEXP_DASH, REGEXP_PAGE]
+      skip: [REGEXP_DASH, REGEXP_PAGE, REGEXP_BLACKLIST]
     });
   }
   private async walk(root: string, walkOptions: fs.WalkOptions): Promise<string[]> {
