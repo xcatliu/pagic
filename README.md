@@ -256,21 +256,37 @@ It's able to configurate pagic by adding a `pagic.config.ts` file. The default c
 export default {
   srcDir: 'src',
   publicDir: 'public',
-  plugins: ['md', 'tsx', 'layout'],
+  // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
+  ignore: [
+    /\/\..+\.swp$/,
+    /\/\._/,
+    /\/\.DS_Store$/,
+    /\/\.git\//,
+    /\/\.hg\//,
+    /\/\.npmrc$/,
+    /\/\.lock-wscript$/,
+    /\/\.svn\//,
+    /\/\.wafpickle\-.+/,
+    /\/config\.gypi$/,
+    /\/CVS\//,
+    /\/npm\-debug\.log$/,
+    /\/node_modules\//
+  ],
+  plugins: ['init', 'md', 'tsx', 'layout', 'write'],
   watch: false,
-  port: 8000,
-  serve: false
+  serve: false,
+  port: 8000
 };
 ```
 
 ### Plugins and themes
 
-As you see there are three built-in plugins: `md`, `tsx` and `layout`.
+As you see there are five built-in plugins: `init`, `md`, `tsx`, `layout` and `write`.
 
 We can add our own plugin by changing the plugins config in the `pagic.config.ts` file:
 
 ```ts
-import myPlugin from './myPlugin.ts';
+import myPlugin from './myPlugin.tsx';
 
 export default {
   srcDir: 'site',

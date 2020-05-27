@@ -1,3 +1,5 @@
 export default {
-  srcDir: 'site'
+  srcDir: 'site',
+  plugins: ['sidebar'],
+  sidebar: ['README.md']
 };

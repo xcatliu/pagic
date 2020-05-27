@@ -2,7 +2,7 @@
 import React from 'https://dev.jspm.io/react@16.13.1';
 import { PagicLayout } from 'https://raw.githubusercontent.com/xcatliu/pagic/master/pagic.ts';
 
-const Layout: PagicLayout = ({ title, content, author }) => (
+const Layout: PagicLayout = ({ title, content, sidebar }) => (
   <html>
     <head>
       <title>{title}</title>
@@ -10,7 +10,7 @@ const Layout: PagicLayout = ({ title, content, author }) => (
       <link rel="stylesheet" href="./assets/index.css" />
     </head>
     <body>
-      author: {author}
+      <pre>{JSON.stringify(sidebar, null, 4)}</pre>
       {content}
     </body>
   </html>

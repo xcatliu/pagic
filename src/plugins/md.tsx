@@ -20,7 +20,7 @@ import anchor from '../vendors/markdown-it-anchor.js';
 import title from '../vendors/markdown-it-title.js';
 import replaceLink from '../vendors/markdown-it-replace-link.js';
 // eslint-disable-next-line new-cap
-const md = new window.markdownit({
+const mdRenderer = new window.markdownit({
   html: true,
   highlight: (str: string, lang = 'autoit') => {
     if (typeof window.Prism.languages[lang] === 'undefined') {
@@ -52,30 +52,30 @@ const md = new window.markdownit({
 import { PagicPlugin } from '../Pagic.ts';
 
 // @ts-ignore
-const mdPlugin: PagicPlugin = async (ctx) => {
-  if (!ctx.pagePath.endsWith('.md')) {
-    return ctx;
+const md: PagicPlugin = async (pagic) => {
+  for (const pagePath of pagic.pagePaths) {
+    if (!pagePath.endsWith('.md')) continue;
+    const pageProps = pagic.pagePropsMap[pagePath];
+
+    let content = await fs.readFileStr(path.resolve(pagic.config.srcDir, pagePath));
+    const fmResult = fm(content);
+    const frontMatter = fmResult.attributes;
+    content = fmResult.body;
+
+    /**
+     * Use markdown-it-title to get the title of the page
+     * https://github.com/valeriangalliat/markdown-it-title
+     */
+    const env: any = {};
+    const htmlContent = mdRenderer.render(content, env);
+    pagic.pagePropsMap[pagePath] = {
+      ...pageProps,
+      outputPath: pageProps.outputPath.replace(/README\.html$/, 'index.html'),
+      title: env.title,
+      content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />,
+      ...frontMatter
+    };
   }
-
-  let content = await fs.readFileStr(path.resolve(ctx.config.srcDir, ctx.pagePath));
-  const fmResult = fm(content);
-  const frontMatter = fmResult.attributes;
-  content = fmResult.body;
-
-  /**
-   * Use markdown-it-title to get the title of the page
-   * https://github.com/valeriangalliat/markdown-it-title
-   */
-  const env: any = {};
-  const htmlContent = md.render(content, env);
-  return {
-    ...ctx,
-    layoutPath: ctx.layoutPath,
-    outputPath: ctx.outputPath.replace(/README\.html$/, 'index.html'),
-    title: env.title,
-    content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />,
-    ...frontMatter
-  };
 };
 
-export default mdPlugin;
+export default md;

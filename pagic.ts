@@ -1,6 +1,7 @@
 #!/usr/bin/env -S deno --unstable --allow-read --allow-write --allow-net
 
 import Pagic from './src/Pagic.ts';
+export default Pagic;
 export * from './src/Pagic.ts';
 
 if (import.meta.main) {
