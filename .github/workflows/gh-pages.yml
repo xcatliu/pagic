@@ -1,0 +1,24 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.0
+          deno --version
+          deno run --unstable --allow-read --allow-write --allow-net pagic.ts build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
