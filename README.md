@@ -1,5 +1,7 @@
 # Pagic
 
+[![Actions Status](https://github.com/xcatliu/pagic/workflows/gh-pages/badge.svg)](https://github.com/xcatliu/pagic/actions)
+
 The easiest way to generate static html page from markdown, built with Deno! 🦕
 
 ## Features
@@ -278,6 +280,8 @@ export default {
   port: 8000
 };
 ```
+
+Your `pagic.config.ts` will be **deep-merge** to the default config, that is, your `ignore` and `plugins` will be push to default, not replace it.
 
 ### Plugins and themes
 
