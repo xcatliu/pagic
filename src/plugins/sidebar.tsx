@@ -25,14 +25,14 @@ const sidebar: PagicPlugin = async (pagic) => {
       if (typeof sidebarConfigItem === 'string') {
         return {
           title: pagic.pagePropsMap[sidebarConfigItem].title,
-          link: pagic.pagePropsMap[sidebarConfigItem].outputPath
+          link: `/${pagic.pagePropsMap[sidebarConfigItem].outputPath}`
         };
       }
       let item: SidebarConfigItem = sidebarConfigItem;
       if (typeof item.title === 'undefined') {
         item.title = pagic.pagePropsMap[item.link].title;
       }
-      item.link = pagic.pagePropsMap[item.link].outputPath;
+      item.link = `/${pagic.pagePropsMap[item.link].outputPath}`;
       if (Array.isArray(item.children)) {
         item.children = parseSidebarConfig(item.children);
       }
