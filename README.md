@@ -14,6 +14,10 @@ The easiest way to generate static html page from markdown, built with Deno! ðŸ¦
 - [Configuration](#configuration)
 - [Plugins and themes](#plugins-and-themes)
 
+## Live demo
+
+- [TypeScript Tutorial](https://ts.xcatliu.com/) [GitHub](https://github.com/xcatliu/typescript-tutorial/)
+
 ## Getting started
 
 ### Installation
