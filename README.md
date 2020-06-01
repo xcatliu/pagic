@@ -283,7 +283,7 @@ export default {
 };
 ```
 
-Your `pagic.config.ts` will be **deep-merge** to the default config, that is, your `ignore` and `plugins` will be push to default, not replace it.
+Your `pagic.config.ts` will be **deep-merge** to the default config, that is, your `ignore` and `plugins` will be appended to default, not replace it.
 
 ### Plugins and themes
 
