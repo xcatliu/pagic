@@ -1,6 +1,6 @@
-import * as path from 'https://deno.land/std@0.51.0/path/mod.ts';
-import * as fs from 'https://deno.land/std@0.51.0/fs/mod.ts';
-import { green } from 'https://deno.land/std@0.51.0/fmt/colors.ts';
+import * as path from 'https://deno.land/std@0.54.0/path/mod.ts';
+import * as fs from 'https://deno.land/std@0.54.0/fs/mod.ts';
+import { green } from 'https://deno.land/std@0.54.0/fmt/colors.ts';
 
 // @deno-types="https://deno.land/x/types/react-dom/v16.13.1/server.d.ts"
 import ReactDOMServer from 'https://dev.jspm.io/react-dom@16.13.1/server.js';
