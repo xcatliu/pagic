@@ -292,7 +292,7 @@ import myPlugin from './myPlugin.tsx';
 
 export default {
   srcDir: 'site',
-  plugins: ['md', 'tsx', 'layout', myPlugin]
+  plugins: [myPlugin]
 };
 ```
 
