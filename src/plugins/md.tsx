@@ -4,23 +4,21 @@ import * as fs from 'https://deno.land/std@0.54.0/fs/mod.ts';
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
+import fm from 'https://dev.jspm.io/front-matter@4.0.2';
+import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.0';
+import title from 'https://dev.jspm.io/markdown-it-title@3.0.0';
+import anchor from 'https://dev.jspm.io/markdown-it-anchor@5.3.0';
+import replaceLink from 'https://dev.jspm.io/markdown-it-replace-link@1.0.1';
+
+// window.Prism
+import '../vendors/prism.js';
 declare global {
   interface Window {
-    markdownit: any;
     Prism: any;
   }
 }
 
-import fm from '../vendors/front-matter.js';
-// window.markdownit
-import 'https://unpkg.com/markdown-it@10.0.0/dist/markdown-it.js';
-// window.Prism
-import '../vendors/prism.js';
-import anchor from '../vendors/markdown-it-anchor.js';
-import title from '../vendors/markdown-it-title.js';
-import replaceLink from '../vendors/markdown-it-replace-link.js';
-// eslint-disable-next-line new-cap
-const mdRenderer = new window.markdownit({
+const mdRenderer = new MarkdownIt({
   html: true,
   highlight: (str: string, lang = 'autoit') => {
     if (typeof window.Prism.languages[lang] === 'undefined') {
@@ -45,8 +43,8 @@ const mdRenderer = new window.markdownit({
     return link.replace(/\.md$/, '.html');
   }
 })
-  .use(anchor)
   .use(title)
+  .use(anchor, { level: [1, 2, 3], permalink: true, permalinkSymbol: '§' })
   .use(replaceLink);
 
 import { PagicPlugin } from '../Pagic.ts';
