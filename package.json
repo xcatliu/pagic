@@ -2,8 +2,9 @@
   "name": "pagic",
   "version": "1.0.0",
   "description": "",
-  "main": "pagic.ts",
+  "main": "mod.ts",
   "scripts": {
+    "start": "deno run --unstable --allow-read --allow-write --allow-net mod.ts build --serve --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "xcatliu <xcatliu@gmail.com>",

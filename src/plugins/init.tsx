@@ -13,14 +13,15 @@ const init: PagicPlugin = async (pagic) => {
       layoutPath = layoutPath.replace(/\/[^\/]+\/[^\/]+$/, '/_layout.tsx');
     }
     layoutPath = layoutPath.slice(1);
-    const outputPath = pagePath.replace(/\.[^\.]+$/, '.html');
+    const outputPath = pagePath.replace(/\.[^\.]+$/, '.html').replace(/README\.html$/, 'index.html');
     pagic.pagePropsMap[pagePath] = {
-      pagic,
+      config: pagic.projectConfig,
       pagePath,
       layoutPath,
       outputPath,
       title: '',
-      content: null
+      content: null,
+      script: null
     };
   }
 };

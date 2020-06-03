@@ -1,9 +1,10 @@
-import * as path from 'https://deno.land/std@0.54.0/path/mod.ts';
-import * as fs from 'https://deno.land/std@0.54.0/fs/mod.ts';
-import { green } from 'https://deno.land/std@0.54.0/fmt/colors.ts';
+import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
+import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
+import { green } from 'https://deno.land/std@0.56.0/fmt/colors.ts';
 
 // @deno-types="https://deno.land/x/types/react-dom/v16.13.1/server.d.ts"
 import ReactDOMServer from 'https://dev.jspm.io/react-dom@16.13.1/server.js';
+
 import { PagicPlugin } from '../Pagic.ts';
 
 const write: PagicPlugin = async (pagic) => {
@@ -15,7 +16,7 @@ const write: PagicPlugin = async (pagic) => {
     }
     const fullFilePath = path.resolve(pagic.config.publicDir, outputPath);
     await fs.ensureDir(path.dirname(fullFilePath));
-    await fs.writeFileStr(fullFilePath, ReactDOMServer.renderToStaticMarkup(content));
+    await fs.writeFileStr(fullFilePath, ReactDOMServer.renderToString(content));
   }
 };
 

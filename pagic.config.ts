@@ -1,5 +1,5 @@
 export default {
-  srcDir: 'site',
+  srcDir: 'docs',
   plugins: ['sidebar'],
-  sidebar: ['README.md']
+  sidebar: ['README.md', 'hello.tsx']
 };

@@ -41,6 +41,6 @@ const sidebar: PagicPlugin = async (pagic) => {
   }
 };
 
-sidebar.insert = 'before:layout';
+sidebar.insert = 'after:tsx';
 
 export default sidebar;

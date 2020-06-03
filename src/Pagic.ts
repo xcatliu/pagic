@@ -1,6 +1,6 @@
-import * as path from 'https://deno.land/std@0.54.0/path/mod.ts';
-import * as fs from 'https://deno.land/std@0.54.0/fs/mod.ts';
-import { green, underline, yellow } from 'https://deno.land/std@0.54.0/fmt/colors.ts';
+import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
+import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
+import { green, underline, yellow } from 'https://deno.land/std@0.56.0/fmt/colors.ts';
 
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
@@ -29,12 +29,13 @@ export interface PagicPlugin {
 }
 
 export interface PageProps {
-  pagic: Pagic;
+  config: any;
   pagePath: string;
   layoutPath: string;
   outputPath: string;
   title: string;
   content: React.ReactElement | null;
+  script: React.ReactElement | null;
   [key: string]: any;
 }
 
@@ -62,19 +63,15 @@ export default class Pagic {
       /\/npm\-debug\.log$/,
       /\/node_modules\//
     ],
-    plugins: ['init', 'md', 'tsx', 'layout', 'write'],
+    plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
     watch: false,
     serve: false,
     port: 8000
   };
-  // /_foo.tsx
-  public static REGEXP_TEMPLATE = /\/_[^\/]+\.tsx$/;
-  // /_layout.tsx
-  public static REGEXP_LAYOUT = /\/_layout\.tsx$/;
   // foo.md
-  public static REGEXP_PAGE = /\.(md|tsx)$/;
-  // /_foo.css
-  public static REGEXP_DASH = /\/_[^\/]+$/;
+  public static REGEXP_PAGE = /\/[^_\/]+\.(md|tsx)$/;
+  // /_layout.tsx /_sidebar.tsx
+  public static REGEXP_LAYOUT = /\/_[^\/]+\.tsx$/;
 
   // @ts-ignore
   public config: InitedPagicConfig;
@@ -88,7 +85,7 @@ export default class Pagic {
   } = {};
   public randomVersion = Math.random();
 
-  private projectConfig: Partial<PagicConfig> = {};
+  public projectConfig: Partial<PagicConfig> = {};
   private runtimeConfig: Partial<PagicConfig> = {};
 
   private fullChangedPaths: string[] = [];
@@ -230,13 +227,13 @@ export default class Pagic {
           console.log(yellow(`Directory ${underline(changedPath)} changed, start rebuild`));
           needRebuild = true;
           break;
-        } else if (Pagic.REGEXP_TEMPLATE.test(fullChangedPath)) {
-          console.log(yellow(`Template ${changedPath} changed, start rebuild`));
+        } else if (Pagic.REGEXP_LAYOUT.test(fullChangedPath)) {
+          console.log(yellow(`Layout ${changedPath} changed, start rebuild`));
           needRebuild = true;
           break;
         } else if (Pagic.REGEXP_PAGE.test(fullChangedPath)) {
           pagePaths.push(this.relativeToSrc(fullChangedPath));
-        } else if (Pagic.REGEXP_DASH.test(fullChangedPath) === false) {
+        } else {
           staticPaths.push(this.relativeToSrc(fullChangedPath));
         }
       }
@@ -260,11 +257,12 @@ export default class Pagic {
     this.pagePaths = await this.walk(this.config.srcDir, {
       includeDirs: false,
       match: [Pagic.REGEXP_PAGE],
-      skip: [Pagic.REGEXP_DASH, ...this.config.ignore]
+      skip: this.config.ignore
     });
     this.layoutPaths = await this.walk(this.config.srcDir, {
       includeDirs: false,
-      match: [Pagic.REGEXP_LAYOUT, ...this.config.ignore]
+      match: [Pagic.REGEXP_LAYOUT],
+      skip: this.config.ignore
     });
   }
 
@@ -285,7 +283,7 @@ export default class Pagic {
       // eslint-disable-next-line no-param-reassign
       staticPaths = await this.walk(this.config.srcDir, {
         includeDirs: false,
-        skip: [Pagic.REGEXP_DASH, Pagic.REGEXP_PAGE, ...this.config.ignore]
+        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT, ...this.config.ignore]
       });
     }
 

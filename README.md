@@ -14,6 +14,8 @@ The easiest way to generate static html page from markdown, built with Deno! �
 - [Configuration](#configuration)
 - [Plugins and themes](#plugins-and-themes)
 
+WARNING: This project is under development so api would changes without announce. The stable version will some soon when [v1.0.0](https://github.com/xcatliu/pagic/projects/3) finished.
+
 ## Live demo
 
 - [TypeScript Tutorial](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))
@@ -24,9 +26,9 @@ The easiest way to generate static html page from markdown, built with Deno! �
 
 ```bash
 # Install deno https://deno.land/#installation
-curl -fsSL https://deno.land/x/install/install.sh
+curl -fsSL https://deno.land/x/install/install.sh | sh
 # Install pagic
-deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/pagic.ts
+deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
 ```
 
 ### Markdown + Layout => HTML
@@ -46,7 +48,7 @@ The `src/_layout.tsx` is a simple react component:
 ```tsx
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicLayout } from 'https://deno.land/x/pagic/pagic.ts';
+import { PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
 
 const Layout: PagicLayout = ({ title, content }) => (
   <html>
@@ -147,7 +149,7 @@ And `public/hello.html` would be:
 
 ### Copy static files
 
-If there are other static files which are not ended with `.{md|tsx}` or start with `_`, we will simply copy them:
+If there are other static files which are not end with `.{md|tsx}` or (start with `_` and end with `.tsx`), we will simply copy them:
 
 ```
 docs/
@@ -160,7 +162,7 @@ docs/
     ├── assets
     |   └── index.css
     ├── _layout.tsx
-    ├── _partial.tsx
+    ├── _sidebar.tsx
     ├── index.md
     └── hello.tsx
 ```
@@ -186,7 +188,7 @@ docs/
     ├── assets
     |   └── index.css
     ├── _layout.tsx
-    ├── _partial.tsx
+    ├── _sidebar.tsx
     |── index.md
     └── sub
         ├── _layout.tsx
@@ -213,7 +215,7 @@ Every item in the front matter will pass to the `_layout.tsx` as the props:
 ```tsx
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicLayout } from 'https://deno.land/x/pagic/pagic.ts';
+import { PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
 
 const Layout: PagicLayout = ({ title, content, author, published }) => (
   <html>
@@ -276,7 +278,7 @@ export default {
     /\/npm\-debug\.log$/,
     /\/node_modules\//
   ],
-  plugins: ['init', 'md', 'tsx', 'layout', 'write'],
+  plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
   watch: false,
   serve: false,
   port: 8000
@@ -287,9 +289,20 @@ Your `pagic.config.ts` will be **deep-merge** to the default config, that is, yo
 
 ### Plugins and themes
 
-As you see there are five built-in plugins: `init`, `md`, `tsx`, `layout` and `write`.
+As you see default plugins are set to `['init', 'md', 'tsx', 'script', 'layout', 'write']`.
 
-We can add our own plugin by changing the plugins config in the `pagic.config.ts` file:
+We can add the optional plugins by setting the `plugins` in the `pagic.config.ts` file:
+
+```ts
+export default {
+  srcDir: 'site',
+  plugins: ['sidebar']
+};
+```
+
+`sidebar` plugin will add a `sidebar` properity to the props.
+
+We can also add our own plugin like this:
 
 ```ts
 import myPlugin from './myPlugin.tsx';

@@ -10,24 +10,19 @@ import title from 'https://dev.jspm.io/markdown-it-title@3.0.0';
 import anchor from 'https://dev.jspm.io/markdown-it-anchor@5.3.0';
 import replaceLink from 'https://dev.jspm.io/markdown-it-replace-link@1.0.1';
 
-// window.Prism
-import '../vendors/prism.js';
-declare global {
-  interface Window {
-    Prism: any;
-  }
-}
+import Prism from '../vendors/prism/mod.ts';
 
 const mdRenderer = new MarkdownIt({
   html: true,
   highlight: (str: string, lang = 'autoit') => {
-    if (typeof window.Prism.languages[lang] === 'undefined') {
+    if (typeof Prism.languages[lang] === 'undefined') {
       // eslint-disable-next-line no-param-reassign
       lang = 'autoit';
     }
-    const grammar = window.Prism.languages[lang];
-    window.Prism.hooks.run('before-highlight', { grammar });
-    return `<pre class="language-${lang}"><code class="language-${lang}">${window.Prism.highlight(
+    const grammar = Prism.languages[lang];
+    // https://github.com/PrismJS/prism/issues/1171#issuecomment-631470253
+    Prism.hooks.run('before-highlight', { grammar });
+    return `<pre class="language-${lang}"><code class="language-${lang}">${Prism.highlight(
       str,
       grammar,
       lang
@@ -37,10 +32,10 @@ const mdRenderer = new MarkdownIt({
     if (/^https?:\/\//.test(link)) {
       return link;
     }
-    if (/README\.md$/.test(link)) {
-      return link.replace(/README\.md$/, 'index.html');
+    if (/README\.md(\?|#|$)/.test(link)) {
+      return link.replace(/README\.md(\?|#|$)/, 'index.html$1');
     }
-    return link.replace(/\.md$/, '.html');
+    return link.replace(/\.md(\?|#|$)/, '.html$1');
   }
 })
   .use(title)
@@ -49,7 +44,6 @@ const mdRenderer = new MarkdownIt({
 
 import { PagicPlugin } from '../Pagic.ts';
 
-// @ts-ignore
 const md: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {
     if (!pagePath.endsWith('.md')) continue;
@@ -68,8 +62,7 @@ const md: PagicPlugin = async (pagic) => {
     const htmlContent = mdRenderer.render(content, env);
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,
-      outputPath: pageProps.outputPath.replace(/README\.html$/, 'index.html'),
-      title: env.title,
+      title: env.title.trim(),
       content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />,
       ...frontMatter
     };
