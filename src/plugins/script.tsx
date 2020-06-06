@@ -105,4 +105,6 @@ function omit(obj: any, keys: string[]) {
   return result;
 }
 
+script.insert = 'before:layout';
+
 export default script;

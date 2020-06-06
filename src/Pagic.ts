@@ -63,7 +63,7 @@ export default class Pagic {
       /\/npm\-debug\.log$/,
       /\/node_modules\//
     ],
-    plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
+    plugins: ['init', 'md', 'tsx', 'layout', 'write'],
     watch: false,
     serve: false,
     port: 8000
