@@ -5,7 +5,7 @@ import { green, underline, yellow } from 'https://deno.land/std@0.56.0/fmt/color
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
-import { Application, send } from 'https://deno.land/x/oak/mod.ts';
+import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
 
 // #region types
 export interface PagicConfig {
