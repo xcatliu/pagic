@@ -15,8 +15,8 @@ const script: PagicPlugin = async (pagic) => {
       ...pageProps,
       script: (
         <>
-          <script crossOrigin="anonymous" src="https://unpkg.com/react@16.3.1/umd/react.production.min.js" />
-          <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js" />
+          <script crossOrigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js" />
+          <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" />
           <script type="module" src="/main.js" />
         </>
       )
