@@ -89,8 +89,14 @@ export default {
   await fs.ensureDir(path.dirname(layoutMapPath));
   await fs.writeFileStr(layoutMapPath, `export default ${JSON.stringify(layoutMap, null, 2)}`);
 
+  console.log('import.meta.url', import.meta.url);
+  console.log('path.fromFileUrl(import.meta.url)', path.fromFileUrl(import.meta.url));
+  console.log('path.dirname(path.fromFileUrl(import.meta.url))', path.dirname(path.fromFileUrl(import.meta.url)));
   const mainScriptSrcPath = path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), 'script_main.js');
+  console.log('mainScriptSrcPath', mainScriptSrcPath);
   const mainScriptDestPath = path.resolve(pagic.config.publicDir, 'main.js');
+  console.log('mainScriptDestPath', mainScriptDestPath);
+  console.log('path.dirname(mainScriptDestPath)', path.dirname(mainScriptDestPath));
   await fs.ensureDir(path.dirname(mainScriptDestPath));
   await fs.copy(mainScriptSrcPath, mainScriptDestPath, { overwrite: true });
 };
