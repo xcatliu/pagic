@@ -13,7 +13,13 @@ const script: PagicPlugin = async (pagic) => {
 
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,
-      script: <script type="module" src="/main.js" />
+      script: (
+        <>
+          <script crossOrigin="anonymous" src="https://unpkg.com/react@16.3.1/umd/react.production.min.js" />
+          <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js" />
+          <script type="module" src="/main.js" />
+        </>
+      )
     };
 
     const contentPath = path.resolve(pagic.config.publicDir, pageProps.outputPath.replace(/\.html$/, '_content.js'));
@@ -23,7 +29,6 @@ const script: PagicPlugin = async (pagic) => {
       await fs.writeFileStr(
         contentPath,
         `
-import React from 'https://dev.jspm.io/react@16.13.1';
 export default function() {
   return React.createElement('${pageProps.content?.type}', ${JSON.stringify(pageProps.content?.props)})
 };
@@ -31,18 +36,7 @@ export default function() {
       );
     } else if (pagePath.endsWith('.tsx')) {
       const pageContent = await fs.readFileStr(path.resolve(pagic.config.srcDir, pagePath));
-      await fs.writeFileStr(
-        contentPath,
-        ts.default
-          .transpileModule(pageContent, {
-            compilerOptions: {
-              target: 'ESNext',
-              module: 'ESNext',
-              jsx: 'React'
-            }
-          })
-          .outputText.replace(/(^import .*)\.tsx((?:'|");?$)/gm, '$1.js$2')
-      );
+      await fs.writeFileStr(contentPath, compile(pageContent));
     }
 
     const propsPath = path.resolve(pagic.config.publicDir, pageProps.outputPath.replace(/\.html$/, '_props.js'));
@@ -50,7 +44,6 @@ export default function() {
     await fs.writeFileStr(
       propsPath,
       `
-import React from 'https://dev.jspm.io/react@16.13.1';
 import ContentComponent from './${path.basename(pageProps.outputPath).replace(/\.html$/, '_content.js')}';
 export default {
   ${Object.keys(omit(pageProps, ['content', 'script']))
@@ -67,18 +60,7 @@ export default {
     const scriptPath = path.resolve(pagic.config.publicDir, layoutPath.replace(/\.tsx$/, '.js'));
     const layoutContent = await fs.readFileStr(path.resolve(pagic.config.srcDir, layoutPath));
     await fs.ensureDir(path.dirname(scriptPath));
-    await fs.writeFileStr(
-      scriptPath,
-      ts.default
-        .transpileModule(layoutContent, {
-          compilerOptions: {
-            target: 'ESNext',
-            module: 'ESNext',
-            jsx: 'React'
-          }
-        })
-        .outputText.replace(/(^import .*)\.tsx((?:'|");?$)/gm, '$1.js$2')
-    );
+    await fs.writeFileStr(scriptPath, compile(layoutContent));
   }
 
   const layoutMap = Object.values(pagic.pagePropsMap).reduce<any>((prev, { layoutPath, outputPath }) => {
@@ -112,6 +94,20 @@ function omit(obj: any, keys: string[]) {
       result[key] = obj[key];
     });
   return result;
+}
+
+function compile(input: string) {
+  return ts.default
+    .transpileModule(input, {
+      compilerOptions: {
+        target: 'ESNext',
+        module: 'ESNext',
+        jsx: 'React'
+      }
+    })
+    .outputText.replace(/(^import .*)\.tsx((?:'|");?$)/gm, '$1.js$2')
+    .replace(/(^import .*)\/react(\/|'|"|@).*$/gm, '')
+    .replace(/(^import .*)\/react-dom(\/|'|"|@).*$/gm, '');
 }
 
 script.insert = 'before:layout';
