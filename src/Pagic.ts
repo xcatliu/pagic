@@ -57,10 +57,10 @@ export default class Pagic {
       /\/\.npmrc$/,
       /\/\.lock-wscript$/,
       /\/\.svn\//,
-      /\/\.wafpickle\-.+/,
+      /\/\.wafpickle-.+/,
       /\/config\.gypi$/,
       /\/CVS\//,
-      /\/npm\-debug\.log$/,
+      /\/npm-debug\.log$/,
       /\/node_modules\//
     ],
     plugins: ['init', 'md', 'tsx', 'layout', 'write'],
