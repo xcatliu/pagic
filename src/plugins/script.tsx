@@ -1,114 +1,84 @@
 import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
 import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
-import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
 
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
+import reactElementToJSXString from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
+
+import { ensureDirAndWriteFileStr, copyPagicFile, compile, compileFile, compilePagicFile } from '../utils/mod.ts';
 import { PagicPlugin } from '../Pagic.ts';
 
 const script: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {
-    const pageProps = pagic.pagePropsMap[pagePath];
+    let pageProps = pagic.pagePropsMap[pagePath];
 
-    pagic.pagePropsMap[pagePath] = {
-      ...pageProps,
-      script: (
-        <>
-          <script crossOrigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js" />
-          <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" />
-          <script type="module" src="/main.js" />
-        </>
-      )
-    };
+    pageProps.script = (
+      <>
+        <script crossOrigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js" />
+        <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" />
+        <script type="module" src={`${pagic.config.base}main.js`} />
+      </>
+    );
 
-    const contentPath = path.resolve(pagic.config.publicDir, pageProps.outputPath.replace(/\.html$/, '_content.js'));
-    await fs.ensureDir(path.dirname(contentPath));
-
-    if (pagePath.endsWith('.md')) {
-      await fs.writeFileStr(
-        contentPath,
-        `
-export default function() {
-  return React.createElement('${pageProps.content?.type}', ${JSON.stringify(pageProps.content?.props)})
-};
-`
-      );
-    } else if (pagePath.endsWith('.tsx')) {
-      const pageContent = await fs.readFileStr(path.resolve(pagic.config.srcDir, pagePath));
-      await fs.writeFileStr(contentPath, compile(pageContent));
+    if (pagePath.endsWith('.tsx')) {
+      const contentDest = path.resolve(pagic.config.publicDir, pageProps.outputPath.replace(/\.html$/, '_content.js'));
+      const compileSrc = path.resolve(pagic.config.srcDir, pagePath);
+      await ensureDirAndWriteFileStr(contentDest, await compileFile(compileSrc));
     }
 
-    const propsPath = path.resolve(pagic.config.publicDir, pageProps.outputPath.replace(/\.html$/, '_props.js'));
-    await fs.ensureDir(path.dirname(propsPath));
-    await fs.writeFileStr(
-      propsPath,
-      `
-import ContentComponent from './${path.basename(pageProps.outputPath).replace(/\.html$/, '_content.js')}';
-export default {
-  ${Object.keys(omit(pageProps, ['content', 'script']))
-    .map((key) => `'${key}': ${JSON.stringify(pageProps[key])}`)
-    .join(',\n  ')},
-  content: React.createElement(ContentComponent),
-  script: React.createElement('script', { type: 'module', src: '/main.js' })
-}
-`
-    );
+    const propsDest = path.resolve(pagic.config.publicDir, pageProps.outputPath.replace(/\.html$/, '_props.js'));
+    /** First is module name, second is module path */
+    let importComponentList: [string, string][] = [];
+    let propsCompileResult = compile(`
+        export default {
+          ${Object.keys(pageProps)
+            .map((key) => {
+              const value: any = pageProps[key];
+              if (React.isValidElement(value)) {
+                if (typeof value.type !== 'string' && typeof value.type.name !== 'undefined') {
+                  const componentName = value.type.name;
+                  const modulePath =
+                    key === 'content'
+                      ? `./${pageProps.outputPath.replace(/([^\/]+)\.html/, '$1_content.js')}`
+                      : `${pagic.config.base}${componentName.replace(
+                          /([A-Z])/g,
+                          ($1: string) => `_${$1.toLowerCase()}`
+                        )}.js`;
+                  importComponentList.push([componentName, modulePath]);
+                }
+                return `'${key}': ${reactElementToJSXString.default(value)}`;
+              } else {
+                return `'${key}': ${JSON.stringify(value, null, 2)}`;
+              }
+            })
+            .join(',\n')}
+        }
+      `);
+
+    propsCompileResult = `${importComponentList
+      .map(([componentName, modulePath]) => `import ${componentName} from '${modulePath}';`)
+      .join('\n')}\n${propsCompileResult}`;
+
+    await ensureDirAndWriteFileStr(propsDest, propsCompileResult);
   }
 
   for (const layoutPath of pagic.layoutPaths) {
-    const scriptPath = path.resolve(pagic.config.publicDir, layoutPath.replace(/\.tsx$/, '.js'));
-    const layoutContent = await fs.readFileStr(path.resolve(pagic.config.srcDir, layoutPath));
-    await fs.ensureDir(path.dirname(scriptPath));
-    await fs.writeFileStr(scriptPath, compile(layoutContent));
+    const layoutDest = path.resolve(pagic.config.publicDir, layoutPath.replace(/\.tsx$/, '.js'));
+    const compileSrc = path.resolve(pagic.config.srcDir, layoutPath);
+    if (await fs.exists(compileSrc)) {
+      await ensureDirAndWriteFileStr(layoutDest, await compileFile(compileSrc));
+    } else {
+      await ensureDirAndWriteFileStr(
+        layoutDest,
+        await compilePagicFile(`src/themes/${pagic.config.theme}/${layoutPath}`)
+      );
+    }
   }
 
-  const layoutMap = Object.values(pagic.pagePropsMap).reduce<any>((prev, { layoutPath, outputPath }) => {
-    prev[outputPath] = layoutPath.replace(/\.tsx$/, '.js');
-    return prev;
-  }, {});
-  const layoutMapPath = path.resolve(pagic.config.publicDir, 'layout_map.js');
-  await fs.ensureDir(path.dirname(layoutMapPath));
-  await fs.writeFileStr(layoutMapPath, `export default ${JSON.stringify(layoutMap, null, 2)}`);
-
-  const mainScriptDestPath = path.resolve(pagic.config.publicDir, 'main.js');
-  await fs.ensureDir(path.dirname(mainScriptDestPath));
-
-  if (import.meta.url.startsWith('file://')) {
-    const mainScriptSrcPath = path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), 'script_main.js');
-    await fs.copy(mainScriptSrcPath, mainScriptDestPath, {
-      overwrite: true
-    });
-  } else {
-    const res = await fetch(import.meta.url.replace(/script\.tsx$/, 'script_main.js'));
-    const mainScriptText = await res.text();
-    await fs.writeFileStr(mainScriptDestPath, mainScriptText);
-  }
+  const scriptMainDest = path.resolve(pagic.config.publicDir, 'main.js');
+  await copyPagicFile('src/plugins/script_main.js', scriptMainDest);
 };
-
-function omit(obj: any, keys: string[]) {
-  let result: any = {};
-  Object.keys(obj)
-    .filter((key) => !keys.includes(key))
-    .map((key) => {
-      result[key] = obj[key];
-    });
-  return result;
-}
-
-function compile(input: string) {
-  return ts.default
-    .transpileModule(input, {
-      compilerOptions: {
-        target: 'ESNext',
-        module: 'ESNext',
-        jsx: 'React'
-      }
-    })
-    .outputText.replace(/(^import .*)\.tsx((?:'|");?$)/gm, '$1.js$2')
-    .replace(/(^import .*)\/react(\/|'|"|@).*$/gm, '')
-    .replace(/(^import .*)\/react-dom(\/|'|"|@).*$/gm, '');
-}
 
 script.insert = 'before:layout';
 

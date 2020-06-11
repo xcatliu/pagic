@@ -1,7 +1,7 @@
 import { PagicPlugin } from '../Pagic.ts';
 
 interface SidebarConfigItem {
-  title: string;
+  text: string;
   link: string;
   children?: SidebarConfig;
 }
@@ -24,15 +24,15 @@ const sidebar: PagicPlugin = async (pagic) => {
     return sidebarConfig.map((sidebarConfigItem) => {
       if (typeof sidebarConfigItem === 'string') {
         return {
-          title: pagic.pagePropsMap[sidebarConfigItem].title,
-          link: `/${pagic.pagePropsMap[sidebarConfigItem].outputPath}`
+          text: pagic.pagePropsMap[sidebarConfigItem].title,
+          link: pagic.pagePropsMap[sidebarConfigItem].outputPath
         };
       }
       let item: SidebarConfigItem = sidebarConfigItem;
-      if (typeof item.title === 'undefined') {
-        item.title = pagic.pagePropsMap[item.link].title;
+      if (typeof item.text === 'undefined') {
+        item.text = pagic.pagePropsMap[item.link].title;
       }
-      item.link = `/${pagic.pagePropsMap[item.link].outputPath}`;
+      item.link = pagic.pagePropsMap[item.link].outputPath;
       if (Array.isArray(item.children)) {
         item.children = parseSidebarConfig(item.children);
       }

@@ -1,4 +1,4 @@
-import Pagic, { PagicPlugin } from '../Pagic.ts';
+import { PagicPlugin } from '../Pagic.ts';
 
 /**
  * Init pagic.pagePropsMap
@@ -15,7 +15,7 @@ const init: PagicPlugin = async (pagic) => {
     layoutPath = layoutPath.slice(1);
     const outputPath = pagePath.replace(/\.[^\.]+$/, '.html').replace(/README\.html$/, 'index.html');
     pagic.pagePropsMap[pagePath] = {
-      config: pagic.projectConfig,
+      config: pagic.config,
       pagePath,
       layoutPath,
       outputPath,

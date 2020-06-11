@@ -7,11 +7,15 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
 
+import { unique, sortByInsert, ensureDirAndCopy, copyPagicFile } from './utils/mod.ts';
+
 // #region types
 export interface PagicConfig {
   srcDir: string;
   publicDir: string;
   ignore: RegExp[];
+  base: string;
+  theme: string;
   plugins: (string | PagicPlugin)[];
   watch: boolean;
   serve: boolean;
@@ -63,6 +67,8 @@ export default class Pagic {
       /\/npm-debug\.log$/,
       /\/node_modules\//
     ],
+    base: '/',
+    theme: 'default',
     plugins: ['init', 'md', 'tsx', 'layout', 'write'],
     watch: false,
     serve: false,
@@ -79,6 +85,7 @@ export default class Pagic {
   /** Pages that need to be build */
   public pagePaths: string[] = [];
   public layoutPaths: string[] = [];
+  public staticPaths: string[] = [];
   /** A map stored all { pagePath: pageProps } */
   public pagePropsMap: {
     [pagePath: string]: PageProps;
@@ -124,20 +131,16 @@ export default class Pagic {
   }
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
   private async initConfig() {
-    const ignore = Array.from(
-      new Set([
-        ...Pagic.defaultConfig.ignore,
-        ...(this.projectConfig.ignore ?? []),
-        ...(this.runtimeConfig.ignore ?? [])
-      ])
-    );
-    const pluginNames = Array.from(
-      new Set([
-        ...Pagic.defaultConfig.plugins,
-        ...(this.projectConfig.plugins ?? []),
-        ...(this.runtimeConfig.plugins ?? [])
-      ])
-    );
+    const ignore = unique([
+      ...Pagic.defaultConfig.ignore,
+      ...(this.projectConfig.ignore ?? []),
+      ...(this.runtimeConfig.ignore ?? [])
+    ]);
+    const pluginNames = unique([
+      ...Pagic.defaultConfig.plugins,
+      ...(this.projectConfig.plugins ?? []),
+      ...(this.runtimeConfig.plugins ?? [])
+    ]);
     let plugins: PagicPlugin[] = [];
     for (let plugin of pluginNames) {
       if (typeof plugin === 'string') {
@@ -145,33 +148,12 @@ export default class Pagic {
       }
       plugins.push(plugin as PagicPlugin);
     }
-    plugins = plugins.sort((a, b) => {
-      let aIndex = -1;
-      let bIndex = -1;
-      if (typeof a.insert === 'undefined') {
-        aIndex = Pagic.defaultConfig.plugins.indexOf(a.name as any);
-      } else {
-        // before:layout
-        const [insertCond, insertName] = a.insert.split(':');
-        const delta = insertCond === 'before' ? -0.1 : insertCond === 'after' ? 0.1 : 0;
-        aIndex = Pagic.defaultConfig.plugins.indexOf(insertName as any) + delta;
-      }
-      if (typeof b.insert === 'undefined') {
-        bIndex = Pagic.defaultConfig.plugins.indexOf(b.name as any);
-      } else {
-        // before:layout
-        const [insertCond, insertName] = b.insert.split(':');
-        const delta = insertCond === 'before' ? -0.1 : insertCond === 'after' ? 0.1 : 0;
-        bIndex = Pagic.defaultConfig.plugins.indexOf(insertName as any) + delta;
-      }
-      return aIndex - bIndex;
-    });
     this.config = {
       ...Pagic.defaultConfig,
       ...this.projectConfig,
       ...this.runtimeConfig,
       ignore,
-      plugins
+      plugins: sortByInsert(plugins)
     };
   }
 
@@ -187,14 +169,18 @@ export default class Pagic {
     const app = new Application();
 
     app.use(async (ctx) => {
-      await send(ctx, ctx.request.url.pathname, {
+      await send(ctx, ctx.request.url.pathname.replace(new RegExp(`^${this.config.base}`), '/'), {
         root: this.config.publicDir,
         index: 'index.html'
       });
     });
 
     app.listen({ port: this.config.port });
-    console.log(green('Serve'), underline(this.config.publicDir), `on http://127.0.0.1:${this.config.port}/`);
+    console.log(
+      green('Serve'),
+      underline(this.config.publicDir),
+      `on http://127.0.0.1:${this.config.port}${this.config.base}`
+    );
   }
 
   private async watch() {
@@ -211,7 +197,7 @@ export default class Pagic {
 
   private async handleFileChange(fullFilePaths: string[]) {
     if (fullFilePaths.length === 0) return;
-    this.fullChangedPaths = Array.from(new Set([...this.fullChangedPaths, ...fullFilePaths]));
+    this.fullChangedPaths = unique([...this.fullChangedPaths, ...fullFilePaths]);
     clearTimeout(this.timeoutHandler);
     this.timeoutHandler = setTimeout(async () => {
       let needRebuild = false;
@@ -259,11 +245,24 @@ export default class Pagic {
       match: [Pagic.REGEXP_PAGE],
       skip: this.config.ignore
     });
-    this.layoutPaths = await this.walk(this.config.srcDir, {
-      includeDirs: false,
-      match: [Pagic.REGEXP_LAYOUT],
-      skip: this.config.ignore
-    });
+    const theme_file_list: string[] = (await import(`./themes/${this.config.theme}/.theme_file_list.ts`)).default;
+    this.layoutPaths = unique([
+      ...(await this.walk(this.config.srcDir, {
+        includeDirs: false,
+        match: [Pagic.REGEXP_LAYOUT],
+        skip: this.config.ignore
+      })),
+      ...theme_file_list.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
+    ]);
+    this.staticPaths = unique([
+      ...(await this.walk(this.config.srcDir, {
+        includeDirs: false,
+        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT, ...this.config.ignore]
+      })),
+      ...theme_file_list.filter(
+        (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
+      )
+    ]);
   }
 
   private async runPlugins(pagePaths?: string[]) {
@@ -274,6 +273,7 @@ export default class Pagic {
     if (this.pagePaths.length === 0) return;
 
     for (let plugin of this.config.plugins) {
+      console.log(green('Plugin'), plugin.name, 'start');
       await plugin(this);
     }
   }
@@ -281,18 +281,17 @@ export default class Pagic {
   private async copy(staticPaths?: string[]) {
     if (typeof staticPaths === 'undefined') {
       // eslint-disable-next-line no-param-reassign
-      staticPaths = await this.walk(this.config.srcDir, {
-        includeDirs: false,
-        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT, ...this.config.ignore]
-      });
+      staticPaths = this.staticPaths;
     }
 
     for (const staticPath of staticPaths) {
-      console.log(green('Copy '), staticPath);
       const src = path.resolve(this.config.srcDir, staticPath);
       const dest = path.resolve(this.config.publicDir, staticPath);
-      await fs.ensureDir(path.dirname(dest));
-      await fs.copy(src, dest, { overwrite: true });
+      if (await fs.exists(src)) {
+        await ensureDirAndCopy(src, dest, { overwrite: true });
+      } else {
+        await copyPagicFile(`src/themes/${this.config.theme}/${staticPath}`, dest);
+      }
     }
   }
 

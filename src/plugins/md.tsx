@@ -63,8 +63,8 @@ const md: PagicPlugin = async (pagic) => {
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,
       title: env.title.trim(),
-      content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />,
-      ...frontMatter
+      ...frontMatter,
+      content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />
     };
   }
 };

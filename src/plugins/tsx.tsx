@@ -14,8 +14,8 @@ const tsx: PagicPlugin = async (pagic) => {
 
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,
-      content: <ContentComponent />,
-      ...frontMatter
+      ...frontMatter,
+      content: <ContentComponent />
     };
   }
 };
