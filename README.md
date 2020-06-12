@@ -18,7 +18,8 @@ WARNING: This project is under development so api would changes without announce
 
 ## Live demo
 
-- [TypeScript Tutorial](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))
+- [TypeScript 入门教程](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))
+- [Deno 钻研之术](https://deno-tutorial.js.org/) ([GitHub](https://github.com/hylerrix/deno-tutorial))
 
 ## Getting started
 
