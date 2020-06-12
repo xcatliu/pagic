@@ -43,7 +43,7 @@ export async function compilePagicFile(pathToPagicRoot: string) {
     const src = path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), '../../', pathToPagicRoot);
     content = await fs.readFileStr(src);
   } else {
-    const res = await fetch(import.meta.url.replace(/\/src\/utils\/mod\.ts$/, `/${pathToPagicRoot}`));
+    const res = await fetch(import.meta.url.replace(/\/src\/utils\/compile\.ts$/, `/${pathToPagicRoot}`));
     content = await res.text();
   }
   return compile(content);

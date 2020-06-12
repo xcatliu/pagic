@@ -18,7 +18,7 @@ export async function copyPagicFile(pathToPagicRoot: string, dest: string) {
     const src = path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), '../../', pathToPagicRoot);
     await ensureDirAndCopy(src, dest, { overwrite: true });
   } else {
-    const res = await fetch(import.meta.url.replace(/\/src\/utils\/mod\.ts$/, `/${pathToPagicRoot}`));
+    const res = await fetch(import.meta.url.replace(/\/src\/utils\/copy\.ts$/, `/${pathToPagicRoot}`));
     const content = await res.text();
     await ensureDirAndWriteFileStr(dest, content);
   }
