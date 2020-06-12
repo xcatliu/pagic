@@ -10,7 +10,6 @@ declare global {
     ga: any;
   }
 }
-
 const Ga = ({ id }: GaProps) => {
   React.useEffect(() => {
     window.addEventListener('rerender', () => {
@@ -24,7 +23,11 @@ const Ga = ({ id }: GaProps) => {
       <script async src="https://www.google-analytics.com/analytics.js" />
       <script
         dangerouslySetInnerHTML={{
-          __html: `window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', '${id}');`
+          __html: `
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', '${id}', 'auto');
+            ga('send', 'pageview');`
         }}
       />
     </>
