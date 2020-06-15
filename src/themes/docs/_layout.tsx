@@ -47,18 +47,18 @@ if (shouldSetIsDark) {
                   <a href={link}>{text}</a>
                 </li>
               ))}
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsDark(!isDark);
-                    // @ts-ignore
-                    document.cookie = `is_dark=${!isDark ? '1' : '0'}; expires=Tue, 19 Jun 2038 03:14:07 UTC; path=/`;
-                  }}
-                >
-                  {isDark ? '关闭黑暗模式' : '开启黑暗模式'}
-                </a>
+              <li
+                onClick={() => {
+                  setIsDark(!isDark);
+                  // @ts-ignore
+                  document.cookie = `is_dark=${!isDark ? '1' : '0'}; expires=Tue, 19 Jun 2038 03:14:07 UTC; path=/`;
+                }}
+                className="toggle_dark"
+              >
+                <span className="sun" style={{ backgroundImage: `url("${config.base}assets/sun.svg")` }} />
+                <span className="sun-l" style={{ backgroundImage: `url("${config.base}assets/sun-l.svg")` }} />
+                <span className="moon" style={{ backgroundImage: `url("${config.base}assets/moon.svg")` }} />
+                <span className="moon-l" style={{ backgroundImage: `url("${config.base}assets/moon-l.svg")` }} />
               </li>
             </ul>
           </nav>
