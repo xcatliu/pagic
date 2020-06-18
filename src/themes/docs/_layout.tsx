@@ -4,7 +4,7 @@ import { PagicLayout } from '../../Pagic.ts';
 
 import Sidebar from './_sidebar.tsx';
 
-const Layout: PagicLayout = ({ config, title, content, ga, gitalk, script, sidebar, outputPath }) => {
+const Layout: PagicLayout = ({ config, title, content, toc, ga, gitalk, script, sidebar, outputPath }) => {
   const [isDark, setIsDark] = React.useState(
     // @ts-ignore
     window.Deno ? false : document.documentElement.classList.contains('is_dark')
@@ -65,8 +65,11 @@ if (shouldSetIsDark) {
         </header>
         <Sidebar sidebar={sidebar} outputPath={outputPath} config={config} />
         <section className="main">
-          {content}
-          {gitalk}
+          <div className="main-article">
+            {content}
+            {gitalk}
+          </div>
+          <div className="main-toc">{toc}</div>
         </section>
         {script}
       </body>

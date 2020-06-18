@@ -15,15 +15,15 @@ type SidebarConfig = {
 }[];
 
 const Sidebar = ({ sidebar, outputPath, config }: SidebarProps) => (
-  <aside>
-    <ul>
+  <aside className="sidebar">
+    <ol>
       {sidebar.map(({ text, link, children }) => (
         <li key={link}>
           <a href={`${config.base}${link}`} className={link === outputPath ? 'active' : ''}>
             {text}
           </a>
           {children && (
-            <ul>
+            <ol>
               {children.map(({ text, link }) => (
                 <li key={link}>
                   <a href={`${config.base}${link}`} className={link === outputPath ? 'active' : ''}>
@@ -31,11 +31,11 @@ const Sidebar = ({ sidebar, outputPath, config }: SidebarProps) => (
                   </a>
                 </li>
               ))}
-            </ul>
+            </ol>
           )}
         </li>
       ))}
-    </ul>
+    </ol>
   </aside>
 );
 

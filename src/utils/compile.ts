@@ -3,6 +3,9 @@ import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
 import { green } from 'https://deno.land/std@0.56.0/fmt/colors.ts';
 
 import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
+import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
+
+export const reactElementToJSXString = reactElementToJSXStringModule.default;
 
 /**
  * Compile input code from tsx to js, by typescript compiler

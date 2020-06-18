@@ -6,11 +6,14 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import fm from 'https://dev.jspm.io/front-matter@4.0.2';
 import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.0';
-import title from 'https://dev.jspm.io/markdown-it-title@3.0.0';
-import anchor from 'https://dev.jspm.io/markdown-it-anchor@5.3.0';
+import markdownItTitle from 'https://dev.jspm.io/markdown-it-title@3.0.0';
+import markdownItAnchor from 'https://dev.jspm.io/markdown-it-anchor@5.3.0';
+import markdownitTocDoneRight from 'https://dev.jspm.io/markdown-it-toc-done-right@4.1.0';
 import replaceLink from 'https://dev.jspm.io/markdown-it-replace-link@1.0.1';
 
 import Prism from '../vendors/prism/mod.ts';
+
+let tocHTML = '';
 
 const mdRenderer = new MarkdownIt({
   html: true,
@@ -38,8 +41,21 @@ const mdRenderer = new MarkdownIt({
     return link.replace(/\.md(\?|#|$)/, '.html$1');
   }
 })
-  .use(title)
-  .use(anchor, { level: [1, 2, 3], permalink: true, permalinkSymbol: '§' })
+  .use(markdownItTitle)
+  .use(markdownItAnchor, {
+    level: [2, 3, 4, 5, 6],
+    permalink: true,
+    permalinkSpace: false,
+    permalinkClass: 'anchor',
+    permalinkSymbol: '§'
+  })
+  .use(markdownitTocDoneRight, {
+    containerClass: 'toc',
+    level: [2, 3],
+    callback: (html: string) => {
+      tocHTML = html;
+    }
+  })
   .use(replaceLink);
 
 import { PagicPlugin } from '../Pagic.ts';
@@ -59,13 +75,17 @@ const md: PagicPlugin = async (pagic) => {
      * https://github.com/valeriangalliat/markdown-it-title
      */
     const env: any = {};
-    const htmlContent = mdRenderer.render(content, env);
+    const contentHTML = mdRenderer.render(content, env);
+
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,
-      title: env.title.trim(),
+      title: env.title,
       ...frontMatter,
-      content: <article dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
+      toc: <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
     };
+
+    tocHTML = '';
   }
 };
 

@@ -47,3 +47,28 @@ export function sortByInsert<
   }
   return arr.sort((a, b) => a.index! - b.index!);
 }
+
+/**
+ * input: FooBar
+ * output: _foo_bar
+ */
+export function pascalToUnderline(FooBar: string) {
+  return FooBar.replace(/[A-Z]/g, ($0) => `_${$0.toLowerCase()}`);
+}
+
+/**
+ * input: _foo_bar
+ * output: FooBar
+ */
+export function underlineToPascal(_foo_bar: string) {
+  return _foo_bar.replace(/_([a-z])/g, ($0, $1) => $1.toUpperCase());
+}
+
+/**
+ * input: foo/bar.html
+ * replacement: _content.js
+ * output: foo/bar_content.js
+ */
+export function replaceExt(input: string, replacement: string) {
+  return input.replace(/\.[^\.]+$/, replacement);
+}
