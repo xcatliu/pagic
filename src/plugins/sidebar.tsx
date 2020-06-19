@@ -1,7 +1,7 @@
 import { PagicPlugin } from '../Pagic.ts';
 
 interface SidebarConfigItem {
-  text: string;
+  text?: string;
   link: string;
   children?: SidebarConfig;
 }
