@@ -75,7 +75,7 @@ export default class Pagic {
     port: 8000
   };
   // foo.md
-  public static REGEXP_PAGE = /\/[^_\/]+\.(md|tsx)$/;
+  public static REGEXP_PAGE = /\/[^_][^\/]+\.(md|tsx)$/;
   // /_layout.tsx /_sidebar.tsx
   public static REGEXP_LAYOUT = /\/_[^\/]+\.tsx$/;
 
