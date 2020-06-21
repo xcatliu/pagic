@@ -1,5 +1,5 @@
 ---
-name: Add demo
+name: Add a demo
 about: Add my site as a demo
 title: Add my site as a demo https://example.com
 labels: demo
