@@ -15,6 +15,12 @@ interface GitalkProps {
 
 const Gitalk = (props: GitalkProps) => {
   React.useEffect(() => {
+    // https://pegasaas.com/how-to-defer-render-blocking-css/
+    // @ts-ignore
+    const css = document.getElementById('gitalk-css');
+    css.rel = 'stylesheet';
+  });
+  React.useEffect(() => {
     // @ts-ignore
     const container = document.getElementById('gitalk-container');
     ReactDOM.unmountComponentAtNode(container);
@@ -24,8 +30,8 @@ const Gitalk = (props: GitalkProps) => {
   return (
     <>
       <div id="gitalk-container" />
-      <link rel="stylesheet" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" />
-      <script src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js" />
+      <link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" />
+      <script defer src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js" />
     </>
   );
 };
