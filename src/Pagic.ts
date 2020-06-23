@@ -7,7 +7,15 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
 
-import { unique, sortByInsert, ensureDirAndCopy, copyPagicFile, importDefault } from './utils/mod.ts';
+import {
+  unique,
+  sortByInsert,
+  ensureDirAndCopy,
+  copyPagicFile,
+  importDefault,
+  ensureDirAndWriteFileStr,
+  compileFile
+} from './utils/mod.ts';
 
 // #region types
 export interface PagicConfig {
@@ -94,16 +102,14 @@ export default class Pagic {
 
   public projectConfig: Partial<PagicConfig> = {};
   private runtimeConfig: Partial<PagicConfig> = {};
+  private projectConfigCompileResult = '';
 
   private fullChangedPaths: string[] = [];
   private timeoutHandler: number | undefined = undefined;
   // #endregion
 
   public constructor(config: Partial<PagicConfig> = {}) {
-    this.runtimeConfig = {
-      ...this.runtimeConfig,
-      ...config
-    };
+    this.runtimeConfig = config;
   }
 
   public async build() {
@@ -122,15 +128,20 @@ export default class Pagic {
 
   /** Read pagic.config.ts and set to this.projectConfig */
   private async initProjectConfig() {
-    try {
-      this.projectConfig = await importDefault('pagic.config.ts', {
-        base: Deno.cwd(),
-        tryExt: 'tsx'
-      });
-    } catch (e) {
-      console.log(yellow('pagic.config.ts not exist, use default config'));
-      this.projectConfig = {};
+    let pagicConfigPath = path.resolve(Deno.cwd(), 'pagic.config.ts');
+    if (await fs.exists(pagicConfigPath)) {
+      this.projectConfig = await importDefault(pagicConfigPath);
+      this.projectConfigCompileResult = await compileFile(pagicConfigPath);
+      return;
     }
+    pagicConfigPath = pagicConfigPath.replace(/\.ts$/, '.tsx');
+    if (await fs.exists(pagicConfigPath)) {
+      this.projectConfig = await importDefault(pagicConfigPath);
+      this.projectConfigCompileResult = await compileFile(pagicConfigPath);
+      return;
+    }
+    console.log(yellow('pagic.config.ts not exist, use default config'));
+    this.projectConfigCompileResult = 'export default {}';
   }
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
   private async initConfig() {
@@ -165,6 +176,8 @@ export default class Pagic {
   private async rebuild() {
     this.pagePropsMap = {};
     await this.clean();
+    const pagicConfigDest = path.resolve(this.config.publicDir, 'pagic.config.js');
+    await ensureDirAndWriteFileStr(pagicConfigDest, this.projectConfigCompileResult);
     await this.initPaths();
     await this.runPlugins();
     await this.copy();

@@ -6,7 +6,6 @@ const importCache: {
 
 interface ImportOptions {
   base?: string;
-  tryExt?: string;
   reload?: boolean;
 }
 
@@ -39,20 +38,7 @@ export async function import_<T = any>(importPath: string, options: ImportOption
     versionQuery = `?version=${Math.random().toString().slice(2)}${path.extname(importPath)}`;
   }
 
-  let mod: any;
-  try {
-    mod = await import(`${finalImportPath}${versionQuery}`);
-  } catch (e) {
-    if (options.tryExt) {
-      finalImportPath = finalImportPath.replace(/\.[^\.]+$/, `.${options.tryExt}`);
-      if (options.reload) {
-        versionQuery = `?version=${Math.random().toString().slice(2)}.${options.tryExt}`;
-      }
-      mod = await import(`${finalImportPath}${versionQuery}`);
-    } else {
-      throw e;
-    }
-  }
+  let mod = await import(`${finalImportPath}${versionQuery}`);
 
   importCache[finalImportPath] = mod;
   return mod;

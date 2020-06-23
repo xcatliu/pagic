@@ -12,9 +12,10 @@ import {
   compilePagicFile,
   reactElementToJSXString,
   replaceExt,
-  underlineToPascal
+  underlineToPascal,
+  omit
 } from '../utils/mod.ts';
-import { PagicPlugin } from '../Pagic.ts';
+import Pagic, { PagicPlugin } from '../Pagic.ts';
 
 const script: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {
@@ -42,7 +43,12 @@ const script: PagicPlugin = async (pagic) => {
           ${Object.keys(pageProps)
             .map((key) => {
               const value: any = pageProps[key];
-              if (React.isValidElement(value)) {
+              if (key === 'config') {
+                importComponentList.push(['projectConfig', `${pagic.config.base}pagic.config.js`]);
+                return `config: { ${JSON.stringify(
+                  omit(Pagic.defaultConfig, ['ignore', 'theme', 'plugins', 'watch', 'serve', 'port'])
+                ).slice(1, -1)}, ...projectConfig }`;
+              } else if (React.isValidElement(value)) {
                 if (typeof value.type !== 'string' && typeof value.type.name !== 'undefined') {
                   const componentName = value.type.name;
                   let modulePath: string;

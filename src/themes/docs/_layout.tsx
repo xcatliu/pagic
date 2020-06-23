@@ -34,6 +34,7 @@ if (shouldSetIsDark) {
         />
 
         <link rel="stylesheet" href={`${config.base}assets/index.css`} />
+        {config.head}
       </head>
       <body>
         <header>
