@@ -38,6 +38,10 @@ export async function import_<T = any>(importPath: string, options: ImportOption
     versionQuery = `?version=${Math.random().toString().slice(2)}${path.extname(importPath)}`;
   }
 
+  if (finalImportPath.startsWith('/')) {
+    finalImportPath = `file://${finalImportPath}`;
+  }
+
   let mod = await import(`${finalImportPath}${versionQuery}`);
 
   importCache[finalImportPath] = mod;
