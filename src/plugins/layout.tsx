@@ -3,28 +3,22 @@ import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
 
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicPlugin, PagicLayout } from '../Pagic.ts';
-
-const layoutCache: {
-  [importPath: string]: PagicLayout;
-} = {};
+import { PagicPlugin } from '../Pagic.ts';
+import { importDefault } from '../utils/mod.ts';
 
 const layout: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {
     const pageProps = pagic.pagePropsMap[pagePath];
     let Layout = null;
     const fullLayoutPath = path.resolve(pagic.config.srcDir, pageProps.layoutPath);
-    let importPath: string;
     if (await fs.exists(fullLayoutPath)) {
-      importPath = `file://${fullLayoutPath}?version=${pagic.randomVersion}.tsx`;
+      Layout = await importDefault(fullLayoutPath, {
+        reload: pagic.needRebuild
+      });
     } else {
-      importPath = `../themes/${pagic.config.theme}/${pageProps.layoutPath}`;
-    }
-    if (layoutCache[importPath]) {
-      Layout = layoutCache[importPath];
-    } else {
-      Layout = (await import(importPath)).default;
-      layoutCache[importPath] = Layout;
+      Layout = await importDefault(`../themes/${pagic.config.theme}/${pageProps.layoutPath}`, {
+        base: path.dirname(import.meta.url)
+      });
     }
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,

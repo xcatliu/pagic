@@ -7,7 +7,7 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
 
-import { unique, sortByInsert, ensureDirAndCopy, copyPagicFile } from './utils/mod.ts';
+import { unique, sortByInsert, ensureDirAndCopy, copyPagicFile, importDefault } from './utils/mod.ts';
 
 // #region types
 export interface PagicConfig {
@@ -90,7 +90,7 @@ export default class Pagic {
   public pagePropsMap: {
     [pagePath: string]: PageProps;
   } = {};
-  public randomVersion = Math.random();
+  public needRebuild = false;
 
   public projectConfig: Partial<PagicConfig> = {};
   private runtimeConfig: Partial<PagicConfig> = {};
@@ -122,12 +122,15 @@ export default class Pagic {
 
   /** Read pagic.config.ts and set to this.projectConfig */
   private async initProjectConfig() {
-    const projectConfigPath = Deno.cwd() + '/pagic.config.ts';
-    if (!fs.existsSync(projectConfigPath)) {
-      return;
+    try {
+      this.projectConfig = await importDefault('pagic.config.ts', {
+        base: Deno.cwd(),
+        tryExt: 'tsx'
+      });
+    } catch (e) {
+      console.log(yellow('pagic.config.ts not exist, use default config'));
+      this.projectConfig = {};
     }
-
-    this.projectConfig = (await import(`file://${projectConfigPath}`)).default;
   }
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
   private async initConfig() {
@@ -144,7 +147,9 @@ export default class Pagic {
     let plugins: PagicPlugin[] = [];
     for (let plugin of pluginNames) {
       if (typeof plugin === 'string') {
-        plugin = (await import(`./plugins/${plugin}.tsx`)).default;
+        plugin = await importDefault(`./plugins/${plugin}.tsx`, {
+          base: path.dirname(import.meta.url)
+        });
       }
       plugins.push(plugin as PagicPlugin);
     }
@@ -200,22 +205,22 @@ export default class Pagic {
     this.fullChangedPaths = unique([...this.fullChangedPaths, ...fullFilePaths]);
     clearTimeout(this.timeoutHandler);
     this.timeoutHandler = setTimeout(async () => {
-      let needRebuild = false;
+      this.needRebuild = false;
       let pagePaths = [];
       let staticPaths = [];
       for (const fullChangedPath of this.fullChangedPaths) {
         const changedPath = this.relativeToSrc(fullChangedPath);
         if (!fs.existsSync(fullChangedPath)) {
           console.log(yellow(`${changedPath} removed, start rebuild`));
-          needRebuild = true;
+          this.needRebuild = true;
           break;
         } else if (Deno.statSync(fullChangedPath).isDirectory) {
           console.log(yellow(`Directory ${underline(changedPath)} changed, start rebuild`));
-          needRebuild = true;
+          this.needRebuild = true;
           break;
         } else if (Pagic.REGEXP_LAYOUT.test(fullChangedPath)) {
           console.log(yellow(`Layout ${changedPath} changed, start rebuild`));
-          needRebuild = true;
+          this.needRebuild = true;
           break;
         } else if (Pagic.REGEXP_PAGE.test(fullChangedPath)) {
           pagePaths.push(this.relativeToSrc(fullChangedPath));
@@ -223,8 +228,7 @@ export default class Pagic {
           staticPaths.push(this.relativeToSrc(fullChangedPath));
         }
       }
-      this.randomVersion = Math.random();
-      if (needRebuild) {
+      if (this.needRebuild) {
         await this.rebuild();
       } else {
         await this.runPlugins(pagePaths);
@@ -245,7 +249,9 @@ export default class Pagic {
       match: [Pagic.REGEXP_PAGE],
       skip: this.config.ignore
     });
-    const theme_file_list: string[] = (await import(`./themes/${this.config.theme}/.theme_file_list.ts`)).default;
+    const theme_file_list: string[] = await importDefault(`./themes/${this.config.theme}/.theme_file_list.ts`, {
+      base: path.dirname(import.meta.url)
+    });
     this.layoutPaths = unique([
       ...(await this.walk(this.config.srcDir, {
         includeDirs: false,

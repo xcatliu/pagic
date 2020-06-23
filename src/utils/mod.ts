@@ -1,5 +1,6 @@
 export * from './copy.ts';
 export * from './compile.ts';
+export * from './import.ts';
 
 export function unique(arr: any[]) {
   return Array.from(new Set(arr));
