@@ -1,37 +1,7 @@
+import projectConfig from '/pagic.config.js';
 import Hello from './hello_content.js';
 export default {
-    'config': {
-        "srcDir": "docs",
-        "publicDir": "public",
-        "ignore": [
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {}
-        ],
-        "base": "/",
-        "theme": "default",
-        "plugins": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ],
-        "watch": false,
-        "serve": false,
-        "port": 8000
-    },
+    config: { "srcDir": "src", "publicDir": "public", "base": "/", ...projectConfig },
     'pagePath': "hello.tsx",
     'layoutPath': "_layout.tsx",
     'outputPath': "hello.html",

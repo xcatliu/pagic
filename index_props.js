@@ -1,37 +1,6 @@
-
+import projectConfig from '/pagic.config.js';
 export default {
-    'config': {
-        "srcDir": "docs",
-        "publicDir": "public",
-        "ignore": [
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {}
-        ],
-        "base": "/",
-        "theme": "default",
-        "plugins": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ],
-        "watch": false,
-        "serve": false,
-        "port": 8000
-    },
+    config: { "srcDir": "src", "publicDir": "public", "base": "/", ...projectConfig },
     'pagePath': "README.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "index.html",
