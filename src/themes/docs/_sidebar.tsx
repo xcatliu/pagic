@@ -14,29 +14,77 @@ type SidebarConfig = {
   children?: SidebarConfig;
 }[];
 
-const Sidebar = ({ sidebar, outputPath, config }: SidebarProps) => (
+const Sidebar = (props: SidebarProps) => (
   <aside className="sidebar">
     <ol>
-      {sidebar.map(({ text, link, children }) => (
-        <li key={link}>
-          <a href={`${config.base}${link}`} className={link === outputPath ? 'active' : ''}>
-            {text}
-          </a>
-          {children && (
-            <ol>
-              {children.map(({ text, link }) => (
-                <li key={link}>
-                  <a href={`${config.base}${link}`} className={link === outputPath ? 'active' : ''}>
-                    {text}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          )}
-        </li>
+      {props.sidebar.map((sidebarConfig) => (
+        <FoldableItem {...props} {...sidebarConfig} />
       ))}
     </ol>
   </aside>
 );
+
+const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps & SidebarConfig[0]) => {
+  const [fold, setFold] = React.useState(false);
+  const [olHeight, setOlHeight] = React.useState('auto');
+  const measuredRef = React.useCallback((node) => {
+    if (node !== null) {
+      setOlHeight(node.getBoundingClientRect().height);
+    }
+  }, []);
+  return (
+    <li className={fold ? 'fold' : 'unfold'}>
+      <a
+        href={`${config.base}${link}`}
+        className={link === outputPath ? 'active' : ''}
+        onClick={() => {
+          if (!children) {
+            return;
+          }
+          if (link === outputPath) {
+            setFold(!fold);
+          } else {
+            setFold(false);
+          }
+        }}
+      >
+        {text}
+        {children && (
+          <>
+            <span
+              className="czs-angle czs-angle-up-l"
+              style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setFold(!fold);
+              }}
+            />
+            <span
+              className="czs-angle czs-angle-down-l"
+              style={{ backgroundImage: `url("${config.base}assets/czs-angle-down-l.svg")` }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setFold(!fold);
+              }}
+            />
+          </>
+        )}
+      </a>
+      {children && (
+        <ol ref={measuredRef} style={{ height: olHeight }}>
+          {children.map(({ text, link }) => (
+            <li key={link}>
+              <a href={`${config.base}${link}`} className={link === outputPath ? 'active' : ''}>
+                {text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      )}
+    </li>
+  );
+};
 
 export default Sidebar;

@@ -56,10 +56,13 @@ if (shouldSetIsDark) {
                 }}
                 className="toggle_dark"
               >
-                <span className="sun" style={{ backgroundImage: `url("${config.base}assets/sun.svg")` }} />
-                <span className="sun-l" style={{ backgroundImage: `url("${config.base}assets/sun-l.svg")` }} />
-                <span className="moon" style={{ backgroundImage: `url("${config.base}assets/moon.svg")` }} />
-                <span className="moon-l" style={{ backgroundImage: `url("${config.base}assets/moon-l.svg")` }} />
+                <span className="czs-sun" style={{ backgroundImage: `url("${config.base}assets/czs-sun.svg")` }} />
+                <span className="czs-sun-l" style={{ backgroundImage: `url("${config.base}assets/czs-sun-l.svg")` }} />
+                <span className="czs-moon" style={{ backgroundImage: `url("${config.base}assets/czs-moon.svg")` }} />
+                <span
+                  className="czs-moon-l"
+                  style={{ backgroundImage: `url("${config.base}assets/czs-moon-l.svg")` }}
+                />
               </li>
             </ul>
           </nav>
