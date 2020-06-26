@@ -10,7 +10,7 @@ interface SidebarProps {
 
 type SidebarConfig = {
   text: string;
-  link: string;
+  link?: string;
   children?: SidebarConfig;
 }[];
 
@@ -32,19 +32,23 @@ const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps
       setOlHeight(node.getBoundingClientRect().height);
     }
   }, []);
+  const isActive = link === outputPath;
   return (
     <li className={fold ? 'fold' : 'unfold'}>
       <a
-        href={`${config.base}${link}`}
-        className={link === outputPath ? 'active' : ''}
+        href={link ? `${config.base}${link}` : '#'}
+        className={`${isActive ? 'active' : ''} ${link ? '' : 'no_link'}`}
         onClick={() => {
-          if (!children) {
-            return;
-          }
-          if (link === outputPath) {
-            setFold(!fold);
+          if (link) {
+            if (children) {
+              if (isActive) {
+                setFold(!fold);
+              } else {
+                setFold(false);
+              }
+            }
           } else {
-            setFold(false);
+            setFold(!fold);
           }
         }}
       >

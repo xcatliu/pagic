@@ -2,7 +2,7 @@ import { PagicPlugin } from '../Pagic.ts';
 
 interface SidebarConfigItem {
   text?: string;
-  link: string;
+  link?: string;
   children?: SidebarConfig;
 }
 
@@ -29,10 +29,12 @@ const sidebar: PagicPlugin = async (pagic) => {
         };
       }
       let item: SidebarConfigItem = sidebarConfigItem;
-      if (typeof item.text === 'undefined') {
+      if (typeof item.text === 'undefined' && typeof item.link !== 'undefined') {
         item.text = pagic.pagePropsMap[item.link].title;
       }
-      item.link = pagic.pagePropsMap[item.link].outputPath;
+      if (typeof item.link !== 'undefined') {
+        item.link = pagic.pagePropsMap[item.link].outputPath;
+      }
       if (Array.isArray(item.children)) {
         item.children = parseSidebarConfig(item.children);
       }
