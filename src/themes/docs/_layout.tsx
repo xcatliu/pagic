@@ -3,8 +3,9 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 import { PagicLayout } from '../../Pagic.ts';
 
 import Sidebar from './_sidebar.tsx';
+import Loading from './_loading.tsx';
 
-const Layout: PagicLayout = ({ config, title, content, toc, ga, gitalk, script, sidebar, outputPath }) => {
+const Layout: PagicLayout = ({ config, title, content, loading, toc, ga, gitalk, script, sidebar, outputPath }) => {
   const [isDark, setIsDark] = React.useState(
     // @ts-ignore
     window.Deno ? false : document.documentElement.classList.contains('is_dark')
@@ -70,7 +71,7 @@ if (shouldSetIsDark) {
         <Sidebar sidebar={sidebar} outputPath={outputPath} config={config} />
         <section className="main">
           <div className="main-article">
-            {content}
+            {loading ? <Loading /> : content}
             {gitalk}
           </div>
           <div className="main-toc">{toc}</div>

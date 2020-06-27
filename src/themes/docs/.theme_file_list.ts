@@ -9,5 +9,6 @@ export default [
   'assets/prism.css',
   'assets/prism_tomorrow.css',
   '_layout.tsx',
+  '_loading.tsx',
   '_sidebar.tsx'
 ];

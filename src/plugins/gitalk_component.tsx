@@ -30,7 +30,7 @@ const Gitalk = (props: GitalkProps) => {
   return (
     <>
       <div id="gitalk-container" />
-      <link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" />
+      <link id="gitalk-css" rel="preload" href="https://unpkg.com/gitalk@1.6.2/dist/gitalk.css" as="style" />
       <script defer src="https://unpkg.com/gitalk@1.6.2/dist/gitalk.min.js" />
     </>
   );
