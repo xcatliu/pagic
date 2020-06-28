@@ -6,9 +6,13 @@ export default [
   'assets/czs-sun.svg',
   'assets/czs-sun-l.svg',
   'assets/index.css',
+  'assets/pagic.png',
   'assets/prism.css',
   'assets/prism_tomorrow.css',
+  '_header.tsx',
   '_layout.tsx',
   '_loading.tsx',
-  '_sidebar.tsx'
+  '_sidebar.tsx',
+  '_utils.tsx',
+  'favicon.ico'
 ];

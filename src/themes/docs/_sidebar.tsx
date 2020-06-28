@@ -2,6 +2,8 @@
 import React from 'https://dev.jspm.io/react@16.13.1';
 import { PagicConfig } from '../../Pagic.ts';
 
+import { classnames } from './_utils.tsx';
+
 interface SidebarProps {
   sidebar: SidebarConfig;
   outputPath: string;
@@ -21,6 +23,12 @@ const Sidebar = (props: SidebarProps) => (
         <FoldableItem {...props} {...sidebarConfig} />
       ))}
     </ol>
+    <hr />
+    <a className="powered_by" href="https://github.com/xcatliu/pagic" target="_blank">
+      Powered by&nbsp;
+      <img src={`${props.config.base}assets/pagic.png`} />
+      agic
+    </a>
   </aside>
 );
 
@@ -33,11 +41,20 @@ const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps
     }
   }, []);
   const isActive = link === outputPath;
+
+  const toggleFold = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFold(!fold);
+  };
   return (
     <li className={fold ? 'fold' : 'unfold'}>
       <a
         href={link ? `${config.base}${link}` : '#'}
-        className={`${isActive ? 'active' : ''} ${link ? '' : 'no_link'}`}
+        className={classnames('nav_link', {
+          active: isActive,
+          no_link: !link
+        })}
         onClick={() => {
           if (link) {
             if (children) {
@@ -58,20 +75,12 @@ const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps
             <span
               className="czs-angle czs-angle-up-l"
               style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setFold(!fold);
-              }}
+              onClick={toggleFold}
             />
             <span
               className="czs-angle czs-angle-down-l"
               style={{ backgroundImage: `url("${config.base}assets/czs-angle-down-l.svg")` }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setFold(!fold);
-              }}
+              onClick={toggleFold}
             />
           </>
         )}
@@ -80,7 +89,7 @@ const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps
         <ol ref={measuredRef} style={{ height: olHeight }}>
           {children.map(({ text, link }) => (
             <li key={link}>
-              <a href={`${config.base}${link}`} className={link === outputPath ? 'active' : ''}>
+              <a href={`${config.base}${link}`} className={classnames('nav_link', { active: link === outputPath })}>
                 {text}
               </a>
             </li>

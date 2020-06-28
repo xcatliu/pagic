@@ -2,8 +2,10 @@
 import React from 'https://dev.jspm.io/react@16.13.1';
 import { PagicLayout } from '../../Pagic.ts';
 
+import Header from './_header.tsx';
 import Sidebar from './_sidebar.tsx';
 import Loading from './_loading.tsx';
+import { classnames } from './_utils.tsx';
 
 const Layout: PagicLayout = ({ config, title, content, loading, toc, ga, gitalk, script, sidebar, outputPath }) => {
   const [isDark, setIsDark] = React.useState(
@@ -11,7 +13,11 @@ const Layout: PagicLayout = ({ config, title, content, loading, toc, ga, gitalk,
     window.Deno ? false : document.documentElement.classList.contains('is_dark')
   );
   return (
-    <html className={isDark ? 'is_dark' : ''}>
+    <html
+      className={classnames({
+        is_dark: isDark
+      })}
+    >
       <head>
         {ga}
         <title>{outputPath !== 'index.html' ? `${title} · ${config.title}` : title}</title>
@@ -38,43 +44,14 @@ if (shouldSetIsDark) {
         {config.head}
       </head>
       <body>
-        <header>
-          <h1>
-            <a href={config.base}>{config.title}</a>
-          </h1>
-          <nav>
-            <ul>
-              {config.nav.map(({ text, link }: any) => (
-                <li key={link}>
-                  <a href={link}>{text}</a>
-                </li>
-              ))}
-              <li
-                onClick={() => {
-                  setIsDark(!isDark);
-                  // @ts-ignore
-                  document.cookie = `is_dark=${!isDark ? '1' : '0'}; expires=Tue, 19 Jun 2038 03:14:07 UTC; path=/`;
-                }}
-                className="toggle_dark"
-              >
-                <span className="czs-sun" style={{ backgroundImage: `url("${config.base}assets/czs-sun.svg")` }} />
-                <span className="czs-sun-l" style={{ backgroundImage: `url("${config.base}assets/czs-sun-l.svg")` }} />
-                <span className="czs-moon" style={{ backgroundImage: `url("${config.base}assets/czs-moon.svg")` }} />
-                <span
-                  className="czs-moon-l"
-                  style={{ backgroundImage: `url("${config.base}assets/czs-moon-l.svg")` }}
-                />
-              </li>
-            </ul>
-          </nav>
-        </header>
+        <Header config={config} isDark={isDark} setIsDark={setIsDark} />
         <Sidebar sidebar={sidebar} outputPath={outputPath} config={config} />
         <section className="main">
           <div className="main-article">
             {loading ? <Loading /> : content}
             {gitalk}
           </div>
-          <div className="main-toc">{toc}</div>
+          <div className="main-toc nav_link_container">{toc}</div>
         </section>
         {script}
       </body>
