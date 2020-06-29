@@ -47,11 +47,16 @@ if (shouldSetIsDark) {
         <Header config={config} isDark={isDark} setIsDark={setIsDark} />
         <Sidebar sidebar={sidebar} outputPath={outputPath} config={config} />
         <section className="main">
-          <div className="main-article">
+          <div className="main_article">
             {loading ? <Loading /> : content}
             {gitalk}
           </div>
-          <div className="main-toc nav_link_container">{toc}</div>
+          <div className="main_toc_container nav_link_container">
+            <div className="main_toc">
+              {config.tocAd && <div className="toc_ad">{config.tocAd}</div>}
+              {toc}
+            </div>
+          </div>
         </section>
         {script}
       </body>
