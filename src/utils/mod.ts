@@ -1,6 +1,24 @@
+import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
+import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
+import * as colors from 'https://deno.land/std@0.56.0/fmt/colors.ts';
+
+export { fs, path, colors };
 export * from './copy.ts';
 export * from './compile.ts';
 export * from './import.ts';
+
+/**
+ * /User/xcatliu/work/github/pagic/
+ * or
+ * https://deno.land/x/pagic/
+ */
+export const pagicRootPath = (() => {
+  if (import.meta.url.startsWith('file://')) {
+    return path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), '../../') + '/';
+  } else {
+    return import.meta.url.replace(/\/src\/utils\/mod\.ts$/, '/');
+  }
+})();
 
 export function unique(arr: any[]) {
   return Array.from(new Set(arr));

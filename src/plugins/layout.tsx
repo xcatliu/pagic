@@ -1,10 +1,8 @@
-import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
-import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
-
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
+
 import { PagicPlugin } from '../Pagic.ts';
-import { importDefault } from '../utils/mod.ts';
+import { fs, path, importDefault } from '../utils/mod.ts';
 
 const layout: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {

@@ -87,8 +87,8 @@ const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps
       </a>
       {children && (
         <ol ref={measuredRef} style={{ height: olHeight }}>
-          {children.map(({ text, link }) => (
-            <li key={link}>
+          {children.map(({ text, link }, index) => (
+            <li key={index}>
               <a href={`${config.base}${link}`} className={classnames('nav_link', { active: link === outputPath })}>
                 {text}
               </a>

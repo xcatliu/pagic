@@ -1,7 +1,6 @@
-import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
-
 import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
 
+import { path } from './mod.ts';
 import { compile, compileFile, compilePagicFile } from './compile.ts';
 
 Deno.test('[compile] should remove types', () => {

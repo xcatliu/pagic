@@ -1,9 +1,7 @@
-import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
-import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
-import { green } from 'https://deno.land/std@0.56.0/fmt/colors.ts';
-
 import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
 import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
+
+import { fs, colors, pagicRootPath } from './mod.ts';
 
 export const reactElementToJSXString = reactElementToJSXStringModule.default;
 
@@ -23,15 +21,16 @@ export function compile(input: string) {
       }
     })
     .outputText.replace(/(^import .*)\.tsx?((?:'|");?$)/gm, '$1.js$2')
-    .replace(/(^import .*)\/react(\/|'|"|@).*$/gm, '')
-    .replace(/(^import .*)\/react-dom(\/|'|"|@).*$/gm, '');
+    .replace(/^import .*\/react(\/|'|"|@).*$/gm, '')
+    .replace(/^import .*\/react-dom(\/|'|"|@).*$/gm, '')
+    .replace(/^\/\/ @deno-types.*$/gm, '');
 }
 
 /**
  * Read input file and then compile it
  */
 export async function compileFile(src: string) {
-  console.log(green('Compile file'), src);
+  console.log(colors.green('Compile file'), src);
   const content = await fs.readFileStr(src);
   return compile(content);
 }
@@ -40,13 +39,13 @@ export async function compileFile(src: string) {
  * Compile a pagic file with local or remote url
  */
 export async function compilePagicFile(pathToPagicRoot: string) {
-  console.log(green('Compile pagic file'), pathToPagicRoot);
+  console.log(colors.green('Compile pagic file'), pathToPagicRoot);
   let content = '';
   if (import.meta.url.startsWith('file://')) {
-    const src = path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), '../../', pathToPagicRoot);
+    const src = `${pagicRootPath}${pathToPagicRoot}`;
     content = await fs.readFileStr(src);
   } else {
-    const res = await fetch(import.meta.url.replace(/\/src\/utils\/compile\.ts$/, `/${pathToPagicRoot}`));
+    const res = await fetch(`${pagicRootPath}${pathToPagicRoot}`);
     content = await res.text();
   }
   return compile(content);

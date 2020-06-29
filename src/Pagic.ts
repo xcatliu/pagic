@@ -1,13 +1,12 @@
-import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
-import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
-import { green, underline, yellow } from 'https://deno.land/std@0.56.0/fmt/colors.ts';
-
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
 
 import {
+  fs,
+  path,
+  colors,
   unique,
   sortByInsert,
   ensureDirAndCopy,
@@ -140,7 +139,7 @@ export default class Pagic {
       this.projectConfigCompileResult = await compileFile(pagicConfigPath);
       return;
     }
-    console.log(yellow('pagic.config.ts not exist, use default config'));
+    console.log(colors.yellow('pagic.config.ts not exist, use default config'));
     this.projectConfigCompileResult = 'export default {}';
   }
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
@@ -195,14 +194,14 @@ export default class Pagic {
 
     app.listen({ port: this.config.port });
     console.log(
-      green('Serve'),
-      underline(this.config.publicDir),
+      colors.green('Serve'),
+      colors.underline(this.config.publicDir),
       `on http://127.0.0.1:${this.config.port}${this.config.base}`
     );
   }
 
   private async watch() {
-    console.log(green('Watch'), underline(this.config.srcDir));
+    console.log(colors.green('Watch'), colors.underline(this.config.srcDir));
     const watcher = Deno.watchFs(this.config.srcDir);
     for await (const event of watcher) {
       let eventPaths = event.paths;
@@ -224,15 +223,15 @@ export default class Pagic {
       for (const fullChangedPath of this.fullChangedPaths) {
         const changedPath = this.relativeToSrc(fullChangedPath);
         if (!fs.existsSync(fullChangedPath)) {
-          console.log(yellow(`${changedPath} removed, start rebuild`));
+          console.log(colors.yellow(`${changedPath} removed, start rebuild`));
           this.needRebuild = true;
           break;
         } else if (Deno.statSync(fullChangedPath).isDirectory) {
-          console.log(yellow(`Directory ${underline(changedPath)} changed, start rebuild`));
+          console.log(colors.yellow(`Directory ${colors.underline(changedPath)} changed, start rebuild`));
           this.needRebuild = true;
           break;
         } else if (Pagic.REGEXP_LAYOUT.test(fullChangedPath)) {
-          console.log(yellow(`Layout ${changedPath} changed, start rebuild`));
+          console.log(colors.yellow(`Layout ${changedPath} changed, start rebuild`));
           this.needRebuild = true;
           break;
         } else if (Pagic.REGEXP_PAGE.test(fullChangedPath)) {
@@ -252,7 +251,7 @@ export default class Pagic {
   }
 
   private async clean() {
-    console.log(green('Clean'), this.config.publicDir);
+    console.log(colors.green('Clean'), this.config.publicDir);
     await fs.emptyDir(this.config.publicDir);
   }
 
@@ -292,7 +291,7 @@ export default class Pagic {
     if (this.pagePaths.length === 0) return;
 
     for (let plugin of this.config.plugins) {
-      console.log(green('Plugin'), plugin.name, 'start');
+      console.log(colors.green('Plugin'), plugin.name, 'start');
       await plugin(this);
     }
   }

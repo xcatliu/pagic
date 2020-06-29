@@ -1,4 +1,4 @@
-import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
+import { path } from './mod.ts';
 
 const importCache: {
   [importPath: string]: any;
