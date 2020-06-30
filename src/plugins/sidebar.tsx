@@ -1,26 +1,31 @@
 import { PagicPlugin } from '../Pagic.ts';
 
-interface SidebarConfigItem {
-  text?: string;
-  link?: string;
-  children?: SidebarConfig;
-}
+export type PagicConfigSidebar = (
+  | {
+      text?: string;
+      link?: string;
+      children?: PagicConfigSidebar;
+    }
+  | string
+)[];
 
-type SidebarConfig = (SidebarConfigItem | string)[];
+export type PagePropsSidebar = {
+  text: string;
+  link?: string;
+  children?: PagePropsSidebar;
+}[];
 
 const sidebar: PagicPlugin = async (pagic) => {
-  // Deep clone
-  let sidebarConfig = JSON.parse(JSON.stringify(pagic.config.sidebar));
-  sidebarConfig = parseSidebarConfig(sidebarConfig);
   for (const pagePath of pagic.pagePaths) {
     const pageProps = pagic.pagePropsMap[pagePath];
     pagic.pagePropsMap[pagePath] = {
       ...pageProps,
-      sidebar: sidebarConfig
+      // Deep clone
+      sidebar: parseSidebarConfig(JSON.parse(JSON.stringify(pagic.config.sidebar)))
     };
   }
 
-  function parseSidebarConfig(sidebarConfig: SidebarConfig) {
+  function parseSidebarConfig(sidebarConfig: PagicConfigSidebar): PagePropsSidebar {
     return sidebarConfig.map((sidebarConfigItem) => {
       if (typeof sidebarConfigItem === 'string') {
         return {
@@ -28,7 +33,7 @@ const sidebar: PagicPlugin = async (pagic) => {
           link: pagic.pagePropsMap[sidebarConfigItem].outputPath
         };
       }
-      let item: SidebarConfigItem = sidebarConfigItem;
+      let item = sidebarConfigItem as PagePropsSidebar[0];
       if (typeof item.text === 'undefined' && typeof item.link !== 'undefined') {
         item.text = pagic.pagePropsMap[item.link].title;
       }

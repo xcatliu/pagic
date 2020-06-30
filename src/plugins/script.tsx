@@ -91,6 +91,4 @@ const script: PagicPlugin = async (pagic) => {
   await copyPagicFile('src/plugins/script_main.js', scriptMainDest);
 };
 
-script.insert = 'before:layout';
-
 export default script;

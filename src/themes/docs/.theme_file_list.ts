@@ -9,6 +9,7 @@ export default [
   'assets/pagic.png',
   'assets/prism.css',
   'assets/prism_tomorrow.css',
+  '_head.tsx',
   '_header.tsx',
   '_layout.tsx',
   '_loading.tsx',

@@ -1,38 +1,34 @@
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicConfig } from '../../Pagic.ts';
 
+import { PagicLayout, PageProps } from '../../Pagic.ts';
 import { classnames } from './_utils.tsx';
+import { PagePropsSidebar } from '../../plugins/sidebar.tsx';
 
-interface SidebarProps {
-  sidebar: SidebarConfig;
-  outputPath: string;
-  config: PagicConfig;
-}
+const Sidebar: PagicLayout = (props) => {
+  if (!props.sidebar) {
+    return null;
+  }
+  return (
+    <aside className="sidebar">
+      <ol>
+        {props.sidebar.map((sidebarItem, index) => (
+          <FoldableItem key={index} {...props} sidebarItem={sidebarItem} />
+        ))}
+      </ol>
+      <hr />
+      <a className="powered_by" href="https://github.com/xcatliu/pagic" target="_blank">
+        Powered by&nbsp;
+        <img src={`${props.config.base}assets/pagic.png`} />
+        agic
+      </a>
+    </aside>
+  );
+};
 
-type SidebarConfig = {
-  text: string;
-  link?: string;
-  children?: SidebarConfig;
-}[];
-
-const Sidebar = (props: SidebarProps) => (
-  <aside className="sidebar">
-    <ol>
-      {props.sidebar.map((sidebarConfig) => (
-        <FoldableItem {...props} {...sidebarConfig} />
-      ))}
-    </ol>
-    <hr />
-    <a className="powered_by" href="https://github.com/xcatliu/pagic" target="_blank">
-      Powered by&nbsp;
-      <img src={`${props.config.base}assets/pagic.png`} />
-      agic
-    </a>
-  </aside>
-);
-
-const FoldableItem = ({ outputPath, config, text, link, children }: SidebarProps & SidebarConfig[0]) => {
+const FoldableItem: PagicLayout<{
+  sidebarItem: PagePropsSidebar[0];
+}> = ({ config, outputPath, sidebarItem: { text, link, children } }) => {
   const [fold, setFold] = React.useState(false);
   const [olHeight, setOlHeight] = React.useState('auto');
   const measuredRef = React.useCallback((node) => {

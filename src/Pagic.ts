@@ -15,6 +15,7 @@ import {
   ensureDirAndWriteFileStr,
   compileFile
 } from './utils/mod.ts';
+import { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 
 // #region types
 export interface PagicConfig {
@@ -27,6 +28,7 @@ export interface PagicConfig {
   watch: boolean;
   serve: boolean;
   port: number;
+  sidebar?: PagicConfigSidebar;
   [key: string]: any;
 }
 
@@ -40,17 +42,23 @@ export interface PagicPlugin {
 }
 
 export interface PageProps {
-  config: any;
+  config: PagicConfig;
   pagePath: string;
   layoutPath: string;
   outputPath: string;
   title: string;
   content: React.ReactElement | null;
   script: React.ReactElement | null;
+  loading?: boolean;
+  sidebar?: PagePropsSidebar;
   [key: string]: any;
 }
 
-export type PagicLayout = React.FC<PageProps>;
+export type PagicLayout<
+  T = {
+    [key: string]: any;
+  }
+> = React.FC<PageProps & T>;
 // #endregion
 
 export default class Pagic {
@@ -76,7 +84,7 @@ export default class Pagic {
     ],
     base: '/',
     theme: 'default',
-    plugins: ['init', 'md', 'tsx', 'layout', 'write'],
+    plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
     watch: false,
     serve: false,
     port: 8000

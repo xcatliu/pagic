@@ -1,13 +1,12 @@
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
-interface HeaderProps {
-  config: any;
+import { PagicLayout } from '../../Pagic.ts';
+
+const Header: PagicLayout<{
   isDark: boolean;
   setIsDark: (isDark: boolean) => void;
-}
-
-const Header = ({ config, isDark, setIsDark }: HeaderProps) => (
+}> = ({ config, isDark, setIsDark }) => (
   <header>
     <h1>
       <a href={config.base}>{config.title}</a>
