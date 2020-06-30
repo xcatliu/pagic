@@ -20,7 +20,7 @@ const write: PagicPlugin = async (pagic) => {
       .filter((str) => str !== '')
       .join('\n');
     if (helmetString !== '') {
-      htmlString = htmlString.replace('</head>', `\n${helmetString}\n</head>`);
+      htmlString = '<!doctype html>' + htmlString.replace('</head>', `\n${helmetString}\n</head>`);
     }
     await ensureDirAndWriteFileStr(fullFilePath, htmlString);
   }

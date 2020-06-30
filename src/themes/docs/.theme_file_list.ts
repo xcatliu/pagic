@@ -13,6 +13,7 @@ export default [
   '_header.tsx',
   '_layout.tsx',
   '_loading.tsx',
+  '_popover.tsx',
   '_sidebar.tsx',
   '_utils.tsx',
   'favicon.ico'

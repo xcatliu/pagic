@@ -8,13 +8,14 @@ export function classnames(
     | {
         [key: string]: boolean;
       }
+    | undefined
   )[]
 ) {
   let classList: string[] = [];
   for (const arg of args) {
     if (typeof arg === 'string') {
       classList.push(arg);
-    } else {
+    } else if (typeof arg !== 'undefined') {
       classList = [...classList, ...Object.keys(arg).filter((key) => arg[key])];
     }
   }

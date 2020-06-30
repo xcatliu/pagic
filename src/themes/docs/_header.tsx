@@ -2,6 +2,7 @@
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { PagicLayout } from '../../Pagic.ts';
+import Popover from './_popover.tsx';
 
 const Header: PagicLayout<{
   isDark: boolean;
@@ -15,9 +16,19 @@ const Header: PagicLayout<{
       <ul>
         {config.nav
           .filter(({ align }: any) => align !== 'right')
-          .map(({ text, link }: any) => (
+          .map(({ text, link, target, popover }: any) => (
             <li key={link}>
-              <a href={link}>{text}</a>
+              {popover ? (
+                <Popover placement="bottom-start" content={popover}>
+                  <a href={link} target={target}>
+                    {text}
+                  </a>
+                </Popover>
+              ) : (
+                <a href={link} target={target}>
+                  {text}
+                </a>
+              )}
             </li>
           ))}
         <li style={{ flexGrow: 1 }} />
@@ -36,9 +47,19 @@ const Header: PagicLayout<{
         </li>
         {config.nav
           .filter(({ align }: any) => align === 'right')
-          .map(({ text, link }: any) => (
+          .map(({ text, link, target, popover }: any) => (
             <li key={link}>
-              <a href={link}>{text}</a>
+              {popover ? (
+                <Popover placement="bottom-end" content={popover}>
+                  <a href={link} target={target}>
+                    {text}
+                  </a>
+                </Popover>
+              ) : (
+                <a href={link} target={target}>
+                  {text}
+                </a>
+              )}
             </li>
           ))}
       </ul>

@@ -8,6 +8,13 @@ import { PagicLayout } from '../../Pagic.ts';
 const Head: PagicLayout<{
   isDark: boolean;
 }> = ({ config, title, ga, outputPath, isDark }) => {
+  const scriptSetIsDark = `
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "${config.base}assets/prism_tomorrow.css";
+    }
+  `;
   return (
     <head>
       {ga}
@@ -22,17 +29,7 @@ const Head: PagicLayout<{
           rel="stylesheet"
           href={isDark ? `${config.base}assets/prism_tomorrow.css` : `${config.base}assets/prism.css`}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-let shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches
-if (shouldSetIsDark) {
-document.documentElement.classList.add('is_dark');
-document.getElementById('prismTheme').href = "${config.base}assets/prism_tomorrow.css";
-}
-`
-          }}
-        />
+        <script>{scriptSetIsDark}</script>
       </Helmet>
     </head>
   );
