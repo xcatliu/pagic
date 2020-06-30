@@ -1,5 +1,7 @@
 // @deno-types="https://deno.land/x/types/react-dom/v16.13.1/server.d.ts"
 import ReactDOMServer from 'https://dev.jspm.io/react-dom@16.13.1/server.js';
+import ReactHelmet from 'https://dev.jspm.io/react-helmet@6.1.0';
+const { Helmet } = ReactHelmet;
 
 import { PagicPlugin } from '../Pagic.ts';
 import { path, ensureDirAndWriteFileStr } from '../utils/mod.ts';
@@ -11,7 +13,16 @@ const write: PagicPlugin = async (pagic) => {
       throw new Error('content is null');
     }
     const fullFilePath = path.resolve(pagic.config.publicDir, outputPath);
-    await ensureDirAndWriteFileStr(fullFilePath, ReactDOMServer.renderToString(content));
+    let htmlString = ReactDOMServer.renderToString(content);
+    const helmet = Helmet.renderStatic();
+    const helmetString = ['meta', 'title', 'base', 'style', 'link', 'noscript', 'script']
+      .map((key) => helmet[key].toString())
+      .filter((str) => str !== '')
+      .join('\n');
+    if (helmetString !== '') {
+      htmlString = htmlString.replace('</head>', `\n${helmetString}\n</head>`);
+    }
+    await ensureDirAndWriteFileStr(fullFilePath, htmlString);
   }
 };
 

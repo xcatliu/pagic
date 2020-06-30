@@ -11,6 +11,7 @@ interface GitalkProps {
   admin: string[];
   id: string;
   title: string;
+  pagerDirection: 'last' | 'first';
 }
 
 const Gitalk = (props: GitalkProps) => {

@@ -94,7 +94,7 @@ code {
 }
 pre,
 pre[class*='language-'] {
-  font-size: 13px;
+  font-size: 13px !important;
 }
 pre code {
   padding: 0;
@@ -157,7 +157,7 @@ hr {
 }
 pre,
 pre[class*='language-'] {
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 0 0 !important;
 }
 blockquote {
   padding: 0.5rem 0 0.5rem 1rem;
