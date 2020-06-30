@@ -1,4 +1,4 @@
-// @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
+
 
 const Hello = () => (React.createElement("div", null,
     React.createElement("h1", { onClick: () => {
