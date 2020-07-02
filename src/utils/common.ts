@@ -9,7 +9,7 @@ export const pagicRootPath = (() => {
   if (import.meta.url.startsWith('file://')) {
     return path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), '../../') + '/';
   } else {
-    return import.meta.url.replace(/\/src\/utils\/mod\.ts$/, '/');
+    return import.meta.url.replace(/\/src\/utils\/common\.ts$/, '/');
   }
 })();
 
