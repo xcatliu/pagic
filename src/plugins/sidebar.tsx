@@ -1,4 +1,5 @@
 import Pagic, { PagicPlugin } from '../Pagic.ts';
+import { pick } from '../utils/mod.ts';
 
 export type PagicConfigSidebar = (
   | {
@@ -80,7 +81,10 @@ function getPreviousAndNext(pagePeopsSidebar: PagePropsSidebar, pagePath: string
       last = current;
     }
   }
-  return { previous, next };
+  return {
+    previous: pick(previous, ['text', 'link']),
+    next: pick(next, ['text', 'link'])
+  };
 }
 
 sidebar.insert = 'after:tsx';

@@ -25,9 +25,25 @@ export function unique(arr: any[]) {
 }
 
 export function omit(obj: any, keys: string[]) {
+  if (!obj) {
+    return obj;
+  }
   let result: any = {};
   Object.keys(obj)
     .filter((key) => !keys.includes(key))
+    .forEach((key) => {
+      result[key] = obj[key];
+    });
+  return result;
+}
+
+export function pick(obj: any, keys: string[]) {
+  if (!obj) {
+    return obj;
+  }
+  let result: any = {};
+  Object.keys(obj)
+    .filter((key) => keys.includes(key))
     .forEach((key) => {
       result[key] = obj[key];
     });

@@ -58,7 +58,12 @@ const FoldableItem: PagicLayout<{
                 setFold(!fold);
               } else {
                 setFold(false);
+                // @ts-ignore
+                document.documentElement.classList.remove('show_sidebar');
               }
+            } else {
+              // @ts-ignore
+              document.documentElement.classList.remove('show_sidebar');
             }
           } else {
             setFold(!fold);
@@ -85,7 +90,14 @@ const FoldableItem: PagicLayout<{
         <ol ref={measuredRef} style={{ height: olHeight }}>
           {children.map(({ text, link }, index) => (
             <li key={index}>
-              <a href={`${config.base}${link}`} className={classnames('nav_link', { active: link === outputPath })}>
+              <a
+                href={`${config.base}${link}`}
+                className={classnames('nav_link', { active: link === outputPath })}
+                onClick={() => {
+                  // @ts-ignore
+                  document.documentElement.classList.remove('show_sidebar');
+                }}
+              >
                 {text}
               </a>
             </li>

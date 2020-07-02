@@ -251,16 +251,15 @@ article.loading {
   align-items: center;
 }
 
-.anchor,
-.anchor:hover {
+.anchor {
   opacity: 0;
   color: var(--color-text-muted);
-  text-decoration: none;
   font-weight: normal;
   margin-left: 0.5em;
 }
 .anchor:hover {
   color: var(--color-primary);
+  text-decoration: none;
 }
 
 h1:hover .anchor,
@@ -445,6 +444,9 @@ table th {
   .show_sidebar .sidebar {
     transform: translateX(0);
   }
+  .sidebar [class^='czs-angle-'] {
+    opacity: 1 !important;
+  }
   .mobile_header h1 {
     font-size: 1rem;
   }
@@ -469,6 +471,9 @@ table th {
   .main_article {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .anchor {
+    opacity: 1;
   }
 }
 /* #endregion */
