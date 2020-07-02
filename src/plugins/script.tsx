@@ -24,7 +24,7 @@ const script: PagicPlugin = async (pagic) => {
       <>
         <script crossOrigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js" />
         <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" />
-        <script type="module" src={`${pagic.config.base}main.js`} />
+        <script type="module" src={`${pagic.config.base}index.js`} />
       </>
     );
 
@@ -87,8 +87,8 @@ const script: PagicPlugin = async (pagic) => {
     }
   }
 
-  const scriptMainDest = path.resolve(pagic.config.publicDir, 'main.js');
-  await copyPagicFile('src/plugins/script_main.js', scriptMainDest);
+  const scriptIndexDest = path.resolve(pagic.config.publicDir, 'index.js');
+  await copyPagicFile('src/plugins/script_index.js', scriptIndexDest);
 };
 
 export default script;

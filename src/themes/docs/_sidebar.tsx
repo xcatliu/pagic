@@ -69,12 +69,12 @@ const FoldableItem: PagicLayout<{
         {children && (
           <>
             <span
-              className="czs-angle czs-angle-up-l"
+              className="czs-angle-up-l"
               style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
               onClick={toggleFold}
             />
             <span
-              className="czs-angle czs-angle-down-l"
+              className="czs-angle-down-l"
               style={{ backgroundImage: `url("${config.base}assets/czs-angle-down-l.svg")` }}
               onClick={toggleFold}
             />

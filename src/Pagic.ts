@@ -51,6 +51,8 @@ export interface PageProps {
   script: React.ReactElement | null;
   loading?: boolean;
   sidebar?: PagePropsSidebar;
+  previous?: PagePropsSidebar[0] | null;
+  next?: PagePropsSidebar[0] | null;
   [key: string]: any;
 }
 

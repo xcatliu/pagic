@@ -1,8 +1,11 @@
 export default [
   'assets/czs-angle-down-l.svg',
   'assets/czs-angle-up-l.svg',
+  'assets/czs-github-logo.svg',
+  'assets/czs-menu-l.svg',
   'assets/czs-moon.svg',
   'assets/czs-moon-l.svg',
+  'assets/czs-pen.svg',
   'assets/czs-sun.svg',
   'assets/czs-sun-l.svg',
   'assets/index.css',

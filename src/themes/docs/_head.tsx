@@ -20,8 +20,11 @@ const Head: PagicLayout<{
       {ga}
       {config.head}
       <Helmet>
-        <title>{outputPath !== 'index.html' ? `${title} · ${config.title}` : title}</title>
         <meta charSet="utf-8" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <title>{outputPath !== 'index.html' ? `${title} · ${config.title}` : title}</title>
+        {config.description && <meta name="description" content={config.description} />}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="stylesheet" href={`${config.base}assets/index.css`} />
         <link
