@@ -1,4 +1,4 @@
-import { path } from './mod.ts';
+import { path } from '../deps.ts';
 
 const importCache: {
   [importPath: string]: any;

@@ -1,9 +1,9 @@
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
-import { PagicLayout, PageProps } from '../../Pagic.ts';
-import { classnames } from './_utils.tsx';
+import { PagicLayout } from '../../Pagic.ts';
 import { PagePropsSidebar } from '../../plugins/sidebar.tsx';
+import { classnames } from './_utils.tsx';
 
 const Sidebar: PagicLayout = (props) => {
   if (!props.sidebar) {

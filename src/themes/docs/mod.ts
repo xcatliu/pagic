@@ -1,4 +1,4 @@
-export default [
+export const files = [
   'assets/czs-angle-down-l.svg',
   'assets/czs-angle-up-l.svg',
   'assets/czs-github-logo.svg',
@@ -18,6 +18,7 @@ export default [
   '_header.tsx',
   '_layout.tsx',
   '_loading.tsx',
+  '_main.tsx',
   '_popover.tsx',
   '_sidebar.tsx',
   '_utils.tsx',

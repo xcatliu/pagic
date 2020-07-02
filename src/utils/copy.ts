@@ -1,17 +1,19 @@
-import { fs, path, colors, pagicRootPath } from './mod.ts';
+import { fs, path, colors } from '../deps.ts';
+
+import { pagicRootPath, log } from './common.ts';
 
 export async function ensureDirAndWriteFileStr(filename: string, content: string) {
-  console.log(colors.green('Write'), filename);
+  log.success('Write', filename);
   await fs.ensureDir(path.dirname(filename));
   await fs.writeFileStr(filename, content);
 }
 export async function ensureDirAndCopy(src: string, dest: string, options?: fs.CopyOptions) {
-  console.log(colors.green('Copy'), src);
+  log.success('Copy', src);
   await fs.ensureDir(path.dirname(dest));
   await fs.copy(src, dest, options);
 }
 export async function copyPagicFile(pathToPagicRoot: string, dest: string) {
-  console.log(colors.green('Copy pagic file'), pathToPagicRoot);
+  log.success('Copy pagic file', pathToPagicRoot);
   if (import.meta.url.startsWith('file://')) {
     const src = `${pagicRootPath}${pathToPagicRoot}`;
     await ensureDirAndCopy(src, dest, { overwrite: true });

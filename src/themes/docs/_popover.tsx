@@ -69,14 +69,8 @@ export const Popover: React.FC<PopoverProps> = ({
 
   const props = {
     ref: measuredRef,
-    onMouseEnter: () => {
-      console.log(1, 'enter');
-      onMouseEnter();
-    },
-    onMouseLeave: () => {
-      console.log(1, 'leave');
-      onMouseLeave();
-    },
+    onMouseEnter,
+    onMouseLeave,
     onClick
   };
 
@@ -100,14 +94,8 @@ export const Popover: React.FC<PopoverProps> = ({
             ...style
           }}
           className={className}
-          onMouseEnter={() => {
-            console.log(2, 'enter');
-            onMouseEnter();
-          }}
-          onMouseLeave={() => {
-            console.log(2, 'leave');
-            onMouseLeave();
-          }}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       )}
       {validChildren}

@@ -1,5 +1,5 @@
 import Pagic, { PagicPlugin } from '../Pagic.ts';
-import { pick } from '../utils/mod.ts';
+import { pick } from '../utils.ts';
 
 export type PagicConfigSidebar = (
   | {

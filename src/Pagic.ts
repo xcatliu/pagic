@@ -1,20 +1,19 @@
+import { fs, path, colors } from './deps.ts';
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-
 import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
 
 import {
-  fs,
-  path,
-  colors,
   unique,
   sortByInsert,
   ensureDirAndCopy,
   copyPagicFile,
   importDefault,
+  import_,
   ensureDirAndWriteFileStr,
-  compileFile
-} from './utils/mod.ts';
+  compileFile,
+  log
+} from './utils.ts';
 import { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 
 // #region types
@@ -149,7 +148,7 @@ export default class Pagic {
       this.projectConfigCompileResult = await compileFile(pagicConfigPath);
       return;
     }
-    console.log(colors.yellow('pagic.config.ts not exist, use default config'));
+    log.warn('pagic.config.ts not exist, use default config');
     this.projectConfigCompileResult = 'export default {}';
   }
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
@@ -203,15 +202,15 @@ export default class Pagic {
     });
 
     app.listen({ port: this.config.port });
-    console.log(
-      colors.green('Serve'),
+    log.success(
+      'Serve',
       colors.underline(this.config.publicDir),
       `on http://127.0.0.1:${this.config.port}${this.config.base}`
     );
   }
 
   private async watch() {
-    console.log(colors.green('Watch'), colors.underline(this.config.srcDir));
+    log.success('Watch', colors.underline(this.config.srcDir));
     const watcher = Deno.watchFs(this.config.srcDir);
     for await (const event of watcher) {
       let eventPaths = event.paths;
@@ -233,15 +232,15 @@ export default class Pagic {
       for (const fullChangedPath of this.fullChangedPaths) {
         const changedPath = this.relativeToSrc(fullChangedPath);
         if (!fs.existsSync(fullChangedPath)) {
-          console.log(colors.yellow(`${changedPath} removed, start rebuild`));
+          log.warn(`${changedPath} removed, start rebuild`);
           this.needRebuild = true;
           break;
         } else if (Deno.statSync(fullChangedPath).isDirectory) {
-          console.log(colors.yellow(`Directory ${colors.underline(changedPath)} changed, start rebuild`));
+          log.warn(`Directory ${colors.underline(changedPath)} changed, start rebuild`);
           this.needRebuild = true;
           break;
         } else if (Pagic.REGEXP_LAYOUT.test(fullChangedPath)) {
-          console.log(colors.yellow(`Layout ${changedPath} changed, start rebuild`));
+          log.warn(`Layout ${changedPath} changed, start rebuild`);
           this.needRebuild = true;
           break;
         } else if (Pagic.REGEXP_PAGE.test(fullChangedPath)) {
@@ -261,7 +260,7 @@ export default class Pagic {
   }
 
   private async clean() {
-    console.log(colors.green('Clean'), this.config.publicDir);
+    log.success('Clean', this.config.publicDir);
     await fs.emptyDir(this.config.publicDir);
   }
 
@@ -271,7 +270,11 @@ export default class Pagic {
       match: [Pagic.REGEXP_PAGE],
       skip: this.config.ignore
     });
-    const theme_file_list: string[] = await importDefault(`./themes/${this.config.theme}/.theme_file_list.ts`, {
+    const {
+      files
+    }: {
+      files: string[];
+    } = await import_(`./themes/${this.config.theme}/mod.ts`, {
       base: path.dirname(import.meta.url)
     });
     this.layoutPaths = unique([
@@ -280,14 +283,14 @@ export default class Pagic {
         match: [Pagic.REGEXP_LAYOUT],
         skip: this.config.ignore
       })),
-      ...theme_file_list.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
+      ...files.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
     ]);
     this.staticPaths = unique([
       ...(await this.walk(this.config.srcDir, {
         includeDirs: false,
         skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT, ...this.config.ignore]
       })),
-      ...theme_file_list.filter(
+      ...files.filter(
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
     ]);
@@ -301,7 +304,7 @@ export default class Pagic {
     if (this.pagePaths.length === 0) return;
 
     for (let plugin of this.config.plugins) {
-      console.log(colors.green('Plugin'), plugin.name, 'start');
+      log.success('Plugin', plugin.name, 'start');
       await plugin(this);
     }
   }

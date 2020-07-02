@@ -1,12 +1,10 @@
-import * as path from 'https://deno.land/std@0.54.0/path/mod.ts';
-
+import { path } from '../deps.ts';
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
+
 import { PagicPlugin } from '../Pagic.ts';
-
 import Ga from './ga_component.tsx';
-
-import { ensureDirAndWriteFileStr, compilePagicFile } from '../utils/mod.ts';
+import { ensureDirAndWriteFileStr, compilePagicFile } from '../utils.ts';
 
 const ga: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {

@@ -1,11 +1,4 @@
-import * as fs from 'https://deno.land/std@0.56.0/fs/mod.ts';
-import * as path from 'https://deno.land/std@0.56.0/path/mod.ts';
-import * as colors from 'https://deno.land/std@0.56.0/fmt/colors.ts';
-
-export { fs, path, colors };
-export * from './copy.ts';
-export * from './compile.ts';
-export * from './import.ts';
+import { path, colors } from '../deps.ts';
 
 /**
  * /User/xcatliu/work/github/pagic/
@@ -107,3 +100,18 @@ export function underlineToPascal(_foo_bar: string) {
 export function replaceExt(input: string, replacement: string) {
   return input.replace(/\.[^\.]+$/, replacement);
 }
+
+export const log = {
+  info: (...args: string[]) => {
+    console.log('[Pagic]', ...args);
+  },
+  warn: (first: string, ...args: string[]) => {
+    console.log(colors.yellow('[Pagic]'), colors.yellow(first), ...args);
+  },
+  error: (first: string, ...args: string[]) => {
+    console.log(colors.red('[Pagic]'), colors.red(first), ...args);
+  },
+  success: (first: string, ...args: string[]) => {
+    console.log(colors.green('[Pagic]'), colors.green(first), ...args);
+  }
+};

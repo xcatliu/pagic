@@ -1,7 +1,8 @@
+import { fs, colors } from '../deps.ts';
 import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
 import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
 
-import { fs, colors, pagicRootPath } from './mod.ts';
+import { pagicRootPath, log } from './common.ts';
 
 export const reactElementToJSXString = reactElementToJSXStringModule.default;
 
@@ -30,7 +31,7 @@ export function compile(input: string) {
  * Read input file and then compile it
  */
 export async function compileFile(src: string) {
-  console.log(colors.green('Compile file'), src);
+  log.success('Compile file', src);
   const content = await fs.readFileStr(src);
   return compile(content);
 }
@@ -39,7 +40,7 @@ export async function compileFile(src: string) {
  * Compile a pagic file with local or remote url
  */
 export async function compilePagicFile(pathToPagicRoot: string) {
-  console.log(colors.green('Compile pagic file'), pathToPagicRoot);
+  log.success('Compile pagic file', pathToPagicRoot);
   let content = '';
   if (import.meta.url.startsWith('file://')) {
     const src = `${pagicRootPath}${pathToPagicRoot}`;

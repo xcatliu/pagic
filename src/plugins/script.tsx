@@ -1,9 +1,8 @@
+import { fs, path } from '../deps.ts';
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 import {
-  fs,
-  path,
   ensureDirAndWriteFileStr,
   copyPagicFile,
   compile,
@@ -13,7 +12,7 @@ import {
   replaceExt,
   underlineToPascal,
   omit
-} from '../utils/mod.ts';
+} from '../utils.ts';
 import Pagic, { PagicPlugin } from '../Pagic.ts';
 
 const script: PagicPlugin = async (pagic) => {

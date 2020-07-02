@@ -51,7 +51,15 @@ const Header: PagicLayout<{
         </li>
         <li className="mobile_header">
           <h1>
-            <a href={config.base}>{config.title}</a>
+            <a
+              href={config.base}
+              onClick={() => {
+                // @ts-ignore
+                document.documentElement.classList.remove('show_sidebar');
+              }}
+            >
+              {config.title}
+            </a>
           </h1>
         </li>
         <li style={{ flexGrow: 1 }} />
