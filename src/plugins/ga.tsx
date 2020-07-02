@@ -13,8 +13,8 @@ const ga: PagicPlugin = async (pagic) => {
     const pageProps = pagic.pagePropsMap[pagePath];
 
     pagic.pagePropsMap[pagePath] = {
-      ...pageProps,
-      ga: <Ga {...pagic.config.ga} />
+      ga: <Ga {...pagic.config.ga} />,
+      ...pageProps
     };
   }
 

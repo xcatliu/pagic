@@ -26,9 +26,9 @@ const sidebar: PagicPlugin = async (pagic) => {
   for (const pagePath of pagic.pagePaths) {
     const pageProps = pagic.pagePropsMap[pagePath];
     pagic.pagePropsMap[pagePath] = {
-      ...pageProps,
       sidebar: parsedSidebar,
-      ...getPreviousAndNext(parsedSidebar, pagePath)
+      ...getPreviousAndNext(parsedSidebar, pagePath),
+      ...pageProps
     };
   }
 };

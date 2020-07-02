@@ -54,6 +54,7 @@ html.is_dark img:hover {
   display: inline-block;
   padding: 1rem;
   background-color: var(--color-background-sidebar);
+  line-height: var(--line-height-small);
 }
 .button:hover {
   text-decoration: none;
@@ -301,12 +302,16 @@ table th {
 }
 
 .previous_next {
+  display: flex;
+  align-items: stretch;
   margin: 3rem 0 2rem;
   padding-top: 3rem;
   border-top: 1px solid var(--color-border);
 }
 .previous_next a {
   width: calc(50% - 1rem);
+  display: flex;
+  align-items: center;
 }
 .previous_next .previous {
   margin-right: 1rem;
@@ -314,6 +319,7 @@ table th {
 .previous_next .next {
   text-align: right;
   margin-left: calc(50% + 2rem);
+  justify-content: flex-end;
 }
 .previous_next .previous + .next {
   margin-left: 1rem;
@@ -474,6 +480,19 @@ table th {
   }
   .anchor {
     opacity: 1;
+  }
+  .previous_next a {
+    font-size: 14px;
+    width: calc(50% - 0.5rem);
+  }
+  .previous_next .previous {
+    margin-right: 0.5rem;
+  }
+  .previous_next .next {
+    margin-left: calc(50% + 0.5rem);
+  }
+  .previous_next .previous + .next {
+    margin-left: 0.5rem;
   }
 }
 /* #endregion */
