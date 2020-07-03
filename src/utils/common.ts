@@ -1,5 +1,10 @@
 import { path, colors } from '../deps.ts';
 
+export type AnyFunction = (...args: any[]) => any;
+export interface AnyObject {
+  [key: string]: any;
+}
+
 /**
  * /User/xcatliu/work/github/pagic/
  * or
@@ -115,3 +120,19 @@ export const log = {
     console.log(colors.green('[Pagic]'), colors.green(first), ...args);
   }
 };
+
+type Tree<T extends AnyObject = AnyObject> = T & {
+  children?: Tree<T>[];
+};
+
+export function depthFirstTraversal<T>(tree: Tree<T> | Tree<T>[], callback: AnyFunction) {
+  // Deep clone
+  let remain = Array.isArray(tree) ? [...tree] : [tree];
+  while (remain.length > 0) {
+    const current = remain.shift()!;
+    if (current.children) {
+      remain = [...current.children, ...remain];
+    }
+    callback(current);
+  }
+}

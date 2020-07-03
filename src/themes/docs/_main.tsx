@@ -6,7 +6,7 @@ import { PagicLayout } from '../../Pagic.ts';
 import Loading from './_loading.tsx';
 
 const Main: PagicLayout = (props) => {
-  const { config, content, loading, toc, previous, next, gitalk } = props;
+  const { config, content, loading, toc, prev, next, gitalk } = props;
 
   React.useEffect(() => {
     if (window.Deno) {
@@ -53,11 +53,11 @@ const Main: PagicLayout = (props) => {
     <section className="main">
       <div className="main_article">
         {loading ? <Loading /> : content}
-        {(previous || next) && (
-          <div className="previous_next">
-            {previous && (
-              <a className="previous button" href={`${config.base}${previous.link}`}>
-                «&nbsp;&nbsp;{previous.text}
+        {(prev || next) && (
+          <div className="prev_next">
+            {prev && (
+              <a className="prev button" href={`${config.base}${prev.link}`}>
+                «&nbsp;&nbsp;{prev.text}
               </a>
             )}
             {next && (

@@ -1,5 +1,4 @@
 import Pagic, { PagicPlugin } from '../Pagic.ts';
-import { pick } from '../utils.ts';
 
 export type PagicConfigSidebar = (
   | {
@@ -27,7 +26,6 @@ const sidebar: PagicPlugin = async (pagic) => {
     const pageProps = pagic.pagePropsMap[pagePath];
     pagic.pagePropsMap[pagePath] = {
       sidebar: parsedSidebar,
-      ...getPreviousAndNext(parsedSidebar, pagePath),
       ...pageProps
     };
   }
@@ -56,35 +54,6 @@ function parseSidebarConfig(sidebarConfig: PagicConfigSidebar, pagic: Pagic): Pa
     }
     return item;
   });
-}
-
-function getPreviousAndNext(pagePeopsSidebar: PagePropsSidebar, pagePath: string) {
-  let last = null;
-  let previous = null;
-  let next = null;
-  let found = false;
-  // Deep clone
-  let remain = JSON.parse(JSON.stringify(pagePeopsSidebar));
-  while (remain.length > 0) {
-    const current = remain.shift()!;
-    if (found) {
-      next = current;
-      break;
-    }
-    if (current.children) {
-      remain = [...current.children, ...remain];
-    }
-    if (current.pagePath === pagePath) {
-      found = true;
-      previous = last;
-    } else {
-      last = current;
-    }
-  }
-  return {
-    previous: pick(previous, ['text', 'link']),
-    next: pick(next, ['text', 'link'])
-  };
 }
 
 sidebar.insert = 'after:tsx';

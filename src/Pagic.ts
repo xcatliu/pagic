@@ -9,7 +9,6 @@ import {
   ensureDirAndCopy,
   copyPagicFile,
   importDefault,
-  import_,
   ensureDirAndWriteFileStr,
   compileFile,
   log
@@ -60,6 +59,10 @@ export type PagicLayout<
     [key: string]: any;
   }
 > = React.FC<PageProps & T>;
+
+export interface PagicThemeConfig {
+  files: [];
+}
 // #endregion
 
 export default class Pagic {
@@ -270,11 +273,7 @@ export default class Pagic {
       match: [Pagic.REGEXP_PAGE],
       skip: this.config.ignore
     });
-    const {
-      files
-    }: {
-      files: string[];
-    } = await import_(`./themes/${this.config.theme}/mod.ts`, {
+    const { files } = await importDefault<PagicThemeConfig>(`./themes/${this.config.theme}/mod.ts`, {
       base: path.dirname(import.meta.url)
     });
     this.layoutPaths = unique([

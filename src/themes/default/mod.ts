@@ -1,1 +1,3 @@
-export const files = ['_layout.tsx'];
+export default {
+  files: ['_layout.tsx']
+};
