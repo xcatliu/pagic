@@ -57,9 +57,9 @@ const FoldableItem: PagicLayout<{
               if (isActive) {
                 setFold(!fold);
               } else {
-                setFold(false);
                 // @ts-ignore
                 document.documentElement.classList.remove('show_sidebar');
+                setFold(false);
               }
             } else {
               // @ts-ignore
