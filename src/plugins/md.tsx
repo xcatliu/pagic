@@ -79,7 +79,8 @@ const md: PagicPlugin = async (pagic) => {
       title: env.title,
       ...frontMatter,
       content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
-      toc: <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
+      // Set to null if toc is empty
+      toc: tocHTML === '<nav class="toc"></nav>' ? null : <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
     };
 
     tocHTML = '';

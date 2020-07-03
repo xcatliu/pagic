@@ -69,12 +69,14 @@ const Main: PagicLayout = (props) => {
         )}
         {gitalk}
       </div>
-      <div className="main_toc_container nav_link_container">
-        <div className="main_toc">
-          {config.tocAd && <div className="toc_ad">{config.tocAd}</div>}
-          {toc}
+      {toc && (
+        <div className="main_toc_container nav_link_container">
+          <div className="main_toc">
+            {config.tocAd && <div className="toc_ad">{config.tocAd}</div>}
+            {toc}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

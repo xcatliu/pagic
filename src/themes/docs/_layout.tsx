@@ -21,23 +21,29 @@ const Layout: PagicLayout = (props) => {
         <Header {...props} isDark={isDark} setIsDark={setIsDark} />
         <Sidebar {...props} />
         <Main {...props} />
-        <div className="scroll_to_top flex_center">
-          <a
-            className="czs-pen button"
-            href={`${config.github}/edit/master/${props.pagePath}`}
-            target="_blank"
-            style={{ backgroundImage: `url("${config.base}assets/czs-pen.svg")` }}
-          />
-          <a
-            className="czs-angle-up-l button"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              (window as any).scrollTo(0, 0);
-            }}
-            style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
-          />
-        </div>
+        {config.tools && (
+          <div className="tools flex_center">
+            {config.tools.editOnGitHub && (
+              <a
+                className="czs-pen button"
+                href={`${config.github}/edit/master/${props.pagePath}`}
+                target="_blank"
+                style={{ backgroundImage: `url("${config.base}assets/czs-pen.svg")` }}
+              />
+            )}
+            {config.tools.backToTop && (
+              <a
+                className="czs-angle-up-l button"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  (window as any).scrollTo(0, 0);
+                }}
+                style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
+              />
+            )}
+          </div>
+        )}
         {script}
       </body>
     </html>
