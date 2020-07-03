@@ -23,7 +23,7 @@ const Layout: PagicLayout = (props) => {
         <Main {...props} />
         {config.tools && (
           <div className="tools flex_center">
-            {config.tools.editOnGitHub && (
+            {config.tools.editOnGithub && (
               <a
                 className="czs-pen button"
                 href={`${config.github}/edit/master/${props.pagePath}`}
