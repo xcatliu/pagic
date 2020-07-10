@@ -1,0 +1,76 @@
+@import 'variables.css';
+@import 'reset.css';
+
+/* #region Article */
+article {
+  display: flow-root;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: var(--width-article);
+  min-height: calc(100vh - 5.5rem);
+}
+
+.anchor {
+  opacity: 0;
+  color: var(--color-text-muted);
+  font-weight: normal;
+  margin-left: 0.5em;
+}
+.anchor:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.5rem;
+  padding: 2rem 0;
+}
+/* #endregion */
+
+/* #region Mobile */
+@media screen and (max-width: 767px) {
+  .anchor {
+    opacity: 1;
+  }
+}
+/* #endregion */
+
+/* #region Github Corners */
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+/* #endregion */
