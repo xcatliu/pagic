@@ -1,6 +1,271 @@
-<!doctype html><html data-reactroot=""><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><title>Pagic</title><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index.css"/></head><body><article><h1>Pagic</h1>
+<!doctype html><html data-reactroot=""><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><title>Pagic</title><meta name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/pagic/assets/index.css"/></head><body><a href="https://github.com/xcatliu/pagic" target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#333; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><article><h1>Pagic</h1>
+<p><a href="https://github.com/xcatliu/pagic/actions"><img src="https://github.com/xcatliu/pagic/workflows/gh-pages/badge.svg" alt="gh-pages"></a></p>
 <p>The easiest way to generate static html page from markdown, built with Deno! 🦕</p>
+<h2 id="features">Features<a class="anchor" href="#features">§</a></h2>
 <ul>
-<li><a href="./index.html">to README.md</a></li>
-<li><a href="./hello.html">to hello.html</a></li>
-</ul></article><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<li><a href="#markdown--layout--html">Markdown + Layout =&gt; HTML</a></li>
+<li><a href="#react-component-as-a-page">React component as a page</a></li>
+<li><a href="#copy-static-files">Copy static files</a></li>
+<li><a href="#sub-pages-and-layouts">Sub pages and layouts</a></li>
+<li><a href="#front-matter">Front matter</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#plugins-and-themes">Plugins and themes</a></li>
+</ul>
+<p>WARNING: This project is under development so api would changes without announce. The stable version will some soon when <a href="https://github.com/xcatliu/pagic/projects/3">v1.0.0</a> finished.</p>
+<h2 id="live-demo">Live demo<a class="anchor" href="#live-demo">§</a></h2>
+<ul>
+<li><a href="https://yoshixmk.github.io/deno-x-ranking/">Deno X ranking</a> (<a href="https://github.com/yoshixmk/deno-x-ranking">GitHub</a>)</li>
+<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>
+<li><a href="https://deno-tutorial.js.org/">Deno 钻研之术</a> (<a href="https://github.com/hylerrix/deno-tutorial">GitHub</a>)</li>
+<li><a href="https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&amp;labels=demo&amp;template=add-a-demo.md&amp;title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com">Add my site as a demo</a> 😝</li>
+</ul>
+<h2 id="getting-started">Getting started<a class="anchor" href="#getting-started">§</a></h2>
+<h3 id="installation">Installation<a class="anchor" href="#installation">§</a></h3>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># Install deno <a class="token url-link" href="https://deno.land/#installation">https://deno.land/#installation</a></span>
+<span class="token function">curl</span> -fsSL <a class="token url-link" href="https://deno.land/x/install/install.sh">https://deno.land/x/install/install.sh</a> <span class="token operator">|</span> <span class="token function">sh</span>
+<span class="token comment"># Install pagic</span>
+deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+</code></pre>
+<h3 id="markdown-%2B-layout-%3D%3E-html">Markdown + Layout =&gt; HTML<a class="anchor" href="#markdown-%2B-layout-%3D%3E-html">§</a></h3>
+<p>Let's say we have a project like this:</p>
+<pre class="language-autoit"><code class="language-autoit">docs<span class="token operator">/</span>
+├── public<span class="token operator">/</span>
+└── src<span class="token operator">/</span>
+    ├── _layout<span class="token punctuation">.</span>tsx
+    └── index<span class="token punctuation">.</span>md
+</code></pre>
+<p>The <code>src/_layout.tsx</code> is a simple react component:</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token comment">// @deno-types="<a class="token url-link" href="https://deno.land/x/types/react/v16.13.1/react.d.ts">https://deno.land/x/types/react/v16.13.1/react.d.ts</a>"</span>
+<span class="token keyword">import</span> <span class="token maybe-class-name">React</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://dev.jspm.io/react@16.13.1">https://dev.jspm.io/react@16.13.1</a>'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Layout</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The <code>src/index.md</code> is a simple markdown file:</p>
+<pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">#</span> Pagic</span>
+
+The easiest way to generate static html page from markdown, built with Deno! 🦕
+</code></pre>
+<p>Then run:</p>
+<pre class="language-bash"><code class="language-bash">pagic build
+</code></pre>
+<p>We'll get an <code>index.html</code> file in <code>public</code> directory:</p>
+<pre class="language-autoit"><code class="language-autoit">docs<span class="token operator">/</span>
+├── public<span class="token operator">/</span>
+|   └── index<span class="token punctuation">.</span>html
+└── src<span class="token operator">/</span>
+    ├── _layout<span class="token punctuation">.</span>tsx
+    └── index<span class="token punctuation">.</span>md
+</code></pre>
+<p>The content should be:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Pagic<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pagic<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Pagic<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The easiest way to generate static html page from markdown, built with Deno! 🦕<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="react-component-as-a-page">React component as a page<a class="anchor" href="#react-component-as-a-page">§</a></h3>
+<p>A react component can also be built to html:</p>
+<pre class="language-autoit"><code class="language-autoit">docs<span class="token operator">/</span>
+├── public<span class="token operator">/</span>
+|   ├── index<span class="token punctuation">.</span>html
+|   └── hello<span class="token punctuation">.</span>html
+└── src<span class="token operator">/</span>
+    ├── _layout<span class="token punctuation">.</span>tsx
+    ├── index<span class="token punctuation">.</span>md
+    └── hello<span class="token punctuation">.</span>tsx
+</code></pre>
+<p>Here we build <code>src/hello.tsx</code> to <code>public/hello.html</code>, using <code>src/_layout.tsx</code> as the layout.</p>
+<p><code>src/hello.tsx</code> is a simple react component:</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token comment">// @deno-types="<a class="token url-link" href="https://deno.land/x/types/react/v16.13.1/react.d.ts">https://deno.land/x/types/react/v16.13.1/react.d.ts</a>"</span>
+<span class="token keyword">import</span> <span class="token maybe-class-name">React</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://dev.jspm.io/react@16.13.1">https://dev.jspm.io/react@16.13.1</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function"><span class="token maybe-class-name">Hello</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hello World</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
+</code></pre>
+<p>And <code>public/hello.html</code> would be:</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hello World</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="copy-static-files">Copy static files<a class="anchor" href="#copy-static-files">§</a></h3>
+<p>If there are other static files which are not end with <code>.{md|tsx}</code> or (start with <code>_</code> and end with <code>.tsx</code>), we will simply copy them:</p>
+<pre class="language-autoit"><code class="language-autoit">docs<span class="token operator">/</span>
+├── public<span class="token operator">/</span>
+|   ├── assets
+|   |   └── index<span class="token punctuation">.</span>css
+|   ├── index<span class="token punctuation">.</span>html
+|   └── hello<span class="token punctuation">.</span>html
+└── src<span class="token operator">/</span>
+    ├── assets
+    |   └── index<span class="token punctuation">.</span>css
+    ├── _layout<span class="token punctuation">.</span>tsx
+    ├── _sidebar<span class="token punctuation">.</span>tsx
+    ├── index<span class="token punctuation">.</span>md
+    └── hello<span class="token punctuation">.</span>tsx
+</code></pre>
+<h3 id="sub-pages-and-layouts">Sub pages and layouts<a class="anchor" href="#sub-pages-and-layouts">§</a></h3>
+<p>We can have sub directory which contains markdown or component.</p>
+<p>Sub directory can also have a <code>_layout.tsx</code> file.</p>
+<p>For each markdown or react component, it will walk your file system looking for the nearest <code>_layout.tsx</code>. It starts from the current directory and then moves to the parent directory until it finds the <code>_layout.tsx</code>.</p>
+<pre class="language-autoit"><code class="language-autoit">docs<span class="token operator">/</span>
+├── public<span class="token operator">/</span>
+|   ├── assets
+|   |   └── index<span class="token punctuation">.</span>css
+|   ├── index<span class="token punctuation">.</span>html
+|   └── hello<span class="token punctuation">.</span>html
+|   └── sub
+|       └── index<span class="token punctuation">.</span>html
+└── src<span class="token operator">/</span>
+    ├── assets
+    |   └── index<span class="token punctuation">.</span>css
+    ├── _layout<span class="token punctuation">.</span>tsx
+    ├── _sidebar<span class="token punctuation">.</span>tsx
+    |── index<span class="token punctuation">.</span>md
+    └── sub
+        ├── _layout<span class="token punctuation">.</span>tsx
+        └── index<span class="token punctuation">.</span>md
+</code></pre>
+<h3 id="front-matter">Front matter<a class="anchor" href="#front-matter">§</a></h3>
+<p>Front matter allows us add extra meta data to markdown:</p>
+<pre class="language-markdown"><code class="language-markdown"><span class="token hr punctuation">---</span>
+author: xcatliu
+<span class="token title important">published: 2020-05-20
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> Pagic</span>
+
+The easiest way to generate static html page from markdown, built with Deno! 🦕
+</code></pre>
+<p>Every item in the front matter will pass to the <code>_layout.tsx</code> as the props:</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token comment">// @deno-types="<a class="token url-link" href="https://deno.land/x/types/react/v16.13.1/react.d.ts">https://deno.land/x/types/react/v16.13.1/react.d.ts</a>"</span>
+<span class="token keyword">import</span> <span class="token maybe-class-name">React</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://dev.jspm.io/react@16.13.1">https://dev.jspm.io/react@16.13.1</a>'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content<span class="token punctuation">,</span> author<span class="token punctuation">,</span> published <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">></span></span><span class="token plain-text">
+        Author: $</span><span class="token punctuation">{</span>author<span class="token punctuation">}</span><span class="token plain-text">, Published: $</span><span class="token punctuation">{</span>published<span class="token punctuation">}</span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Layout</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="front-matter-in-react-component">Front matter in react component<a class="anchor" href="#front-matter-in-react-component">§</a></h4>
+<p>In react component we can export a <code>frontMatter</code> variable:</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token comment">// @deno-types="<a class="token url-link" href="https://deno.land/x/types/react/v16.13.1/react.d.ts">https://deno.land/x/types/react/v16.13.1/react.d.ts</a>"</span>
+<span class="token keyword">import</span> <span class="token maybe-class-name">React</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://dev.jspm.io/react@16.13.1">https://dev.jspm.io/react@16.13.1</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function"><span class="token maybe-class-name">Hello</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hello World</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> frontMatter <span class="token operator">=</span> <span class="token punctuation">{</span>
+  title<span class="token operator">:</span> <span class="token string">'Hello World'</span><span class="token punctuation">,</span>
+  author<span class="token operator">:</span> <span class="token string">'xcatliu'</span><span class="token punctuation">,</span>
+  published<span class="token operator">:</span> <span class="token string">'2020-05-20'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="configuration">Configuration<a class="anchor" href="#configuration">§</a></h3>
+<p>It's able to configurate pagic by adding a <code>pagic.config.ts</code> file. The default configuration is:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'src'</span><span class="token punctuation">,</span>
+  publicDir<span class="token operator">:</span> <span class="token string">'public'</span><span class="token punctuation">,</span>
+  ignore<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// Dot files</span>
+    <span class="token string">'.*'</span><span class="token punctuation">,</span>
+    <span class="token comment">// Node common files</span>
+    <span class="token string">'package.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'package-lock.json'</span><span class="token punctuation">,</span>
+    <span class="token string">'node_modules'</span><span class="token punctuation">,</span>
+    <span class="token comment">// pagic.config.ts and pagic.config.tsx</span>
+    <span class="token string">'pagic.config.{ts,tsx}'</span><span class="token punctuation">,</span>
+    <span class="token comment">// <a class="token url-link" href="https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package">https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package</a></span>
+    <span class="token string">'.*.swp'</span><span class="token punctuation">,</span>
+    <span class="token string">'._*'</span><span class="token punctuation">,</span>
+    <span class="token string">'.DS_Store'</span><span class="token punctuation">,</span>
+    <span class="token string">'.git'</span><span class="token punctuation">,</span>
+    <span class="token string">'.hg'</span><span class="token punctuation">,</span>
+    <span class="token string">'.npmrc'</span><span class="token punctuation">,</span>
+    <span class="token string">'.lock-wscript'</span><span class="token punctuation">,</span>
+    <span class="token string">'.svn'</span><span class="token punctuation">,</span>
+    <span class="token string">'.wafpickle-*'</span><span class="token punctuation">,</span>
+    <span class="token string">'config.gypi'</span><span class="token punctuation">,</span>
+    <span class="token string">'CVS'</span><span class="token punctuation">,</span>
+    <span class="token string">'npm-debug.log'</span>
+
+    <span class="token comment">// ${config.publicDir} will be added later</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  base<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+  theme<span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'init'</span><span class="token punctuation">,</span> <span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token string">'tsx'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'layout'</span><span class="token punctuation">,</span> <span class="token string">'write'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  watch<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  serve<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  port<span class="token operator">:</span> <span class="token number">8000</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Your <code>pagic.config.ts</code> will be <strong>deep-merge</strong> to the default config, that is, your <code>ignore</code> and <code>plugins</code> will be appended to default, not replace it.</p>
+<h3 id="plugins-and-themes">Plugins and themes<a class="anchor" href="#plugins-and-themes">§</a></h3>
+<p>As you see default plugins are set to <code>['init', 'md', 'tsx', 'script', 'layout', 'write']</code>.</p>
+<p>We can add the optional plugins by setting the <code>plugins</code> in the <code>pagic.config.ts</code> file:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'site'</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'sidebar'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>sidebar</code> plugin will add a <code>sidebar</code> properity to the props.</p>
+<p>We can also add our own plugin like this:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> myPlugin <span class="token keyword">from</span> <span class="token string">'./myPlugin.tsx'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'site'</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>myPlugin<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>To develop a <code>myPlugin</code> please checkout the <a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">built-in plugins</a>.</p>
+<p>Themes is under development, please come back later!</p>
+<h2 id="use-pagic-as-cli">Use pagic as cli<a class="anchor" href="#use-pagic-as-cli">§</a></h2>
+<h3 id="pagic-build"><code>pagic build</code><a class="anchor" href="#pagic-build">§</a></h3>
+<p>We can use <code>pagic build</code> to build static pages, there are some options while using <code>build</code> command:</p>
+<pre class="language-bash"><code class="language-bash">pagic build <span class="token punctuation">[</span>options<span class="token punctuation">]</span>
+
+<span class="token comment"># --watch  watch src dir change</span>
+<span class="token comment"># --serve  serve public dir</span>
+<span class="token comment"># --port   override default port</span>
+</code></pre>
+<h2 id="license">LICENSE<a class="anchor" href="#license">§</a></h2>
+<p><a href="./LICENSE">MIT</a></p>
+<hr>
+<p>Have fun with pagic!</p></article><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/pagic/index.js"></script></body></html>
