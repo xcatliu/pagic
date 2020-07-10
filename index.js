@@ -42,6 +42,7 @@ async function rerender(
   }
   loading = true;
   if (!isHydrate) {
+    // If render not complete in 0.1s, render a loading icon instead.
     setTimeout(() => {
       if (loading === false) return;
       ReactDOM.render(
@@ -80,7 +81,7 @@ try {
   main();
 } catch (e) {
   console.error(e);
-  console.log('Error occured, disable spa');
+  console.log('Error occured, disable spa.');
 
   document.removeEventListener('click', clickHandler);
   window.removeEventListener('popstate', popstateHandler);

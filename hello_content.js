@@ -1,5 +1,3 @@
-
-
 const Hello = () => (React.createElement("div", null,
     React.createElement("h1", { onClick: () => {
             console.log(123);

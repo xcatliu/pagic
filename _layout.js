@@ -1,5 +1,3 @@
-
-
 const Layout = ({ title, content }) => (React.createElement("html", null,
     React.createElement("head", null,
         React.createElement("title", null, title),
