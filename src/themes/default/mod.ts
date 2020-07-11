@@ -1,3 +1,3 @@
 export default {
-  files: ['_layout.tsx']
+  files: ['assets/index.css', 'assets/reset.css', 'assets/variables.css', '_layout.tsx', 'favicon.ico']
 };

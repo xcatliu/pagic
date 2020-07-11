@@ -22,8 +22,11 @@ const write: PagicPlugin = {
         .map((key) => helmet[key].toString())
         .filter((str) => str !== '')
         .join('\n');
-      if (helmetString !== '') {
-        htmlString = '<!doctype html>' + htmlString.replace('</head>', `\n${helmetString}\n</head>`);
+
+      htmlString = `<!doctype html>${htmlString}`;
+      // helmet not empty
+      if (helmetString !== '<title data-react-helmet="true"></title>') {
+        htmlString = htmlString.replace('</head>', `\n${helmetString}\n</head>`);
       }
       await ensureDirAndWriteFileStr(fullFilePath, htmlString);
     }
