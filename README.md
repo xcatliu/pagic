@@ -265,21 +265,30 @@ It's able to configurate pagic by adding a `pagic.config.ts` file. The default c
 export default {
   srcDir: 'src',
   publicDir: 'public',
-  // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
   ignore: [
-    /\/\..+\.swp$/,
-    /\/\._/,
-    /\/\.DS_Store$/,
-    /\/\.git\//,
-    /\/\.hg\//,
-    /\/\.npmrc$/,
-    /\/\.lock-wscript$/,
-    /\/\.svn\//,
-    /\/\.wafpickle-.+/,
-    /\/config\.gypi$/,
-    /\/CVS\//,
-    /\/npm-debug\.log$/,
-    /\/node_modules\//
+    // Dot files
+    '.*',
+    // Node common files
+    'package.json',
+    'package-lock.json',
+    'node_modules',
+    // pagic.config.ts and pagic.config.tsx
+    'pagic.config.{ts,tsx}',
+    // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
+    '.*.swp',
+    '._*',
+    '.DS_Store',
+    '.git',
+    '.hg',
+    '.npmrc',
+    '.lock-wscript',
+    '.svn',
+    '.wafpickle-*',
+    'config.gypi',
+    'CVS',
+    'npm-debug.log'
+
+    // ${config.publicDir} will be added later
   ],
   base: '/',
   theme: 'default',

@@ -1,40 +1,18 @@
-import { path, colors } from '../deps.ts';
+import { colors } from '../deps.ts';
 
+// #region Common types
 export type AnyFunction = (...args: any[]) => any;
-export interface AnyObject {
-  [key: string]: any;
-}
+export type Tree<T = any> = T & {
+  children?: Tree<T>[];
+};
+// #endregion
 
-/**
- * /User/xcatliu/work/github/pagic/
- * or
- * https://deno.land/x/pagic/
- */
-export const pagicRootPath = (() => {
-  if (import.meta.url.startsWith('file://')) {
-    return path.resolve(path.dirname(path.fromFileUrl(import.meta.url)), '../../') + '/';
-  } else {
-    return import.meta.url.replace(/\/src\/utils\/common\.ts$/, '/');
-  }
-})();
-
+// #region Basic utils
+/** Remove same items in an array */
 export function unique(arr: any[]) {
   return Array.from(new Set(arr));
 }
-
-export function omit(obj: any, keys: string[]) {
-  if (!obj) {
-    return obj;
-  }
-  let result: any = {};
-  Object.keys(obj)
-    .filter((key) => !keys.includes(key))
-    .forEach((key) => {
-      result[key] = obj[key];
-    });
-  return result;
-}
-
+/** Pick the specific items of an object */
 export function pick(obj: any, keys: string[]) {
   if (!obj) {
     return obj;
@@ -47,10 +25,53 @@ export function pick(obj: any, keys: string[]) {
     });
   return result;
 }
+/** Omit the specific items of an object */
+export function omit(obj: any, keys: string[]) {
+  if (!obj) {
+    return obj;
+  }
+  let result: any = {};
+  Object.keys(obj)
+    .filter((key) => !keys.includes(key))
+    .forEach((key) => {
+      result[key] = obj[key];
+    });
+  return result;
+}
+/** Traversal a tree or tree[] */
+export function depthFirstTraversal<T>(tree: Tree<T> | Tree<T>[], callback: AnyFunction) {
+  let remain = Array.isArray(tree) ? [...tree] : [tree];
+  while (remain.length > 0) {
+    const current = remain.shift()!;
+    if (current.children) {
+      remain = [...current.children, ...remain];
+    }
+    callback(current);
+  }
+}
+// #endregion
 
+// #region Log utils
+export const logger = {
+  info: (...args: string[]) => {
+    console.log('[Pagic]', ...args);
+  },
+  warn: (first: string, ...args: string[]) => {
+    console.log(colors.yellow('[Pagic]'), colors.yellow(first), ...args);
+  },
+  error: (first: string, ...args: string[]) => {
+    console.log(colors.red('[Pagic]'), colors.red(first), ...args);
+  },
+  success: (first: string, ...args: string[]) => {
+    console.log(colors.green('[Pagic]'), colors.green(first), ...args);
+  }
+};
+// #endregion
+
+// #region Pagic specific utils
 /**
- * input: [{name:'foo'},{name:'bar'},{name:'baz',insert:'before:bar'}]
- * output: [{name:'foo'},{name:'baz',insert:'before:bar'},{name:'bar'}]
+ * input: [{name:'a'},{name:'b'},{name:'c',insert:'before:b'}]
+ * output: [{name:'a'},{name:'c',insert:'before:b'},{name:'b'}]
  */
 export function sortByInsert<
   T extends {
@@ -66,73 +87,28 @@ export function sortByInsert<
       restItems.push(item);
     }
   });
+  let baseDelta = 1;
   while (restItems.length > 0) {
+    // Each `while` loop, baseDelta becomes half
+    baseDelta = baseDelta / 2;
     restItems.forEach((item, index) => {
       // before:layout
-      const [insertCond, insertName] = (item.insert as string).split(':');
-      const delta = insertCond === 'before' ? -0.1 : insertCond === 'after' ? 0.1 : 0;
-      const insertItem = arr.find(({ name }) => name === insertName)!;
-      if (!restItems.includes(insertItem)) {
+      const [insertCond, insertName] = item.insert!.split(':');
+      const delta = insertCond === 'before' ? -baseDelta : insertCond === 'after' ? baseDelta : 0;
+      const insertItem = arr.find(({ name }) => name === insertName);
+      if (typeof insertItem === 'undefined') {
+        restItems.splice(index, 1);
+      } else if (!restItems.includes(insertItem)) {
         item.index = insertItem.index! + delta;
         restItems.splice(index, 1);
       }
     });
   }
-  return arr.sort((a, b) => a.index! - b.index!);
+  return arr
+    .sort((a, b) => a.index! - b.index!)
+    .map((item) => {
+      delete item.index;
+      return item;
+    });
 }
-
-/**
- * input: FooBar
- * output: _foo_bar
- */
-export function pascalToUnderline(FooBar: string) {
-  return FooBar.replace(/[A-Z]/g, ($0) => `_${$0.toLowerCase()}`);
-}
-
-/**
- * input: _foo_bar
- * output: FooBar
- */
-export function underlineToPascal(_foo_bar: string) {
-  return _foo_bar.replace(/_([a-z])/g, ($0, $1) => $1.toUpperCase());
-}
-
-/**
- * input: foo/bar.html
- * replacement: _content.js
- * output: foo/bar_content.js
- */
-export function replaceExt(input: string, replacement: string) {
-  return input.replace(/\.[^\.]+$/, replacement);
-}
-
-export const log = {
-  info: (...args: string[]) => {
-    console.log('[Pagic]', ...args);
-  },
-  warn: (first: string, ...args: string[]) => {
-    console.log(colors.yellow('[Pagic]'), colors.yellow(first), ...args);
-  },
-  error: (first: string, ...args: string[]) => {
-    console.log(colors.red('[Pagic]'), colors.red(first), ...args);
-  },
-  success: (first: string, ...args: string[]) => {
-    console.log(colors.green('[Pagic]'), colors.green(first), ...args);
-  }
-};
-
-type Tree<T extends AnyObject = AnyObject> = T & {
-  children?: Tree<T>[];
-};
-
-export function depthFirstTraversal<T>(tree: Tree<T> | Tree<T>[], callback: AnyFunction) {
-  // Deep clone
-  let remain = Array.isArray(tree) ? [...tree] : [tree];
-  while (remain.length > 0) {
-    const current = remain.shift()!;
-    if (current.children) {
-      remain = [...current.children, ...remain];
-    }
-    callback(current);
-  }
-}
+// #endregion

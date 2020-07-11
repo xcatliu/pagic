@@ -3,21 +3,24 @@ import { path } from '../deps.ts';
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { PagicPlugin } from '../Pagic.ts';
-import { import_ } from '../utils.ts';
+import { import_ } from '../utils/mod.ts';
 
-const tsx: PagicPlugin = async (pagic) => {
-  for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.tsx'))) {
-    const pageProps = pagic.pagePropsMap[pagePath];
-    const fullPagePath = path.resolve(pagic.config.srcDir, pagePath);
-    const { default: ContentComponent, frontMatter } = await import_(fullPagePath, {
-      reload: pagic.needRebuild
-    });
+const tsx: PagicPlugin = {
+  name: 'tsx',
+  fn: async (pagic) => {
+    for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.tsx'))) {
+      const pageProps = pagic.pagePropsMap[pagePath];
+      const fullPagePath = path.resolve(pagic.config.srcDir, pagePath);
+      const { default: ContentComponent, frontMatter } = await import_(fullPagePath, {
+        reload: pagic.needRebuild
+      });
 
-    pagic.pagePropsMap[pagePath] = {
-      ...pageProps,
-      ...frontMatter,
-      content: <ContentComponent />
-    };
+      pagic.pagePropsMap[pagePath] = {
+        ...pageProps,
+        ...frontMatter,
+        content: <ContentComponent />
+      };
+    }
   }
 };
 

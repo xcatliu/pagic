@@ -4,22 +4,24 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { PagicPlugin } from '../Pagic.ts';
 import Ga from './ga_component.tsx';
-import { ensureDirAndWriteFileStr, compilePagicFile } from '../utils.ts';
+import { ensureDirAndWriteFileStr, compilePagicFile } from '../utils/mod.ts';
 
-const ga: PagicPlugin = async (pagic) => {
-  for (const pagePath of pagic.pagePaths) {
-    const pageProps = pagic.pagePropsMap[pagePath];
+const ga: PagicPlugin = {
+  name: 'ga',
+  insert: 'before:script',
+  fn: async (pagic) => {
+    for (const pagePath of pagic.pagePaths) {
+      const pageProps = pagic.pagePropsMap[pagePath];
 
-    pagic.pagePropsMap[pagePath] = {
-      ga: <Ga {...pagic.config.ga} />,
-      ...pageProps
-    };
+      pagic.pagePropsMap[pagePath] = {
+        ga: <Ga {...pagic.config.ga} />,
+        ...pageProps
+      };
+    }
+
+    const gaDest = path.resolve(pagic.config.publicDir, '_ga.js');
+    await ensureDirAndWriteFileStr(gaDest, await compilePagicFile('src/plugins/ga_component.tsx'));
   }
-
-  const gaDest = path.resolve(pagic.config.publicDir, '_ga.js');
-  await ensureDirAndWriteFileStr(gaDest, await compilePagicFile('src/plugins/ga_component.tsx'));
 };
-
-ga.insert = 'before:script';
 
 export default ga;

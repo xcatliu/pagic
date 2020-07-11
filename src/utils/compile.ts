@@ -1,8 +1,9 @@
-import { fs, colors } from '../deps.ts';
+import { fs } from '../deps.ts';
 import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
 import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
 
-import { pagicRootPath, log } from './common.ts';
+import { logger } from './common.ts';
+import { pagicRootPath } from './filepath.ts';
 
 export const reactElementToJSXString = reactElementToJSXStringModule.default;
 
@@ -22,31 +23,25 @@ export function compile(input: string) {
       }
     })
     .outputText.replace(/(^import .*)\.tsx?((?:'|");?$)/gm, '$1.js$2')
-    .replace(/^import .*\/react(\/|'|"|@).*$/gm, '')
-    .replace(/^import .*\/react-dom(\/|'|"|@).*$/gm, '')
-    .replace(/^\/\/ @deno-types.*$/gm, '');
+    .replace(/^import .*\/react(\/|'|"|@).*$\n/gm, '')
+    .replace(/^import .*\/react-dom(\/|'|"|@).*$\n/gm, '')
+    .replace(/^\/\/ @deno-types.*$\n/gm, '');
 }
-
-/**
- * Read input file and then compile it
- */
+/** Read input file and then compile it */
 export async function compileFile(src: string) {
-  log.success('Compile file', src);
+  logger.success('Compile file', src);
   const content = await fs.readFileStr(src);
   return compile(content);
 }
-
-/**
- * Compile a pagic file with local or remote url
- */
+/** Compile a pagic file with local or remote url */
 export async function compilePagicFile(pathToPagicRoot: string) {
-  log.success('Compile pagic file', pathToPagicRoot);
+  logger.success('Compile pagic file', pathToPagicRoot);
+  const src = `${pagicRootPath}/${pathToPagicRoot}`;
   let content = '';
   if (import.meta.url.startsWith('file://')) {
-    const src = `${pagicRootPath}${pathToPagicRoot}`;
     content = await fs.readFileStr(src);
   } else {
-    const res = await fetch(`${pagicRootPath}${pathToPagicRoot}`);
+    const res = await fetch(src);
     content = await res.text();
   }
   return compile(content);

@@ -4,22 +4,24 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { PagicPlugin } from '../Pagic.ts';
 import Gitalk from './gitalk_component.tsx';
-import { ensureDirAndWriteFileStr, compilePagicFile } from '../utils.ts';
+import { ensureDirAndWriteFileStr, compilePagicFile } from '../utils/mod.ts';
 
-const gitalk: PagicPlugin = async (pagic) => {
-  for (const pagePath of pagic.pagePaths) {
-    const pageProps = pagic.pagePropsMap[pagePath];
+const gitalk: PagicPlugin = {
+  name: 'gitalk',
+  insert: 'before:script',
+  fn: async (pagic) => {
+    for (const pagePath of pagic.pagePaths) {
+      const pageProps = pagic.pagePropsMap[pagePath];
 
-    pagic.pagePropsMap[pagePath] = {
-      gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />,
-      ...pageProps
-    };
+      pagic.pagePropsMap[pagePath] = {
+        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />,
+        ...pageProps
+      };
+    }
+
+    const gitalkDest = path.resolve(pagic.config.publicDir, '_gitalk.js');
+    await ensureDirAndWriteFileStr(gitalkDest, await compilePagicFile('src/plugins/gitalk_component.tsx'));
   }
-
-  const gitalkDest = path.resolve(pagic.config.publicDir, '_gitalk.js');
-  await ensureDirAndWriteFileStr(gitalkDest, await compilePagicFile('src/plugins/gitalk_component.tsx'));
 };
-
-gitalk.insert = 'before:script';
 
 export default gitalk;

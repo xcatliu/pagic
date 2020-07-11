@@ -6,10 +6,15 @@ import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.0';
 import markdownItTitle from 'https://dev.jspm.io/markdown-it-title@3.0.0';
 import markdownItAnchor from 'https://dev.jspm.io/markdown-it-anchor@5.3.0';
 import markdownitTocDoneRight from 'https://dev.jspm.io/markdown-it-toc-done-right@4.1.0';
-import replaceLink from 'https://dev.jspm.io/markdown-it-replace-link@1.0.1';
+import markdownitReplaceLink from 'https://dev.jspm.io/markdown-it-replace-link@1.0.1';
 
 import Prism from '../vendors/prism/mod.ts';
+import { replaceLink } from '../utils/mod.ts';
 
+/**
+ * tocHTML is set in the markdownitTocDoneRight callback, and is used later
+ * So tocHTML need to be a global variable
+ */
 let tocHTML = '';
 
 const mdRenderer = new MarkdownIt({
@@ -28,15 +33,7 @@ const mdRenderer = new MarkdownIt({
       lang
     )}</code></pre>`;
   },
-  replaceLink: (link: string) => {
-    if (/^https?:\/\//.test(link)) {
-      return link;
-    }
-    if (/README\.md(\?|#|$)/.test(link)) {
-      return link.replace(/README\.md(\?|#|$)/, 'index.html$1');
-    }
-    return link.replace(/\.md(\?|#|$)/, '.html$1');
-  }
+  replaceLink
 })
   .use(markdownItTitle)
   .use(markdownItAnchor, {
@@ -53,37 +50,43 @@ const mdRenderer = new MarkdownIt({
       tocHTML = html;
     }
   })
-  .use(replaceLink);
+  .use(markdownitReplaceLink);
 
 import { PagicPlugin } from '../Pagic.ts';
 
-const md: PagicPlugin = async (pagic) => {
-  for (const pagePath of pagic.pagePaths) {
-    if (!pagePath.endsWith('.md')) continue;
-    const pageProps = pagic.pagePropsMap[pagePath];
+const md: PagicPlugin = {
+  name: 'md',
+  fn: async (pagic) => {
+    for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
+      const pageProps = pagic.pagePropsMap[pagePath];
 
-    let content = await fs.readFileStr(path.resolve(pagic.config.srcDir, pagePath));
-    const fmResult = fm(content);
-    const frontMatter = fmResult.attributes;
-    content = fmResult.body;
+      let content = await fs.readFileStr(path.resolve(pagic.config.srcDir, pagePath));
+      const fmResult = fm(content);
+      const frontMatter = fmResult.attributes;
+      content = fmResult.body;
 
-    /**
-     * Use markdown-it-title to get the title of the page
-     * https://github.com/valeriangalliat/markdown-it-title
-     */
-    const env: any = {};
-    const contentHTML = mdRenderer.render(content, env);
+      /**
+       * Use markdown-it-title to get the title of the page
+       * https://github.com/valeriangalliat/markdown-it-title
+       */
+      const env: any = {};
+      const contentHTML = mdRenderer.render(content, env).trim();
+      const title = env.title;
 
-    pagic.pagePropsMap[pagePath] = {
-      ...pageProps,
-      title: env.title,
-      ...frontMatter,
-      content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
-      // Set to null if toc is empty
-      toc: tocHTML === '<nav class="toc"></nav>' ? null : <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
-    };
+      pagic.pagePropsMap[pagePath] = {
+        ...pageProps,
+        title,
+        ...frontMatter,
+        content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
+        // Set to null if toc is empty
+        toc:
+          tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
+            <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
+          )
+      };
 
-    tocHTML = '';
+      tocHTML = '';
+    }
   }
 };
 

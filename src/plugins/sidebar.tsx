@@ -16,18 +16,22 @@ export type PagePropsSidebar = {
   pagePath?: string;
 }[];
 
-const sidebar: PagicPlugin = async (pagic) => {
-  if (!pagic.config.sidebar) {
-    return;
-  }
-  const parsedSidebar = parseSidebarConfig(pagic.config.sidebar, pagic);
+const sidebar: PagicPlugin = {
+  name: 'sidebar',
+  insert: 'after:tsx',
+  fn: async (pagic) => {
+    if (!pagic.config.sidebar) {
+      return;
+    }
+    const parsedSidebar = parseSidebarConfig(pagic.config.sidebar, pagic);
 
-  for (const pagePath of pagic.pagePaths) {
-    const pageProps = pagic.pagePropsMap[pagePath];
-    pagic.pagePropsMap[pagePath] = {
-      sidebar: parsedSidebar,
-      ...pageProps
-    };
+    for (const pagePath of pagic.pagePaths) {
+      const pageProps = pagic.pagePropsMap[pagePath];
+      pagic.pagePropsMap[pagePath] = {
+        sidebar: parsedSidebar,
+        ...pageProps
+      };
+    }
   }
 };
 
@@ -55,7 +59,5 @@ function parseSidebarConfig(sidebarConfig: PagicConfigSidebar, pagic: Pagic): Pa
     return item;
   });
 }
-
-sidebar.insert = 'after:tsx';
 
 export default sidebar;
