@@ -28,7 +28,7 @@ export async function importDefault<T = any>(importPath: string, options: Import
 /** Replacement of dynamic import, support reload options */
 export async function import_<T = any>(importPath: string, options: ImportOptions = {}): Promise<T> {
   let finalImportPath = importPath;
-  if (finalImportPath.startsWith('/')) {
+  if (finalImportPath.startsWith('/') || finalImportPath.substr(1, 1) === ':') {
     finalImportPath = `file://${finalImportPath}`;
   }
   if (!options.reload) {
