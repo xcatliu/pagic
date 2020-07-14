@@ -1,7 +1,7 @@
 import { fs, path, colors } from './deps.ts';
 // @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
-import { Application, send } from 'https://deno.land/x/oak@v5.1.0/mod.ts';
+import { Application, send } from 'https://deno.land/x/oak@v6.0.0/mod.ts';
 
 import {
   unique,
@@ -57,7 +57,7 @@ export type PagicLayout<
   T = {
     [key: string]: any;
   }
-> = React.FC<PageProps & T>;
+  > = React.FC<PageProps & T>;
 
 export interface PagicThemeConfig {
   files: [];
