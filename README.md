@@ -263,34 +263,27 @@ It's able to configurate pagic by adding a `pagic.config.ts` file. The default c
 
 ```ts
 export default {
-  srcDir: 'src',
-  publicDir: 'public',
-  ignore: [
+  srcDir: '.',
+  outDir: 'dist',
+  include: [],
+  exclude: [
     // Dot files
-    '.*',
+    '{,**/}.*',
     // Node common files
-    'package.json',
-    'package-lock.json',
-    'node_modules',
+    '{,**/}package.json',
+    '{,**/}package-lock.json',
+    '{,**/}node_modules',
     // pagic.config.ts and pagic.config.tsx
     'pagic.config.{ts,tsx}',
     // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
-    '.*.swp',
-    '._*',
-    '.DS_Store',
-    '.git',
-    '.hg',
-    '.npmrc',
-    '.lock-wscript',
-    '.svn',
-    '.wafpickle-*',
-    'config.gypi',
-    'CVS',
-    'npm-debug.log'
+    '{,**/}config.gypi',
+    '{,**/}CVS',
+    '{,**/}npm-debug.log'
 
-    // ${config.publicDir} will be added later
+    // ${config.outDir} will be added later
   ],
-  base: '/',
+  files: [],
+  root: '/',
   theme: 'default',
   plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
   watch: false,
@@ -299,7 +292,7 @@ export default {
 };
 ```
 
-Your `pagic.config.ts` will be **deep-merge** to the default config, that is, your `ignore` and `plugins` will be appended to default, not replace it.
+Your `pagic.config.ts` will be **deep-merge** to the default config, that is, your `exclude` and `plugins` will be appended to default, not replace it.
 
 ### Plugins and themes
 

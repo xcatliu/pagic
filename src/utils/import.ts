@@ -25,7 +25,7 @@ export async function importDefault<T = any>(importPath: string, options: Import
   const mod = await import_<{ default: T }>(importPath, options);
   return mod.default;
 }
-/** Replacement of dynamic import, support reload options */
+/** Replacement of dynamic import, enable cache by default, support reload options */
 export async function import_<T = any>(importPath: string, options: ImportOptions = {}): Promise<T> {
   let finalImportPath = importPath;
   if (finalImportPath.startsWith('/') || finalImportPath.substr(1, 1) === ':') {

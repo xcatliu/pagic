@@ -14,7 +14,7 @@ const layout: PagicPlugin = {
       const fullLayoutPath = path.resolve(pagic.config.srcDir, pageProps.layoutPath);
       if (await fs.exists(fullLayoutPath)) {
         Layout = await importDefault(fullLayoutPath, {
-          reload: pagic.needRebuild
+          reload: pagic.rebuilding
         });
       } else {
         Layout = await importPagicModDefault(`src/themes/${pagic.config.theme}/${pageProps.layoutPath}`);

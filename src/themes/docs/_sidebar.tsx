@@ -19,7 +19,7 @@ const Sidebar: PagicLayout = (props) => {
       <hr />
       <a className="powered_by" href="https://github.com/xcatliu/pagic" target="_blank">
         Powered by&nbsp;
-        <img src={`${props.config.base}assets/pagic.png`} />
+        <img src={`${props.config.root}assets/pagic.png`} />
         agic
       </a>
     </aside>
@@ -46,7 +46,7 @@ const FoldableItem: PagicLayout<{
   return (
     <li className={fold ? 'fold' : 'unfold'}>
       <a
-        href={link ? `${config.base}${link}` : '#'}
+        href={link ? `${config.root}${link}` : '#'}
         className={classnames('nav_link', {
           active: isActive,
           no_link: !link
@@ -75,12 +75,12 @@ const FoldableItem: PagicLayout<{
           <>
             <span
               className="czs-angle-up-l"
-              style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
+              style={{ backgroundImage: `url("${config.root}assets/czs-angle-up-l.svg")` }}
               onClick={toggleFold}
             />
             <span
               className="czs-angle-down-l"
-              style={{ backgroundImage: `url("${config.base}assets/czs-angle-down-l.svg")` }}
+              style={{ backgroundImage: `url("${config.root}assets/czs-angle-down-l.svg")` }}
               onClick={toggleFold}
             />
           </>
@@ -91,7 +91,7 @@ const FoldableItem: PagicLayout<{
           {children.map(({ text, link }, index) => (
             <li key={index}>
               <a
-                href={`${config.base}${link}`}
+                href={`${config.root}${link}`}
                 className={classnames('nav_link', { active: link === outputPath })}
                 onClick={() => {
                   // @ts-ignore

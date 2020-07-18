@@ -56,12 +56,12 @@ const Main: PagicLayout = (props) => {
         {(prev || next) && (
           <div className="prev_next">
             {prev && (
-              <a className="prev button" href={`${config.base}${prev.link}`}>
+              <a className="prev button" href={`${config.root}${prev.link}`}>
                 «&nbsp;&nbsp;{prev.text}
               </a>
             )}
             {next && (
-              <a className="next button" href={`${config.base}${next.link}`}>
+              <a className="next button" href={`${config.root}${next.link}`}>
                 {next.text}&nbsp;&nbsp;»
               </a>
             )}

@@ -1,8 +1,9 @@
 export default {
   srcDir: '.',
-  base: '/pagic/',
+  include: ['README.md'],
+  root: '/pagic/',
+  plugins: ['-script'],
   title: 'Pagic',
   description: 'The easiest way to generate static html page from markdown, built with Deno! 🦕',
-  github: 'https://github.com/xcatliu/pagic',
-  ignore: ['LICENSE', 'mod.ts', 'test', 'src']
+  github: 'https://github.com/xcatliu/pagic'
 };

@@ -28,7 +28,7 @@ const Layout: PagicLayout = (props) => {
                 className="czs-pen button"
                 href={`${config.github}/edit/master/${props.pagePath}`}
                 target="_blank"
-                style={{ backgroundImage: `url("${config.base}assets/czs-pen.svg")` }}
+                style={{ backgroundImage: `url("${config.root}assets/czs-pen.svg")` }}
               />
             )}
             {config.tools.backToTop && (
@@ -39,7 +39,7 @@ const Layout: PagicLayout = (props) => {
                   e.preventDefault();
                   (window as any).scrollTo(0, 0);
                 }}
-                style={{ backgroundImage: `url("${config.base}assets/czs-angle-up-l.svg")` }}
+                style={{ backgroundImage: `url("${config.root}assets/czs-angle-up-l.svg")` }}
               />
             )}
           </div>

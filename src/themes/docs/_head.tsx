@@ -12,7 +12,7 @@ const Head: PagicLayout<{
     const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (shouldSetIsDark) {
       document.documentElement.classList.add('is_dark');
-      document.getElementById('prismTheme').href = "${config.base}assets/prism_tomorrow.css";
+      document.getElementById('prismTheme').href = "${config.root}assets/prism_tomorrow.css";
     }
   `;
   return (
@@ -26,11 +26,11 @@ const Head: PagicLayout<{
         {config.description && <meta name="description" content={config.description} />}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href={`${config.base}assets/index.css`} />
+        <link rel="stylesheet" href={`${config.root}assets/index.css`} />
         <link
           id="prismTheme"
           rel="stylesheet"
-          href={isDark ? `${config.base}assets/prism_tomorrow.css` : `${config.base}assets/prism.css`}
+          href={isDark ? `${config.root}assets/prism_tomorrow.css` : `${config.root}assets/prism.css`}
         />
         <script>{scriptSetIsDark}</script>
       </Helmet>

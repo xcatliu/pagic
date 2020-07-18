@@ -16,7 +16,8 @@ Deno.test('[init]', async () => {
       outputPath: 'index.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     },
     'foo.tsx': {
       config: pagic.config,
@@ -25,7 +26,8 @@ Deno.test('[init]', async () => {
       outputPath: 'foo.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     },
     'bar/baz.md': {
       config: pagic.config,
@@ -34,7 +36,8 @@ Deno.test('[init]', async () => {
       outputPath: 'bar/baz.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     }
   });
 });

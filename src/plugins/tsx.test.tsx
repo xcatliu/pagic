@@ -19,7 +19,8 @@ Deno.test('[tsx]', async () => {
       outputPath: 'hello.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     },
     'README.md': {
       config: pagic.config,
@@ -28,7 +29,8 @@ Deno.test('[tsx]', async () => {
       outputPath: 'index.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     }
   };
   await tsx.fn(pagic);

@@ -19,7 +19,7 @@ const ga: PagicPlugin = {
       };
     }
 
-    const gaDest = path.resolve(pagic.config.publicDir, '_ga.js');
+    const gaDest = path.resolve(pagic.config.outDir, '_ga.js');
     await ensureDirAndWriteFileStr(gaDest, await compilePagicFile('src/plugins/ga_component.tsx'));
   }
 };

@@ -1,4 +1,4 @@
-import { colors } from '../deps.ts';
+import { fs, path, colors } from '../deps.ts';
 
 // #region Common types
 export type AnyFunction = (...args: any[]) => any;
@@ -110,5 +110,16 @@ export function sortByInsert<
       delete item.index;
       return item;
     });
+}
+
+export async function getPagicConfigPath() {
+  let pagicConfigPath = path.resolve('pagic.config.tsx');
+  if (!(await fs.exists(pagicConfigPath))) {
+    pagicConfigPath = path.resolve('pagic.config.ts');
+    if (!(await fs.exists(pagicConfigPath))) {
+      throw new Error('pagic.config.ts not exist');
+    }
+  }
+  return pagicConfigPath;
 }
 // #endregion

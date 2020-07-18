@@ -10,7 +10,7 @@ const Header: PagicLayout<{
 }> = ({ config, isDark, setIsDark }) => (
   <header>
     <h1>
-      <a href={config.base}>{config.title}</a>
+      <a href={config.root}>{config.title}</a>
     </h1>
     <nav>
       <ul>
@@ -35,7 +35,7 @@ const Header: PagicLayout<{
           <a
             className="czs-menu-l"
             href="#"
-            style={{ backgroundImage: `url("${config.base}assets/czs-menu-l.svg")` }}
+            style={{ backgroundImage: `url("${config.root}assets/czs-menu-l.svg")` }}
             onClick={(e) => {
               e.preventDefault();
               // @ts-ignore
@@ -52,7 +52,7 @@ const Header: PagicLayout<{
         <li className="mobile_header">
           <h1>
             <a
-              href={config.base}
+              href={config.root}
               onClick={() => {
                 // @ts-ignore
                 document.documentElement.classList.remove('show_sidebar');
@@ -86,7 +86,7 @@ const Header: PagicLayout<{
               className="czs-github-logo"
               href={config.github}
               target="_blank"
-              style={{ backgroundImage: `url("${config.base}assets/czs-github-logo.svg")` }}
+              style={{ backgroundImage: `url("${config.root}assets/czs-github-logo.svg")` }}
             />
           </li>
         )}
@@ -98,10 +98,10 @@ const Header: PagicLayout<{
           }}
           className="toggle_dark flex_center"
         >
-          <span className="czs-sun" style={{ backgroundImage: `url("${config.base}assets/czs-sun.svg")` }} />
-          <span className="czs-sun-l" style={{ backgroundImage: `url("${config.base}assets/czs-sun-l.svg")` }} />
-          <span className="czs-moon" style={{ backgroundImage: `url("${config.base}assets/czs-moon.svg")` }} />
-          <span className="czs-moon-l" style={{ backgroundImage: `url("${config.base}assets/czs-moon-l.svg")` }} />
+          <span className="czs-sun" style={{ backgroundImage: `url("${config.root}assets/czs-sun.svg")` }} />
+          <span className="czs-sun-l" style={{ backgroundImage: `url("${config.root}assets/czs-sun-l.svg")` }} />
+          <span className="czs-moon" style={{ backgroundImage: `url("${config.root}assets/czs-moon.svg")` }} />
+          <span className="czs-moon-l" style={{ backgroundImage: `url("${config.root}assets/czs-moon-l.svg")` }} />
         </li>
       </ul>
     </nav>

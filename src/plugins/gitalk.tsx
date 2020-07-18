@@ -19,7 +19,7 @@ const gitalk: PagicPlugin = {
       };
     }
 
-    const gitalkDest = path.resolve(pagic.config.publicDir, '_gitalk.js');
+    const gitalkDest = path.resolve(pagic.config.outDir, '_gitalk.js');
     await ensureDirAndWriteFileStr(gitalkDest, await compilePagicFile('src/plugins/gitalk_component.tsx'));
   }
 };

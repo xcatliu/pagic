@@ -14,8 +14,8 @@
   --box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 
   /* Layout */
-  /* 42 words per line is the best, 42 * 16 + 48 + 48 = 48 * 16 = 48rem */
-  --width-article: 48rem;
+  /* 42 words per line is the best, 42rem + 1rem + 1rem = 44rem */
+  --width-article: 44rem;
 
   /* Typography */
   --font-size: 16px;

@@ -4,25 +4,25 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 import { Application, send } from 'https://deno.land/x/oak@v6.0.0/mod.ts';
 
 import {
+  pick,
   unique,
   sortByInsert,
-  ensureDirAndCopy,
-  copyPagicFile,
   importDefault,
   importPagicModDefault,
-  ensureDirAndWriteFileStr,
-  compileFile,
   logger,
-  globToRegExp
+  globToRegExp,
+  walk,
+  getPagicConfigPath
 } from './utils/mod.ts';
 import { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 
 // #region types
 export interface PagicConfig {
   srcDir: string;
-  publicDir: string;
-  ignore: string[];
-  base: string;
+  outDir: string;
+  include?: string[];
+  exclude?: string[];
+  root: string;
   theme: string;
   plugins: string[];
   watch: boolean;
@@ -32,11 +32,21 @@ export interface PagicConfig {
   [key: string]: any;
 }
 
+export interface PagicThemeConfig {
+  files: [];
+}
+
 export interface PagicPlugin {
   name: string;
   insert?: string;
   fn: (ctx: Pagic) => Promise<void>;
 }
+
+export type PagicLayout<
+  T = {
+    [key: string]: any;
+  }
+> = React.FC<PageProps & T>;
 
 export interface PageProps {
   config: PagicConfig;
@@ -46,57 +56,40 @@ export interface PageProps {
   title: string;
   content: React.ReactElement | null;
   script: React.ReactElement | null;
+  toc: React.ReactElement | null;
   loading?: boolean;
   sidebar?: PagePropsSidebar;
   previous?: PagePropsSidebar[0] | null;
   next?: PagePropsSidebar[0] | null;
   [key: string]: any;
 }
-
-export type PagicLayout<
-  T = {
-    [key: string]: any;
-  }
-  > = React.FC<PageProps & T>;
-
-export interface PagicThemeConfig {
-  files: [];
-}
 // #endregion
 
 export default class Pagic {
   // #region properties
   public static defaultConfig: PagicConfig = {
-    srcDir: 'src',
-    publicDir: 'public',
-    ignore: [
+    srcDir: '.',
+    outDir: 'dist',
+    include: undefined,
+    exclude: [
       // Dot files
-      '.*',
+      '{,**/}.*',
       // Node common files
-      'package.json',
-      'package-lock.json',
-      'node_modules',
+      '{,**/}package.json',
+      '{,**/}package-lock.json',
+      '{,**/}node_modules',
       // pagic.config.ts and pagic.config.tsx
       'pagic.config.{ts,tsx}',
       // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
-      '.*.swp',
-      '._*',
-      '.DS_Store',
-      '.git',
-      '.hg',
-      '.npmrc',
-      '.lock-wscript',
-      '.svn',
-      '.wafpickle-*',
-      'config.gypi',
-      'CVS',
-      'npm-debug.log'
+      '{,**/}config.gypi',
+      '{,**/}CVS',
+      '{,**/}npm-debug.log'
 
-      // ${config.publicDir} will be added later
+      // ${config.outDir} will be added later
     ],
-    base: '/',
+    root: '/',
     theme: 'default',
-    plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
+    plugins: ['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out'],
     watch: false,
     serve: false,
     port: 8000
@@ -113,17 +106,20 @@ export default class Pagic {
   public pagePaths: string[] = [];
   public layoutPaths: string[] = [];
   public staticPaths: string[] = [];
-  /** A map stored all { pagePath: pageProps } */
+  /** Files that need to be write */
+  public writeFiles: {
+    [filePath: string]: string;
+  } = {};
+  /** A map stored all pageProps */
   public pagePropsMap: {
     [pagePath: string]: PageProps;
   } = {};
-  public needRebuild = false;
+  public rebuilding: boolean | undefined;
 
   public projectConfig: Partial<PagicConfig> = {};
   private runtimeConfig: Partial<PagicConfig> = {};
-  private projectConfigCompileResult = 'export default {}';
 
-  private fullChangedPaths: string[] = [];
+  private changedPaths: string[] = [];
   private timeoutHandler: number | undefined = undefined;
   // #endregion
 
@@ -132,11 +128,7 @@ export default class Pagic {
   }
 
   public async build() {
-    await this.initProjectConfig();
-    await this.initConfig();
-
     await this.rebuild();
-
     if (this.config.serve) {
       this.serve();
     }
@@ -145,34 +137,27 @@ export default class Pagic {
     }
   }
 
-  /** Read pagic.config.ts and set to this.projectConfig */
-  private async initProjectConfig() {
-    let pagicConfigPath = path.resolve(Deno.cwd(), 'pagic.config.ts');
-    if (await fs.exists(pagicConfigPath)) {
-      this.projectConfig = await importDefault(pagicConfigPath);
-      this.projectConfigCompileResult = await compileFile(pagicConfigPath);
-      return;
-    }
-    pagicConfigPath = pagicConfigPath.replace(/\.ts$/, '.tsx');
-    if (await fs.exists(pagicConfigPath)) {
-      this.projectConfig = await importDefault(pagicConfigPath);
-      this.projectConfigCompileResult = await compileFile(pagicConfigPath);
-      return;
-    }
-    logger.warn('pagic.config.ts not exist, use default config');
+  private async rebuild() {
+    await this.initConfig();
+
+    this.pagePropsMap = {};
+    await this.initPaths();
+    await this.runPlugins();
   }
+
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
   private async initConfig() {
+    this.projectConfig = await importDefault(await getPagicConfigPath());
     let config = {
       ...Pagic.defaultConfig,
       ...this.projectConfig,
       ...this.runtimeConfig
     };
-    config.ignore = unique([
-      ...Pagic.defaultConfig.ignore,
-      ...(this.projectConfig.ignore ?? []),
-      ...(this.runtimeConfig.ignore ?? []),
-      config.publicDir
+    config.exclude = unique([
+      ...(Pagic.defaultConfig.exclude ?? []),
+      ...(this.projectConfig.exclude ?? []),
+      ...(this.runtimeConfig.exclude ?? []),
+      config.outDir
     ]);
     config.plugins = unique([
       ...Pagic.defaultConfig.plugins,
@@ -181,27 +166,13 @@ export default class Pagic {
     ]);
     this.config = config;
   }
-  private async importPlugin(pluginName: string) {
-    const plugin = await importPagicModDefault<PagicPlugin>(`src/plugins/${pluginName}.tsx`);
-    return plugin;
-  }
-
-  private async rebuild() {
-    this.pagePropsMap = {};
-    await this.clean();
-    const pagicConfigDest = path.resolve(this.config.publicDir, 'pagic.config.js');
-    await ensureDirAndWriteFileStr(pagicConfigDest, this.projectConfigCompileResult);
-    await this.initPaths();
-    await this.runPlugins();
-    await this.copy();
-  }
 
   private async serve() {
     const app = new Application();
 
     app.use(async (ctx) => {
-      await send(ctx, ctx.request.url.pathname.replace(new RegExp(`^${this.config.base}`), '/'), {
-        root: this.config.publicDir,
+      await send(ctx, ctx.request.url.pathname.replace(new RegExp(`^${this.config.root}`), '/'), {
+        root: this.config.outDir,
         index: 'index.html'
       });
     });
@@ -209,8 +180,8 @@ export default class Pagic {
     app.listen({ port: this.config.port });
     logger.success(
       'Serve',
-      colors.underline(this.config.publicDir),
-      `on http://127.0.0.1:${this.config.port}${this.config.base}`
+      colors.underline(this.config.outDir),
+      `on http://127.0.0.1:${this.config.port}${this.config.root}`
     );
   }
 
@@ -218,131 +189,105 @@ export default class Pagic {
     logger.success('Watch', colors.underline(this.config.srcDir));
     const watcher = Deno.watchFs(this.config.srcDir);
     for await (const event of watcher) {
-      let eventPaths = event.paths;
-      this.config.ignore.forEach((glob) => {
+      let eventPaths = event.paths.map((eventPath) => path.relative(this.config.srcDir, eventPath));
+      this.config.include?.forEach((glob) => {
+        eventPaths = eventPaths.filter((eventPath) => globToRegExp(glob).test(eventPath));
+      });
+      this.config.exclude?.forEach((glob) => {
         eventPaths = eventPaths.filter((eventPath) => !globToRegExp(glob).test(eventPath));
       });
       this.handleFileChange(eventPaths);
     }
   }
 
-  private async handleFileChange(fullFilePaths: string[]) {
-    if (fullFilePaths.length === 0) return;
-    this.fullChangedPaths = unique([...this.fullChangedPaths, ...fullFilePaths]);
+  private async handleFileChange(filePaths: string[]) {
+    if (filePaths.length === 0) return;
+    this.changedPaths = unique([...this.changedPaths, ...filePaths]);
     clearTimeout(this.timeoutHandler);
     this.timeoutHandler = setTimeout(async () => {
-      this.needRebuild = false;
-      let pagePaths = [];
-      let staticPaths = [];
-      for (const fullChangedPath of this.fullChangedPaths) {
-        const changedPath = this.relativeToSrc(fullChangedPath);
+      this.rebuilding = false;
+      this.pagePaths = [];
+      this.staticPaths = [];
+      this.writeFiles = {};
+      for (const changedPath of this.changedPaths) {
+        const fullChangedPath = path.resolve(this.config.srcDir, changedPath);
         if (!fs.existsSync(fullChangedPath)) {
           logger.warn(`${changedPath} removed, start rebuild`);
-          this.needRebuild = true;
+          this.rebuilding = true;
           break;
         } else if (Deno.statSync(fullChangedPath).isDirectory) {
           logger.warn(`Directory ${colors.underline(changedPath)} changed, start rebuild`);
-          this.needRebuild = true;
+          this.rebuilding = true;
           break;
         } else if (Pagic.REGEXP_LAYOUT.test(fullChangedPath)) {
           logger.warn(`Layout ${changedPath} changed, start rebuild`);
-          this.needRebuild = true;
+          this.rebuilding = true;
           break;
         } else if (Pagic.REGEXP_PAGE.test(fullChangedPath)) {
-          pagePaths.push(this.relativeToSrc(fullChangedPath));
+          this.pagePaths.push(changedPath);
         } else {
-          staticPaths.push(this.relativeToSrc(fullChangedPath));
+          this.staticPaths.push(changedPath);
         }
       }
-      if (this.needRebuild) {
+      if (this.rebuilding) {
         await this.rebuild();
       } else {
-        await this.runPlugins(pagePaths);
-        await this.copy(staticPaths);
+        await this.runPlugins();
       }
-      this.fullChangedPaths = [];
+      this.changedPaths = [];
     }, 100);
   }
 
-  private async clean() {
-    logger.success('Clean', this.config.publicDir);
-    await fs.emptyDir(this.config.publicDir);
-  }
-
   private async initPaths() {
-    this.pagePaths = await this.walk(this.config.srcDir, {
-      includeDirs: false,
-      match: [Pagic.REGEXP_PAGE],
-      skip: this.config.ignore.map(globToRegExp)
+    const { files: themeFiles } = await importPagicModDefault<PagicThemeConfig>(
+      `src/themes/${this.config.theme}/mod.ts`
+    );
+
+    this.pagePaths = await walk(this.config.srcDir, {
+      ...pick(this.config, ['include', 'exclude']),
+      match: [Pagic.REGEXP_PAGE]
     });
-    const { files } = await importPagicModDefault<PagicThemeConfig>(`src/themes/${this.config.theme}/mod.ts`);
     this.layoutPaths = unique([
-      ...(await this.walk(this.config.srcDir, {
-        includeDirs: false,
-        match: [Pagic.REGEXP_LAYOUT],
-        skip: this.config.ignore.map(globToRegExp)
+      ...(await walk(this.config.srcDir, {
+        ...pick(this.config, ['include', 'exclude']),
+        match: [Pagic.REGEXP_LAYOUT]
       })),
-      ...files.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
+      ...themeFiles.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
     ]);
     this.staticPaths = unique([
-      ...(await this.walk(this.config.srcDir, {
-        includeDirs: false,
-        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT, ...this.config.ignore.map(globToRegExp)]
+      ...(await walk(this.config.srcDir, {
+        ...pick(this.config, ['include', 'exclude']),
+        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT]
       })),
-      ...files.filter(
+      ...themeFiles.filter(
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
     ]);
   }
 
-  private async runPlugins(pagePaths?: string[]) {
-    if (Array.isArray(pagePaths)) {
-      if (pagePaths.length === 0) return;
-      this.pagePaths = pagePaths;
-    }
-    if (this.pagePaths.length === 0) return;
+  private async runPlugins() {
+    if (this.pagePaths.length === 0 && this.staticPaths.length === 0) return;
 
     let sortedPlugins: PagicPlugin[] = [];
     for (let pluginName of this.config.plugins) {
-      const plugin = await this.importPlugin(pluginName);
+      if (pluginName.startsWith('-')) {
+        continue;
+      }
+      let plugin: PagicPlugin;
+      if (/^https?:\/\//.test(pluginName)) {
+        plugin = await importDefault<PagicPlugin>(pluginName);
+      } else {
+        plugin = await importPagicModDefault<PagicPlugin>(`src/plugins/${pluginName}.tsx`);
+      }
       sortedPlugins.push(plugin);
     }
     sortedPlugins = sortByInsert(sortedPlugins);
+    const removedPlugins = this.config.plugins.filter((pluginName) => pluginName.startsWith('-'));
+    sortedPlugins = sortedPlugins.filter((plugin) => !removedPlugins.includes(`-${plugin.name}`));
 
     for (let plugin of sortedPlugins) {
       logger.success('Plugin', plugin.name, 'start');
       await plugin.fn(this);
     }
-  }
-
-  private async copy(staticPaths?: string[]) {
-    if (typeof staticPaths === 'undefined') {
-      // eslint-disable-next-line no-param-reassign
-      staticPaths = this.staticPaths;
-    }
-
-    for (const staticPath of staticPaths) {
-      const src = path.resolve(this.config.srcDir, staticPath);
-      const dest = path.resolve(this.config.publicDir, staticPath);
-      if (await fs.exists(src)) {
-        await ensureDirAndCopy(src, dest, { overwrite: true });
-      } else {
-        await copyPagicFile(`src/themes/${this.config.theme}/${staticPath}`, dest);
-      }
-    }
-  }
-
-  /** A util to replace fs.walk method, return relativeToSrc path instead of fullPath */
-  private async walk(root: string, walkOptions: fs.WalkOptions): Promise<string[]> {
-    let walkEntries = [];
-    const walkResult = fs.walk(path.resolve(root), walkOptions);
-    for await (const i of walkResult) {
-      walkEntries.push(this.relativeToSrc(i.path));
-    }
-    return walkEntries;
-  }
-
-  private relativeToSrc(fullFilePath: string) {
-    return path.relative(this.config.srcDir, fullFilePath);
   }
 }

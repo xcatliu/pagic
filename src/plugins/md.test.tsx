@@ -17,7 +17,8 @@ Deno.test('[md]', async () => {
       outputPath: 'index.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     },
     'no_toc.md': {
       config: pagic.config,
@@ -26,7 +27,8 @@ Deno.test('[md]', async () => {
       outputPath: 'no_toc.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     },
     'no_toc2.md': {
       config: pagic.config,
@@ -35,7 +37,8 @@ Deno.test('[md]', async () => {
       outputPath: 'no_toc2.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     },
     'foo.tsx': {
       config: pagic.config,
@@ -44,7 +47,8 @@ Deno.test('[md]', async () => {
       outputPath: 'foo.html',
       title: '',
       content: null,
-      script: null
+      script: null,
+      toc: null
     }
   };
   await md.fn(pagic);

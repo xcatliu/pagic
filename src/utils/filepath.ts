@@ -1,5 +1,7 @@
-import { path } from '../deps.ts';
+import { fs, path } from '../deps.ts';
 import minimatch from 'https://dev.jspm.io/minimatch@3.0.4';
+
+import { PagicConfig } from '../Pagic.ts';
 
 /**
  * Get the runtime pagic root path, it should be a file-system-path or a url
@@ -39,8 +41,25 @@ export function replaceExt(input: string, replacement: string) {
  * input: node_modules
  * output: minimatch: **\/node_modules{,/**}
  */
-export function globToRegExp(glob: string) {
-  const mm = new minimatch.Minimatch(`{,**/}${glob}{,/**}`);
+export function globToRegExp(
+  glob: string,
+  options?: {
+    matchDir?: boolean;
+    prefix?: string;
+  }
+): RegExp {
+  const { matchDir, prefix } = {
+    matchDir: false,
+    prefix: '',
+    ...options
+  };
+  // eslint-disable-next-line no-param-reassign
+  glob = `${prefix}${glob}`;
+  if (matchDir) {
+    // eslint-disable-next-line no-param-reassign
+    glob = `${glob}{,/**}`;
+  }
+  const mm = new minimatch.Minimatch(glob);
   return mm.makeRe();
 }
 /**
@@ -85,4 +104,45 @@ export function findNearestLayoutPath(pagePath: string, layoutPaths: string[]) {
   }
   layoutPath = layoutPath.slice(1);
   return layoutPath;
+}
+
+/** A util to replace fs.walk method, return relativeToSrcPath instead of fullPath */
+export async function walk(
+  srcDir: string,
+  walkOptions: fs.WalkOptions & Pick<PagicConfig, 'include' | 'exclude'> = {}
+): Promise<string[]> {
+  let { match, skip, include, exclude } = walkOptions;
+  const includeMatch: RegExp[] | undefined = include?.map((glob) =>
+    globToRegExp(glob, {
+      matchDir: true,
+      prefix: `${path.resolve(srcDir)}/`
+    })
+  );
+  const excludeSkip: RegExp[] | undefined = exclude?.map((glob) =>
+    globToRegExp(glob, {
+      matchDir: true,
+      prefix: `${path.resolve(srcDir)}/`
+    })
+  );
+
+  let walkEntries = [];
+  const walkResult = fs.walk(path.resolve(srcDir), {
+    includeDirs: false,
+    ...walkOptions,
+    match: include ? includeMatch : match,
+    skip: [...(skip ?? []), ...(excludeSkip ?? [])]
+  });
+
+  if (include && match) {
+    for await (const i of walkResult) {
+      if (match.some((regExp) => regExp.test(i.path))) {
+        walkEntries.push(path.relative(srcDir, i.path));
+      }
+    }
+  } else {
+    for await (const i of walkResult) {
+      walkEntries.push(path.relative(srcDir, i.path));
+    }
+  }
+  return walkEntries;
 }
