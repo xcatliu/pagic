@@ -3,7 +3,7 @@ import { fs, path } from '../deps.ts';
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { PagicPlugin } from '../Pagic.ts';
-import { importDefault, importPagicModDefault } from '../utils/mod.ts';
+import { importDefault, importTheme } from '../utils/mod.ts';
 
 const layout: PagicPlugin = {
   name: 'layout',
@@ -17,7 +17,7 @@ const layout: PagicPlugin = {
           reload: pagic.rebuilding
         });
       } else {
-        Layout = await importPagicModDefault(`src/themes/${pagic.config.theme}/${pageProps.layoutPath}`);
+        Layout = await importTheme(pagic.config.theme, pageProps.layoutPath);
       }
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,

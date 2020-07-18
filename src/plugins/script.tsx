@@ -3,7 +3,6 @@ import { fs, path } from '../deps.ts';
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 import {
-  ensureDirAndWriteFileStr,
   copyPagicFile,
   compile,
   compileFile,
@@ -11,16 +10,13 @@ import {
   reactElementToJSXString,
   replaceExt,
   underlineToPascal,
-  pick,
-  getPagicConfigPath
+  pick
 } from '../utils/mod.ts';
 import Pagic, { PagicPlugin } from '../Pagic.ts';
 
 const script: PagicPlugin = {
   name: 'script',
   fn: async (pagic) => {
-    pagic.writeFiles['pagic.config.js'] = await compileFile(await getPagicConfigPath());
-
     for (const pagePath of pagic.pagePaths) {
       let pageProps = pagic.pagePropsMap[pagePath];
 
@@ -33,12 +29,11 @@ const script: PagicPlugin = {
       );
 
       if (pagePath.endsWith('.tsx')) {
-        const contentDest = path.resolve(pagic.config.outDir, replaceExt(pageProps.outputPath, '_content.js'));
+        const contentDest = replaceExt(pageProps.outputPath, '_content.js');
         const compileSrc = path.resolve(pagic.config.srcDir, pagePath);
-        await ensureDirAndWriteFileStr(contentDest, await compileFile(compileSrc));
+        pagic.writeFiles[contentDest] = await compileFile(compileSrc);
       }
 
-      const propsDest = path.resolve(pagic.config.outDir, replaceExt(pageProps.outputPath, '_props.js'));
       /** First is module name, second is module path */
       let importComponentList: [string, string][] = [];
       let propsCompileResult = compile(`
@@ -76,24 +71,26 @@ const script: PagicPlugin = {
         .map(([componentName, modulePath]) => `import ${componentName} from '${modulePath}';`)
         .join('\n')}\n${propsCompileResult}`;
 
-      await ensureDirAndWriteFileStr(propsDest, propsCompileResult);
+      const propsDest = replaceExt(pageProps.outputPath, '_props.js');
+      pagic.writeFiles[propsDest] = propsCompileResult;
     }
 
-    for (const layoutPath of pagic.layoutPaths) {
-      const layoutDest = path.resolve(pagic.config.outDir, replaceExt(layoutPath, '.js'));
-      const compileSrc = path.resolve(pagic.config.srcDir, layoutPath);
-      if (await fs.exists(compileSrc)) {
-        await ensureDirAndWriteFileStr(layoutDest, await compileFile(compileSrc));
-      } else {
-        await ensureDirAndWriteFileStr(
-          layoutDest,
-          await compilePagicFile(`src/themes/${pagic.config.theme}/${layoutPath}`)
-        );
+    if (pagic.rebuilding) {
+      for (const layoutPath of pagic.layoutPaths) {
+        const layoutDest = replaceExt(layoutPath, '.js');
+        const compileSrc = path.resolve(pagic.config.srcDir, layoutPath);
+        if (await fs.exists(compileSrc)) {
+          pagic.writeFiles[layoutDest] = await compileFile(compileSrc);
+        } else {
+          pagic.writeFiles[layoutDest] = await compilePagicFile(`src/themes/${pagic.config.theme}/${layoutPath}`);
+        }
       }
-    }
 
-    const scriptIndexDest = path.resolve(pagic.config.outDir, 'index.js');
-    await copyPagicFile('src/plugins/script_index.js', scriptIndexDest);
+      pagic.writeFiles['pagic.config.js'] = await compileFile(pagic.pagicConfigPath);
+
+      const scriptIndexDest = path.resolve(pagic.config.outDir, 'index.js');
+      await copyPagicFile('src/plugins/script_index.js', scriptIndexDest);
+    }
   }
 };
 

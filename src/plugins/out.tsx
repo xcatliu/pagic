@@ -5,7 +5,7 @@ import ReactHelmet from 'https://dev.jspm.io/react-helmet@6.1.0';
 const { Helmet } = ReactHelmet;
 
 import { PagicPlugin } from '../Pagic.ts';
-import { ensureDirAndWriteFileStr, ensureDirAndCopy, copyPagicFile } from '../utils/mod.ts';
+import { ensureDirAndWriteFileStr, ensureDirAndCopy, copyPagicFile, download } from '../utils/mod.ts';
 
 const out: PagicPlugin = {
   name: 'out',
@@ -37,7 +37,11 @@ const out: PagicPlugin = {
       if (await fs.exists(src)) {
         await ensureDirAndCopy(src, dest, { overwrite: true });
       } else {
-        await copyPagicFile(`src/themes/${pagic.config.theme}/${staticPath}`, dest);
+        if (/^https?:\/\//.test(pagic.config.theme)) {
+          await download(pagic.config.theme.replace(/\/[^\/]+$/, `/${staticPath}`), dest);
+        } else {
+          await copyPagicFile(`src/themes/${pagic.config.theme}/${staticPath}`, dest);
+        }
       }
     }
 

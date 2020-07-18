@@ -8,11 +8,12 @@ import {
   unique,
   sortByInsert,
   importDefault,
-  importPagicModDefault,
   logger,
   globToRegExp,
   walk,
-  getPagicConfigPath
+  getPagicConfigPath,
+  importPlugin,
+  importTheme
 } from './utils/mod.ts';
 import { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 
@@ -100,6 +101,8 @@ export default class Pagic {
   public static REGEXP_LAYOUT = /\/_[^\/]+\.tsx$/;
 
   // @ts-ignore
+  public pagicConfigPath: string;
+  // @ts-ignore
   public config: PagicConfig;
 
   /** Pages that need to be build */
@@ -114,7 +117,7 @@ export default class Pagic {
   public pagePropsMap: {
     [pagePath: string]: PageProps;
   } = {};
-  public rebuilding: boolean | undefined;
+  public rebuilding = true;
 
   public projectConfig: Partial<PagicConfig> = {};
   private runtimeConfig: Partial<PagicConfig> = {};
@@ -138,16 +141,21 @@ export default class Pagic {
   }
 
   private async rebuild() {
-    await this.initConfig();
-
+    this.rebuilding = true;
     this.pagePropsMap = {};
+    this.writeFiles = {};
+
+    await this.initConfig();
     await this.initPaths();
     await this.runPlugins();
   }
 
   /** Deep merge defaultConfig, projectConfig and runtimeConfig, then sort plugins */
   private async initConfig() {
-    this.projectConfig = await importDefault(await getPagicConfigPath());
+    this.pagicConfigPath = await getPagicConfigPath();
+    this.projectConfig = await importDefault(this.pagicConfigPath, {
+      reload: true
+    });
     let config = {
       ...Pagic.defaultConfig,
       ...this.projectConfig,
@@ -187,8 +195,16 @@ export default class Pagic {
 
   private async watch() {
     logger.success('Watch', colors.underline(this.config.srcDir));
-    const watcher = Deno.watchFs(this.config.srcDir);
+    const watcher = Deno.watchFs([this.config.srcDir, this.pagicConfigPath]);
     for await (const event of watcher) {
+      // pagic.config.ts modified, rebuild
+      if (event.kind === 'modify' && event.paths.includes(this.pagicConfigPath)) {
+        clearTimeout(this.timeoutHandler);
+        this.timeoutHandler = setTimeout(async () => {
+          this.rebuild();
+        }, 100);
+        continue;
+      }
       let eventPaths = event.paths.map((eventPath) => path.relative(this.config.srcDir, eventPath));
       this.config.include?.forEach((glob) => {
         eventPaths = eventPaths.filter((eventPath) => globToRegExp(glob).test(eventPath));
@@ -208,7 +224,6 @@ export default class Pagic {
       this.rebuilding = false;
       this.pagePaths = [];
       this.staticPaths = [];
-      this.writeFiles = {};
       for (const changedPath of this.changedPaths) {
         const fullChangedPath = path.resolve(this.config.srcDir, changedPath);
         if (!fs.existsSync(fullChangedPath)) {
@@ -239,9 +254,7 @@ export default class Pagic {
   }
 
   private async initPaths() {
-    const { files: themeFiles } = await importPagicModDefault<PagicThemeConfig>(
-      `src/themes/${this.config.theme}/mod.ts`
-    );
+    const { files: themeFiles } = await importTheme(this.config.theme);
 
     this.pagePaths = await walk(this.config.srcDir, {
       ...pick(this.config, ['include', 'exclude']),
@@ -273,12 +286,7 @@ export default class Pagic {
       if (pluginName.startsWith('-')) {
         continue;
       }
-      let plugin: PagicPlugin;
-      if (/^https?:\/\//.test(pluginName)) {
-        plugin = await importDefault<PagicPlugin>(pluginName);
-      } else {
-        plugin = await importPagicModDefault<PagicPlugin>(`src/plugins/${pluginName}.tsx`);
-      }
+      let plugin = await importPlugin(pluginName);
       sortedPlugins.push(plugin);
     }
     sortedPlugins = sortByInsert(sortedPlugins);

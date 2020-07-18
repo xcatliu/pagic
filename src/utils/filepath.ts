@@ -49,7 +49,7 @@ export function globToRegExp(
   }
 ): RegExp {
   const { matchDir, prefix } = {
-    matchDir: false,
+    matchDir: true,
     prefix: '',
     ...options
   };
@@ -114,13 +114,11 @@ export async function walk(
   let { match, skip, include, exclude } = walkOptions;
   const includeMatch: RegExp[] | undefined = include?.map((glob) =>
     globToRegExp(glob, {
-      matchDir: true,
       prefix: `${path.resolve(srcDir)}/`
     })
   );
   const excludeSkip: RegExp[] | undefined = exclude?.map((glob) =>
     globToRegExp(glob, {
-      matchDir: true,
       prefix: `${path.resolve(srcDir)}/`
     })
   );

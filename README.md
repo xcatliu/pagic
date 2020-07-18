@@ -21,6 +21,7 @@ WARNING: This project is under development so api would changes without announce
 - [Deno X ranking](https://yoshixmk.github.io/deno-x-ranking/) ([GitHub](https://github.com/yoshixmk/deno-x-ranking))
 - [TypeScript 入门教程](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))
 - [Deno 钻研之术](https://deno-tutorial.js.org/) ([GitHub](https://github.com/hylerrix/deno-tutorial))
+- [Deno 中文手册](https://manual.deno.js.cn/) ([GitHub](https://github.com/denocn/deno_manual))
 - [Add my site as a demo](https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&labels=demo&template=add-a-demo.md&title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com) 😝
 
 ## Getting started
@@ -152,7 +153,7 @@ And `public/hello.html` would be:
 
 ### Copy static files
 
-If there are other static files which are not end with `.{md|tsx}` or (start with `_` and end with `.tsx`), we will simply copy them:
+If there are other static files which are not end with `.{md,tsx}` or (start with `_` and end with `.tsx`), we will simply copy them:
 
 ```
 docs/
@@ -265,7 +266,7 @@ It's able to configurate pagic by adding a `pagic.config.ts` file. The default c
 export default {
   srcDir: '.',
   outDir: 'dist',
-  include: [],
+  include: undefined,
   exclude: [
     // Dot files
     '{,**/}.*',
@@ -282,10 +283,9 @@ export default {
 
     // ${config.outDir} will be added later
   ],
-  files: [],
   root: '/',
   theme: 'default',
-  plugins: ['init', 'md', 'tsx', 'script', 'layout', 'write'],
+  plugins: ['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out'],
   watch: false,
   serve: false,
   port: 8000

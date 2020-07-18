@@ -210,9 +210,6 @@ header li a:hover {
 .sidebar .nav_link.no_link:hover [class^='czs-angle-'] {
   opacity: 1;
 }
-.fold ol {
-  height: 0 !important;
-}
 
 .sidebar hr {
   margin-right: 1rem;

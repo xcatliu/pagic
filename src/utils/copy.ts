@@ -19,10 +19,14 @@ export async function copyPagicFile(pathToPagicRoot: string, dest: string) {
   if (import.meta.url.startsWith('file://')) {
     await ensureDirAndCopy(src, dest, { overwrite: true });
   } else {
-    const res = await fetch(src);
-    await fs.ensureDir(path.dirname(dest));
-    // https://stackoverflow.com/q/61945050/2777142
-    const file = await Deno.open(dest, { create: true, write: true });
-    await Deno.writeAll(file, new Uint8Array(await res.arrayBuffer()));
+    await download(src, dest);
   }
+}
+export async function download(httpPath: string, dest: string) {
+  logger.success('Download file', httpPath);
+  const res = await fetch(httpPath);
+  await fs.ensureDir(path.dirname(dest));
+  // https://stackoverflow.com/q/61945050/2777142
+  const file = await Deno.open(dest, { create: true, write: true });
+  await Deno.writeAll(file, new Uint8Array(await res.arrayBuffer()));
 }

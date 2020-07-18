@@ -1,6 +1,7 @@
 import { path } from '../deps.ts';
 
 import { pagicRootPath } from './filepath.ts';
+import { PagicPlugin, PagicThemeConfig } from '../Pagic.ts';
 
 const importCache: {
   [importPath: string]: any;
@@ -19,6 +20,22 @@ export async function importPagicModDefault<T = any>(pathToPagicRoot: string, op
 export async function importPagicMod<T = any>(pathToPagicRoot: string, options: ImportOptions = {}): Promise<T> {
   const mod = await import_<T>(`${pagicRootPath}/${pathToPagicRoot}`, options);
   return mod;
+}
+/** Import plugin */
+export async function importPlugin(pluginName: string) {
+  if (/^https?:\/\//.test(pluginName)) {
+    return await importDefault<PagicPlugin>(pluginName);
+  } else {
+    return await importPagicModDefault<PagicPlugin>(`src/plugins/${pluginName}.tsx`);
+  }
+}
+/** Import theme or themeFile */
+export async function importTheme(theme: string, themeFile?: string) {
+  if (/^https?:\/\//.test(theme)) {
+    return await importDefault<PagicThemeConfig>(themeFile ? theme.replace(/\/[^\/]+$/, `/${themeFile}`) : theme);
+  } else {
+    return await importPagicModDefault<PagicThemeConfig>(`src/themes/${theme}/${themeFile ?? 'mod.ts'}`);
+  }
 }
 /** Replacement of dynamic import default */
 export async function importDefault<T = any>(importPath: string, options: ImportOptions = {}): Promise<T> {

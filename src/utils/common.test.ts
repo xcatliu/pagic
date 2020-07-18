@@ -1,6 +1,7 @@
+import { path } from '../deps.ts';
 import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
 
-import { Tree, unique, pick, omit, depthFirstTraversal, sortByInsert } from './common.ts';
+import { Tree, unique, pick, omit, depthFirstTraversal, sortByInsert, getPagicConfigPath } from './common.ts';
 
 Deno.test('[unique]', () => {
   assertEquals(unique([1, 5, 2, 1, 2, 1]), [1, 5, 2]);
@@ -75,4 +76,7 @@ Deno.test('[sortByInsert] insert to an inserted item', () => {
       { name: 'b' }
     ]
   );
+});
+Deno.test('[getPagicConfigPath]', async () => {
+  assertEquals(await getPagicConfigPath(), path.resolve('pagic.config.ts'));
 });
