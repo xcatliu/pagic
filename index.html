@@ -17,6 +17,7 @@
 <li><a href="https://yoshixmk.github.io/deno-x-ranking/">Deno X ranking</a> (<a href="https://github.com/yoshixmk/deno-x-ranking">GitHub</a>)</li>
 <li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>
 <li><a href="https://deno-tutorial.js.org/">Deno 钻研之术</a> (<a href="https://github.com/hylerrix/deno-tutorial">GitHub</a>)</li>
+<li><a href="https://manual.deno.js.cn/">Deno 中文手册</a> (<a href="https://github.com/denocn/deno_manual">GitHub</a>)</li>
 <li><a href="https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&amp;labels=demo&amp;template=add-a-demo.md&amp;title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com">Add my site as a demo</a> 😝</li>
 </ul>
 <h2 id="getting-started">Getting started<a class="anchor" href="#getting-started">§</a></h2>
@@ -113,7 +114,7 @@ The easiest way to generate static html page from markdown, built with Deno! �
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
 </code></pre>
 <h3 id="copy-static-files">Copy static files<a class="anchor" href="#copy-static-files">§</a></h3>
-<p>If there are other static files which are not end with <code>.{md|tsx}</code> or (start with <code>_</code> and end with <code>.tsx</code>), we will simply copy them:</p>
+<p>If there are other static files which are not end with <code>.{md,tsx}</code> or (start with <code>_</code> and end with <code>.tsx</code>), we will simply copy them:</p>
 <pre class="language-autoit"><code class="language-autoit">docs<span class="token operator">/</span>
 ├── public<span class="token operator">/</span>
 |   ├── assets
@@ -203,7 +204,7 @@ The easiest way to generate static html page from markdown, built with Deno! �
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
   outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
-  include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  include<span class="token operator">:</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span>
   exclude<span class="token operator">:</span> <span class="token punctuation">[</span>
     <span class="token comment">// Dot files</span>
     <span class="token string">'{,**/}.*'</span><span class="token punctuation">,</span>
@@ -220,10 +221,9 @@ The easiest way to generate static html page from markdown, built with Deno! �
 
     <span class="token comment">// ${config.outDir} will be added later</span>
   <span class="token punctuation">]</span><span class="token punctuation">,</span>
-  files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
   root<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
   theme<span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">,</span>
-  plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'init'</span><span class="token punctuation">,</span> <span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token string">'tsx'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'layout'</span><span class="token punctuation">,</span> <span class="token string">'write'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'clean'</span><span class="token punctuation">,</span> <span class="token string">'init'</span><span class="token punctuation">,</span> <span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token string">'tsx'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'layout'</span><span class="token punctuation">,</span> <span class="token string">'out'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
   watch<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   serve<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   port<span class="token operator">:</span> <span class="token number">8000</span>
