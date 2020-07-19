@@ -238,10 +238,10 @@ header li a:hover {
 }
 .main_article {
   overflow: auto;
-  padding: 0 var(--width-article-padding);
+  padding: 0 1rem;
   padding-bottom: 2rem;
-  width: var(--width-article);
-  max-width: var(--width-article);
+  width: 44rem;
+  max-width: 44rem;
 }
 article {
   margin-bottom: 3rem;
@@ -304,7 +304,7 @@ h6:hover .anchor {
   min-width: calc(var(--width-toc) + 2rem);
   font-size: 14px;
   line-height: var(--line-height-small);
-  padding: 2rem 2rem 2rem 0;
+  padding: 2rem 1rem;
 }
 .main_toc {
   position: fixed;
@@ -397,18 +397,18 @@ h6:hover .anchor {
 /* #endregion */
 
 /* #region Mobile */
-@media screen and (min-width: 1056px) {
+@media screen and (min-width: 1024px) {
   .mobile_menu,
   .mobile_header {
     display: none;
   }
 }
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 1247px) {
   .main_toc_container {
     display: none;
   }
 }
-@media screen and (max-width: 1055px) {
+@media screen and (max-width: 1023px) {
   .tools,
   .nav_custom_item,
   header > h1 {
@@ -449,10 +449,6 @@ h6:hover .anchor {
   .sidebar + .main {
     margin-left: 0;
   }
-  .main_article {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
   .anchor {
     opacity: 1;
   }
@@ -468,6 +464,16 @@ h6:hover .anchor {
   }
   .prev_next .prev + .next {
     margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 44rem) {
+  .main_article {
+    width: auto;
+  }
+  pre[class*='language-'] {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
   }
 }
 /* #endregion */

@@ -14,8 +14,8 @@ const Layout: PagicLayout = ({ config, title, ga, outputPath, content, script })
       <title>{title ? (outputPath === 'index.html' ? title : `${title} · ${config.title}`) : config.title}</title>
       {config.description && <meta name="description" content={config.description} />}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href={`${config.root}assets/index.css`} />
       <link rel="stylesheet" href={`${config.root}assets/prism_tomorrow.css`} />
+      <link rel="stylesheet" href={`${config.root}assets/index.css`} />
       {config.head}
     </head>
     <body>
