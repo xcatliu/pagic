@@ -15,7 +15,7 @@ const Header: PagicLayout<{
     <nav>
       <ul>
         {config.nav
-          .filter(({ align }: any) => align !== 'right')
+          ?.filter(({ align }: any) => align !== 'right')
           .map(({ text, link, target, popover }: any) => (
             <li key={link} className="nav_custom_item">
               {popover ? (
@@ -64,7 +64,7 @@ const Header: PagicLayout<{
         </li>
         <li style={{ flexGrow: 1 }} />
         {config.nav
-          .filter(({ align }: any) => align === 'right')
+          ?.filter(({ align }: any) => align === 'right')
           .map(({ text, link, target, popover }: any) => (
             <li key={link} className="nav_custom_item">
               {popover ? (

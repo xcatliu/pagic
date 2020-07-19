@@ -20,7 +20,7 @@ const Sidebar: PagicLayout = ({ config, outputPath, sidebar }) => {
       <a className="powered_by" href="https://github.com/xcatliu/pagic" target="_blank">
         Powered by&nbsp;
         <img src={`${config.root}assets/pagic.png`} />
-        agic
+        <span style={{ color: 'hsl(210, 70%, 50%)' }}>agic</span>
       </a>
     </aside>
   );

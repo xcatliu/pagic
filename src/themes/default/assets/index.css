@@ -46,7 +46,7 @@ footer {
     opacity: 1;
   }
   article {
-    width: auto;
+    width: 100vw;
   }
   pre[class*='language-'] {
     margin-left: -1rem !important;
