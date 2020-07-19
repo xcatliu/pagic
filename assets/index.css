@@ -6,7 +6,8 @@ article {
   display: flow-root;
   margin: 0 auto;
   padding: 0 1rem;
-  max-width: var(--width-article);
+  width: 44rem;
+  max-width: 44rem;
   min-height: calc(100vh - 5.5rem);
 }
 
@@ -40,9 +41,16 @@ footer {
 /* #endregion */
 
 /* #region Mobile */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 44rem) {
   .anchor {
     opacity: 1;
+  }
+  article {
+    width: auto;
+  }
+  pre[class*='language-'] {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
   }
 }
 /* #endregion */
