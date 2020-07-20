@@ -5,6 +5,9 @@ export default {
     title: 'Pagic',
     description: 'The easiest way to generate static html page from markdown, built with Deno! 🦕',
     github: 'https://github.com/xcatliu/pagic',
+    head: (React.createElement(React.Fragment, null,
+        React.createElement("script", { src: "/assets/vconsole.min.js" }),
+        React.createElement("script", { dangerouslySetInnerHTML: { __html: 'var vConsole = new VConsole();' } }))),
     nav: [
         {
             text: '文档',

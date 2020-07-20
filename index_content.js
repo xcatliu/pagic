@@ -82,7 +82,8 @@ const IndexPage = () => (React.createElement(React.Fragment, null,
             React.createElement("img", { src: "/assets/pagic_logo.png", style: {
                     width: 128,
                     verticalAlign: 'bottom',
-                    margin: -16
+                    margin: -16,
+                    opacity: 1
                 } }),
             "agic"),
         React.createElement("p", { style: {
