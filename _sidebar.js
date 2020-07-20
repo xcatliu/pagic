@@ -5,11 +5,10 @@ const Sidebar = ({ config, outputPath, sidebar }) => {
     }
     return (React.createElement("aside", { className: "sidebar" },
         React.createElement("ol", null, sidebar.map((sidebarItem, index) => (React.createElement(FoldableItem, { key: index, config: config, outputPath: outputPath, sidebarItem: sidebarItem })))),
-        React.createElement("hr", null),
-        React.createElement("a", { className: "powered_by", href: "https://github.com/xcatliu/pagic", target: "_blank" },
-            "Powered by\u00A0",
-            React.createElement("img", { src: `${config.root}assets/pagic.png` }),
-            React.createElement("span", { style: { color: 'hsl(210, 70%, 50%)' } }, "agic"))));
+        React.createElement("div", { className: "powered_by" },
+            "Powered by",
+            ' ',
+            React.createElement("a", { href: "https://github.com/xcatliu/pagic", target: "_blank" }, "Pagic"))));
 };
 const FoldableItem = ({ config, outputPath, sidebarItem: { text, link, children } }) => {
     const olRef = React.useRef(null);
