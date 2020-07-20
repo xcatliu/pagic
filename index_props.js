@@ -1,7 +1,7 @@
 import projectConfig from '/pagic.config.js';
 import IndexPage from './index_content.js';
 export default {
-    config: { "root": "/", ...projectConfig },
+    config: Object.assign({ "root": "/" }, projectConfig),
     'pagePath': "index.tsx",
     'layoutPath': "_layout.tsx",
     'outputPath': "index.html",

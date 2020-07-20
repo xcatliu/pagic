@@ -1,6 +1,6 @@
 import projectConfig from '/pagic.config.js';
 export default {
-    config: { "root": "/", ...projectConfig },
+    config: Object.assign({ "root": "/" }, projectConfig),
     'pagePath': "plugins/README.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "plugins/index.html",
