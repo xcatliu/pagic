@@ -35,6 +35,10 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
 ```
 
+#### Docker
+
+`alias pagic='docker run -it --rm -v $PWD:/pagic yardenshoham/pagic'`
+
 ### Markdown + Layout => HTML
 
 Let's say we have a project like this:
