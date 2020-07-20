@@ -91,7 +91,8 @@ const IndexPage = () => (
           style={{
             width: 128,
             verticalAlign: 'bottom',
-            margin: -16
+            margin: -16,
+            opacity: 1
           }}
         />
         agic

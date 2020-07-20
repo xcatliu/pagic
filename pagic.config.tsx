@@ -1,3 +1,6 @@
+// @deno-types="https://deno.land/x/types/react/v16.13.1/react.d.ts"
+import React from 'https://dev.jspm.io/react@16.13.1';
+
 export default {
   srcDir: 'site',
   theme: 'docs',
@@ -5,6 +8,12 @@ export default {
   title: 'Pagic',
   description: 'The easiest way to generate static html page from markdown, built with Deno! 🦕',
   github: 'https://github.com/xcatliu/pagic',
+  head: (
+    <>
+      <script src="/assets/vconsole.min.js" />
+      <script dangerouslySetInnerHTML={{ __html: 'var vConsole = new VConsole();' }} />
+    </>
+  ),
   nav: [
     {
       text: '文档',
