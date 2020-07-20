@@ -15,7 +15,7 @@ export function compile(input: string) {
   return ts.default
     .transpileModule(input, {
       compilerOptions: {
-        target: 'ESNext',
+        target: 'ES2019',
         module: 'ESNext',
         jsx: 'React',
         removeComments: false,
