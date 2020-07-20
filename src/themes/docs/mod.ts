@@ -10,11 +10,11 @@ export default {
     'assets/czs-sun.svg',
     'assets/czs-sun-l.svg',
     'assets/index.css',
-    'assets/pagic.png',
     'assets/prism.css',
     'assets/prism_tomorrow.css',
     'assets/reset.css',
     'assets/variables.css',
+    '_footer.tsx',
     '_head.tsx',
     '_header.tsx',
     '_layout.tsx',
@@ -22,6 +22,7 @@ export default {
     '_main.tsx',
     '_popover.tsx',
     '_sidebar.tsx',
+    '_tools.tsx',
     '_utils.tsx',
     'favicon.ico'
   ]

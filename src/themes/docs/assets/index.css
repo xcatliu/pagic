@@ -144,7 +144,6 @@ header li a:hover {
   height: calc(100vh - var(--height-header));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 2rem 0 2rem 1rem;
   background-color: var(--color-background-sidebar);
   border-right: 1px solid var(--color-border);
   font-size: 14px;
@@ -152,17 +151,16 @@ header li a:hover {
   z-index: var(--z-index-sidebar);
 }
 .sidebar ol {
-  padding: 0;
+  padding-left: 1rem;
   margin: 0;
   list-style: none;
+  transition: height var(--transition-duration);
+  overflow: hidden;
 }
 .sidebar > ol {
   min-height: calc(100vh - var(--height-header) - 8rem - 20px);
-}
-.sidebar ol ol {
-  padding-left: 1rem;
-  transition: height var(--transition-duration);
-  overflow: hidden;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .sidebar .nav_link {
   position: relative;
@@ -211,19 +209,11 @@ header li a:hover {
   opacity: 1;
 }
 
-.sidebar hr {
-  margin-right: 1rem;
-  margin: 2rem 1rem 2rem 0;
-}
 .powered_by {
   color: var(--color-text-muted);
-  margin-left: 1rem;
-}
-.powered_by img {
-  width: 24px;
-  height: 24px;
-  vertical-align: bottom;
-  margin: -3px;
+  margin: 0 1rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--color-border);
 }
 /* #endregion */
 
@@ -247,7 +237,7 @@ article {
   margin-bottom: 3rem;
 }
 article.loading {
-  min-height: calc(100vh - var(--height-header) - 2rem);
+  min-height: calc(100vh - var(--height-header));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -336,7 +326,16 @@ h6:hover .anchor {
 }
 /* #endregion */
 
-/* #region tools */
+/* #region Footer */
+footer {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  padding: 2rem 0;
+}
+/* #endregion */
+
+/* #region Tools */
 .tools {
   position: fixed;
   flex-direction: column;

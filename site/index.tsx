@@ -45,13 +45,6 @@ h2 {
 .btn:hover {
   opacity: 1;
 }
-footer {
-  text-align: center;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-small);
-  line-height: 1.5rem;
-  padding: 3rem 0;
-}
 @media screen and (max-width: 44rem) {
   h2 {
     text-align: center;
@@ -170,12 +163,6 @@ pagic build`
         }}
       />
     </pre>
-    <footer>
-      Powered by{' '}
-      <a href="https://github.com/xcatliu/pagic" target="_blank">
-        Pagic
-      </a>
-    </footer>
   </>
 );
 

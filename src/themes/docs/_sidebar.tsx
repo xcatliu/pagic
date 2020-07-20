@@ -16,12 +16,12 @@ const Sidebar: PagicLayout = ({ config, outputPath, sidebar }) => {
           <FoldableItem key={index} config={config} outputPath={outputPath} sidebarItem={sidebarItem} />
         ))}
       </ol>
-      <hr />
-      <a className="powered_by" href="https://github.com/xcatliu/pagic" target="_blank">
-        Powered by&nbsp;
-        <img src={`${config.root}assets/pagic.png`} />
-        <span style={{ color: 'hsl(210, 70%, 50%)' }}>agic</span>
-      </a>
+      <div className="powered_by">
+        Powered by{' '}
+        <a href="https://github.com/xcatliu/pagic" target="_blank">
+          Pagic
+        </a>
+      </div>
     </aside>
   );
 };

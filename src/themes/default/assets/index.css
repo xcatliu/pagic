@@ -8,7 +8,6 @@ article {
   padding: 0 1rem;
   width: 44rem;
   max-width: 44rem;
-  min-height: calc(100vh - 5.5rem);
 }
 
 .anchor {
@@ -35,7 +34,6 @@ footer {
   text-align: center;
   color: var(--color-text-muted);
   font-size: var(--font-size-small);
-  line-height: 1.5rem;
   padding: 2rem 0;
 }
 /* #endregion */
