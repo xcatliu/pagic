@@ -16,12 +16,6 @@ const Sidebar: PagicLayout = ({ config, outputPath, sidebar }) => {
           <FoldableItem key={index} config={config} outputPath={outputPath} sidebarItem={sidebarItem} />
         ))}
       </ol>
-      <div className="powered_by">
-        Powered by{' '}
-        <a href="https://github.com/xcatliu/pagic" target="_blank">
-          Pagic
-        </a>
-      </div>
     </aside>
   );
 };
@@ -63,7 +57,7 @@ const FoldableItem: React.FC<{
     foldOl(!fold);
   };
   return (
-    <li className={fold ? 'fold' : 'unfold'}>
+    <li className={children ? (fold ? 'fold' : 'unfold') : ''}>
       <a
         href={link ? `${config.root}${link}` : '#'}
         className={classnames('nav_link', {

@@ -3,18 +3,13 @@ import React from 'https://dev.jspm.io/react@16.13.1';
 
 import { PagicLayout } from '../../Pagic.ts';
 
-const Footer: PagicLayout = ({ sidebar }) => {
-  if (sidebar) {
-    return null;
-  }
-  return (
-    <footer>
-      Powered by{' '}
-      <a href="https://github.com/xcatliu/pagic" target="_blank">
-        Pagic
-      </a>
-    </footer>
-  );
-};
+const Footer: PagicLayout = () => (
+  <footer>
+    Powered by{' '}
+    <a href="https://github.com/xcatliu/pagic" target="_blank">
+      Pagic
+    </a>
+  </footer>
+);
 
 export default Footer;

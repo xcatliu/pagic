@@ -9,29 +9,12 @@ const Header: PagicLayout<{
   setIsDark: (isDark: boolean) => void;
 }> = ({ config, isDark, setIsDark }) => (
   <header>
-    <h1>
+    <h1 className="hide_on_mobile">
       <a href={config.root}>{config.title}</a>
     </h1>
     <nav>
       <ul>
-        {config.nav
-          ?.filter(({ align }: any) => align !== 'right')
-          .map(({ text, link, target, popover }: any) => (
-            <li key={link} className="nav_custom_item">
-              {popover ? (
-                <Popover placement="bottom-start" content={popover}>
-                  <a href={link} target={target}>
-                    {text}
-                  </a>
-                </Popover>
-              ) : (
-                <a href={link} target={target}>
-                  {text}
-                </a>
-              )}
-            </li>
-          ))}
-        <li className="mobile_menu flex_center">
+        <li className="show_on_mobile flex_center">
           <a
             className="czs-menu-l"
             href="#"
@@ -49,8 +32,8 @@ const Header: PagicLayout<{
             }}
           />
         </li>
-        <li className="mobile_header">
-          <h1>
+        <li className="show_on_mobile">
+          <h1 className="mobile_title">
             <a
               href={config.root}
               onClick={() => {
@@ -62,11 +45,28 @@ const Header: PagicLayout<{
             </a>
           </h1>
         </li>
+        {config.nav
+          ?.filter(({ align }: any) => align !== 'right')
+          .map(({ text, link, target, popover }: any) => (
+            <li key={link} className="hide_on_mobile">
+              {popover ? (
+                <Popover placement="bottom-start" content={popover}>
+                  <a href={link} target={target}>
+                    {text}
+                  </a>
+                </Popover>
+              ) : (
+                <a href={link} target={target}>
+                  {text}
+                </a>
+              )}
+            </li>
+          ))}
         <li style={{ flexGrow: 1 }} />
         {config.nav
           ?.filter(({ align }: any) => align === 'right')
           .map(({ text, link, target, popover }: any) => (
-            <li key={link} className="nav_custom_item">
+            <li key={link} className="hide_on_mobile">
               {popover ? (
                 <Popover placement="bottom-end" content={popover}>
                   <a href={link} target={target}>
