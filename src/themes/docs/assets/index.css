@@ -215,9 +215,6 @@ header li a:hover {
   width: 44rem;
   max-width: 44rem;
 }
-article {
-  margin-bottom: 2rem;
-}
 article.loading {
   min-height: calc(100vh - var(--height-header));
   display: flex;
@@ -248,7 +245,7 @@ h6:hover .anchor {
 .prev_next {
   display: flex;
   align-items: stretch;
-  margin: 2rem 0;
+  margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--color-border);
 }
@@ -339,7 +336,7 @@ footer {
 
 /* #region Gitalk */
 .gt-container {
-  margin: 0 auto;
+  margin: 2rem auto 0;
   color: var(--color-text);
   fill: var(--color-text);
 }
