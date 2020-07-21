@@ -2,13 +2,11 @@ import Popover from './_popover.js';
 const Header = ({ config, isDark, setIsDark }) => {
     var _a, _b;
     return (React.createElement("header", null,
-        React.createElement("h1", null,
+        React.createElement("h1", { className: "hide_on_mobile" },
             React.createElement("a", { href: config.root }, config.title)),
         React.createElement("nav", null,
-            React.createElement("ul", null, (_a = config.nav) === null || _a === void 0 ? void 0 :
-                _a.filter(({ align }) => align !== 'right').map(({ text, link, target, popover }) => (React.createElement("li", { key: link, className: "nav_custom_item" }, popover ? (React.createElement(Popover, { placement: "bottom-start", content: popover },
-                    React.createElement("a", { href: link, target: target }, text))) : (React.createElement("a", { href: link, target: target }, text))))),
-                React.createElement("li", { className: "mobile_menu flex_center" },
+            React.createElement("ul", null,
+                React.createElement("li", { className: "show_on_mobile flex_center" },
                     React.createElement("a", { className: "czs-menu-l", href: "#", style: { backgroundImage: `url("${config.root}assets/czs-menu-l.svg")` }, onClick: (e) => {
                             e.preventDefault();
                             // @ts-ignore
@@ -21,14 +19,16 @@ const Header = ({ config, isDark, setIsDark }) => {
                                 document.documentElement.classList.add('show_sidebar');
                             }
                         } })),
-                React.createElement("li", { className: "mobile_header" },
-                    React.createElement("h1", null,
+                React.createElement("li", { className: "show_on_mobile" },
+                    React.createElement("h1", { className: "mobile_title" },
                         React.createElement("a", { href: config.root, onClick: () => {
                                 // @ts-ignore
                                 document.documentElement.classList.remove('show_sidebar');
-                            } }, config.title))),
+                            } }, config.title))), (_a = config.nav) === null || _a === void 0 ? void 0 :
+                _a.filter(({ align }) => align !== 'right').map(({ text, link, target, popover }) => (React.createElement("li", { key: link, className: "hide_on_mobile" }, popover ? (React.createElement(Popover, { placement: "bottom-start", content: popover },
+                    React.createElement("a", { href: link, target: target }, text))) : (React.createElement("a", { href: link, target: target }, text))))),
                 React.createElement("li", { style: { flexGrow: 1 } }), (_b = config.nav) === null || _b === void 0 ? void 0 :
-                _b.filter(({ align }) => align === 'right').map(({ text, link, target, popover }) => (React.createElement("li", { key: link, className: "nav_custom_item" }, popover ? (React.createElement(Popover, { placement: "bottom-end", content: popover },
+                _b.filter(({ align }) => align === 'right').map(({ text, link, target, popover }) => (React.createElement("li", { key: link, className: "hide_on_mobile" }, popover ? (React.createElement(Popover, { placement: "bottom-end", content: popover },
                     React.createElement("a", { href: link, target: target }, text))) : (React.createElement("a", { href: link, target: target }, text))))),
                 config.github && (React.createElement("li", { className: "flex_center" },
                     React.createElement("a", { className: "czs-github-logo", href: config.github, target: "_blank", style: { backgroundImage: `url("${config.root}assets/czs-github-logo.svg")` } }))),

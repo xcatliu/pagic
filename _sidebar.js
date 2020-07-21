@@ -4,11 +4,7 @@ const Sidebar = ({ config, outputPath, sidebar }) => {
         return null;
     }
     return (React.createElement("aside", { className: "sidebar" },
-        React.createElement("ol", null, sidebar.map((sidebarItem, index) => (React.createElement(FoldableItem, { key: index, config: config, outputPath: outputPath, sidebarItem: sidebarItem })))),
-        React.createElement("div", { className: "powered_by" },
-            "Powered by",
-            ' ',
-            React.createElement("a", { href: "https://github.com/xcatliu/pagic", target: "_blank" }, "Pagic"))));
+        React.createElement("ol", null, sidebar.map((sidebarItem, index) => (React.createElement(FoldableItem, { key: index, config: config, outputPath: outputPath, sidebarItem: sidebarItem }))))));
 };
 const FoldableItem = ({ config, outputPath, sidebarItem: { text, link, children } }) => {
     const olRef = React.useRef(null);
@@ -41,7 +37,7 @@ const FoldableItem = ({ config, outputPath, sidebarItem: { text, link, children 
         e.stopPropagation();
         foldOl(!fold);
     };
-    return (React.createElement("li", { className: fold ? 'fold' : 'unfold' },
+    return (React.createElement("li", { className: children ? (fold ? 'fold' : 'unfold') : '' },
         React.createElement("a", { href: link ? `${config.root}${link}` : '#', className: classnames('nav_link', {
                 active: isActive,
                 no_link: !link
