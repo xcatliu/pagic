@@ -8,12 +8,7 @@
   --color-primary: hsl(210, 70%, 50%);
 
   --color-background-faded: #f2f2f2;
-  --color-background-sidebar: #fafafa;
   --color-background-code: #f2f2f2;
-
-  --box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
-
-  /* Layout */
 
   /* Typography */
   --font-size: 16px;
@@ -37,8 +32,4 @@
     'Segoe UI Emoji', 'Segoe UI Symbol';
 
   --font-family-monospace: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
-
-  /* Others */
-  --opacity: 0.7;
-  --transition-duration: 0.3s;
 }

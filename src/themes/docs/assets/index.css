@@ -1,10 +1,10 @@
 @import 'variables.css';
 @import 'reset.css';
 
+/* #region html and body */
 html {
   scroll-padding-top: calc(var(--height-header) + 1rem);
 }
-
 html.is_dark img {
   opacity: var(--opacity);
   transition: opacity var(--transition-duration);
@@ -12,6 +12,7 @@ html.is_dark img {
 html.is_dark img:hover {
   opacity: 1;
 }
+/* #endregion */
 
 /* #region Common */
 .nav_link,
@@ -50,16 +51,6 @@ html.is_dark img:hover {
   height: 2rem;
   background-size: 20px;
 }
-.button {
-  display: inline-block;
-  padding: 1rem;
-  background-color: var(--color-background-sidebar);
-  line-height: var(--line-height-small);
-}
-.button:hover {
-  text-decoration: none;
-  background-color: var(--color-background-faded);
-}
 /* #endregion */
 
 /* #region Header */
@@ -81,7 +72,7 @@ header h1 {
 header h1 a {
   display: block;
   width: var(--width-sidebar);
-  padding: 0 2rem;
+  padding-left: 2rem;
   font-size: 20px;
   line-height: var(--height-header);
   color: var(--color-text);
@@ -158,10 +149,11 @@ header li a:hover {
   overflow: hidden;
 }
 .sidebar > ol {
-  min-height: calc(100vh - var(--height-header) - 8rem - 20px);
+  min-height: calc(100vh - var(--height-header) - 5.5rem - 1px);
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+/** TODO */
 .sidebar .nav_link {
   position: relative;
   padding: 6px calc(1rem - 1px);
@@ -213,6 +205,7 @@ header li a:hover {
   color: var(--color-text-muted);
   margin: 0 1rem;
   padding: 2rem 1rem;
+  line-height: 1.5rem;
   border-top: 1px solid var(--color-border);
 }
 /* #endregion */
@@ -274,6 +267,14 @@ h6:hover .anchor {
   width: calc(50% - 1rem);
   display: flex;
   align-items: center;
+  display: inline-block;
+  padding: 1rem;
+  background-color: var(--color-background-sidebar);
+  line-height: var(--line-height-small);
+}
+.prev_next a:hover {
+  text-decoration: none;
+  background-color: var(--color-background-faded);
 }
 .prev_next .prev {
   margin-right: 1rem;

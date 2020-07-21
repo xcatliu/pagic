@@ -1,2 +1,4 @@
 src/vendors
 .github/ISSUE_TEMPLATE
+prism.css
+prism_tomorrow.css
