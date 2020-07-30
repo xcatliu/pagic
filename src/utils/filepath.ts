@@ -1,5 +1,4 @@
 import { fs, path } from '../deps.ts';
-import minimatch from 'https://dev.jspm.io/minimatch@3.0.4';
 
 import { PagicConfig } from '../Pagic.ts';
 
@@ -36,31 +35,6 @@ export function underlineToPascal(_foo_bar: string) {
  */
 export function replaceExt(input: string, replacement: string) {
   return input.replace(/\.[^\.]+$/, replacement);
-}
-/**
- * input: node_modules
- * output: minimatch: **\/node_modules{,/**}
- */
-export function globToRegExp(
-  glob: string,
-  options?: {
-    matchDir?: boolean;
-    prefix?: string;
-  }
-): RegExp {
-  const { matchDir, prefix } = {
-    matchDir: true,
-    prefix: '',
-    ...options
-  };
-  // eslint-disable-next-line no-param-reassign
-  glob = `${prefix}${glob}`;
-  if (matchDir) {
-    // eslint-disable-next-line no-param-reassign
-    glob = `${glob}{,/**}`;
-  }
-  const mm = new minimatch.Minimatch(glob);
-  return mm.makeRe();
 }
 /**
  * input: foo/README.md
@@ -112,18 +86,18 @@ export async function walk(
   walkOptions: fs.WalkOptions & Pick<PagicConfig, 'include' | 'exclude'> = {}
 ): Promise<string[]> {
   let { match, skip, include, exclude } = walkOptions;
-  const includeMatch: RegExp[] | undefined = include?.map((glob) =>
-    globToRegExp(glob, {
-      prefix: `${path.resolve(srcDir)}/`
-    })
-  );
-  const excludeSkip: RegExp[] | undefined = exclude?.map((glob) =>
-    globToRegExp(glob, {
-      prefix: `${path.resolve(srcDir)}/`
-    })
-  );
+  const includeMatch = include?.reduce<RegExp[]>((prev, glob) => {
+    prev.push(path.globToRegExp(`${path.resolve(srcDir)}/${glob}`));
+    prev.push(path.globToRegExp(`${path.resolve(srcDir)}/${glob}/**`));
+    return prev;
+  }, []);
+  const excludeSkip = exclude?.reduce<RegExp[]>((prev, glob) => {
+    prev.push(path.globToRegExp(`${path.resolve(srcDir)}/${glob}`));
+    prev.push(path.globToRegExp(`${path.resolve(srcDir)}/${glob}/**`));
+    return prev;
+  }, []);
 
-  let walkEntries = [];
+  let walkPaths = [];
   const walkResult = fs.walk(path.resolve(srcDir), {
     includeDirs: false,
     ...walkOptions,
@@ -134,13 +108,16 @@ export async function walk(
   if (include && match) {
     for await (const i of walkResult) {
       if (match.some((regExp) => regExp.test(i.path))) {
-        walkEntries.push(path.relative(srcDir, i.path));
+        walkPaths.push(path.relative(srcDir, i.path));
       }
     }
   } else {
     for await (const i of walkResult) {
-      walkEntries.push(path.relative(srcDir, i.path));
+      walkPaths.push(path.relative(srcDir, i.path));
     }
   }
-  return walkEntries;
+  if (path.sep === '\\') {
+    walkPaths = walkPaths.map(walkPath => walkPath.replace(/\\/g, '/'));
+  }
+  return walkPaths;
 }

@@ -78,5 +78,5 @@ Deno.test('[sortByInsert] insert to an inserted item', () => {
   );
 });
 Deno.test('[getPagicConfigPath]', async () => {
-  assertEquals(await getPagicConfigPath(), path.resolve('pagic.config.ts'));
+  assertEquals(await getPagicConfigPath(), path.resolve('pagic.config.tsx'));
 });

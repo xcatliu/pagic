@@ -6,7 +6,6 @@ import {
   pascalToUnderline,
   underlineToPascal,
   replaceExt,
-  globToRegExp,
   getOutputPath,
   replaceLink,
   findNearestLayoutPath,
@@ -26,17 +25,6 @@ Deno.test('[underlineToPascal]', () => {
 });
 Deno.test('[replaceExt]', () => {
   assertEquals(replaceExt('foo/bar.html', '_content.js'), 'foo/bar_content.js');
-});
-// TODO test assertNotMatch https://github.com/denoland/deno/issues/6773
-Deno.test('[globToRegExp]', () => {
-  assertMatch('foo', globToRegExp('foo'));
-  assertMatch('bar/foo', globToRegExp('{,**/}foo'));
-  assertMatch('foo', globToRegExp('{,**/}foo'));
-  assertMatch('foo/bar', globToRegExp('foo'));
-  assertMatch('/a/b/foo', globToRegExp('foo', { prefix: '/a/b/' }));
-  assertMatch('/a/b/bar/foo', globToRegExp('{,**/}foo', { prefix: '/a/b/' }));
-  assertMatch('/a/b/foo', globToRegExp('{,**/}foo', { prefix: '/a/b/' }));
-  assertMatch('/a/b/bar/foo/baz', globToRegExp('{,**/}foo', { prefix: '/a/b/' }));
 });
 Deno.test('[getOutputPath]', () => {
   assertEquals(getOutputPath('README.md'), 'index.html');
@@ -81,7 +69,7 @@ Deno.test('[findNearestLayoutPath]', () => {
   assertEquals(findNearestLayoutPath('foo/bar/baz.md', ['foo/_layout.tsx', '_layout.tsx']), 'foo/_layout.tsx');
   assertEquals(findNearestLayoutPath('bar/baz.md', ['bar/_layout.tsx', '_layout.tsx']), 'bar/_layout.tsx');
 });
-const sort = (arr: any[]) => arr.sort((a: any, b: any) => a - b);
+const sort = (arr: string[]) => arr.sort((a: string, b: string) => a.localeCompare(b));
 Deno.test('[walk]', async () => {
   assertEquals(sort(await walk('test/fixtures/walk')), [
     '.bar',
@@ -131,7 +119,7 @@ Deno.test('[walk]', async () => {
   assertEquals(
     sort(
       await walk('test/fixtures/walk', {
-        skip: [globToRegExp('{,**/}.*'), Pagic.REGEXP_LAYOUT]
+        skip: [path.globToRegExp('**/.*'), Pagic.REGEXP_LAYOUT]
       })
     ),
     ['a/bar', 'a/bar.tsx', 'a/c/foo', 'a/c/foo.md', 'b/foo', 'b/foo.md', 'bar', 'bar.md', 'foo', 'foo.md', 'foo.tsx']
@@ -139,7 +127,7 @@ Deno.test('[walk]', async () => {
   assertEquals(
     sort(
       await walk('test/fixtures/walk', {
-        match: [/\/foo/],
+        match: [/[\/\\]foo/],
         skip: [/\.md$/, /\.tsx$/]
       })
     ),

@@ -9,7 +9,6 @@ import {
   sortByInsert,
   importDefault,
   logger,
-  globToRegExp,
   walk,
   getPagicConfigPath,
   importPlugin,
@@ -47,7 +46,7 @@ export type PagicLayout<
   T = {
     [key: string]: any;
   }
-> = React.FC<PageProps & T>;
+  > = React.FC<PageProps & T>;
 
 export interface PageProps {
   config: PagicConfig;
@@ -74,17 +73,17 @@ export default class Pagic {
     include: undefined,
     exclude: [
       // Dot files
-      '{,**/}.*',
+      '**/.*',
       // Node common files
-      '{,**/}package.json',
-      '{,**/}package-lock.json',
-      '{,**/}node_modules',
-      // pagic.config.ts and pagic.config.tsx
-      'pagic.config.{ts,tsx}',
+      '**/package.json',
+      '**/package-lock.json',
+      '**/node_modules',
+      'pagic.config.ts',
+      'pagic.config.tsx',
       // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
-      '{,**/}config.gypi',
-      '{,**/}CVS',
-      '{,**/}npm-debug.log'
+      '**/config.gypi',
+      '**/CVS',
+      '**/npm-debug.log'
 
       // ${config.outDir} will be added later
     ],
@@ -96,9 +95,9 @@ export default class Pagic {
     port: 8000
   };
   // foo.md
-  public static REGEXP_PAGE = /\/[^_][^\/]+\.(md|tsx)$/;
+  public static REGEXP_PAGE = /[\/\\][^_][^\/\\]*\.(md|tsx)$/;
   // /_layout.tsx /_sidebar.tsx
-  public static REGEXP_LAYOUT = /\/_[^\/]+\.tsx$/;
+  public static REGEXP_LAYOUT = /[\/\\]_[^\/\\]+\.tsx$/;
 
   // @ts-ignore
   public pagicConfigPath: string;
@@ -207,10 +206,10 @@ export default class Pagic {
       }
       let eventPaths = event.paths.map((eventPath) => path.relative(this.config.srcDir, eventPath));
       this.config.include?.forEach((glob) => {
-        eventPaths = eventPaths.filter((eventPath) => globToRegExp(glob).test(eventPath));
+        eventPaths = eventPaths.filter((eventPath) => path.globToRegExp(glob).test(eventPath) || path.globToRegExp(`${glob}/**`).test(eventPath));
       });
       this.config.exclude?.forEach((glob) => {
-        eventPaths = eventPaths.filter((eventPath) => !globToRegExp(glob).test(eventPath));
+        eventPaths = eventPaths.filter((eventPath) => !path.globToRegExp(glob).test(eventPath) || !path.globToRegExp(`${glob}/**`).test(eventPath));
       });
       this.handleFileChange(eventPaths);
     }

@@ -273,17 +273,17 @@ export default {
   include: undefined,
   exclude: [
     // Dot files
-    '{,**/}.*',
+    '**/.*',
     // Node common files
-    '{,**/}package.json',
-    '{,**/}package-lock.json',
-    '{,**/}node_modules',
-    // pagic.config.ts and pagic.config.tsx
-    'pagic.config.{ts,tsx}',
+    '**/package.json',
+    '**/package-lock.json',
+    '**/node_modules',
+    'pagic.config.ts',
+    'pagic.config.tsx',
     // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
-    '{,**/}config.gypi',
-    '{,**/}CVS',
-    '{,**/}npm-debug.log'
+    '**/config.gypi',
+    '**/CVS',
+    '**/npm-debug.log'
 
     // ${config.outDir} will be added later
   ],
