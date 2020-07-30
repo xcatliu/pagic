@@ -46,7 +46,7 @@ export type PagicLayout<
   T = {
     [key: string]: any;
   }
-  > = React.FC<PageProps & T>;
+> = React.FC<PageProps & T>;
 
 export interface PageProps {
   config: PagicConfig;
@@ -206,10 +206,14 @@ export default class Pagic {
       }
       let eventPaths = event.paths.map((eventPath) => path.relative(this.config.srcDir, eventPath));
       this.config.include?.forEach((glob) => {
-        eventPaths = eventPaths.filter((eventPath) => path.globToRegExp(glob).test(eventPath) || path.globToRegExp(`${glob}/**`).test(eventPath));
+        eventPaths = eventPaths.filter(
+          (eventPath) => path.globToRegExp(glob).test(eventPath) || path.globToRegExp(`${glob}/**`).test(eventPath)
+        );
       });
       this.config.exclude?.forEach((glob) => {
-        eventPaths = eventPaths.filter((eventPath) => !path.globToRegExp(glob).test(eventPath) || !path.globToRegExp(`${glob}/**`).test(eventPath));
+        eventPaths = eventPaths.filter(
+          (eventPath) => !path.globToRegExp(glob).test(eventPath) && !path.globToRegExp(`${glob}/**`).test(eventPath)
+        );
       });
       this.handleFileChange(eventPaths);
     }
