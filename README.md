@@ -1,6 +1,6 @@
 # Pagic
 
-[![gh-pages](https://github.com/xcatliu/pagic/workflows/gh-pages/badge.svg)](https://github.com/xcatliu/pagic/actions)
+[![ci](https://github.com/xcatliu/pagic/workflows/ci/badge.svg)](https://github.com/xcatliu/pagic/actions)
 
 The easiest way to generate static html page from markdown, built with Deno! 🦕
 
