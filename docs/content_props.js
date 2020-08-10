@@ -5,8 +5,8 @@ export default {
         "link": "docs/configuration.html"
     },
     'next': {
-        "text": "布局",
-        "link": "docs/layout.html"
+        "text": "主题",
+        "link": "docs/themes.html"
     },
     'sidebar': [
         {
@@ -20,9 +20,9 @@ export default {
             "pagePath": "docs/usage.md"
         },
         {
-            "text": "目录结构",
-            "link": "docs/structure.html",
-            "pagePath": "docs/structure.md"
+            "text": "_layout.tsx",
+            "link": "docs/layout.html",
+            "pagePath": "docs/layout.md"
         },
         {
             "text": "配置",
@@ -33,11 +33,6 @@ export default {
             "text": "内容",
             "link": "docs/content.html",
             "pagePath": "docs/content.md"
-        },
-        {
-            "text": "布局",
-            "link": "docs/layout.html",
-            "pagePath": "docs/layout.md"
         },
         {
             "text": "主题",

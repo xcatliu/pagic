@@ -44,10 +44,9 @@ export default {
         '/docs/': [
             'docs/introduction.md',
             'docs/usage.md',
-            'docs/structure.md',
+            'docs/layout.md',
             'docs/configuration.md',
             'docs/content.md',
-            'docs/layout.md',
             'docs/themes.md',
             'docs/plugins.md',
             'docs/deployment.md'

@@ -1,12 +1,12 @@
 import projectConfig from '/pagic.config.js';
 export default {
     'prev': {
-        "text": "内容",
-        "link": "docs/content.html"
+        "text": "基本用法",
+        "link": "docs/usage.html"
     },
     'next': {
-        "text": "主题",
-        "link": "docs/themes.html"
+        "text": "配置",
+        "link": "docs/configuration.html"
     },
     'sidebar': [
         {
@@ -20,9 +20,9 @@ export default {
             "pagePath": "docs/usage.md"
         },
         {
-            "text": "目录结构",
-            "link": "docs/structure.html",
-            "pagePath": "docs/structure.md"
+            "text": "_layout.tsx",
+            "link": "docs/layout.html",
+            "pagePath": "docs/layout.md"
         },
         {
             "text": "配置",
@@ -33,11 +33,6 @@ export default {
             "text": "内容",
             "link": "docs/content.html",
             "pagePath": "docs/content.md"
-        },
-        {
-            "text": "布局",
-            "link": "docs/layout.html",
-            "pagePath": "docs/layout.md"
         },
         {
             "text": "主题",
@@ -59,9 +54,9 @@ export default {
     'pagePath': "docs/layout.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "docs/layout.html",
-    'title': "布局",
+    'title': "_layout.tsx",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>布局</h1>'
+            __html: '<h1><code>_layout.tsx</code></h1>'
         } }),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
