@@ -34,7 +34,7 @@ deno install --unstable --allow-read --allow-write --allow-net --name pagic http
 > Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：
 >
 > ```bash
-> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net https://deno.land/x/pagic@v1.0.0/mod.ts
+> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --name pagic https://deno.land/x/pagic/mod.ts
 > ```
 
 ## 初始化项目
@@ -77,13 +77,13 @@ pagic build [options]
 # --port    指定本地服务的端口号
 ```
 
-不妨试试运行以下代码：
+不妨试试在 `site` 目录下运行以下代码：
 
 ```bash
 pagic build --watch --serve
 ```
 
-然后用浏览器打开 `http://127.0.0.1:8000/`，看看是不是显示出 `Hello world` 了呢？
+然后用浏览器打开 http://127.0.0.1:8000/，看看是不是显示出 `Hello world` 了呢？
 
 > 构建结果在 dist 目录中。
 >

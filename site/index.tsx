@@ -1,4 +1,4 @@
-// @deno-types="https://deno.land/x/pagic@v0.8.3/src/types/react/v16.13.1/react.d.ts"
+// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
 const style = `
@@ -152,7 +152,7 @@ const IndexPage = () => (
       <code
         dangerouslySetInnerHTML={{
           __html: `# 安装 pagic
-deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic@v0.8.3/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
 
 # 创建 pagic.config.ts 和 README.md
 echo "export default {}" > pagic.config.ts
