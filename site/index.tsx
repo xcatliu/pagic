@@ -119,10 +119,10 @@ const IndexPage = () => (
       <div>
         <h2>配置简单</h2>
         <ul>
+          <li>约定优于配置</li>
           <li>
             一个入口 <code>pagic.config.ts</code>
           </li>
-          <li>约定优于配置</li>
           <li>符合直觉的设计</li>
         </ul>
       </div>
@@ -138,7 +138,7 @@ const IndexPage = () => (
         <h2>主题和插件</h2>
         <ul>
           <li>内置 default, docs, blog 等主题，支持黑暗模式</li>
-          <li>构建流程由插件组成，可随意组合</li>
+          <li>构建过程由插件组成，可随意组合</li>
           <li>通过 url 引入第三方主题或插件</li>
         </ul>
       </div>
