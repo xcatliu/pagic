@@ -21,14 +21,14 @@
 <p>中国大陆用户可以<a href="https://x.deno.js.cn/">使用镜像加速</a>安装。</p>
 <h3 id="%E5%AE%89%E8%A3%85-pagic">安装 Pagic<a class="anchor" href="#%E5%AE%89%E8%A3%85-pagic">§</a></h3>
 <p>执行以下命令以安装最新版本的 Pagic：</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --name pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --name pagic <a class="token url-link" href="https://deno.land/x/pagic@v0.8.6/mod.ts">https://deno.land/x/pagic@v0.8.6/mod.ts</a>
 </code></pre>
 <p>若需要安装指定版本的 Pagic，则可以在安装的 url 中加入版本号：</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --name pagic <a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --name pagic <a class="token url-link" href="https://deno.land/x/pagic@v0.8.6@v1.0.0/mod.ts">https://deno.land/x/pagic@v0.8.6@v1.0.0/mod.ts</a>
 </code></pre>
 <blockquote>
 <p>Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net <a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net --name pagic <a class="token url-link" href="https://deno.land/x/pagic@v0.8.6/mod.ts">https://deno.land/x/pagic@v0.8.6/mod.ts</a>
 </code></pre>
 </blockquote>
 <h2 id="%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">初始化项目<a class="anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">§</a></h2>
@@ -56,10 +56,10 @@ pagic build <span class="token punctuation">[</span>options<span class="token pu
 <span class="token comment"># --serve   启动本地服务，预览静态网站</span>
 <span class="token comment"># --port    指定本地服务的端口号</span>
 </code></pre>
-<p>不妨试试运行以下代码：</p>
+<p>不妨试试在 <code>site</code> 目录下运行以下代码：</p>
 <pre class="language-bash"><code class="language-bash">pagic build --watch --serve
 </code></pre>
-<p>然后用浏览器打开 <code>http://127.0.0.1:8000/</code>，看看是不是显示出 <code>Hello world</code> 了呢？</p>
+<p>然后用浏览器打开 http://127.0.0.1:8000/，看看是不是显示出 <code>Hello world</code> 了呢？</p>
 <blockquote>
 <p>构建结果在 dist 目录中。</p>
 <p>需要注意的是，一般的 Markdown 文件会被构建为同名的 HTML 文件，但是 <code>README.md</code> 被构建为了 <code>index.html</code>，这是一种人性化的处理，方便同时在 GitHub 中和静态网站中展示首页的内容。</p>
