@@ -1,12 +1,12 @@
 import projectConfig from '/pagic.config.js';
 export default {
     'prev': {
-        "text": "主题",
-        "link": "docs/themes.html"
+        "text": "基本用法",
+        "link": "docs/usage.html"
     },
     'next': {
-        "text": "部署",
-        "link": "docs/deployment.html"
+        "text": "配置",
+        "link": "docs/configuration.html"
     },
     'sidebar': [
         {
@@ -56,12 +56,12 @@ export default {
         }
     ],
     config: { "root": "/", ...projectConfig },
-    'pagePath': "docs/plugins.md",
+    'pagePath': "docs/structure.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "docs/plugins.html",
-    'title': "插件",
+    'outputPath': "docs/structure.html",
+    'title': "目录结构",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>插件</h1>'
+            __html: '<h1>目录结构</h1>'
         } }),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),

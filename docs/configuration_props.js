@@ -1,5 +1,13 @@
 import projectConfig from '/pagic.config.js';
 export default {
+    'prev': {
+        "text": "目录结构",
+        "link": "docs/structure.html"
+    },
+    'next': {
+        "text": "内容",
+        "link": "docs/content.html"
+    },
     'sidebar': [
         {
             "text": "介绍",
@@ -10,6 +18,11 @@ export default {
             "text": "基本用法",
             "link": "docs/usage.html",
             "pagePath": "docs/usage.md"
+        },
+        {
+            "text": "目录结构",
+            "link": "docs/structure.html",
+            "pagePath": "docs/structure.md"
         },
         {
             "text": "配置",
