@@ -4,7 +4,7 @@
 export default {
   srcDir: 'site',
   theme: 'docs',
-  plugins: ['sidebar'],
+  plugins: ['sidebar', 'prev_next'],
   title: 'Pagic',
   description: 'The easiest way to generate static html page from markdown, built with Deno! 🦕',
   github: 'https://github.com/xcatliu/pagic',
@@ -45,6 +45,7 @@ export default {
     '/docs/': [
       'docs/introduction.md',
       'docs/usage.md',
+      'docs/structure.md',
       'docs/configuration.md',
       'docs/content.md',
       'docs/layout.md',

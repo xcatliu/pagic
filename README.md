@@ -32,7 +32,7 @@ WARNING: This project is under development so api would changes without announce
 # Install deno https://deno.land/#installation
 curl -fsSL https://deno.land/x/install/install.sh | sh
 # Install pagic
-deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic@v0.8.3/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --name pagic https://deno.land/x/pagic@v0.8.3/mod.ts
 ```
 
 #### Docker
