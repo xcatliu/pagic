@@ -75,7 +75,7 @@ site/
 
 ### `plugins`
 
-## 页面 props
+## 页面属性
 
 ### `title`
 

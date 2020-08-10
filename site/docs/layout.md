@@ -2,7 +2,7 @@
 
 `_layout.tsx` 是 Pagic 的核心理念之一。
 
-## 什么是 `_layout.tsx`？
+## 什么是 `_layout.tsx`
 
 `_layout.tsx` 可以理解为 Pagic 在渲染时的模版文件，所有页面文件（`md/tsx`）在渲染时都会以 `_layout.tsx` 为模版。
 
