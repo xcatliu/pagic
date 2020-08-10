@@ -3,7 +3,7 @@
 export default {
     srcDir: 'site',
     theme: 'docs',
-    plugins: [],
+    plugins: ['sidebar'],
     title: 'Pagic',
     description: 'The easiest way to generate static html page from markdown, built with Deno! 🦕',
     github: 'https://github.com/xcatliu/pagic',
@@ -16,11 +16,7 @@ export default {
     nav: [
         {
             text: '文档',
-            link: '/docs/'
-        },
-        {
-            text: '新闻',
-            link: '/news/'
+            link: '/docs/introduction.html'
         },
         {
             text: '主题',
@@ -31,6 +27,10 @@ export default {
             link: '/plugins/'
         },
         {
+            text: '新闻',
+            link: '/news/'
+        },
+        {
             text: '关于',
             link: '/about/'
         },
@@ -39,5 +39,17 @@ export default {
             link: '/demos/',
             align: 'right'
         }
-    ]
+    ],
+    sidebar: {
+        '/docs/': [
+            'docs/introduction.md',
+            'docs/usage.md',
+            'docs/configuration.md',
+            'docs/content.md',
+            'docs/layout.md',
+            'docs/themes.md',
+            'docs/plugins.md',
+            'docs/deployment.md'
+        ]
+    }
 };

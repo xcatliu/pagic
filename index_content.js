@@ -90,7 +90,7 @@ const IndexPage = () => (React.createElement(React.Fragment, null,
                 justifyContent: 'center',
                 marginTop: '2rem'
             } },
-            React.createElement("a", { className: "btn btn-primary", href: "/docs/" }, "\u5F00\u59CB\u4F7F\u7528"),
+            React.createElement("a", { className: "btn btn-primary", href: "/docs/introduction.html" }, "\u5F00\u59CB\u4F7F\u7528"),
             React.createElement("a", { className: "btn", href: "/demos/" }, "\u793A\u4F8B\u7F51\u7AD9"))),
     React.createElement("div", { className: "cards" },
         React.createElement("div", null,
