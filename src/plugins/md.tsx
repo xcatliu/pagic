@@ -1,4 +1,4 @@
-import { fs, path } from '../deps.ts';
+import { path } from '../deps.ts';
 // @deno-types="https://deno.land/x/pagic@v0.8.3/src/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 import fm from 'https://dev.jspm.io/front-matter@4.0.2';
@@ -60,7 +60,7 @@ const md: PagicPlugin = {
     for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
       const pageProps = pagic.pagePropsMap[pagePath];
 
-      let content = await fs.readFileStr(path.resolve(pagic.config.srcDir, pagePath));
+      let content = await Deno.readTextFile(path.resolve(pagic.config.srcDir, pagePath));
       const fmResult = fm(content);
       const frontMatter = fmResult.attributes;
       content = fmResult.body;

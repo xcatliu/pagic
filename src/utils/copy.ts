@@ -6,7 +6,7 @@ import { pagicRootPath } from './filepath.ts';
 export async function ensureDirAndWriteFileStr(filename: string, content: string) {
   logger.success('Write', filename);
   await fs.ensureDir(path.dirname(filename));
-  await fs.writeFileStr(filename, content);
+  await Deno.writeTextFile(filename, content);
 }
 export async function ensureDirAndCopy(src: string, dest: string, options?: fs.CopyOptions) {
   logger.success('Copy', src);

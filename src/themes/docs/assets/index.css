@@ -206,7 +206,8 @@ header li a:hover {
   display: flex;
   justify-content: center;
 }
-.sidebar + .main {
+.sidebar + .main,
+.sidebar ~ footer {
   margin-left: var(--width-sidebar);
 }
 .main_article {
@@ -425,7 +426,8 @@ footer {
   header li:last-child {
     margin-right: 0.5rem;
   }
-  .sidebar + .main {
+  .sidebar + .main,
+  .sidebar ~ footer {
     margin-left: 0;
   }
   .anchor {

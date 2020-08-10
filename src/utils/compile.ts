@@ -1,4 +1,3 @@
-import { fs } from '../deps.ts';
 import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
 import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
 
@@ -30,7 +29,7 @@ export function compile(input: string) {
 /** Read input file and then compile it */
 export async function compileFile(src: string) {
   logger.success('Compile file', src);
-  const content = await fs.readFileStr(src);
+  const content = await Deno.readTextFile(src);
   return compile(content);
 }
 /** Compile a pagic file with local or remote url */
@@ -39,7 +38,7 @@ export async function compilePagicFile(pathToPagicRoot: string) {
   const src = `${pagicRootPath}/${pathToPagicRoot}`;
   let content = '';
   if (import.meta.url.startsWith('file://')) {
-    content = await fs.readFileStr(src);
+    content = await Deno.readTextFile(src);
   } else {
     const res = await fetch(src);
     content = await res.text();

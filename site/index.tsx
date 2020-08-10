@@ -107,7 +107,7 @@ const IndexPage = () => (
           marginTop: '2rem'
         }}
       >
-        <a className="btn btn-primary" href="/docs/">
+        <a className="btn btn-primary" href="/docs/introduction.html">
           开始使用
         </a>
         <a className="btn" href="/demos/">

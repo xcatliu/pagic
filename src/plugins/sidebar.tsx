@@ -1,10 +1,14 @@
 import Pagic, { PagicPlugin } from '../Pagic.ts';
 
-export type PagicConfigSidebar = (
+export interface PagicConfigSidebar {
+  [prefix: string]: OnePagicConfigSidebar;
+}
+
+export type OnePagicConfigSidebar = (
   | {
       text?: string;
       link?: string;
-      children?: PagicConfigSidebar;
+      children?: OnePagicConfigSidebar;
     }
   | string
 )[];
@@ -23,19 +27,30 @@ const sidebar: PagicPlugin = {
     if (!pagic.config.sidebar) {
       return;
     }
-    const parsedSidebar = parseSidebarConfig(pagic.config.sidebar, pagic);
+
+    let parsedSidebar: {
+      [prefix: string]: PagePropsSidebar;
+    } = {};
+    for (const [prefix, oneConfig] of Object.entries(pagic.config.sidebar)) {
+      parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
+    }
 
     for (const pagePath of pagic.pagePaths) {
       const pageProps = pagic.pagePropsMap[pagePath];
-      pagic.pagePropsMap[pagePath] = {
-        sidebar: parsedSidebar,
-        ...pageProps
-      };
+      for (const [prefix, pagePropsSidebar] of Object.entries(parsedSidebar)) {
+        if (`/${pageProps.outputPath}`.startsWith(prefix)) {
+          pagic.pagePropsMap[pagePath] = {
+            sidebar: pagePropsSidebar,
+            ...pageProps
+          };
+          break;
+        }
+      }
     }
   }
 };
 
-function parseSidebarConfig(sidebarConfig: PagicConfigSidebar, pagic: Pagic): PagePropsSidebar {
+function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic): PagePropsSidebar {
   return sidebarConfig.map((sidebarConfigItem) => {
     if (typeof sidebarConfigItem === 'string') {
       return {
