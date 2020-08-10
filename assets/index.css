@@ -246,9 +246,7 @@ h6:hover .anchor {
 .prev_next {
   display: flex;
   align-items: stretch;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-border);
+  margin-top: 3rem;
 }
 .prev_next a {
   width: calc(50% - 1rem);
@@ -318,7 +316,7 @@ footer {
   text-align: center;
   color: var(--color-text-muted);
   font-size: var(--font-size-small);
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 /* #endregion */
 

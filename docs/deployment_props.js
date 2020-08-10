@@ -17,14 +17,14 @@ export default {
             "pagePath": "docs/usage.md"
         },
         {
-            "text": "_layout.tsx",
-            "link": "docs/layout.html",
-            "pagePath": "docs/layout.md"
-        },
-        {
             "text": "配置",
             "link": "docs/configuration.html",
             "pagePath": "docs/configuration.md"
+        },
+        {
+            "text": "_layout.tsx",
+            "link": "docs/layout.html",
+            "pagePath": "docs/layout.md"
         },
         {
             "text": "内容",
