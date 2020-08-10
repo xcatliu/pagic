@@ -4,7 +4,7 @@ import { PagicConfig } from '../Pagic.ts';
 
 /**
  * Get the runtime pagic root path, it should be a file-system-path or a url
- * /User/xcatliu/work/github/pagic or https://deno.land/x/pagic
+ * /User/xcatliu/work/github/pagic or https://deno.land/x/pagic@v0.8.6
  */
 export const pagicRootPath = (() => {
   if (import.meta.url.startsWith('file://')) {
@@ -117,7 +117,7 @@ export async function walk(
     }
   }
   if (path.sep === '\\') {
-    walkPaths = walkPaths.map(walkPath => walkPath.replace(/\\/g, '/'));
+    walkPaths = walkPaths.map((walkPath) => walkPath.replace(/\\/g, '/'));
   }
   return walkPaths;
 }
