@@ -17,9 +17,9 @@ export default {
             "pagePath": "docs/usage.md"
         },
         {
-            "text": "配置",
-            "link": "docs/configuration.html",
-            "pagePath": "docs/configuration.md"
+            "text": "配置文件",
+            "link": "docs/config.html",
+            "pagePath": "docs/config.md"
         },
         {
             "text": "_layout.tsx",
@@ -27,7 +27,7 @@ export default {
             "pagePath": "docs/layout.md"
         },
         {
-            "text": "内容",
+            "text": "页面内容",
             "link": "docs/content.html",
             "pagePath": "docs/content.md"
         },

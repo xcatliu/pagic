@@ -20,9 +20,9 @@ export default {
             "pagePath": "docs/usage.md"
         },
         {
-            "text": "配置",
-            "link": "docs/configuration.html",
-            "pagePath": "docs/configuration.md"
+            "text": "配置文件",
+            "link": "docs/config.html",
+            "pagePath": "docs/config.md"
         },
         {
             "text": "_layout.tsx",
@@ -30,7 +30,7 @@ export default {
             "pagePath": "docs/layout.md"
         },
         {
-            "text": "内容",
+            "text": "页面内容",
             "link": "docs/content.html",
             "pagePath": "docs/content.md"
         },
@@ -54,9 +54,9 @@ export default {
     'pagePath': "docs/content.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "docs/content.html",
-    'title': "内容",
+    'title': "页面内容",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>内容</h1>'
+            __html: '<h1>页面内容</h1>'
         } }),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
