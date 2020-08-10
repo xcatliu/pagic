@@ -1,1 +1,4 @@
 src/vendors
+src/types/react
+src/types/react-dom
+src/types/prop-types

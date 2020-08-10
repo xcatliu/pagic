@@ -1,4 +1,8 @@
-src/vendors
 .github/ISSUE_TEMPLATE
 prism.css
 prism_tomorrow.css
+
+src/vendors
+src/types/react
+src/types/react-dom
+src/types/prop-types
