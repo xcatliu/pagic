@@ -1,11 +1,17 @@
 #!/usr/bin/env -S deno --unstable --allow-read --allow-write --allow-net
 
 import Pagic from './src/Pagic.ts';
+import { logger } from './src/utils/mod.ts';
 export default Pagic;
+
 export * from './src/Pagic.ts';
 
 if (import.meta.main) {
   const [subCommand, ...restArgs] = Deno.args;
+  if (subCommand === undefined) {
+    logger.info(` Miss valid subCommand, known as 'pagic build'.`);
+    Deno.exit(1);
+  }
 
   const validSubCommands = ['build'];
   if (!validSubCommands.includes(subCommand)) {
