@@ -158,7 +158,7 @@ deno install --unstable --allow-read --allow-write --allow-net --name=pagic http
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 
 # 运行 pagic
-pagic build`
+pagic build --watch --serve`
         }}
       />
     </pre>
