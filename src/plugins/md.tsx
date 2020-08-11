@@ -19,6 +19,7 @@ let tocHTML = '';
 
 const mdRenderer = new MarkdownIt({
   html: true,
+  linkify: true,
   highlight: (str: string, lang = 'autoit') => {
     if (typeof Prism.languages[lang] === 'undefined') {
       // eslint-disable-next-line no-param-reassign

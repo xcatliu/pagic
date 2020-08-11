@@ -4,7 +4,7 @@
 
 ## 什么是 `_layout.tsx`
 
-`_layout.tsx` 可以理解为 Pagic 在渲染时的模版文件，所有页面文件（`md/tsx`）在渲染时都会以 `_layout.tsx` 为模版。
+`_layout.tsx` 可以理解为 Pagic 在渲染页面时的模版文件，所有页面文件（`md/tsx`）在渲染时都会以 `_layout.tsx` 为模版。
 
 我们在上一章的 `site` 项目中创建一个 `_layout.tsx`：
 
@@ -44,7 +44,7 @@ export default Layout;
 pagic build --serve
 ```
 
-然后打开 http://127.0.0.1:8000/，可以看到页面中除了有标题 `Hello world` 之外，还有一个段落 `Custom _layout.tsx`，这说明此页面是用 `_layout.tsx` 作为模版渲染出来的。
+然后打开 http://127.0.0.1:8000/ ，可以看到页面中除了有标题 `Hello world` 之外，还有一个段落 `Custom _layout.tsx`，这说明此页面是用 `_layout.tsx` 作为模版渲染出来的。
 
 为什么在上一章中不需要 `_layout.tsx` 也可以构建出页面呢？
 
@@ -56,6 +56,12 @@ pagic build --serve
 
 ```
 site/
+|── dist    # 构建结果目录
+|   |── index.html
+|   └── foo
+|       ├── index.html
+|       └── bar
+|           └── index.html
 ├── _layout.tsx
 ├── pagic.config.ts
 |── README.md
@@ -76,6 +82,8 @@ site/
 
 ```
 site/
+|── dist    # 构建结果目录
+|   └── hello.html
 ├── _layout.tsx
 ├── _sidebar.tsx
 ├── hello.tsx

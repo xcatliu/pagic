@@ -22,19 +22,19 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 执行以下命令以安装最新版本的 Pagic：
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --name pagic https://deno.land/x/pagic/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
 若需要安装指定版本的 Pagic，则可以在安装的 url 中加入版本号：
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --name pagic https://deno.land/x/pagic@v1.0.0/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic@v1.0.0/mod.ts
 ```
 
 > Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：
 >
 > ```bash
-> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --name pagic https://deno.land/x/pagic/mod.ts
+> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 > ```
 
 ## 初始化项目
@@ -83,8 +83,16 @@ pagic build [options]
 pagic build --watch --serve
 ```
 
-然后用浏览器打开 http://127.0.0.1:8000/，看看是不是显示出 `Hello world` 了呢？
+然后用浏览器打开 http://127.0.0.1:8000/ ，看看是不是显示出 `Hello world` 了呢？
 
-> 构建结果在 dist 目录中。
->
-> 需要注意的是，一般的 Markdown 文件会被构建为同名的 HTML 文件，但是 `README.md` 被构建为了 `index.html`，这是一种人性化的处理，方便同时在 GitHub 中和静态网站中展示首页的内容。
+注意，构建结果在 dist 目录中：
+
+```
+site/
+|── dist    # 构建结果目录
+|   └── index.html
+├── pagic.config.ts
+└── README.md
+```
+
+> 一般的 Markdown 文件会被构建为同名的 HTML 文件，但是 `README.md` 被构建为了 `index.html`，这是一种人性化的处理，方便同时在 GitHub 中和静态网站中展示首页的内容。

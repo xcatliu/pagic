@@ -152,7 +152,7 @@ const IndexPage = () => (
       <code
         dangerouslySetInnerHTML={{
           __html: `# 安装 pagic
-deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic@v0.8.6/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 
 # 创建 pagic.config.ts 和 README.md
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
