@@ -1,8 +1,8 @@
 import projectConfig from '/pagic.config.js';
 export default {
     'prev': {
-        "text": "页面内容",
-        "link": "docs/content.html"
+        "text": "_layout.tsx",
+        "link": "docs/layout.html"
     },
     'next': {
         "text": "插件",
@@ -25,14 +25,14 @@ export default {
             "pagePath": "docs/config.md"
         },
         {
-            "text": "_layout.tsx",
-            "link": "docs/layout.html",
-            "pagePath": "docs/layout.md"
-        },
-        {
             "text": "页面内容",
             "link": "docs/content.html",
             "pagePath": "docs/content.md"
+        },
+        {
+            "text": "_layout.tsx",
+            "link": "docs/layout.html",
+            "pagePath": "docs/layout.md"
         },
         {
             "text": "主题",
