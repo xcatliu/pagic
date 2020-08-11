@@ -454,5 +454,8 @@ footer {
     margin-left: -1rem !important;
     margin-right: -1rem !important;
   }
+  blockquote pre[class*='language-'] {
+    margin-left: 0 !important;
+  }
 }
 /* #endregion */

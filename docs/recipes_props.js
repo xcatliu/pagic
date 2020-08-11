@@ -1,12 +1,12 @@
 import projectConfig from '/pagic.config.js';
 export default {
     'prev': {
-        "text": "_layout.tsx",
-        "link": "docs/layout.html"
+        "text": "部署",
+        "link": "docs/deployment.html"
     },
     'next': {
-        "text": "主题",
-        "link": "docs/themes.html"
+        "text": "局限性",
+        "link": "docs/limitations.html"
     },
     'sidebar': [
         {
@@ -61,12 +61,12 @@ export default {
         }
     ],
     config: { "root": "/", ...projectConfig },
-    'pagePath': "docs/content.md",
+    'pagePath': "docs/recipes.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "docs/content.html",
-    'title': "页面内容",
+    'outputPath': "docs/recipes.html",
+    'title': "样例",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>页面内容</h1>'
+            __html: '<h1>样例</h1>\n<ul>\n<li><a href="https://yoshixmk.github.io/deno-x-ranking/">Deno X ranking</a> (<a href="https://github.com/yoshixmk/deno-x-ranking">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n<li><a href="https://deno-tutorial.js.org/">Deno 钻研之术</a> (<a href="https://github.com/hylerrix/deno-tutorial">GitHub</a>)</li>\n<li><a href="https://manual.deno.js.cn/">Deno 中文手册</a> (<a href="https://github.com/denocn/deno_manual">GitHub</a>)</li>\n<li><a href="https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&amp;labels=demo&amp;template=add-a-demo.md&amp;title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com">Add my site as a demo</a> 😝</li>\n</ul>'
         } }),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),

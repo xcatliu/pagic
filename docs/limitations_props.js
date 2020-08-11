@@ -1,13 +1,10 @@
 import projectConfig from '/pagic.config.js';
 export default {
     'prev': {
-        "text": "_layout.tsx",
-        "link": "docs/layout.html"
+        "text": "样例",
+        "link": "docs/recipes.html"
     },
-    'next': {
-        "text": "主题",
-        "link": "docs/themes.html"
-    },
+    'next': null,
     'sidebar': [
         {
             "text": "介绍",
@@ -61,12 +58,12 @@ export default {
         }
     ],
     config: { "root": "/", ...projectConfig },
-    'pagePath': "docs/content.md",
+    'pagePath': "docs/limitations.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "docs/content.html",
-    'title': "页面内容",
+    'outputPath': "docs/limitations.html",
+    'title': "局限性",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>页面内容</h1>'
+            __html: '<h1>局限性</h1>'
         } }),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),

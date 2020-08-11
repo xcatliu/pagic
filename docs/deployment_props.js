@@ -4,7 +4,10 @@ export default {
         "text": "插件",
         "link": "docs/plugins.html"
     },
-    'next': null,
+    'next': {
+        "text": "样例",
+        "link": "docs/recipes.html"
+    },
     'sidebar': [
         {
             "text": "介绍",
@@ -45,6 +48,16 @@ export default {
             "text": "部署",
             "link": "docs/deployment.html",
             "pagePath": "docs/deployment.md"
+        },
+        {
+            "text": "样例",
+            "link": "docs/recipes.html",
+            "pagePath": "docs/recipes.md"
+        },
+        {
+            "text": "局限性",
+            "link": "docs/limitations.html",
+            "pagePath": "docs/limitations.md"
         }
     ],
     config: { "root": "/", ...projectConfig },

@@ -33,11 +33,6 @@ export default {
         {
             text: '关于',
             link: '/about/'
-        },
-        {
-            text: '示例',
-            link: '/demos/',
-            align: 'right'
         }
     ],
     sidebar: {
@@ -49,7 +44,9 @@ export default {
             'docs/content.md',
             'docs/themes.md',
             'docs/plugins.md',
-            'docs/deployment.md'
+            'docs/deployment.md',
+            'docs/recipes.md',
+            'docs/limitations.md'
         ]
     }
 };
