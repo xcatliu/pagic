@@ -108,24 +108,24 @@ site/
 - 类型：`glob[]`
 - 默认值：如下
 
-```ts
-[
-  // Dot files
-  '**/.*',
-  // Node common files
-  '**/package.json',
-  '**/package-lock.json',
-  '**/node_modules',
-  'pagic.config.ts',
-  'pagic.config.tsx',
-  // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
-  '**/config.gypi',
-  '**/CVS',
-  '**/npm-debug.log'
+  ```ts
+  [
+    // Dot files
+    '**/.*',
+    // Node common files
+    '**/package.json',
+    '**/package-lock.json',
+    '**/node_modules',
+    'pagic.config.ts',
+    'pagic.config.tsx',
+    // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
+    '**/config.gypi',
+    '**/CVS',
+    '**/npm-debug.log'
 
-  // ${config.outDir} will be added later
-];
-```
+    // ${config.outDir} will be added later
+  ];
+  ```
 
 `exclude` 与 `include` 类似，用于在 `srcDir` 中排除指定的文件。
 

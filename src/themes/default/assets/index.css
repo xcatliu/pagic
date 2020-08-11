@@ -49,6 +49,7 @@ footer {
     margin-left: -1rem !important;
     margin-right: -1rem !important;
   }
+  li pre[class*='language-'],
   blockquote pre[class*='language-'] {
     margin-left: 0 !important;
   }

@@ -74,7 +74,7 @@ site/
 
 在上面的例子中，`site/foo/bar/README.md` 会使用同级目录下的 `site/foo/bar/_layout.tsx` 作为模版，而 `site/foo/README.md` 则会使用 `site/_layout.tsx` 作为模版。
 
-> 通过 frontMatter 可以跳过此规则，强制指定一个模版。
+> 通过配置页面头信息可以跳过此规则，强制指定一个模版。
 
 ## 模版组件
 
