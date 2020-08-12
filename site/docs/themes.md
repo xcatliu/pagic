@@ -1,6 +1,6 @@
 # 主题
 
-本章会介绍如何使用 Pagic 主题，以及如何开发主题。
+本章会介绍如何使用主题，以及如何开发主题。
 
 如果你想查看所有主题的列表及其支持的特性，请访问[主题列表](/themes/)。
 
@@ -94,7 +94,7 @@ export default {
 
 其次，我们将一些通用的配置项整理成文档，第三方主题和插件的开发者应尽可能参考[此文档](./config.md)，避免产生冲突。
 
-最后，这种设计其实约束了第三方主题和插件的开发者，使得大家需要按照同样的标准来设计配置项，意味着 Pagic 的第三方主题和插件拥有了更高的质量。
+最后，这种设计其实约束了第三方主题和插件的开发者，使得大家需要按照同样的标准来设计配置项，意味着 Pagic 的第三方主题和插件拥有了更高的质量和兼容性。
 
 ## 如何开发主题
 
@@ -178,8 +178,51 @@ site/
 
 需要注意的是，主题中的文件并不会真的「复制」到用户的项目目录中，我们把这个「复制」看作是一种虚拟的执行即可。
 
+另外，如果用户的项目中有文件路径和主题中的一样，那么以用户的项目中的文件为准——即允许用户覆盖主题的文件。
+
 ### 入口文件
+
+之前提到过，当使用第三方主题时，`theme` 的取值应为一个完整的入口文件链接：
+
+```ts
+export default {
+  theme: 'https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts'
+};
+```
+
+下面列出一个典型的 `mod.ts` 入口文件：
+
+```ts
+export default {
+  files: [
+    'assets/index.css',
+    'assets/prism_tomorrow.css',
+    'assets/reset.css',
+    'assets/variables.css',
+    '_layout.tsx',
+    'favicon.ico'
+  ]
+};
+```
+
+此入口文件中包含以下信息：
+
+#### `files`
+
+`files` 列出了主题的所有文件，它们都会被「复制」到用户的项目目录下。
+
+为什么要这么设计呢？为什么不能自动遍历主题目录下的所有文件呢？
+
+因为 Pagic 需要支持通过一个 url 来配置主题，而仅有一个 url 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 `https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/` 下的所有文件呢？
+
+综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。
 
 ### `props`
 
+主题中最核心的文件就是 `_layout.tsx`，而编写 `_layout.tsx` 最重要的就是使用它的 `props`。
+
+前一章已经介绍过了 `props`，如果需要了解所有的 `props`，可以直接查看 [\_layout.tsx 中的 props](./layout.md#props)。
+
 ### 参考官方主题
+
+开发一个主题最佳的参考就是官方主题，你可以直接[查看官方主题的源码](https://github.com/xcatliu/pagic/tree/master/src/themes)。

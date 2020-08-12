@@ -131,12 +131,12 @@ export default Layout;
 | `pagePath`   | `string`              | `init`                | 页面路径，如 `docs/README.md`             |
 | `layoutPath` | `string`              | `init`                | 页面的模版路径，如 `docs/_layout.tsx`     |
 | `outputPath` | `string`              | `init`                | 页面的输出路径，如 `docs/index.html`      |
-| `script`     | `ReactElement`        | `script`              | 由 `script` 插件生成的 `ReactElement`     |
-| `toc`        | `ReactElement`        | `md`                  | 由 `md` 插件生成的 `ReactElement`         |
-| `loading`    | `boolean`             | `script`              | 页面是否在加载中                          |
 | `sidebar`    | `ReactElement`        | `sidebar`             | 由 `sidebar` 插件生成的 `ReactElement`    |
+| `toc`        | `ReactElement`        | `md`                  | 由 `md` 插件生成的 `ReactElement`         |
 | `prev`       | `PagePropsSidebar[0]` | `prev_next`           | 上一页的详细信息                          |
 | `next`       | `PagePropsSidebar[0]` | `prev_next`           | 下一页的详细信息                          |
+| `script`     | `ReactElement`        | `script`              | 由 `script` 插件生成的 `ReactElement`     |
+| `loading`    | `boolean`             | `script`              | 页面是否在加载中                          |
 | `ga`         | `ReactElement`        | `ga`                  | 由 `ga` 插件生成的 `ReactElement`         |
 | `gitalk`     | `ReactElement`        | `gitalk`              | 由 `gitalk` 插件生成的 `ReactElement`     |
 | 其他         | `any`                 | 第三方插件            | 第三方插件也可能扩充 `props`              |

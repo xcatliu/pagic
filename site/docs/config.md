@@ -335,6 +335,14 @@ export default {
 };
 ```
 
+### `github`
+
+- 类型：`string`
+- 支持的主题：全部
+- 依赖的插件：无
+
+配置你的 github 账号，一般会展示一个链接在右上角。
+
 ### `sidebar`
 
 - 类型：较复杂，见示例
@@ -364,31 +372,6 @@ export default {
 ```
 
 在上面的例子中，以 `/docs/` 开头的页面会展示 docs 侧边栏，以 `/about/` 开头的页面会展示 about 侧边栏，其他页面会命中 `/`，展示默认的侧边栏。
-
-### `github`
-
-- 类型：`string`
-- 支持的主题：全部
-- 依赖的插件：无
-
-配置你的 github 账号，一般会展示一个链接在右上角。
-
-### `tools`
-
-- 类型：`{ [key:string]:any }`
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：无
-
-一些小工具，比如 `editOnGithub`, `backToTop` 等，示例如下：
-
-```ts
-export default {
-  tools: {
-    editOnGithub: true,
-    backToTop: true
-  }
-};
-```
 
 ### `tocAd`
 
@@ -424,6 +407,39 @@ export default {
 };
 ```
 
+### `tools`
+
+- 类型：`{ [key:string]:any }`
+- 支持的主题：`docs`, `blog`
+- 依赖的插件：无
+
+一些小工具，比如 `editOnGithub`, `backToTop` 等，示例如下：
+
+```ts
+export default {
+  tools: {
+    editOnGithub: true,
+    backToTop: true
+  }
+};
+```
+
+### `ga`
+
+- 类型：`{ id:string }`
+- 支持的主题：全部
+- 依赖的插件：`ga`
+
+谷歌分析的配置，示例如下：
+
+```ts
+export default {
+  ga: {
+    id: 'UA-45256157-14'
+  }
+};
+```
+
 ### `gitalk`
 
 - 类型：较复杂，见示例
@@ -441,22 +457,6 @@ export default {
     owner: 'xcatliu',
     admin: ['xcatliu'],
     pagerDirection: 'first'
-  }
-};
-```
-
-### `ga`
-
-- 类型：`{ id:string }`
-- 支持的主题：全部
-- 依赖的插件：`ga`
-
-谷歌分析的配置，示例如下：
-
-```ts
-export default {
-  ga: {
-    id: 'UA-45256157-14'
   }
 };
 ```
