@@ -277,6 +277,13 @@
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<h3 id="github"><code>github</code><a class="anchor" href="#github">§</a></h3>
+<ul>
+<li>类型：<code>string</code></li>
+<li>支持的主题：全部</li>
+<li>依赖的插件：无</li>
+</ul>
+<p>配置你的 github 账号，一般会展示一个链接在右上角。</p>
 <h3 id="sidebar"><code>sidebar</code><a class="anchor" href="#sidebar">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>
@@ -303,27 +310,6 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>在上面的例子中，以 <code>/docs/</code> 开头的页面会展示 docs 侧边栏，以 <code>/about/</code> 开头的页面会展示 about 侧边栏，其他页面会命中 <code>/</code>，展示默认的侧边栏。</p>
-<h3 id="github"><code>github</code><a class="anchor" href="#github">§</a></h3>
-<ul>
-<li>类型：<code>string</code></li>
-<li>支持的主题：全部</li>
-<li>依赖的插件：无</li>
-</ul>
-<p>配置你的 github 账号，一般会展示一个链接在右上角。</p>
-<h3 id="tools"><code>tools</code><a class="anchor" href="#tools">§</a></h3>
-<ul>
-<li>类型：<code>{ [key:string]:any }</code></li>
-<li>支持的主题：<code>docs</code>, <code>blog</code></li>
-<li>依赖的插件：无</li>
-</ul>
-<p>一些小工具，比如 <code>editOnGithub</code>, <code>backToTop</code> 等，示例如下：</p>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  tools<span class="token operator">:</span> <span class="token punctuation">{</span>
-    editOnGithub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    backToTop<span class="token operator">:</span> <span class="token boolean">true</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
 <h3 id="tocad"><code>tocAd</code><a class="anchor" href="#tocad">§</a></h3>
 <ul>
 <li>类型：<code>React.ReactElement</code></li>
@@ -355,6 +341,33 @@
   <span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<h3 id="tools"><code>tools</code><a class="anchor" href="#tools">§</a></h3>
+<ul>
+<li>类型：<code>{ [key:string]:any }</code></li>
+<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>依赖的插件：无</li>
+</ul>
+<p>一些小工具，比如 <code>editOnGithub</code>, <code>backToTop</code> 等，示例如下：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  tools<span class="token operator">:</span> <span class="token punctuation">{</span>
+    editOnGithub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    backToTop<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="ga"><code>ga</code><a class="anchor" href="#ga">§</a></h3>
+<ul>
+<li>类型：<code>{ id:string }</code></li>
+<li>支持的主题：全部</li>
+<li>依赖的插件：<code>ga</code></li>
+</ul>
+<p>谷歌分析的配置，示例如下：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  ga<span class="token operator">:</span> <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token string">'UA-45256157-14'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <h3 id="gitalk"><code>gitalk</code><a class="anchor" href="#gitalk">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>
@@ -370,19 +383,6 @@
     owner<span class="token operator">:</span> <span class="token string">'xcatliu'</span><span class="token punctuation">,</span>
     admin<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'xcatliu'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
     pagerDirection<span class="token operator">:</span> <span class="token string">'first'</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<h3 id="ga"><code>ga</code><a class="anchor" href="#ga">§</a></h3>
-<ul>
-<li>类型：<code>{ id:string }</code></li>
-<li>支持的主题：全部</li>
-<li>依赖的插件：<code>ga</code></li>
-</ul>
-<p>谷歌分析的配置，示例如下：</p>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  ga<span class="token operator">:</span> <span class="token punctuation">{</span>
-    id<span class="token operator">:</span> <span class="token string">'UA-45256157-14'</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
@@ -405,4 +405,4 @@
 <li>类型：<code>number</code></li>
 <li>默认值：<code>8000</code></li>
 </ul>
-<p>指定本地服务的端口号。</p></article><div class="prev_next"><a class="prev button" href="/docs/usage.html">«  <!-- -->基本用法</a><a class="next button" href="/docs/content.html">页面内容<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">输入和输出</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">页面内容</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#github">github</a></li><li><a href="#tools">tools</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#ga">ga</a></li></ol></li><li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>指定本地服务的端口号。</p></article><div class="prev_next"><a class="prev button" href="/docs/usage.html">«  <!-- -->基本用法</a><a class="next button" href="/docs/content.html">页面内容<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">输入和输出</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">页面内容</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li></ol></li><li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

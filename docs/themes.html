@@ -10,7 +10,7 @@
     }
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/themes/">主题</a></li><li class="hide_on_mobile"><a href="/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/news/">新闻</a></li><li class="hide_on_mobile"><a href="/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/docs/config.html" class="nav_link">配置文件</a></li><li class=""><a href="/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link active">主题</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>主题</h1>
-<p>本章会介绍如何使用 Pagic 主题，以及如何开发主题。</p>
+<p>本章会介绍如何使用主题，以及如何开发主题。</p>
 <p>如果你想查看所有主题的列表及其支持的特性，请访问<a href="/themes/">主题列表</a>。</p>
 <h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式<a class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">§</a></h2>
 <h3 id="%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题<a class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h3>
@@ -69,7 +69,7 @@
 <h5 id="%E5%8F%AF%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8D%E4%BC%9A%E6%9C%89%E5%86%B2%E7%AA%81%E5%91%A2%EF%BC%9F">可是如何保证各种第三方主题和插件之间的配置不会有冲突呢？<a class="anchor" href="#%E5%8F%AF%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8D%E4%BC%9A%E6%9C%89%E5%86%B2%E7%AA%81%E5%91%A2%EF%BC%9F">§</a></h5>
 <p>首先，插件的配置项一般与插件名一致（比如 <code>sidebar</code> 插件就提供了 <code>sidebar</code> 配置项），这保证了不同插件之间一般不会冲突。</p>
 <p>其次，我们将一些通用的配置项整理成文档，第三方主题和插件的开发者应尽可能参考<a href="./config.html">此文档</a>，避免产生冲突。</p>
-<p>最后，这种设计其实约束了第三方主题和插件的开发者，使得大家需要按照同样的标准来设计配置项，意味着 Pagic 的第三方主题和插件拥有了更高的质量。</p>
+<p>最后，这种设计其实约束了第三方主题和插件的开发者，使得大家需要按照同样的标准来设计配置项，意味着 Pagic 的第三方主题和插件拥有了更高的质量和兼容性。</p>
 <h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">如何开发主题<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">§</a></h2>
 <p>恭喜你即将成为 Pagic 主题的开发者！</p>
 <p>只要理解了 Pagic 主题的运行机制，就可以轻松的开发出一个 Pagic 主题了。</p>
@@ -127,6 +127,33 @@
 └── README<span class="token punctuation">.</span>tsx
 </code></pre>
 <p>需要注意的是，主题中的文件并不会真的「复制」到用户的项目目录中，我们把这个「复制」看作是一种虚拟的执行即可。</p>
+<p>另外，如果用户的项目中有文件路径和主题中的一样，那么以用户的项目中的文件为准——即允许用户覆盖主题的文件。</p>
 <h3 id="%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">入口文件<a class="anchor" href="#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">§</a></h3>
+<p>之前提到过，当使用第三方主题时，<code>theme</code> 的取值应为一个完整的入口文件链接：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>下面列出一个典型的 <code>mod.ts</code> 入口文件：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  files<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">'assets/index.css'</span><span class="token punctuation">,</span>
+    <span class="token string">'assets/prism_tomorrow.css'</span><span class="token punctuation">,</span>
+    <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span>
+    <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span>
+    <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span>
+    <span class="token string">'favicon.ico'</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>此入口文件中包含以下信息：</p>
+<h4 id="files"><code>files</code><a class="anchor" href="#files">§</a></h4>
+<p><code>files</code> 列出了主题的所有文件，它们都会被「复制」到用户的项目目录下。</p>
+<p>为什么要这么设计呢？为什么不能自动遍历主题目录下的所有文件呢？</p>
+<p>因为 Pagic 需要支持通过一个 url 来配置主题，而仅有一个 url 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 <code>https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/</code> 下的所有文件呢？</p>
+<p>综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。</p>
 <h3 id="props"><code>props</code><a class="anchor" href="#props">§</a></h3>
-<h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h3></article><div class="prev_next"><a class="prev button" href="/docs/layout.html">«  <!-- -->_layout.tsx</a><a class="next button" href="/docs/plugins.html">插件<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题</a></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">主题支持的插件</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置</a><ol></ol></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">如何开发主题</a><ol><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6">主题的运行机制</a></li><li><a href="#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">入口文件</a></li><li><a href="#props">props</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>主题中最核心的文件就是 <code>_layout.tsx</code>，而编写 <code>_layout.tsx</code> 最重要的就是使用它的 <code>props</code>。</p>
+<p>前一章已经介绍过了 <code>props</code>，如果需要了解所有的 <code>props</code>，可以直接查看 <a href="./layout.html#props">_layout.tsx 中的 props</a>。</p>
+<h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h3>
+<p>开发一个主题最佳的参考就是官方主题，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/themes">查看官方主题的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/layout.html">«  <!-- -->_layout.tsx</a><a class="next button" href="/docs/plugins.html">插件<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题</a></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">主题支持的插件</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置</a><ol></ol></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">如何开发主题</a><ol><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6">主题的运行机制</a></li><li><a href="#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">入口文件</a><ol></ol></li><li><a href="#props">props</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

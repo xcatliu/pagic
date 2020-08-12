@@ -10,4 +10,32 @@
     }
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/themes/">主题</a></li><li class="hide_on_mobile"><a href="/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/news/">新闻</a></li><li class="hide_on_mobile"><a href="/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/docs/config.html" class="nav_link">配置文件</a></li><li class=""><a href="/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/docs/plugins.html" class="nav_link active">插件</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>插件</h1>
-<p>主题和插件的取舍</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->主题</a><a class="next button" href="/docs/deployment.html">部署<!-- -->  »</a></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>本章会介绍如何使用插件，以及如何开发插件。</p>
+<p>如果你想查看所有插件的列表及其说明文档，请访问<a href="/plugins/">插件列表</a>。</p>
+<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式<a class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">§</a></h2>
+<p>按照插件的级别可以将插件分为内置插件、官方插件以及第三方插件。</p>
+<h3 id="%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件<a class="anchor" href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">§</a></h3>
+<p>内置插件是最重要的插件，它们组成了 Pagic 的整个构建过程——换一句话说，Pagic 的整个构建过程被拆分为了内置插件。</p>
+<p>内置插件包括：<code>['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']</code>，Pagic 的构建过程也是按照这个次序来的：</p>
+<ol>
+<li><code>clean</code>: 清空输出目录</li>
+<li><code>init</code>: 初始化中间变量（<code>pagePropsMap</code>）</li>
+<li><code>md</code>: 解析 <code>md</code> 文件，更新中间变量</li>
+<li><code>tsx</code>: 解析 <code>tsx</code> 文件，更新中间变量</li>
+<li><code>script</code>: 编译 <code>tsx</code> 文件，生成 <code>pagic.config.js</code>, <code>index.js</code>, <code>*_props.js</code>, <code>*_content.js</code> 等文件</li>
+<li><code>layout</code>: 解析 <code>_layout.tsx</code> 文件，使用 <code>Layout</code> 组件来渲染</li>
+<li><code>out</code>: 生成 html 文件，复制静态文件</li>
+</ol>
+<blockquote>
+<p>其实第 1 步之前还有一些步骤：解析 <code>pagic.config.ts</code>，扫描项目目录，找出页面文件和模版文件。但是由于一些运行机制的原因，它们无法被拆分为插件。</p>
+</blockquote>
+<h3 id="%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件<a class="anchor" href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
+<h3 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
+<p>当使用第三方插件时，数组中的项应为一个完整的入口文件链接：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts</a>'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">§</a></h2>
+<h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
+<p>开发一个插件最佳的参考就是官方插件，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">查看官方插件的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->主题</a><a class="next button" href="/docs/deployment.html">部署<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件</a></li><li><a href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件</a></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a><ol><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
