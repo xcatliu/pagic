@@ -50,9 +50,9 @@ export default {
             "pagePath": "docs/deployment.md"
         },
         {
-            "text": "样例",
-            "link": "docs/recipes.html",
-            "pagePath": "docs/recipes.md"
+            "text": "示例网站",
+            "link": "docs/demos.html",
+            "pagePath": "docs/demos.md"
         },
         {
             "text": "局限性",
@@ -66,7 +66,7 @@ export default {
     'outputPath': "docs/plugins.html",
     'title': "插件",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>插件</h1>'
+            __html: '<h1>插件</h1>\n<p>主题和插件的取舍</p>'
         } }),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),

@@ -50,9 +50,9 @@ export default {
             "pagePath": "docs/deployment.md"
         },
         {
-            "text": "样例",
-            "link": "docs/recipes.html",
-            "pagePath": "docs/recipes.md"
+            "text": "示例网站",
+            "link": "docs/demos.html",
+            "pagePath": "docs/demos.md"
         },
         {
             "text": "局限性",
