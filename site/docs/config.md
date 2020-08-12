@@ -190,14 +190,6 @@ https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts
 
 的链接。
 
-以 `pagic.org` 的配置为例：
-
-```ts
-export default {
-  theme: 'docs'
-};
-```
-
 ### `plugins`
 
 - 类型：`string[]`
@@ -213,7 +205,7 @@ https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts
 
 的链接。
 
-需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中，详见[开发一个插件](./plugins.md)。
+需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中，详见[如何开发插件](./plugins.md#如何开发插件)。
 
 以 `pagic.org` 的配置为例：
 
@@ -243,22 +235,20 @@ export default {
 
 但是对于非常简单的网站——比如只有一个页面——采用此配置是非常合适的。
 
-## 页面属性
+## 页面内容
 
-页面属性会在插件中做一些处理，然后作为 `props` 传递到 `_layout.tsx` 中。
+页面内容相关的配置会在插件中做一些处理，然后[作为 `props` 传递到 `_layout.tsx` 中](./layout.md#props)。
 
-由于最终如何使用页面属性取决于主题，所以并不是任一主题都支持了任一配置。
+最终如何使用 `props` 取决于主题，所以并不是任一主题都支持了任一配置。
 
-总之，配置某一个页面属性时，需要确保使用的是该属性支持的主题，同时添加了该属性依赖的插件。
+总之，进行页面内容的配置时，需要确保使用的是该配置支持的主题，同时添加了该配置依赖的插件。
 
 以下会列出官方主题的支持情况，若使用的是第三方主题，请查看其文档确认。
-
-> 主题和插件的开发者也请尽可能的按照这些页面属性的约定来进行开发，避免出现用户切换主题时不兼容的情况。
 
 ### `title`
 
 - 类型：`string`
-- 默认值：`undefined`（页面属性的默认值均为 `undefined`，以下不再赘述）
+- 默认值：`undefined`（页面内容的配置的默认值均为 `undefined`，以下不再赘述）
 - 支持的主题：全部
 - 依赖的插件：无
 
@@ -274,7 +264,7 @@ export default {
 
 ### `head`
 
-- 类型：`React.ReactNode`
+- 类型：`React.ReactElement`
 - 支持的主题：全部
 - 依赖的插件：无
 
@@ -385,7 +375,7 @@ export default {
 
 ### `tools`
 
-- 类型：`{ [key:string]: any }`
+- 类型：`{ [key:string]:any }`
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：无
 
@@ -402,7 +392,7 @@ export default {
 
 ### `tocAd`
 
-- 类型：`React.ReactNode`
+- 类型：`React.ReactElement`
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：无
 
@@ -457,11 +447,11 @@ export default {
 
 ### `ga`
 
-- 类型：`{ id: string }`
+- 类型：`{ id:string }`
 - 支持的主题：全部
 - 依赖的插件：`ga`
 
-Google Analytics 的配置，示例如下：
+谷歌分析的配置，示例如下：
 
 ```ts
 export default {

@@ -77,13 +77,13 @@ const md: PagicPlugin = {
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
         title,
-        ...frontMatter,
         content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
         // Set to null if toc is empty
         toc:
           tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
             <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
-          )
+          ),
+        ...frontMatter
       };
 
       tocHTML = '';

@@ -136,7 +136,7 @@ Here we build `src/hello.tsx` to `public/hello.html`, using `src/_layout.tsx` as
 // @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
-const Hello = () => <h1>Hello World</h1>;
+const Hello = () => <h1>Hello world</h1>;
 
 export default Hello;
 ```
@@ -150,7 +150,7 @@ And `public/hello.html` would be:
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1>Hello World</h1>
+    <h1>Hello world</h1>
   </body>
 </html>
 ```
@@ -251,12 +251,12 @@ In react component we can export a `frontMatter` variable:
 // @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts"
 import React from 'https://dev.jspm.io/react@16.13.1';
 
-const Hello = () => <h1>Hello World</h1>;
+const Hello = () => <h1>Hello world</h1>;
 
 export default Hello;
 
 export const frontMatter = {
-  title: 'Hello World',
+  title: 'Hello world',
   author: 'xcatliu',
   published: '2020-05-20'
 };

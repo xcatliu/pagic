@@ -1,12 +1,14 @@
 # `_layout.tsx`
 
+> 从这一章开始的内容是提供给需要深度定制的用户的，如果你只是简单使用 Pagic，那么可以直接跳到[部署](./deployment.md)章节。
+
 `_layout.tsx` 是 Pagic 的核心理念之一。
 
 ## 什么是 `_layout.tsx`
 
 `_layout.tsx` 可以理解为 Pagic 在渲染页面时的模版文件，所有页面文件（`md/tsx`）在渲染时都会以 `_layout.tsx` 为模版。
 
-我们在上一章的 `site` 项目中创建一个 `_layout.tsx`：
+我们不妨在之前的 `site` 项目中创建一个 `_layout.tsx`：
 
 ```
 site/
@@ -76,9 +78,9 @@ site/
 
 > 通过配置页面头信息可以跳过此规则，强制指定一个模版。
 
-## 模版组件
+## 组件化
 
-组件化是 React 的重要特性之一，我们当然可以通过拆分 `_layout.tsx` 为一个个小组件来复用代码。不过在 Pagic 中，由于需要支持 `tsx` 文件渲染为页面，所以我们需要对模版组件做一个约定——以 `_` 开头的组件为模版组件：
+组件化是 React 的重要特性之一，我们可以通过拆分 `_layout.tsx` 为一个个子组件来复用代码。不过在 Pagic 中，由于需要支持 `tsx` 文件渲染为页面，所以我们需要对子组件做一个约定——以 `_` 开头的组件为子组件：
 
 ```
 site/
@@ -115,9 +117,33 @@ const Layout: PagicLayout = ({ title, content }) => (
 export default Layout;
 ```
 
-## 文件名约定
+## `props`
 
-除了模版文件（`_layout.tsx`）和页面文件（`md/tsx`）之外的其他文件会被视为静态资源，直接复制到 `dist` 目录下。
+注意到上面的例子中我们取用了 `props` 中的 `title` 和 `content`，那么除了这两个之外 `props` 中还有哪些属性可以使用呢？
+
+请参考下面的表格：
+
+| 属性         | 类型                  | 依赖的插件            | 描述                                      |
+| ------------ | --------------------- | --------------------- | ----------------------------------------- |
+| `title`      | `string`              | `md`, `tsx`           | 页面的标题，一般会放到 `<head><title>` 中 |
+| `content`    | `string`              | `md`, `tsx`, `layout` | 页面的内容，一般会放到 `<body>` 中        |
+| `config`     | `PagicConfig`         | `init`                | Pagic 的配置                              |
+| `pagePath`   | `string`              | `init`                | 页面路径，如 `docs/README.md`             |
+| `layoutPath` | `string`              | `init`                | 页面的模版路径，如 `docs/_layout.tsx`     |
+| `outputPath` | `string`              | `init`                | 页面的输出路径，如 `docs/index.html`      |
+| `script`     | `ReactElement`        | `script`              | 由 `script` 插件生成的 `ReactElement`     |
+| `toc`        | `ReactElement`        | `md`                  | 由 `md` 插件生成的 `ReactElement`         |
+| `loading`    | `boolean`             | `script`              | 页面是否在加载中                          |
+| `sidebar`    | `ReactElement`        | `sidebar`             | 由 `sidebar` 插件生成的 `ReactElement`    |
+| `prev`       | `PagePropsSidebar[0]` | `prev_next`           | 上一页的详细信息                          |
+| `next`       | `PagePropsSidebar[0]` | `prev_next`           | 下一页的详细信息                          |
+| `ga`         | `ReactElement`        | `ga`                  | 由 `ga` 插件生成的 `ReactElement`         |
+| `gitalk`     | `ReactElement`        | `gitalk`              | 由 `gitalk` 插件生成的 `ReactElement`     |
+| 其他         | `any`                 | 第三方插件            | 第三方插件也可能扩充 `props`              |
+
+## 静态资源
+
+除了以上提到的特殊文件之外的其他文件均会被视为静态资源，直接复制到 `dist` 目录下。
 
 现将所有文件名约定汇总如下：
 
@@ -126,6 +152,6 @@ export default Layout;
 | 以 `.` 开头                             | 隐藏文件，会被忽略                     |
 | `pagic.config.ts` 或 `pagic.config.tsx` | 配置文件                               |
 | `_layout.tsx`                           | 模版文件                               |
-| 以 `_` 开头的 `tsx` 文件                | 模版组件                               |
-| 以 `md` 或 `tsx` 结尾                   | 页面文件                               |
+| 以 `_` 开头的 `tsx` 文件                | 子组件                                 |
+| `md` 或 `tsx` 后缀的文件                | 页面文件                               |
 | 其他文件                                | 静态资源，会被直接复制到 `dist` 目录下 |

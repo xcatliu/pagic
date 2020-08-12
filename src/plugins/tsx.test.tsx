@@ -36,8 +36,8 @@ Deno.test('[tsx]', async () => {
   await tsx.fn(pagic);
 
   const pageProps_hello = pagic.pagePropsMap['hello.tsx'];
-  assertEquals(ReactDOMServer.renderToString(pageProps_hello.content!), '<h1 data-reactroot="">Hello World</h1>');
-  assertEquals(pageProps_hello.title, 'Hello World');
+  assertEquals(ReactDOMServer.renderToString(pageProps_hello.content!), '<h1 data-reactroot="">Hello world</h1>');
+  assertEquals(pageProps_hello.title, 'Hello world');
   assertEquals(pageProps_hello.author, 'xcatliu');
   assertEquals(pageProps_hello.published, '2020-05-20');
 });

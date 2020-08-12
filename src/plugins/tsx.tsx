@@ -17,8 +17,8 @@ const tsx: PagicPlugin = {
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
-        ...frontMatter,
-        content: <ContentComponent />
+        content: <ContentComponent />,
+        ...frontMatter
       };
     }
   }

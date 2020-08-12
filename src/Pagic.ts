@@ -59,8 +59,10 @@ export interface PageProps {
   toc: React.ReactElement | null;
   loading?: boolean;
   sidebar?: PagePropsSidebar;
-  previous?: PagePropsSidebar[0] | null;
+  prev?: PagePropsSidebar[0] | null;
   next?: PagePropsSidebar[0] | null;
+  ga?: React.ReactElement | null;
+  gitalk?: React.ReactElement | null;
   [key: string]: any;
 }
 // #endregion

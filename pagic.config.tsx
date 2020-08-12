@@ -46,7 +46,7 @@ export default {
       'docs/themes.md',
       'docs/plugins.md',
       'docs/deployment.md',
-      'docs/recipes.md',
+      'docs/demos.md',
       'docs/limitations.md'
     ]
   }

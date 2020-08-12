@@ -110,7 +110,7 @@ const IndexPage = () => (
         <a className="btn btn-primary" href="/docs/introduction.html">
           开始使用
         </a>
-        <a className="btn" href="/demos/">
+        <a className="btn" href="/docs/demos.html">
           示例网站
         </a>
       </div>
@@ -121,7 +121,7 @@ const IndexPage = () => (
         <ul>
           <li>约定优于配置</li>
           <li>
-            一个入口 <code>pagic.config.ts</code>
+            一个配置 <code>pagic.config.ts</code>
           </li>
           <li>符合直觉的设计</li>
         </ul>
