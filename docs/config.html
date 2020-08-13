@@ -118,7 +118,7 @@
 </li>
 </ul>
 <p><code>exclude</code> 与 <code>include</code> 类似，用于在 <code>srcDir</code> 中排除指定的文件。</p>
-<p><code>exclude</code> 默认会排除一些显然不是 Pagic 需要构建的文件，如以 <code>.</code> 开头的隐藏文件、<code>package.json</code>、<code>node_modules</code> 等，需要注意的是，用户配置的 <code>outDir</code> 也会默认被排除掉。</p>
+<p><code>exclude</code> 默认会排除一些显然不是 Pagic 构建需要的文件，如以 <code>.</code> 开头的隐藏文件、<code>package.json</code>、<code>node_modules</code> 等，需要注意的是，用户配置的 <code>outDir</code> 也会默认被排除掉。</p>
 <p>当我们在 <code>pagic.config.ts</code> 中配置了 <code>exclude</code> 字段时，它不会覆盖掉默认值，而是会 <code>concat</code> 到默认值中，比如当我们按如下配置时：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'test'</span><span class="token punctuation">]</span>
@@ -171,23 +171,23 @@
 <li>类型：<code>string[]</code></li>
 <li>默认值：<code>['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']</code></li>
 </ul>
-<p>当使用官方插件时，数组中的项应为简单字符串，详见<a href="../plugins/">官方插件列表</a>。</p>
+<p>当使用官方插件时，数组中的项应为官方插件的名称，详见<a href="../plugins/">官方插件列表</a>。</p>
 <p>当使用第三方插件时，数组中的项应为形如：</p>
 <pre class="language-autoit"><code class="language-autoit">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>raw<span class="token punctuation">.</span>githubusercontent<span class="token punctuation">.</span>com<span class="token operator">/</span>xcatliu<span class="token operator">/</span>pagic_plugin_custom<span class="token operator">/</span>master<span class="token operator">/</span>mod<span class="token punctuation">.</span>ts
 </code></pre>
 <p>的链接。</p>
 <p>需要注意的是，用户配置的 <code>plugins</code> 不会替换掉默认的 <code>plugins</code>，而是以一种规则插入到默认的 <code>plugins</code> 中，详见<a href="./plugins.html#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a>。</p>
-<p>以 <code>pagic.org</code> 的配置为例：</p>
+<p>以 <a href="https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx"><code>pagic.org</code> 的配置</a>为例：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'prev_next'</span><span class="token punctuation">,</span> <span class="token string">'ga'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>那么插入后的 <code>plugins</code> 为：</p>
+<p>插入后的 <code>plugins</code> 为：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'clean'</span><span class="token punctuation">,</span> <span class="token string">'init'</span><span class="token punctuation">,</span> <span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token string">'tsx'</span><span class="token punctuation">,</span> <span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'prev_next'</span><span class="token punctuation">,</span> <span class="token string">'ga'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'layout'</span><span class="token punctuation">,</span> <span class="token string">'out'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>另外，通过配置以 <code>-</code> 开头的项，可以删除掉默认的 <code>plugins</code>，比如配置：</p>
+<p>另外，通过配置以 <code>-</code> 开头的项，可以删除掉默认的插件，比如配置：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'-script'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -374,7 +374,7 @@
 <li>支持的主题：<code>docs</code>, <code>blog</code></li>
 <li>依赖的插件：<code>gitalk</code></li>
 </ul>
-<p>Gitalk 的配置，示例如下：</p>
+<p>Gitalk 可以给页面添加评论功能，示例如下：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   gitalk<span class="token operator">:</span> <span class="token punctuation">{</span>
     clientID<span class="token operator">:</span> <span class="token string">'29aa4941759fc887ed4f'</span><span class="token punctuation">,</span>

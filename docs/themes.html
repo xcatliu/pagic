@@ -31,7 +31,7 @@
 <p>以 <code>sidebar</code> 插件为例，<code>sidebar</code> 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 <code>default</code> 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 <code>sidebar</code> 插件。不过 <code>docs</code> 主题和 <code>blog</code> 主题均支持 <code>sidebar</code> 插件。</p>
 <p>一般可以在主题的文档中查看其支持的插件列表。</p>
 <h3 id="%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">§</a></h3>
-<p>在 <code>pagic.config.ts</code> 中可以配置主题相关的选项，常见的选项包括 <code>title</code>, <code>description</code>, <code>head</code> 等。它们的含义和用法可以参考<a href="./config.html#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">配置文件</a>。</p>
+<p>在 <code>pagic.config.ts</code> 中可以配置主题相关的选项，常见的选项包括 <code>title</code>, <code>description</code>, <code>head</code> 等。它们的含义和用法可以参考<a href="./config.html#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">配置文件</a>章节。</p>
 <h4 id="%E7%BD%91%E7%AB%99%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E6%8F%92%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F">网站的配置？主题的配置？插件的配置？<a class="anchor" href="#%E7%BD%91%E7%AB%99%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E6%8F%92%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F">§</a></h4>
 <p>你可能已经发现了，不像一些其他的静态网站生成器对于网站、主题和插件拥有不同的配置文件（或配置项），Pagic 只拥有一个配置文件 <code>pagic.config.ts</code>。</p>
 <p>你也许会有一些疑惑：这不会很混乱吗？主题和插件之间的配置不会冲突吗？</p>
@@ -109,7 +109,7 @@
 |── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre>
-<p>Pagic 构建时每个页面文件（<code>md/tsx</code>）均会遵循 <a href="./layout.html">_layout.tsx 章节</a>中描述的规则来查找它对应的模版文件。</p>
+<p>Pagic 构建时每个页面文件（<code>md/tsx</code>）均会遵循 <a href="./layout.html">_layout.tsx</a> 章节中描述的规则来查找它对应的模版文件。</p>
 <p>一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。</p>
 <p>比如主题可以创建一个 <code>posts/_layout.tsx</code> 文件：</p>
 <pre class="language-autoit"><code class="language-autoit">pagic_theme_custom<span class="token operator">/</span>
