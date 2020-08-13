@@ -6,6 +6,8 @@
 
 ## 使用方式
 
+在 `pagic.config.ts` 中通过 `plugins` 来配置插件，它的类型是 `string[]`。
+
 按照插件的级别可以将插件分为内置插件、官方插件以及第三方插件。
 
 ### 内置插件
@@ -41,6 +43,45 @@ export default {
 删除掉默认插件后再添加第三方插件的话，我们甚至可以完全的更改 Pagic 的构建过程。比如我们可以删除掉 `md` 插件，然后添加一个第三方的解析 Markdown 的插件，来替换 Markdown 文件的解析过程。
 
 ### 官方插件
+
+除了内置插件之外，我们还提供了一些常用的官方插件，它们包括：
+
+- `sidebar`: 侧边栏插件，用于解析 `pagic.config.ts` 中配置的 `sidebar`，解析完成后由主题来渲染
+- `prev_next`: 上一页下一页插件，会根据 `sidebar` 的配置决定链接，由主题渲染到页面的文章底部
+- `ga`: 谷歌分析插件，该插件会生成一个 `ReactElement`，由主题插入到页面的 `<head>` 中
+- `gitalk`: Gitalk 插件，给页面添加评论功能，该插件会生成一个 `ReactElement`，由主题插入到页面的文章底部
+
+这些插件的配置可以在[配置文件](./config.md#页面内容)章节中查看。
+
+通过配置 `plugins` 可以添加官方插件。
+
+需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中。
+
+以 [`pagic.org` 的配置](https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx)为例：
+
+```ts
+export default {
+  plugins: ['sidebar', 'prev_next', 'ga']
+};
+```
+
+插入后的 `plugins` 为：
+
+```ts
+export default {
+  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out']
+};
+```
+
+#### 那么这里是以什么规则插入的呢？
+
+原来每一个**非内置**插件都会有一个 `insert` 属性，它描述了插入时的位置，它的取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名。比如：
+
+- `sidebar` 的 `insert` 属性为 `after:tsx`，所以它会被插入到 `tsx` 后面
+- `prev_next` 的 `insert` 属性为 `after:sidebar`，所以它会被插入到 `sidebar` 后面
+- `ga` 的 `insert` 属性为 `before:script`，所以它会被插入到 `script` 前面
+
+得益于 Pagic 将构建过程拆分为了一个个内置插件，非内置插件可以很灵活的插入到构建的任何位置。这种设计比创建一些「钩子函数」来得更方便也更容易理解。
 
 ### 第三方插件
 

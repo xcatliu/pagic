@@ -215,7 +215,7 @@ export default {
 };
 ```
 
-那么插入后的 `plugins` 为：
+插入后的 `plugins` 为：
 
 ```ts
 export default {
@@ -446,7 +446,7 @@ export default {
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：`gitalk`
 
-Gitalk 的配置，示例如下：
+Gitalk 可以给页面添加评论功能，示例如下：
 
 ```ts
 export default {

@@ -38,7 +38,7 @@ export default {
 
 ### 主题的配置
 
-在 `pagic.config.ts` 中可以配置主题相关的选项，常见的选项包括 `title`, `description`, `head` 等。它们的含义和用法可以参考[配置文件](./config.md#页面内容)。
+在 `pagic.config.ts` 中可以配置主题相关的选项，常见的选项包括 `title`, `description`, `head` 等。它们的含义和用法可以参考[配置文件](./config.md#页面内容)章节。
 
 #### 网站的配置？主题的配置？插件的配置？
 
@@ -151,7 +151,7 @@ site/
 └── README.tsx
 ```
 
-Pagic 构建时每个页面文件（`md/tsx`）均会遵循 [\_layout.tsx 章节](./layout.md)中描述的规则来查找它对应的模版文件。
+Pagic 构建时每个页面文件（`md/tsx`）均会遵循 [\_layout.tsx](./layout.md) 章节中描述的规则来查找它对应的模版文件。
 
 一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。
 
