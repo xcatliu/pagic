@@ -129,7 +129,7 @@ site/
 
 `exclude` 与 `include` 类似，用于在 `srcDir` 中排除指定的文件。
 
-`exclude` 默认会排除一些显然不是 Pagic 需要构建的文件，如以 `.` 开头的隐藏文件、`package.json`、`node_modules` 等，需要注意的是，用户配置的 `outDir` 也会默认被排除掉。
+`exclude` 默认会排除一些显然不是 Pagic 构建需要的文件，如以 `.` 开头的隐藏文件、`package.json`、`node_modules` 等，需要注意的是，用户配置的 `outDir` 也会默认被排除掉。
 
 当我们在 `pagic.config.ts` 中配置了 `exclude` 字段时，它不会覆盖掉默认值，而是会 `concat` 到默认值中，比如当我们按如下配置时：
 
@@ -195,7 +195,7 @@ https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts
 - 类型：`string[]`
 - 默认值：`['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']`
 
-当使用官方插件时，数组中的项应为简单字符串，详见[官方插件列表](../plugins/)。
+当使用官方插件时，数组中的项应为官方插件的名称，详见[官方插件列表](../plugins/)。
 
 当使用第三方插件时，数组中的项应为形如：
 
@@ -207,7 +207,7 @@ https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts
 
 需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中，详见[如何开发插件](./plugins.md#如何开发插件)。
 
-以 `pagic.org` 的配置为例：
+以 [`pagic.org` 的配置](https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx)为例：
 
 ```ts
 export default {
@@ -223,7 +223,7 @@ export default {
 };
 ```
 
-另外，通过配置以 `-` 开头的项，可以删除掉默认的 `plugins`，比如配置：
+另外，通过配置以 `-` 开头的项，可以删除掉默认的插件，比如配置：
 
 ```ts
 export default {

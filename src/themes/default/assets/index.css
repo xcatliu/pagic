@@ -6,6 +6,7 @@ article {
   margin: 0 auto;
   padding: 0 1rem;
   width: 44rem;
+  word-wrap: break-word;
 }
 
 .anchor {

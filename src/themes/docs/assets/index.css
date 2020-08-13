@@ -215,6 +215,7 @@ header li a:hover {
   padding: 0 1rem;
   width: 44rem;
   max-width: 44rem;
+  word-wrap: break-word;
 }
 article.loading {
   min-height: calc(100vh - var(--height-header));
