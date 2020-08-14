@@ -127,7 +127,7 @@ export default Layout;
 | ------------ | --------------------- | --------------------- | ----------------------------------------- |
 | `title`      | `string`              | `md`, `tsx`           | 页面的标题，一般会放到 `<head><title>` 中 |
 | `content`    | `string`              | `md`, `tsx`, `layout` | 页面的内容，一般会放到 `<body>` 中        |
-| `config`     | `PagicConfig`         | `init`                | Pagic 的配置                              |
+| `config`     | `PagicConfig`         | `init`                | Pagic **运行时**的配置                    |
 | `pagePath`   | `string`              | `init`                | 页面路径，如 `docs/README.md`             |
 | `layoutPath` | `string`              | `init`                | 页面的模版路径，如 `docs/_layout.tsx`     |
 | `outputPath` | `string`              | `init`                | 页面的输出路径，如 `docs/index.html`      |
@@ -140,6 +140,8 @@ export default Layout;
 | `ga`         | `ReactElement`        | `ga`                  | 由 `ga` 插件生成的 `ReactElement`         |
 | `gitalk`     | `ReactElement`        | `gitalk`              | 由 `gitalk` 插件生成的 `ReactElement`     |
 | 其他         | `any`                 | 第三方插件            | 第三方插件也可能扩充 `props`              |
+
+> Pagic **运行时**的配置与 `pagic.config.ts` 中的配置会有少许差异。
 
 ## 静态资源
 

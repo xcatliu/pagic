@@ -16,7 +16,7 @@
 
 内置插件包括：`['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']`，Pagic 的构建过程也是按照这个次序来的：
 
-1. `clean`: 清空输出目录
+1. `clean`: 清空 `dist` 目录
 2. `init`: 初始化中间变量（`pagePropsMap`）
 3. `md`: 解析 `md` 文件，更新中间变量
 4. `tsx`: 解析 `tsx` 文件，更新中间变量
@@ -75,7 +75,7 @@ export default {
 
 #### 那么这里是以什么规则插入的呢？
 
-原来每一个**非内置**插件都会有一个 `insert` 属性，它描述了插入时的位置，它的取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名。比如：
+原来，每一个**非内置**插件都会有一个 `insert` 属性，它描述了插入时的位置，它的取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名。比如：
 
 - `sidebar` 的 `insert` 属性为 `after:tsx`，所以它会被插入到 `tsx` 后面
 - `prev_next` 的 `insert` 属性为 `after:sidebar`，所以它会被插入到 `sidebar` 后面
@@ -94,6 +94,83 @@ export default {
 ```
 
 ## 如何开发插件
+
+### 插件的结构
+
+一个插件要求有一个默认导出，类型如下：
+
+```ts
+interface PagicPlugin {
+  name: string;
+  insert?: string;
+  fn: (ctx: Pagic) => Promise<void>;
+}
+```
+
+其中：
+
+- `name` 是插件的名称，当其他插件需要插入到此插件前后时，会用到此名称
+- `insert` 是此插件插入的位置，取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名
+- `fn` 函数是插件的核心逻辑，它接受一个参数 `ctx`，其为 `Pagic` 的实例
+
+> 此命名规则是参考了 [Deno Testing 的设计](https://deno.land/manual/testing)
+
+### `fn` 函数
+
+`fn` 函数是插件的核心逻辑，由于它的参数 `ctx` 是 `Pagic` 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：
+
+- 读取配置信息（`pagic.config.ts` 中的信息）
+- 获取静态资源列表
+- 获取页面列表
+- 修改页面的 `props`
+- 写入文件到 `dist` 目录中
+- 导入第三方模块并运行
+
+比如，我们可以创建一个插件，它给所有页面的 `title` 加一个前缀：
+
+```ts
+import { PagicPlugin } from 'https://deno.land/x/pagic/mod.ts';
+
+const prependTitle: PagicPlugin = {
+  name: 'prepend_title',
+  insert: 'after:tsx',
+  fn: async (pagic) => {
+    for (const pagePath of pagic.pagePaths) {
+      const pageProps = pagic.pagePropsMap[pagePath];
+
+      pagic.pagePropsMap[pagePath] = {
+        ...pageProps,
+        title: `Prefix ${pageProps.title}`
+      };
+    }
+  }
+};
+
+export default prependTitle;
+```
+
+上例中，
+
+- `pagic.pagePaths` 是**暂存的**所有扫描出的页面路径
+- `pagic.pagePropsMap` 是所有页面的 `props`
+
+我们通过 `for of` 循环遍历 `pagic.pagePaths`，并将每个页面的 `props` 重新赋值，这样就实现了给所有页面添加前缀了。
+
+除了这两个属性外，`pagic` 还有很多其他的属性，下面列出常用的 `pagic` 属性：
+
+| 属性           | 类型                      | 描述                                       |
+| -------------- | ------------------------- | ------------------------------------------ |
+| `config`       | `PagicConfig`             | Pagic **运行时**的配置                     |
+| `pagePaths`    | `string[]`                | **暂存的**所有扫描出的页面路径             |
+| `layoutPaths`  | `string[]`                | 所有扫描出的模版（包括主题）               |
+| `staticPaths`  | `string[]`                | **暂存的**所有扫描出的静态资源（包括主题） |
+| `pagePropsMap` | `{ [key:string]:any }`    | 所有页面的 `props`                         |
+| `writeFiles`   | `{ [key:string]:string }` | 将会在 `out` 插件中被写入到 `dist` 目录中  |
+| `rebuilding`   | `boolean`                 | `true` 表示重新构建，`false` 表示增量构建  |
+
+注意，`pagePaths` 和 `staticPaths` 都是**暂存的**，并不是全量的，也就是说，增量构建（构建时运行的 `--watch` 模式）时它们都只包含增量的文件。
+
+> Pagic **运行时**的配置与 `pagic.config.ts` 中的配置会有少许差异。
 
 ### 参考官方插件
 
