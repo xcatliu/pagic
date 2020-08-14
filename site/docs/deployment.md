@@ -33,7 +33,7 @@ jobs:
           export DENO_INSTALL="/home/runner/.deno"
           export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
-          deno install --unstable --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@v0.8.4/mod.ts
+          deno install --unstable --allow-read --allow-write --allow-net -n pagic https://deno.land/x/pagic@v0.8.6/mod.ts
           pagic build
 
       - name: Deploy gh-pages

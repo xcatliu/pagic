@@ -7,8 +7,8 @@ Pagic 很优秀，但也有一些缺陷。
 Pagic 使用到的最新特性包括：
 
 - 通过 `<script type="module">` 加载 esm 模块（[浏览器支持性](https://caniuse.com/#feat=es6-module)）
-- `import`, `export`, `export default` 等 esm 语法（[浏览器支持性](https://caniuse.com/#feat=mdn-javascript_statements_import)）
 - 通过 `import()` 动态加载 esm 模块（[浏览器支持性](https://caniuse.com/#feat=es6-module-dynamic-import)）
+- `import`, `export`, `export default` 等 esm 语法（[浏览器支持性](https://caniuse.com/#feat=mdn-javascript_statements_import)）
 - `async` 函数（[浏览器兼容性](https://caniuse.com/#feat=async-functions)）
 - 常用的 ES6 语法，包括 `let`, `const`, `() => {}` 等
 - CSS Variables（[浏览器兼容性](https://caniuse.com/#feat=css-variables)）
