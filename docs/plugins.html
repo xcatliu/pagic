@@ -19,7 +19,7 @@
 <p>内置插件（也可称为默认插件）是最重要的插件，它们组成了 Pagic 的整个构建过程——换句话说，Pagic 的整个构建过程被拆分为了内置插件。</p>
 <p>内置插件包括：<code>['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']</code>，Pagic 的构建过程也是按照这个次序来的：</p>
 <ol>
-<li><code>clean</code>: 清空输出目录</li>
+<li><code>clean</code>: 清空 <code>dist</code> 目录</li>
 <li><code>init</code>: 初始化中间变量（<code>pagePropsMap</code>）</li>
 <li><code>md</code>: 解析 <code>md</code> 文件，更新中间变量</li>
 <li><code>tsx</code>: 解析 <code>tsx</code> 文件，更新中间变量</li>
@@ -61,7 +61,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h4 id="%E9%82%A3%E4%B9%88%E8%BF%99%E9%87%8C%E6%98%AF%E4%BB%A5%E4%BB%80%E4%B9%88%E8%A7%84%E5%88%99%E6%8F%92%E5%85%A5%E7%9A%84%E5%91%A2%EF%BC%9F">那么这里是以什么规则插入的呢？<a class="anchor" href="#%E9%82%A3%E4%B9%88%E8%BF%99%E9%87%8C%E6%98%AF%E4%BB%A5%E4%BB%80%E4%B9%88%E8%A7%84%E5%88%99%E6%8F%92%E5%85%A5%E7%9A%84%E5%91%A2%EF%BC%9F">§</a></h4>
-<p>原来每一个<strong>非内置</strong>插件都会有一个 <code>insert</code> 属性，它描述了插入时的位置，它的取值为 <code>before:xxx</code> 或 <code>after:xxx</code>，其中 <code>xxx</code> 为一个插件名。比如：</p>
+<p>原来，每一个<strong>非内置</strong>插件都会有一个 <code>insert</code> 属性，它描述了插入时的位置，它的取值为 <code>before:xxx</code> 或 <code>after:xxx</code>，其中 <code>xxx</code> 为一个插件名。比如：</p>
 <ul>
 <li><code>sidebar</code> 的 <code>insert</code> 属性为 <code>after:tsx</code>，所以它会被插入到 <code>tsx</code> 后面</li>
 <li><code>prev_next</code> 的 <code>insert</code> 属性为 <code>after:sidebar</code>，所以它会被插入到 <code>sidebar</code> 后面</li>
@@ -75,5 +75,109 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">§</a></h2>
+<h3 id="%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构<a class="anchor" href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">§</a></h3>
+<p>一个插件要求有一个默认导出，类型如下：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name"><span class="token maybe-class-name">PagicPlugin</span></span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  insert<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>ctx<span class="token operator">:</span> <span class="token maybe-class-name">Pagic</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token known-class-name class-name">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>name</code> 是插件的名称，当其他插件需要插入到此插件前后时，会用到此名称</li>
+<li><code>insert</code> 是此插件插入的位置，取值为 <code>before:xxx</code> 或 <code>after:xxx</code>，其中 <code>xxx</code> 为一个插件名</li>
+<li><code>fn</code> 函数是插件的核心逻辑，它接受一个参数 <code>ctx</code>，其为 <code>Pagic</code> 的实例</li>
+</ul>
+<blockquote>
+<p>此命名规则是参考了 <a href="https://deno.land/manual/testing">Deno Testing 的设计</a></p>
+</blockquote>
+<h3 id="fn-%E5%87%BD%E6%95%B0"><code>fn</code> 函数<a class="anchor" href="#fn-%E5%87%BD%E6%95%B0">§</a></h3>
+<p><code>fn</code> 函数是插件的核心逻辑，由于它的参数 <code>ctx</code> 是 <code>Pagic</code> 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：</p>
+<ul>
+<li>读取配置信息（<code>pagic.config.ts</code> 中的信息）</li>
+<li>获取静态资源列表</li>
+<li>获取页面列表</li>
+<li>修改页面的 <code>props</code></li>
+<li>写入文件到 <code>dist</code> 目录中</li>
+<li>导入第三方模块并运行</li>
+</ul>
+<p>比如，我们可以创建一个插件，它给所有页面的 <code>title</code> 加一个前缀：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">PagicPlugin</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> prependTitle<span class="token operator">:</span> <span class="token maybe-class-name">PagicPlugin</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'prepend_title'</span><span class="token punctuation">,</span>
+  insert<span class="token operator">:</span> <span class="token string">'after:tsx'</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> pagePath <span class="token keyword">of</span> pagic<span class="token punctuation">.</span><span class="token property-access">pagePaths</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> pageProps <span class="token operator">=</span> pagic<span class="token punctuation">.</span><span class="token property-access">pagePropsMap</span><span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+      pagic<span class="token punctuation">.</span><span class="token property-access">pagePropsMap</span><span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token spread operator">...</span>pageProps<span class="token punctuation">,</span>
+        title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Prefix </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pageProps<span class="token punctuation">.</span><span class="token property-access">title</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> prependTitle<span class="token punctuation">;</span>
+</code></pre>
+<p>上例中，</p>
+<ul>
+<li><code>pagic.pagePaths</code> 是<strong>暂存的</strong>所有扫描出的页面路径</li>
+<li><code>pagic.pagePropsMap</code> 是所有页面的 <code>props</code></li>
+</ul>
+<p>我们通过 <code>for of</code> 循环遍历 <code>pagic.pagePaths</code>，并将每个页面的 <code>props</code> 重新赋值，这样就实现了给所有页面添加前缀了。</p>
+<p>除了这两个属性外，<code>pagic</code> 还有很多其他的属性，下面列出常用的 <code>pagic</code> 属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td><code>PagicConfig</code></td>
+<td>Pagic <strong>运行时</strong>的配置</td>
+</tr>
+<tr>
+<td><code>pagePaths</code></td>
+<td><code>string[]</code></td>
+<td><strong>暂存的</strong>所有扫描出的页面路径</td>
+</tr>
+<tr>
+<td><code>layoutPaths</code></td>
+<td><code>string[]</code></td>
+<td>所有扫描出的模版（包括主题）</td>
+</tr>
+<tr>
+<td><code>staticPaths</code></td>
+<td><code>string[]</code></td>
+<td><strong>暂存的</strong>所有扫描出的静态资源（包括主题）</td>
+</tr>
+<tr>
+<td><code>pagePropsMap</code></td>
+<td><code>{ [key:string]:any }</code></td>
+<td>所有页面的 <code>props</code></td>
+</tr>
+<tr>
+<td><code>writeFiles</code></td>
+<td><code>{ [key:string]:string }</code></td>
+<td>将会在 <code>out</code> 插件中被写入到 <code>dist</code> 目录中</td>
+</tr>
+<tr>
+<td><code>rebuilding</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> 表示重新构建，<code>false</code> 表示增量构建</td>
+</tr>
+</tbody>
+</table>
+<p>注意，<code>pagePaths</code> 和 <code>staticPaths</code> 都是<strong>暂存的</strong>，并不是全量的，也就是说，增量构建（构建时运行的 <code>--watch</code> 模式）时它们都只包含增量的文件。</p>
+<blockquote>
+<p>Pagic <strong>运行时</strong>的配置与 <code>pagic.config.ts</code> 中的配置会有少许差异。</p>
+</blockquote>
 <h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
-<p>开发一个插件最佳的参考就是官方插件，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">查看官方插件的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->主题</a><a class="next button" href="/docs/deployment.html">部署<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件</a></li><li><a href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件</a><ol></ol></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a><ol><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>开发一个插件最佳的参考就是官方插件，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">查看官方插件的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->主题</a><a class="next button" href="/docs/deployment.html">部署<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件</a></li><li><a href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件</a><ol></ol></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a><ol><li><a href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构</a></li><li><a href="#fn-%E5%87%BD%E6%95%B0">fn 函数</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
