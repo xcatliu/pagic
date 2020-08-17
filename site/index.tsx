@@ -121,7 +121,7 @@ const IndexPage = () => (
         <ul>
           <li>约定优于配置</li>
           <li>
-            一个配置 <code>pagic.config.ts</code>
+            一个配置文件 <code>pagic.config.ts</code>
           </li>
           <li>符合直觉的设计</li>
         </ul>
@@ -129,8 +129,10 @@ const IndexPage = () => (
       <div>
         <h2>支持 md 和 tsx</h2>
         <ul>
-          <li>支持 md 文件渲染成页面</li>
-          <li>支持 tsx 文件渲染成页面</li>
+          <li>
+            支持将 <code>md/tsx</code> 文件渲染成静态页面
+          </li>
+          <li>支持 React Hooks</li>
           <li>预渲染生成静态 HTML，加载后作为 SPA 运行</li>
         </ul>
       </div>
