@@ -28,7 +28,7 @@
 <li><code>out</code>: 生成 HTML 文件，复制静态资源</li>
 </ol>
 <blockquote>
-<p>其实第 1 步之前还有一些步骤：解析 <code>pagic.config.ts</code>，扫描项目目录，找出页面文件和模版文件。但是由于一些运行机制的原因，它们无法被拆分为插件。</p>
+<p>其实第 1 步之前还有一些步骤：解析 <code>pagic.config.ts</code>、扫描项目目录、找出页面文件和模版文件。但是由于一些运行机制的原因，它们无法被拆分为插件。</p>
 </blockquote>
 <p>内置插件默认就是开启的，你不需要添加配置来启用。</p>
 <p>通过配置以 <code>-</code> 开头的项，可以删除掉默认的插件，比如配置：</p>
@@ -67,7 +67,7 @@
 <li><code>prev_next</code> 的 <code>insert</code> 属性为 <code>after:sidebar</code>，所以它会被插入到 <code>sidebar</code> 后面</li>
 <li><code>ga</code> 的 <code>insert</code> 属性为 <code>before:script</code>，所以它会被插入到 <code>script</code> 前面</li>
 </ul>
-<p>得益于 Pagic 将构建过程拆分为了一个个内置插件，非内置插件可以很灵活的插入到构建的任何位置。这种设计比创建一些「钩子函数」来得更方便也更容易理解。</p>
+<p>得益于 Pagic 将构建过程拆分为了一个个内置插件，非内置插件可以很灵活的插入到构建的任何位置。这种设计比创建一些「钩子函数」来得更灵活也更容易理解。</p>
 <h3 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
 <p>当使用第三方插件时，数组中的项应为一个完整的入口文件链接：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
@@ -76,7 +76,7 @@
 </code></pre>
 <h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">§</a></h2>
 <h3 id="%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构<a class="anchor" href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">§</a></h3>
-<p>一个插件要求有一个默认导出，类型如下：</p>
+<p>一个插件必须有一个默认导出，类型如下：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name"><span class="token maybe-class-name">PagicPlugin</span></span> <span class="token punctuation">{</span>
   name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
   insert<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
@@ -176,8 +176,5 @@
 </tbody>
 </table>
 <p>注意，<code>pagePaths</code> 和 <code>staticPaths</code> 都是<strong>暂存的</strong>，并不是全量的，也就是说，增量构建（构建时运行的 <code>--watch</code> 模式）时它们都只包含增量的文件。</p>
-<blockquote>
-<p>Pagic <strong>运行时</strong>的配置与 <code>pagic.config.ts</code> 中的配置会有少许差异。</p>
-</blockquote>
 <h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
 <p>开发一个插件最佳的参考就是官方插件，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">查看官方插件的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->主题</a><a class="next button" href="/docs/deployment.html">部署<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件</a></li><li><a href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件</a><ol></ol></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a><ol><li><a href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构</a></li><li><a href="#fn-%E5%87%BD%E6%95%B0">fn 函数</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

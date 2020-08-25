@@ -23,9 +23,7 @@
 └── README<span class="token punctuation">.</span>md
 </code></pre>
 <p>其中 <code>_layout.tsx</code> 的内容如下：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token comment">// @deno-types="<a class="token url-link" href="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts">https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts</a>"</span>
-<span class="token keyword">import</span> <span class="token maybe-class-name">React</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://dev.jspm.io/react@16.13.1">https://dev.jspm.io/react@16.13.1</a>'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v0.8.6/mod.ts">https://deno.land/x/pagic@v0.8.6/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
@@ -81,9 +79,7 @@
 └── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 </code></pre>
 <p>在上面的例子中，<code>hello.tsx</code> 会被构建为 <code>dist/hello.html</code>，而 <code>_sidebar.tsx</code> 由于是 <code>_</code> 开头，所以不会被构建为页面。这样就可以实现对 <code>_layout.tsx</code> 的拆分，将 <code>Sidebar</code> 组件拆分到 <code>_sidebar.tsx</code> 文件中，然后在 <code>_layout.tsx</code> 中引用即可：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token comment">// @deno-types="<a class="token url-link" href="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts">https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts</a>"</span>
-<span class="token keyword">import</span> <span class="token maybe-class-name">React</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://dev.jspm.io/react@16.13.1">https://dev.jspm.io/react@16.13.1</a>'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v0.8.6/mod.ts">https://deno.land/x/pagic@v0.8.6/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token maybe-class-name">Sidebar</span> <span class="token keyword">from</span> <span class="token string">'./_sidebar.tsx'</span><span class="token punctuation">;</span>
 
@@ -131,7 +127,7 @@
 <td><code>config</code></td>
 <td><code>PagicConfig</code></td>
 <td><code>init</code></td>
-<td>Pagic <strong>运行时</strong>的配置</td>
+<td>Pagic <strong>运行时</strong>的配置<sup><a href="#sup-1">[1]</a></sup></td>
 </tr>
 <tr>
 <td><code>pagePath</code></td>
@@ -207,9 +203,6 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Pagic <strong>运行时</strong>的配置与 <code>pagic.config.ts</code> 中的配置会有少许差异。</p>
-</blockquote>
 <h2 id="%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">静态资源<a class="anchor" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">§</a></h2>
 <p>除了以上提到的特殊文件之外的其他文件均会被视为静态资源，直接复制到 <code>dist</code> 目录下。</p>
 <p>现将所有文件名约定汇总如下：</p>
@@ -246,4 +239,8 @@
 <td>静态资源，会被直接复制到 <code>dist</code> 目录下</td>
 </tr>
 </tbody>
-</table></article><div class="prev_next"><a class="prev button" href="/docs/content.html">«  <!-- -->页面内容</a><a class="next button" href="/docs/themes.html">主题<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-_layout.tsx">什么是 _layout.tsx</a></li><li><a href="#%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%AD%90%E6%A8%A1%E7%89%88">子页面和子模版</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#props">props</a></li><li><a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">静态资源</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</table>
+<h2 id="%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">引用与注解<a class="anchor" href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">§</a></h2>
+<ol>
+<li><span id="sup-1"></span>Pagic <strong>运行时</strong>的配置与 <code>pagic.config.ts</code> 中的配置会有少许差异。</li>
+</ol></article><div class="prev_next"><a class="prev button" href="/docs/content.html">«  <!-- -->页面内容</a><a class="next button" href="/docs/themes.html">主题<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-_layout.tsx">什么是 _layout.tsx</a></li><li><a href="#%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%AD%90%E6%A8%A1%E7%89%88">子页面和子模版</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#props">props</a></li><li><a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">静态资源</a></li><li><a href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">引用与注解</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

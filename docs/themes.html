@@ -37,7 +37,7 @@
 <p>你也许会有一些疑惑：这不会很混乱吗？主题和插件之间的配置不会冲突吗？</p>
 <p>但其实 Pagic 这么设计是有其道理的：</p>
 <h5 id="1.-%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%A2%AB%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E8%AF%BB%E5%8F%96">1. 一个配置项可能需要同时被主题和插件读取<a class="anchor" href="#1.-%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%A2%AB%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E8%AF%BB%E5%8F%96">§</a></h5>
-<p>以 <code>sidebar</code> 为例，我们在 <code>pagic.config.ts</code> 中配置了这样的 <code>sidebar</code>：</p>
+<p>以 <code>sidebar</code> 为例，如果我们在 <code>pagic.config.ts</code> 中配置了这样的 <code>sidebar</code>：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   sidebar<span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token string">'/docs/'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -60,7 +60,7 @@
 <li><code>sidebar</code> 插件需要解析它，并将其转化为 <code>React.ReactElement</code></li>
 <li><code>docs</code> 主题需要支持渲染 <code>sidebar</code>，并提供折叠、SPA 跳转等功能</li>
 </ul>
-<p>可见将 <code>sidebar</code> 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的。</p>
+<p>可见将 <code>sidebar</code> 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的，需要有一个地方统一管理这个配置。</p>
 <h5 id="2.-%E6%8F%92%E4%BB%B6%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E5%8F%AF%E8%83%BD%E6%9C%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">2. 插件和插件之间可能有依赖关系<a class="anchor" href="#2.-%E6%8F%92%E4%BB%B6%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E5%8F%AF%E8%83%BD%E6%9C%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">§</a></h5>
 <p>以 <code>prev_next</code> 插件为例，它支持在页面底部自动插入上一页下一页的链接。但是它需要依赖 <code>sidebar</code> 的配置才能知道上一页下一页的链接是什么。</p>
 <p>所以 <code>prev_next</code> 插件需要能够读取到 <code>sidebar</code> 的配置，故将配置统一放到 <code>pagic.config.ts</code> 中更合适。</p>
@@ -111,18 +111,18 @@
 </code></pre>
 <p>Pagic 构建时每个页面文件（<code>md/tsx</code>）均会遵循 <a href="./layout.html">_layout.tsx</a> 章节中描述的规则来查找它对应的模版文件。</p>
 <p>一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。</p>
-<p>比如主题可以创建一个 <code>posts/_layout.tsx</code> 文件：</p>
+<p>比如主题可以创建一个 <code>blog/_layout.tsx</code> 文件：</p>
 <pre class="language-autoit"><code class="language-autoit">pagic_theme_custom<span class="token operator">/</span>
 |── assets
 |   └── index<span class="token punctuation">.</span>css
-|── posts
+|── blog
 |   └── _layout<span class="token punctuation">.</span>tsx
 └── _layout<span class="token punctuation">.</span>tsx
 </code></pre>
-<p>这样用户的 <code>posts</code> 目录下的页面就会以 <code>posts/_layout.tsx</code> 作为模版来渲染了：</p>
+<p>这样用户的 <code>blog</code> 目录下的页面就会以 <code>blog/_layout.tsx</code> 作为模版来渲染了：</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── posts
-|   └── hello<span class="token punctuation">.</span>md    # 此页面会以主题中的 posts<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx 作为模版来渲染
+|── blog
+|   └── hello<span class="token punctuation">.</span>md    # 此页面会以主题中的 blog<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx 作为模版来渲染
 |── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre>
