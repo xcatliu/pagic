@@ -50,7 +50,7 @@ export default {
 
 ##### 1. 一个配置项可能需要同时被主题和插件读取
 
-以 `sidebar` 为例，我们在 `pagic.config.ts` 中配置了这样的 `sidebar`：
+以 `sidebar` 为例，如果我们在 `pagic.config.ts` 中配置了这样的 `sidebar`：
 
 ```ts
 export default {
@@ -76,7 +76,7 @@ export default {
 - `sidebar` 插件需要解析它，并将其转化为 `React.ReactElement`
 - `docs` 主题需要支持渲染 `sidebar`，并提供折叠、SPA 跳转等功能
 
-可见将 `sidebar` 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的。
+可见将 `sidebar` 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的，需要有一个地方统一管理这个配置。
 
 ##### 2. 插件和插件之间可能有依赖关系
 
@@ -155,23 +155,23 @@ Pagic 构建时每个页面文件（`md/tsx`）均会遵循 [\_layout.tsx](./lay
 
 一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。
 
-比如主题可以创建一个 `posts/_layout.tsx` 文件：
+比如主题可以创建一个 `blog/_layout.tsx` 文件：
 
 ```
 pagic_theme_custom/
 |── assets
 |   └── index.css
-|── posts
+|── blog
 |   └── _layout.tsx
 └── _layout.tsx
 ```
 
-这样用户的 `posts` 目录下的页面就会以 `posts/_layout.tsx` 作为模版来渲染了：
+这样用户的 `blog` 目录下的页面就会以 `blog/_layout.tsx` 作为模版来渲染了：
 
 ```
 site/
-|── posts
-|   └── hello.md    # 此页面会以主题中的 posts/_layout.tsx 作为模版来渲染
+|── blog
+|   └── hello.md    # 此页面会以主题中的 blog/_layout.tsx 作为模版来渲染
 |── pagic.config.ts
 └── README.tsx
 ```

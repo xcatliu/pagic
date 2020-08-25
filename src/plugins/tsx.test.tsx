@@ -1,8 +1,4 @@
-// @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
-// @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react-dom/v16.13.1/server.d.ts"
-import ReactDOMServer from 'https://dev.jspm.io/react-dom@16.13.1/server.js';
-import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
+import { asserts, ReactDOMServer } from '../../deps.ts';
 
 import Pagic from '../Pagic.ts';
 import tsx from './tsx.tsx';
@@ -36,8 +32,9 @@ Deno.test('[tsx]', async () => {
   await tsx.fn(pagic);
 
   const pageProps_hello = pagic.pagePropsMap['hello.tsx'];
-  assertEquals(ReactDOMServer.renderToString(pageProps_hello.content!), '<h1 data-reactroot="">Hello world</h1>');
-  assertEquals(pageProps_hello.title, 'Hello world');
-  assertEquals(pageProps_hello.author, 'xcatliu');
-  assertEquals(pageProps_hello.published, '2020-05-20');
+  asserts.assertEquals(
+    ReactDOMServer.renderToString(pageProps_hello.content!),
+    '<h1 data-reactroot="">Hello world</h1>'
+  );
+  asserts.assertEquals(pageProps_hello.outputPath, 'foo/bar.html');
 });

@@ -20,9 +20,7 @@ site/
 其中 `_layout.tsx` 的内容如下：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicLayout } from 'https://deno.land/x/pagic@v0.8.6/mod.ts';
+import { React, PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
 
 const Layout: PagicLayout = ({ title, content }) => (
   <html>
@@ -95,9 +93,7 @@ site/
 在上面的例子中，`hello.tsx` 会被构建为 `dist/hello.html`，而 `_sidebar.tsx` 由于是 `_` 开头，所以不会被构建为页面。这样就可以实现对 `_layout.tsx` 的拆分，将 `Sidebar` 组件拆分到 `_sidebar.tsx` 文件中，然后在 `_layout.tsx` 中引用即可：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
-import { PagicLayout } from 'https://deno.land/x/pagic@v0.8.6/mod.ts';
+import { React, PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
 
 import Sidebar from './_sidebar.tsx';
 
@@ -123,25 +119,23 @@ export default Layout;
 
 请参考下面的表格：
 
-| 属性         | 类型                  | 依赖的插件            | 描述                                      |
-| ------------ | --------------------- | --------------------- | ----------------------------------------- |
-| `title`      | `string`              | `md`, `tsx`           | 页面的标题，一般会放到 `<head><title>` 中 |
-| `content`    | `string`              | `md`, `tsx`, `layout` | 页面的内容，一般会放到 `<body>` 中        |
-| `config`     | `PagicConfig`         | `init`                | Pagic **运行时**的配置                    |
-| `pagePath`   | `string`              | `init`                | 页面路径，如 `docs/README.md`             |
-| `layoutPath` | `string`              | `init`                | 页面的模版路径，如 `docs/_layout.tsx`     |
-| `outputPath` | `string`              | `init`                | 页面的输出路径，如 `docs/index.html`      |
-| `sidebar`    | `ReactElement`        | `sidebar`             | 由 `sidebar` 插件生成的 `ReactElement`    |
-| `toc`        | `ReactElement`        | `md`                  | 由 `md` 插件生成的 `ReactElement`         |
-| `prev`       | `PagePropsSidebar[0]` | `prev_next`           | 上一页的详细信息                          |
-| `next`       | `PagePropsSidebar[0]` | `prev_next`           | 下一页的详细信息                          |
-| `script`     | `ReactElement`        | `script`              | 由 `script` 插件生成的 `ReactElement`     |
-| `loading`    | `boolean`             | `script`              | 页面是否在加载中                          |
-| `ga`         | `ReactElement`        | `ga`                  | 由 `ga` 插件生成的 `ReactElement`         |
-| `gitalk`     | `ReactElement`        | `gitalk`              | 由 `gitalk` 插件生成的 `ReactElement`     |
-| 其他         | `any`                 | 第三方插件            | 第三方插件也可能扩充 `props`              |
-
-> Pagic **运行时**的配置与 `pagic.config.ts` 中的配置会有少许差异。
+| 属性         | 类型                  | 依赖的插件            | 描述                                                      |
+| ------------ | --------------------- | --------------------- | --------------------------------------------------------- |
+| `title`      | `string`              | `md`, `tsx`           | 页面的标题，一般会放到 `<head><title>` 中                 |
+| `content`    | `string`              | `md`, `tsx`, `layout` | 页面的内容，一般会放到 `<body>` 中                        |
+| `config`     | `PagicConfig`         | `init`                | Pagic **运行时**的配置<sup><a href="#sup-1">[1]</a></sup> |
+| `pagePath`   | `string`              | `init`                | 页面路径，如 `docs/README.md`                             |
+| `layoutPath` | `string`              | `init`                | 页面的模版路径，如 `docs/_layout.tsx`                     |
+| `outputPath` | `string`              | `init`                | 页面的输出路径，如 `docs/index.html`                      |
+| `sidebar`    | `ReactElement`        | `sidebar`             | 由 `sidebar` 插件生成的 `ReactElement`                    |
+| `toc`        | `ReactElement`        | `md`                  | 由 `md` 插件生成的 `ReactElement`                         |
+| `prev`       | `PagePropsSidebar[0]` | `prev_next`           | 上一页的详细信息                                          |
+| `next`       | `PagePropsSidebar[0]` | `prev_next`           | 下一页的详细信息                                          |
+| `script`     | `ReactElement`        | `script`              | 由 `script` 插件生成的 `ReactElement`                     |
+| `loading`    | `boolean`             | `script`              | 页面是否在加载中                                          |
+| `ga`         | `ReactElement`        | `ga`                  | 由 `ga` 插件生成的 `ReactElement`                         |
+| `gitalk`     | `ReactElement`        | `gitalk`              | 由 `gitalk` 插件生成的 `ReactElement`                     |
+| 其他         | `any`                 | 第三方插件            | 第三方插件也可能扩充 `props`                              |
 
 ## 静态资源
 
@@ -157,3 +151,7 @@ export default Layout;
 | 以 `_` 开头的 `tsx` 文件                | 子组件                                 |
 | `md` 或 `tsx` 后缀的文件                | 页面文件                               |
 | 其他文件                                | 静态资源，会被直接复制到 `dist` 目录下 |
+
+## 引用与注解
+
+1. <span id="sup-1"></span>Pagic **运行时**的配置与 `pagic.config.ts` 中的配置会有少许差异。

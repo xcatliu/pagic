@@ -1,4 +1,4 @@
-import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
+import { asserts } from '../../deps.ts';
 
 import Pagic from '../Pagic.ts';
 import init from './init.tsx';
@@ -8,7 +8,7 @@ Deno.test('[init]', async () => {
   pagic.pagePaths = ['README.md', 'foo.tsx', 'bar/baz.md'];
   pagic.layoutPaths = ['bar/_layout.tsx', '_layout.tsx'];
   await init.fn(pagic);
-  assertEquals(pagic.pagePropsMap, {
+  asserts.assertEquals(pagic.pagePropsMap, {
     'README.md': {
       config: pagic.config,
       pagePath: 'README.md',

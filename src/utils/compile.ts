@@ -24,7 +24,15 @@ export function compile(input: string) {
     .outputText.replace(/(^import .*)\.tsx?((?:'|");?$)/gm, '$1.js$2')
     .replace(/^import .*\/react(\/|'|"|@).*$\n/gm, '')
     .replace(/^import .*\/react-dom(\/|'|"|@).*$\n/gm, '')
-    .replace(/^\/\/ @deno-types.*$\n/gm, '');
+    .replace(/^\/\/ @deno-types.*$\n/gm, '')
+    .replace(/^import\s+\{([^\}]*)\}\s+(.*$\n)/gm, ($0: string, $1: string, $2: string) => {
+      let moduleNames = $1.trim().split(/\s*,\s*/);
+      moduleNames = moduleNames.filter((moduleName) => moduleName !== 'React' && moduleName !== 'ReactDOM');
+      if (moduleNames.length === 0) {
+        return '';
+      }
+      return `import { ${moduleNames.join(', ')} } ${$2}`;
+    });
 }
 /** Read input file and then compile it */
 export async function compileFile(src: string) {

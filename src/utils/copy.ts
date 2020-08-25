@@ -1,4 +1,4 @@
-import { fs, path } from '../deps.ts';
+import { fs, path } from '../../deps.ts';
 
 import { logger } from './common.ts';
 import { pagicRootPath } from './filepath.ts';

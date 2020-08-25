@@ -14,3 +14,8 @@ Pagic 使用到的最新特性包括：
 - CSS Variables（[浏览器兼容性](https://caniuse.com/#feat=css-variables)）
 - CSS `calc()`（[浏览器兼容性](https://caniuse.com/#feat=calc)）
 - CSS flexbox（[浏览器兼容性](https://caniuse.com/#feat=flexbox)）
+
+## 其他章节中提到的局限性
+
+- [页面内容#局限性](./content.md#局限性)
+- [页面内容#局限性-2](./content.md#局限性-2)

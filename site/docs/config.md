@@ -273,8 +273,7 @@ export default {
 举个例子，增加一个自定义的 favicon：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {
   head: <link rel="icon" type="image/png" href="/favicon.png" />
@@ -284,8 +283,7 @@ export default {
 如果需要引入多个标签，则需要用 `<>` 标签包裹：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {
   head: (
@@ -306,8 +304,7 @@ export default {
 导航栏配置，示例如下：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {
   nav: [
@@ -379,11 +376,10 @@ export default {
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：无
 
-展示在目录上的广告，示例如下：
+展示在目录上方的广告，示例如下：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {
   tocAd: (
@@ -430,7 +426,7 @@ export default {
 - 支持的主题：全部
 - 依赖的插件：`ga`
 
-谷歌分析的配置，示例如下：
+[谷歌分析](https://analytics.google.com/)的配置，示例如下：
 
 ```ts
 export default {
@@ -446,7 +442,7 @@ export default {
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：`gitalk`
 
-Gitalk 可以给页面添加评论功能，示例如下：
+[Gitalk](https://github.com/gitalk/gitalk) 可以给页面添加评论功能，示例如下：
 
 ```ts
 export default {

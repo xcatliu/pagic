@@ -1,4 +1,4 @@
-import { colors, fs } from '../deps.ts';
+import { colors, fs } from '../../deps.ts';
 
 import { PagicPlugin } from '../Pagic.ts';
 import { logger } from '../utils/mod.ts';

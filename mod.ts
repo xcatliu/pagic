@@ -1,4 +1,5 @@
 #!/usr/bin/env -S deno --unstable --allow-read --allow-write --allow-net
+export { React, ReactDOM, ReactDOMServer } from './deps.ts';
 
 import Pagic from './src/Pagic.ts';
 import { logger } from './src/utils/mod.ts';

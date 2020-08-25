@@ -85,7 +85,7 @@ pagic build --watch --serve
 
 然后用浏览器打开 http://127.0.0.1:8000/ ，看看是不是显示出 `Hello world` 了呢？
 
-注意，构建结果在 dist 目录中：
+注意，构建结果在 dist 目录中（这里隐藏了一些次要的文件）：
 
 ```
 site/

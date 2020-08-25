@@ -1,4 +1,4 @@
-import { path } from '../deps.ts';
+import { path } from '../../deps.ts';
 
 import { pagicRootPath } from './filepath.ts';
 import { PagicPlugin, PagicThemeConfig } from '../Pagic.ts';

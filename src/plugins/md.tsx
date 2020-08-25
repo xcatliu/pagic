@@ -1,6 +1,4 @@
-import { path } from '../deps.ts';
-// @deno-types="https://deno.land/x/pagic@v0.8.6/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { path, React } from '../../deps.ts';
 import fm from 'https://dev.jspm.io/front-matter@4.0.2';
 import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.0';
 import markdownItTitle from 'https://dev.jspm.io/markdown-it-title@3.0.0';

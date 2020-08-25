@@ -80,7 +80,7 @@ outputPath: foo/bar.html
 
 ```md
 ---
-layoutPath: posts/_layout.tsx
+layoutPath: blog/_layout.tsx
 ---
 
 # 页面内容
@@ -142,8 +142,7 @@ site/
 它的内容是：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 const Hello = () => <h1>Hello world</h1>;
 
@@ -179,8 +178,7 @@ Pagic 不仅会在渲染页面时执行 `tsx` 文件中的逻辑，而且其中�
 比如，我们可以使用 `React.setState` 实现一个计数器页面：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 const Hello = () => {
   const [count, setCount] = React.useState(0);
@@ -216,8 +214,7 @@ site/
 在上面的例子中，`hello.tsx` 会被构建为 `dist/hello.html`，而 `_count.tsx` 由于是 `_` 开头，所以不会被构建为页面。这样就可以实现对 `hello.tsx` 的拆分，将 `Count` 组件拆分到 `_count.tsx` 文件中，然后在 `hello.tsx` 中引用即可：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 import Count from './_count.tsx';
 
@@ -236,8 +233,7 @@ export default Hello;
 与 `md` 文件类似，`tsx` 文件也支持头信息，它是通过导出一个 `frontMatter` 对象实现的：
 
 ```tsx
-// @deno-types="https://deno.land/x/pagic/src/types/react/v16.13.1/react.d.ts"
-import React from 'https://dev.jspm.io/react@16.13.1';
+import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 const Hello = () => <h1>Hello world</h1>;
 

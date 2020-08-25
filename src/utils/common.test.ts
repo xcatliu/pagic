@@ -1,16 +1,15 @@
-import { path } from '../deps.ts';
-import { assertEquals } from 'https://deno.land/std/testing/asserts.ts';
+import { asserts, path } from '../../deps.ts';
 
 import { Tree, unique, pick, omit, depthFirstTraversal, sortByInsert, getPagicConfigPath } from './common.ts';
 
 Deno.test('[unique]', () => {
-  assertEquals(unique([1, 5, 2, 1, 2, 1]), [1, 5, 2]);
+  asserts.assertEquals(unique([1, 5, 2, 1, 2, 1]), [1, 5, 2]);
 });
 Deno.test('[pick]', () => {
-  assertEquals(pick({ foo: 1, bar: 'Hello' }, ['foo']), { foo: 1 });
+  asserts.assertEquals(pick({ foo: 1, bar: 'Hello' }, ['foo']), { foo: 1 });
 });
 Deno.test('[omit]', () => {
-  assertEquals(omit({ foo: 1, bar: 'Hello' }, ['foo']), { bar: 'Hello' });
+  asserts.assertEquals(omit({ foo: 1, bar: 'Hello' }, ['foo']), { bar: 'Hello' });
 });
 Deno.test('[depthFirstTraversal] traversal a tree', () => {
   let tree = { value: 'a1', children: [{ value: 'b1', children: [{ value: 'c1' }] }, { value: 'b2' }] };
@@ -18,7 +17,7 @@ Deno.test('[depthFirstTraversal] traversal a tree', () => {
   depthFirstTraversal(tree, (item) => {
     items.push(item);
   });
-  assertEquals(items, [tree, tree.children[0], tree.children[0].children?.[0], tree.children[1]]);
+  asserts.assertEquals(items, [tree, tree.children[0], tree.children[0].children?.[0], tree.children[1]]);
 });
 Deno.test('[depthFirstTraversal] traversal a tree[]', () => {
   let tree1 = { value: 'a1', children: [{ value: 'b1' }, { value: 'b2' }] };
@@ -27,10 +26,10 @@ Deno.test('[depthFirstTraversal] traversal a tree[]', () => {
   depthFirstTraversal([tree1, tree2], (item) => {
     items.push(item);
   });
-  assertEquals(items, [tree1, tree1.children[0], tree1.children[1], tree2]);
+  asserts.assertEquals(items, [tree1, tree1.children[0], tree1.children[1], tree2]);
 });
 Deno.test('[sortByInsert] insert before:b', () => {
-  assertEquals(
+  asserts.assertEquals(
     sortByInsert([
       { name: 'a' },
       { name: 'b' },
@@ -50,7 +49,7 @@ Deno.test('[sortByInsert] insert before:b', () => {
   );
 });
 Deno.test('[sortByInsert] insert to an inserted item', () => {
-  assertEquals(
+  asserts.assertEquals(
     sortByInsert([
       { name: 'a' },
       { name: 'b' },
@@ -78,5 +77,5 @@ Deno.test('[sortByInsert] insert to an inserted item', () => {
   );
 });
 Deno.test('[getPagicConfigPath]', async () => {
-  assertEquals(await getPagicConfigPath(), path.resolve('pagic.config.tsx'));
+  asserts.assertEquals(await getPagicConfigPath(), path.resolve('pagic.config.tsx'));
 });
