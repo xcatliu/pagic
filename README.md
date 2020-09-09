@@ -31,7 +31,7 @@ WARNING: This project is under development so api would changes without announce
 ```bash
 # Install deno https://deno.land/#installation
 curl -fsSL https://deno.land/x/install/install.sh | sh
-# Install pagic
+# Install Pagic
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
@@ -51,7 +51,7 @@ docs/
     └── index.md
 ```
 
-The `src/_layout.tsx` is a simple react component:
+The `src/_layout.tsx` is a simple React component:
 
 ```tsx
 import { React, PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
@@ -113,7 +113,7 @@ The content should be:
 
 ### React component as a page
 
-A react component can also be built to html:
+A React component can also be built to html:
 
 ```
 docs/
@@ -128,7 +128,7 @@ docs/
 
 Here we build `src/hello.tsx` to `public/hello.html`, using `src/_layout.tsx` as the layout.
 
-`src/hello.tsx` is a simple react component:
+`src/hello.tsx` is a simple React component:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -178,7 +178,7 @@ We can have sub directory which contains markdown or component.
 
 Sub directory can also have a `_layout.tsx` file.
 
-For each markdown or react component, it will walk your file system looking for the nearest `_layout.tsx`. It starts from the current directory and then moves to the parent directory until it finds the `_layout.tsx`.
+For each markdown or React component, it will walk your file system looking for the nearest `_layout.tsx`. It starts from the current directory and then moves to the parent directory until it finds the `_layout.tsx`.
 
 ```
 docs/
@@ -238,9 +238,9 @@ const Layout: PagicLayout = ({ title, content, author, published }) => (
 export default Layout;
 ```
 
-#### Front matter in react component
+#### Front matter in React component
 
-In react component we can export a `frontMatter` variable:
+In React component we can export a `frontMatter` variable:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -258,7 +258,7 @@ export const frontMatter = {
 
 ### Configuration
 
-It's able to configurate pagic by adding a `pagic.config.ts` file. The default configuration is:
+It's able to configurate Pagic by adding a `pagic.config.ts` file. The default configuration is:
 
 ```ts
 export default {
@@ -322,7 +322,7 @@ To develop a `myPlugin` please checkout the [built-in plugins](https://github.co
 
 Themes is under development, please come back later!
 
-## Use pagic as cli
+## Use Pagic as cli
 
 ### `pagic build`
 
@@ -342,4 +342,4 @@ pagic build [options]
 
 ---
 
-Have fun with pagic!
+Have fun with Pagic!

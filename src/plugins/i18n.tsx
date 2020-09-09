@@ -21,8 +21,8 @@ const i18n: PagicPlugin = {
       const pageProps = pagic.pagePropsMap[pagePath];
 
       const language =
-        pagic.config.i18n.languages.find(({ code }: any) => pagePath.startsWith(`${code}/`))?.code ??
-        pagic.config.i18n.languages[0].code;
+        pagic.config.i18n.languages.slice(1).find(({ path }) => pagePath.startsWith(path)) ??
+        pagic.config.i18n.languages[0];
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
@@ -35,7 +35,7 @@ const i18n: PagicPlugin = {
         ),
         config: {
           ...pagic.config,
-          ...pagic.config.i18n.overrides?.[language]
+          ...pagic.config.i18n.overrides?.[language.code]
         }
       };
     }
@@ -60,12 +60,12 @@ const i18n: PagicPlugin = {
 };
 
 export const t = (input: string) => {
-  i18next.changeLanguage((window as any).pageProps.language, () => {});
+  i18next.changeLanguage((window as any).pageProps.language.code, () => {});
   return i18next.t(input);
 };
 
 export const Trans = (props: any) => {
-  i18next.changeLanguage((window as any).pageProps.language, () => {});
+  i18next.changeLanguage((window as any).pageProps.language.code, () => {});
   return <TransComponent i18n={i18next} {...props} />;
 };
 

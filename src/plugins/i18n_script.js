@@ -16,12 +16,12 @@ import pagicConfig from './pagic.config.js';
 })();
 
 window.t = (input) => {
-  i18next.changeLanguage(window.pageProps.language, () => {});
+  i18next.changeLanguage(window.pageProps.language.code, () => {});
   return i18next.t(input);
 };
 
 window.Trans = (props) => {
-  i18next.changeLanguage(window.pageProps.language, () => {});
+  i18next.changeLanguage(window.pageProps.language.code, () => {});
   return window.React.createElement(Trans, {
     i18n: i18next,
     ...props

@@ -49,8 +49,8 @@ export default {
   },
   i18n: {
     languages: [
-      { code: 'en', name: 'English' },
-      { code: 'zh-CN', name: '简体中文' }
+      { code: 'en', name: 'English', path: '' },
+      { code: 'zh-CN', name: '简体中文', path: 'zh-CN/' }
     ],
     overrides: {
       'zh-CN': {
@@ -98,7 +98,7 @@ export default {
           'A static site generator powered by Deno + React': 'Deno + React 驱动的静态网站生成器',
           'Get Started': '开始使用',
           Demos: '示例网站',
-          'Simple Configuration': '配置简单',
+          'Easy to configure': '配置简单',
           'Convention over configuration': '约定优于配置',
           'Single config file': '一个配置文件',
           'Intuitive design': '符合直觉的设计',
@@ -106,8 +106,8 @@ export default {
           'Render <1>md/tsx</1> to static html page': '支持将 <1>md/tsx</1> 文件渲染成静态页面',
           'Support React Hooks': '支持 React Hooks',
           'Pre-render to static HTML, run as an SPA once loaded': '预渲染生成静态 HTML，加载后作为 SPA 运行',
-          'Themes and Plugins': '主题和插件',
-          'Built-in themes default/docs/blog with dark mode': '内置 default, docs, blog 等主题，支持黑暗模式',
+          'Themes and plugins': '主题和插件',
+          'Official themes default/docs/blog with dark mode': '内置 default, docs, blog 等主题，支持黑暗模式',
           'Combine plugins to build process': '构建过程由插件组成，可随意组合',
           'Import third-party themes or plugins through url': '通过 url 引入第三方主题或插件',
           'Get up and running in seconds': '只需几行命令，快来体验吧',

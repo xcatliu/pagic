@@ -36,7 +36,7 @@ const sidebar: PagicPlugin = {
       } = {};
       for (const [prefix, oneConfig] of Object.entries({
         ...pagic.config.sidebar,
-        ...(pagic.config.i18n?.overrides?.[pageProps.language!]?.sidebar as PagicConfigSidebar)
+        ...(pagic.config.i18n?.overrides?.[pageProps.language?.code!]?.sidebar as PagicConfigSidebar)
       })) {
         parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
       }

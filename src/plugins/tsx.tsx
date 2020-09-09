@@ -7,17 +7,16 @@ const tsx: PagicPlugin = {
   name: 'tsx',
   fn: async (pagic) => {
     for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.tsx'))) {
-      const pageProps = pagic.pagePropsMap[pagePath];
+      let pageProps = pagic.pagePropsMap[pagePath];
       const fullPagePath = path.resolve(pagic.config.srcDir, pagePath);
       const { default: ContentComponent, frontMatter } = await import_(fullPagePath, {
         reload: true
       });
 
-      pagic.pagePropsMap[pagePath] = {
-        ...pageProps,
-        content: <ContentComponent />,
-        ...frontMatter
-      };
+      pageProps.frontMatter = frontMatter;
+      pageProps.content = <ContentComponent {...pageProps} />;
+
+      pagic.pagePropsMap[pagePath] = pageProps;
     }
   }
 };

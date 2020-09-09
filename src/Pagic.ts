@@ -28,7 +28,7 @@ export interface PagicConfig {
   port: number;
   sidebar?: PagicConfigSidebar;
   i18n?: {
-    languages: { code: string; name: string }[];
+    languages: { code: string; name: string; path: string }[];
     overrides?: { [code: string]: any };
     resources?: { [code: string]: { translation: { [key: string]: string } } };
   };
@@ -65,7 +65,7 @@ export interface PageProps {
   sidebar?: PagePropsSidebar;
   prev?: PagePropsSidebar[0] | null;
   next?: PagePropsSidebar[0] | null;
-  language?: string;
+  language?: { code: string; name: string; path: string };
   gitalk?: React.ReactElement | null;
   [key: string]: any;
 }

@@ -9,9 +9,7 @@ const Header: PagicLayout<{
 }> = ({ config, language, isDark, setIsDark }) => (
   <header>
     <h1 className="hide_on_mobile">
-      <a href={language === config.i18n?.languages[0].code ? config.root : `${config.root}${language}/`}>
-        {config.title}
-      </a>
+      <a href={`${config.root}${language?.path ?? ''}`}>{config.title}</a>
     </h1>
     <nav>
       <ul>
@@ -91,23 +89,21 @@ const Header: PagicLayout<{
             />
           </li>
         )}
-        {config.i18n && (
+        {config.i18n && language && (
           <li className="flex_center">
             <select
-              value={language}
+              value={language.code}
               onChange={(e) => {
                 // @ts-ignore
                 let url = new URL(location.href);
 
                 // @ts-ignore
-                const nextLanguage = e.target.value;
-                if (language === config.i18n?.languages[0].code) {
-                  url.pathname = `/${language}${url.pathname}`;
+                const nextLanguageCode = e.target.value;
+                if (language.path !== '') {
+                  url.pathname = url.pathname.replace(language.path, '');
                 }
-                url.pathname = url.pathname.replace(`/${language}/`, `/${nextLanguage}/`);
-                if (nextLanguage === config.i18n?.languages[0].code) {
-                  url.pathname = url.pathname.replace(`/${nextLanguage}/`, '/');
-                }
+                const nextLanguage = config.i18n?.languages.find(({ code }) => code === nextLanguageCode);
+                url.pathname = `/${nextLanguage!.path}${url.pathname.slice(1)}`;
 
                 // @ts-ignore
                 location.href = url.toString();

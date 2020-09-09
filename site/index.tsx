@@ -1,4 +1,5 @@
 import { React, t, Trans } from '../mod.ts';
+import { PagicLayout } from '../src/Pagic.ts';
 
 const style = `
 h2 {
@@ -66,7 +67,7 @@ h2 {
 }
 `;
 
-const IndexPage = () => (
+const IndexPage: PagicLayout = ({ language }) => (
   <>
     <div>
       <style dangerouslySetInnerHTML={{ __html: style }} />
@@ -106,17 +107,17 @@ const IndexPage = () => (
           marginTop: '2rem'
         }}
       >
-        <a className="btn btn-primary" href="/docs/introduction.html">
+        <a className="btn btn-primary" href={`/${language!.path}docs/introduction.html`}>
           {t('Get Started')}
         </a>
-        <a className="btn" href="/docs/demos.html">
+        <a className="btn" href={`/${language!.path}docs/demos.html`}>
           {t('Demos')}
         </a>
       </div>
     </div>
     <div className="cards">
       <div>
-        <h2>{t('Simple Configuration')}</h2>
+        <h2>{t('Easy to configure')}</h2>
         <ul>
           <li>{t('Convention over configuration')}</li>
           <li>
@@ -138,9 +139,9 @@ const IndexPage = () => (
         </ul>
       </div>
       <div>
-        <h2>{t('Themes and Plugins')}</h2>
+        <h2>{t('Themes and plugins')}</h2>
         <ul>
-          <li>{t('Built-in themes default/docs/blog with dark mode')}</li>
+          <li>{t('Official themes default/docs/blog with dark mode')}</li>
           <li>{t('Combine plugins to build process')}</li>
           <li>{t('Import third-party themes or plugins through url')}</li>
         </ul>
