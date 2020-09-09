@@ -15,6 +15,7 @@ Deno.test('[tsx]', async () => {
       outputPath: 'hello.html',
       title: '',
       content: null,
+      head: null,
       script: null,
       toc: null
     },
@@ -25,6 +26,7 @@ Deno.test('[tsx]', async () => {
       outputPath: 'index.html',
       title: '',
       content: null,
+      head: null,
       script: null,
       toc: null
     }

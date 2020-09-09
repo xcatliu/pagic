@@ -4,14 +4,14 @@ import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-
 import { logger } from './common.ts';
 import { pagicRootPath } from './filepath.ts';
 
-export const reactElementToJSXString = reactElementToJSXStringModule.default;
+export const reactElementToJSXString = (reactElementToJSXStringModule as any).default;
 
 /**
  * Compile input code from tsx to js, by typescript compiler
  * Will replace `.tsx` to `.js` in `import` statement, and remove react and react-dom imports
  */
 export function compile(input: string) {
-  return ts.default
+  return (ts as any).default
     .transpileModule(input, {
       compilerOptions: {
         target: 'ES2019',
@@ -21,17 +21,16 @@ export function compile(input: string) {
         newLine: 'lf'
       }
     })
-    .outputText.replace(/(^import .*)\.tsx?((?:'|");?$)/gm, '$1.js$2')
-    .replace(/^import .*\/react(\/|'|"|@).*$\n/gm, '')
-    .replace(/^import .*\/react-dom(\/|'|"|@).*$\n/gm, '')
-    .replace(/^\/\/ @deno-types.*$\n/gm, '')
-    .replace(/^import\s+\{([^\}]*)\}\s+(.*$\n)/gm, ($0: string, $1: string, $2: string) => {
-      let moduleNames = $1.trim().split(/\s*,\s*/);
-      moduleNames = moduleNames.filter((moduleName) => moduleName !== 'React' && moduleName !== 'ReactDOM');
-      if (moduleNames.length === 0) {
+    .outputText.replace(/(^import\s+.*['"/][^_][^/]*)\.tsx(['"];?$\n)/gm, '$1_content.js$2')
+    .replace(/(^import\s+.*)\.tsx?(['"];?$\n)/gm, '$1.js$2')
+    .replace(/^import\s+\{([^\}]*)\}\s+(.*$\n)/gm, ($0: string, importNamesString: string, moduleName: string) => {
+      let importNames = importNamesString.trim().split(/\s*,\s*/);
+      const ignoredImportNames = ['React', 'ReactDOM', 't', 'Trans'];
+      importNames = importNames.filter((importName) => !ignoredImportNames.includes(importName));
+      if (importNames.length === 0) {
         return '';
       }
-      return `import { ${moduleNames.join(', ')} } ${$2}`;
+      return `import { ${importNames.join(', ')} } ${moduleName}`;
     });
 }
 /** Read input file and then compile it */

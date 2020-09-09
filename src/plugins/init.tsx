@@ -15,6 +15,7 @@ const init: PagicPlugin = {
         outputPath,
         title: '',
         content: null,
+        head: pagic.config.head,
         script: null,
         toc: null
       };

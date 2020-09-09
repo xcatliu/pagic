@@ -6,10 +6,12 @@ import Popover from './_popover.tsx';
 const Header: PagicLayout<{
   isDark: boolean;
   setIsDark: (isDark: boolean) => void;
-}> = ({ config, isDark, setIsDark }) => (
+}> = ({ config, language, isDark, setIsDark }) => (
   <header>
     <h1 className="hide_on_mobile">
-      <a href={config.root}>{config.title}</a>
+      <a href={language === config.i18n?.languages[0].code ? config.root : `${config.root}${language}/`}>
+        {config.title}
+      </a>
     </h1>
     <nav>
       <ul>
@@ -87,6 +89,36 @@ const Header: PagicLayout<{
               target="_blank"
               style={{ backgroundImage: `url("${config.root}assets/czs-github-logo.svg")` }}
             />
+          </li>
+        )}
+        {config.i18n && (
+          <li className="flex_center">
+            <select
+              value={language}
+              onChange={(e) => {
+                // @ts-ignore
+                let url = new URL(location.href);
+
+                // @ts-ignore
+                const nextLanguage = e.target.value;
+                if (language === config.i18n?.languages[0].code) {
+                  url.pathname = `/${language}${url.pathname}`;
+                }
+                url.pathname = url.pathname.replace(`/${language}/`, `/${nextLanguage}/`);
+                if (nextLanguage === config.i18n?.languages[0].code) {
+                  url.pathname = url.pathname.replace(`/${nextLanguage}/`, '/');
+                }
+
+                // @ts-ignore
+                location.href = url.toString();
+              }}
+            >
+              {config.i18n.languages.map(({ code, name }) => (
+                <option key={code} value={code}>
+                  {name}
+                </option>
+              ))}
+            </select>
           </li>
         )}
         <li

@@ -6,7 +6,7 @@ import { PagicLayout } from '../../Pagic.ts';
 
 const Head: PagicLayout<{
   isDark: boolean;
-}> = ({ config, title, ga, outputPath, isDark }) => {
+}> = ({ config, title, head, outputPath, isDark }) => {
   const scriptSetIsDark = `
     const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (shouldSetIsDark) {
@@ -16,8 +16,6 @@ const Head: PagicLayout<{
   `;
   return (
     <head>
-      {ga}
-      {config.head}
       <Helmet>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -33,6 +31,7 @@ const Head: PagicLayout<{
         <link rel="stylesheet" href={`${config.root}assets/index.css`} />
         <script>{scriptSetIsDark}</script>
       </Helmet>
+      {head}
     </head>
   );
 };

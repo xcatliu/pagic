@@ -9,11 +9,13 @@ const out: PagicPlugin = {
   name: 'out',
   fn: async (pagic) => {
     for (const pagePath of pagic.pagePaths) {
-      const { outputPath, content } = pagic.pagePropsMap[pagePath];
+      const pageProps = pagic.pagePropsMap[pagePath];
+      const { outputPath, content } = pageProps;
       if (content === null) {
         throw new Error('content is null');
       }
       const fullFilePath = path.resolve(pagic.config.outDir, outputPath);
+      (window as any).pageProps = pageProps;
       let htmlString = ReactDOMServer.renderToString(content);
       const helmet = Helmet.renderStatic();
       const helmetString = ['meta', 'title', 'base', 'style', 'link', 'noscript', 'script']

@@ -69,6 +69,7 @@ async function rerender(
   }
   propsPath = propsPath.replace(/\.html$/, '_props.js');
   const props = (await import(propsPath)).default;
+  window.pageProps = props;
   let layoutPath = props.layoutPath.replace(/\.tsx$/, '.js');
   const Layout = (await import(`${props.config.root}${layoutPath}`)).default;
   if (isHydrate) {

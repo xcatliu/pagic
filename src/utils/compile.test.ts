@@ -10,11 +10,11 @@ Deno.test('[compile] should remove types', () => {
 Deno.test('[compile] should replace `.tsx` to `.js` in `import` statement', () => {
   const input = `
 import foo from './foo.ts';
-import bar from './bar.tsx';
+import bar from './_bar.tsx';
 console.log(foo, bar);
   `;
   const output = compile(input);
-  asserts.assertEquals(output, `import foo from './foo.js';\nimport bar from './bar.js';\nconsole.log(foo, bar);\n`);
+  asserts.assertEquals(output, `import foo from './foo.js';\nimport bar from './_bar.js';\nconsole.log(foo, bar);\n`);
 });
 Deno.test('[compile] should remove react and react-dom imports', () => {
   const input = `

@@ -12,7 +12,12 @@ const ga: PagicPlugin = {
       const pageProps = pagic.pagePropsMap[pagePath];
 
       pagic.pagePropsMap[pagePath] = {
-        ga: <Ga {...pagic.config.ga} />,
+        head: (
+          <>
+            <Ga {...pagic.config.ga} />
+            {pageProps.head}
+          </>
+        ),
         ...pageProps
       };
     }

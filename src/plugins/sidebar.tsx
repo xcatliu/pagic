@@ -28,15 +28,19 @@ const sidebar: PagicPlugin = {
       return;
     }
 
-    let parsedSidebar: {
-      [prefix: string]: PagePropsSidebar;
-    } = {};
-    for (const [prefix, oneConfig] of Object.entries(pagic.config.sidebar)) {
-      parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
-    }
-
     for (const pagePath of pagic.pagePaths) {
       const pageProps = pagic.pagePropsMap[pagePath];
+
+      let parsedSidebar: {
+        [prefix: string]: PagePropsSidebar;
+      } = {};
+      for (const [prefix, oneConfig] of Object.entries({
+        ...pagic.config.sidebar,
+        ...(pagic.config.i18n?.overrides?.[pageProps.language!]?.sidebar as PagicConfigSidebar)
+      })) {
+        parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
+      }
+
       for (const [prefix, pagePropsSidebar] of Object.entries(parsedSidebar)) {
         if (`/${pageProps.outputPath}`.startsWith(prefix)) {
           pagic.pagePropsMap[pagePath] = {

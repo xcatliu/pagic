@@ -1,4 +1,4 @@
-# Limitations
+# 局限性
 
 Pagic 很优秀，但也有一些缺陷。
 

@@ -1,4 +1,4 @@
-import { React } from '../mod.ts';
+import { React, t, Trans } from '../mod.ts';
 
 const style = `
 h2 {
@@ -97,7 +97,7 @@ const IndexPage = () => (
           color: 'var(--color-text-muted)'
         }}
       >
-        Deno + React 驱动的静态网站生成器
+        {t('A static site generator powered by Deno + React')}
       </p>
       <div
         style={{
@@ -107,44 +107,46 @@ const IndexPage = () => (
         }}
       >
         <a className="btn btn-primary" href="/docs/introduction.html">
-          开始使用
+          {t('Get Started')}
         </a>
         <a className="btn" href="/docs/demos.html">
-          示例网站
+          {t('Demos')}
         </a>
       </div>
     </div>
     <div className="cards">
       <div>
-        <h2>配置简单</h2>
+        <h2>{t('Simple Configuration')}</h2>
         <ul>
-          <li>约定优于配置</li>
+          <li>{t('Convention over configuration')}</li>
           <li>
-            一个配置文件 <code>pagic.config.ts</code>
+            {t('Single config file')} <code>pagic.config.ts</code>
           </li>
-          <li>符合直觉的设计</li>
+          <li>{t('Intuitive design')}</li>
         </ul>
       </div>
       <div>
-        <h2>支持 md 和 tsx</h2>
+        <h2>{t('Support md and tsx')}</h2>
         <ul>
           <li>
-            支持将 <code>md/tsx</code> 文件渲染成静态页面
+            <Trans>
+              Render <code>md/tsx</code> to static html page
+            </Trans>
           </li>
-          <li>支持 React Hooks</li>
-          <li>预渲染生成静态 HTML，加载后作为 SPA 运行</li>
+          <li>{t('Support React Hooks')}</li>
+          <li>{t('Pre-render to static HTML, run as an SPA once loaded')}</li>
         </ul>
       </div>
       <div>
-        <h2>主题和插件</h2>
+        <h2>{t('Themes and Plugins')}</h2>
         <ul>
-          <li>内置 default, docs, blog 等主题，支持黑暗模式</li>
-          <li>构建过程由插件组成，可随意组合</li>
-          <li>通过 url 引入第三方主题或插件</li>
+          <li>{t('default/docs/blog themes with dark mode')}</li>
+          <li>{t('Combine plugins to build process')}</li>
+          <li>{t('Import third-party themes or plugins through url')}</li>
         </ul>
       </div>
     </div>
-    <h2>只需几行命令，快来体验吧</h2>
+    <h2>{t('Get up and running in seconds')}</h2>
     <pre
       style={{
         fontSize: '1rem'
@@ -152,13 +154,13 @@ const IndexPage = () => (
     >
       <code
         dangerouslySetInnerHTML={{
-          __html: `# 安装 pagic
+          __html: `# ${t('Install pagic')}
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 
-# 创建 pagic.config.ts 和 README.md
+# ${t('Create pagic.config.ts and README.md')}
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 
-# 运行 pagic
+# ${t('Run pagic')}
 pagic build --watch --serve`
         }}
       />
