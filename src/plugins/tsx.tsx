@@ -13,7 +13,7 @@ const tsx: PagicPlugin = {
         reload: true
       });
 
-      pageProps.frontMatter = frontMatter;
+      Object.assign(pageProps, frontMatter);
       pageProps.content = <ContentComponent {...pageProps} />;
 
       pagic.pagePropsMap[pagePath] = pageProps;
