@@ -18,14 +18,12 @@
 <p><code>_layout.tsx</code> 可以理解为 Pagic 在渲染页面时的模版文件，所有页面文件（<code>md/tsx</code>）在渲染时都会以 <code>_layout.tsx</code> 为模版。</p>
 <p>我们不妨在之前的 <code>site</code> 项目中创建一个 <code>_layout.tsx</code>：</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-├── _layout<span class="token punctuation">.</span>tsx
-├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+<span class="highlighted-line">├── _layout<span class="token punctuation">.</span>tsx</span>├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>md
-</code></pre>
-<p>其中 <code>_layout.tsx</code> 的内容如下：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+</code></pre><p>其中 <code>_layout.tsx</code> 的内容如下：</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
+<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function">PagicLayout</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
     </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
       </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
@@ -55,16 +53,13 @@
 |       ├── index<span class="token punctuation">.</span>html
 |       └── bar
 |           └── index<span class="token punctuation">.</span>html
-├── _layout<span class="token punctuation">.</span>tsx
-├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+<span class="highlighted-line">├── _layout<span class="token punctuation">.</span>tsx</span>├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 |── README<span class="token punctuation">.</span>md
 └── foo
     ├── README<span class="token punctuation">.</span>md
     └── bar
-        ├── _layout<span class="token punctuation">.</span>tsx
-        └── README<span class="token punctuation">.</span>md
-</code></pre>
-<p>在上面的例子中，<code>site/foo/bar/README.md</code> 会使用同级目录下的 <code>site/foo/bar/_layout.tsx</code> 作为模版，而 <code>site/foo/README.md</code> 则会使用 <code>site/_layout.tsx</code> 作为模版。</p>
+<span class="highlighted-line">        ├── _layout<span class="token punctuation">.</span>tsx</span>        └── README<span class="token punctuation">.</span>md
+</code></pre><p>在上面的例子中，<code>site/foo/bar/README.md</code> 会使用同级目录下的 <code>site/foo/bar/_layout.tsx</code> 作为模版，而 <code>site/foo/README.md</code> 则会使用 <code>site/_layout.tsx</code> 作为模版。</p>
 <blockquote>
 <p>通过配置页面头信息可以跳过此规则，强制指定一个模版。</p>
 </blockquote>
@@ -74,31 +69,26 @@
 |── dist    # 构建结果目录
 |   └── hello<span class="token punctuation">.</span>html
 ├── _layout<span class="token punctuation">.</span>tsx
-├── _sidebar<span class="token punctuation">.</span>tsx
-├── hello<span class="token punctuation">.</span>tsx
+<span class="highlighted-line">├── _sidebar<span class="token punctuation">.</span>tsx</span>├── hello<span class="token punctuation">.</span>tsx
 └── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
-</code></pre>
-<p>在上面的例子中，<code>hello.tsx</code> 会被构建为 <code>dist/hello.html</code>，而 <code>_sidebar.tsx</code> 由于是 <code>_</code> 开头，所以不会被构建为页面。这样就可以实现对 <code>_layout.tsx</code> 的拆分，将 <code>Sidebar</code> 组件拆分到 <code>_sidebar.tsx</code> 文件中，然后在 <code>_layout.tsx</code> 中引用即可：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+</code></pre><p>在上面的例子中，<code>hello.tsx</code> 会被构建为 <code>dist/hello.html</code>，而 <code>_sidebar.tsx</code> 由于是 <code>_</code> 开头，所以不会被构建为页面。这样就可以实现对 <code>_layout.tsx</code> 的拆分，将 <code>Sidebar</code> 组件拆分到 <code>_sidebar.tsx</code> 文件中，然后在 <code>_layout.tsx</code> 中引用即可：</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">import</span> <span class="token maybe-class-name">Sidebar</span> <span class="token keyword">from</span> <span class="token string">'./_sidebar.tsx'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
-    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
-      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
-      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
-    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
-    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
-      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Sidebar</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
-      </span><span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token plain-text">
-    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
-  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+<span class="highlighted-line"><span class="token keyword">import</span> <span class="token imports"><span class="token maybe-class-name">Sidebar</span></span> <span class="token keyword">from</span> <span class="token string">'./_sidebar.tsx'</span><span class="token punctuation">;</span></span>
+<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function">PagicLayout</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text"></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text"></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text"></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text"></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text"></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token plain-text"></span>
+<span class="highlighted-line">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Sidebar</span></span> <span class="token punctuation">/></span></span><span class="token plain-text"></span></span>      <span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token plain-text"></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text"></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Layout</span><span class="token punctuation">;</span>
-</code></pre>
-<h2 id="props"><code>props</code><a class="anchor" href="#props">§</a></h2>
+</code></pre><h2 id="props"><code>props</code><a class="anchor" href="#props">§</a></h2>
 <p>注意到上面的例子中我们取用了 <code>props</code> 中的 <code>title</code> 和 <code>content</code>，那么除了这两个之外 <code>props</code> 中还有哪些属性可以使用呢？</p>
 <p>请参考下面的表格：</p>
 <table>

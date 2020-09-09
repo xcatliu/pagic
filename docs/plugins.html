@@ -77,10 +77,10 @@
 <h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">§</a></h2>
 <h3 id="%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构<a class="anchor" href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">§</a></h3>
 <p>一个插件必须有一个默认导出，类型如下：</p>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name"><span class="token maybe-class-name">PagicPlugin</span></span> <span class="token punctuation">{</span>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">PagicPlugin</span> <span class="token punctuation">{</span>
   name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
   insert<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
-  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>ctx<span class="token operator">:</span> <span class="token maybe-class-name">Pagic</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token known-class-name class-name">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>ctx<span class="token operator">:</span> Pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>其中：</p>
@@ -103,26 +103,15 @@
 <li>导入第三方模块并运行</li>
 </ul>
 <p>比如，我们可以创建一个插件，它给所有页面的 <code>title</code> 加一个前缀：</p>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">PagicPlugin</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> PagicPlugin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> prependTitle<span class="token operator">:</span> <span class="token maybe-class-name">PagicPlugin</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> prependTitle<span class="token operator">:</span> PagicPlugin <span class="token operator">=</span> <span class="token punctuation">{</span>
   name<span class="token operator">:</span> <span class="token string">'prepend_title'</span><span class="token punctuation">,</span>
   insert<span class="token operator">:</span> <span class="token string">'after:tsx'</span><span class="token punctuation">,</span>
-  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> pagePath <span class="token keyword">of</span> pagic<span class="token punctuation">.</span><span class="token property-access">pagePaths</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">const</span> pageProps <span class="token operator">=</span> pagic<span class="token punctuation">.</span><span class="token property-access">pagePropsMap</span><span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-      pagic<span class="token punctuation">.</span><span class="token property-access">pagePropsMap</span><span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token spread operator">...</span>pageProps<span class="token punctuation">,</span>
-        title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Prefix </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pageProps<span class="token punctuation">.</span><span class="token property-access">title</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
-      <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="highlighted-line">  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><span class="highlighted-line">    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> pagePath <span class="token keyword">of</span> pagic<span class="token punctuation">.</span>pagePaths<span class="token punctuation">)</span> <span class="token punctuation">{</span></span><span class="highlighted-line">      <span class="token keyword">const</span> pageProps <span class="token operator">=</span> pagic<span class="token punctuation">.</span>pagePropsMap<span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span><span class="token punctuation">;</span></span><span class="highlighted-line"></span><span class="highlighted-line">      pagic<span class="token punctuation">.</span>pagePropsMap<span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span></span><span class="highlighted-line">        <span class="token operator">...</span>pageProps<span class="token punctuation">,</span></span><span class="highlighted-line">        title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Prefix </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pageProps<span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span></span><span class="highlighted-line">      <span class="token punctuation">}</span><span class="token punctuation">;</span></span><span class="highlighted-line">    <span class="token punctuation">}</span></span><span class="highlighted-line">  <span class="token punctuation">}</span></span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> prependTitle<span class="token punctuation">;</span>
-</code></pre>
-<p>上例中，</p>
+</code></pre><p>上例中，</p>
 <ul>
 <li><code>pagic.pagePaths</code> 是<strong>暂存的</strong>所有扫描出的页面路径</li>
 <li><code>pagic.pagePropsMap</code> 是所有页面的 <code>props</code></li>
