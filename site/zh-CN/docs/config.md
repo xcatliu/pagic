@@ -31,13 +31,13 @@ site/
 
 通常在给一个已有的项目写文档时，可以通过配置 `srcDir` 在子目录下写文档：
 
-```ts
+```ts {2}
 export default {
   srcDir: 'docs'
 };
 ```
 
-```
+```{5,6}
 site/
 |── dist    # 构建结果目录
 |   └── index.html
@@ -53,14 +53,14 @@ site/
 
 Pagic 构建的结果目录，配合 `srcDir` 可以同时自定义输入和输出目录：
 
-```ts
+```ts {3}
 export default {
   srcDir: 'docs',
   outDir: 'public'
 };
 ```
 
-```
+```{2,3}
 site/
 |── public  # 构建结果目录
 |   └── index.html
@@ -76,7 +76,7 @@ site/
 
 `include` 限制了 `srcDir` 中会被扫描到的文件。它常用于当 `srcDir` 配置为 `.` 时，指定部分文件或目录：
 
-```ts
+```ts {4}
 export default {
   srcDir: '.',
   outDir: 'public',
@@ -84,7 +84,7 @@ export default {
 };
 ```
 
-```
+```{10-12}
 site/
 |── public  # 构建结果目录
 |   |── index.html
@@ -133,7 +133,7 @@ site/
 
 当我们在 `pagic.config.ts` 中配置了 `exclude` 字段时，它不会覆盖掉默认值，而是会 `concat` 到默认值中，比如当我们按如下配置时：
 
-```ts
+```ts {2}
 export default {
   exclude: ['test']
 };
@@ -141,7 +141,7 @@ export default {
 
 最终运行时的 `exclude` 会是：
 
-```ts
+```ts {18}
 export default {
   exclude: [
     // Dot files
@@ -282,7 +282,7 @@ export default {
 
 如果需要引入多个标签，则需要用 `<>` 标签包裹：
 
-```tsx
+```tsx {5,8}
 import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {

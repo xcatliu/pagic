@@ -1,5 +1,5 @@
 import i18next from 'https://deno.land/x/i18next@v19.6.3/index.js';
-import { Trans } from 'https://deno.land/x/pagic@0.9.0/src/vendors/react-i18next/Trans.js';
+import { Trans } from 'https://deno.land/x/pagic@v0.9.0/src/vendors/react-i18next/Trans.js';
 
 import pagicConfig from './pagic.config.js';
 

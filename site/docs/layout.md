@@ -10,7 +10,7 @@
 
 我们不妨在之前的 `site` 项目中创建一个 `_layout.tsx`：
 
-```
+```{2}
 site/
 ├── _layout.tsx
 ├── pagic.config.ts
@@ -54,7 +54,7 @@ pagic build --serve
 
 `_layout.tsx` 的设计是符合直觉的，当我们创建子目录时，其中的页面会优先使用该目录下的 `_layout.tsx`，只有当子目录下没有 `_layout.tsx` 时才会向上级目录查找，直到找到 `_layout.tsx` 为止：
 
-```
+```{8,14}
 site/
 |── dist    # 构建结果目录
 |   |── index.html
@@ -80,7 +80,7 @@ site/
 
 组件化是 React 的重要特性之一，我们可以通过拆分 `_layout.tsx` 为一个个子组件来复用代码。不过在 Pagic 中，由于需要支持 `tsx` 文件渲染为页面，所以我们需要对子组件做一个约定——以 `_` 开头的组件为子组件：
 
-```
+```{5}
 site/
 |── dist    # 构建结果目录
 |   └── hello.html
@@ -92,7 +92,7 @@ site/
 
 在上面的例子中，`hello.tsx` 会被构建为 `dist/hello.html`，而 `_sidebar.tsx` 由于是 `_` 开头，所以不会被构建为页面。这样就可以实现对 `_layout.tsx` 的拆分，将 `Sidebar` 组件拆分到 `_sidebar.tsx` 文件中，然后在 `_layout.tsx` 中引用即可：
 
-```tsx
+```tsx {3,12}
 import { React, PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
 
 import Sidebar from './_sidebar.tsx';

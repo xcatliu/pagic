@@ -140,7 +140,7 @@ const IndexPage = () => (
       <div>
         <h2>{t('Themes and Plugins')}</h2>
         <ul>
-          <li>{t('default/docs/blog themes with dark mode')}</li>
+          <li>{t('Built-in themes default/docs/blog with dark mode')}</li>
           <li>{t('Combine plugins to build process')}</li>
           <li>{t('Import third-party themes or plugins through url')}</li>
         </ul>

@@ -5,6 +5,7 @@ import markdownItTitle from 'https://dev.jspm.io/markdown-it-title@3.0.0';
 import markdownItAnchor from 'https://dev.jspm.io/markdown-it-anchor@5.3.0';
 import markdownitTocDoneRight from 'https://dev.jspm.io/markdown-it-toc-done-right@4.1.0';
 import markdownitReplaceLink from 'https://dev.jspm.io/markdown-it-replace-link@1.0.1';
+import markdownitHighlightLines from '../vendors/markdown-it-highlight-lines/index.js';
 
 import Prism from '../vendors/prism/mod.ts';
 import { replaceLink } from '../utils/mod.ts';
@@ -49,7 +50,8 @@ const mdRenderer = new MarkdownIt({
       tocHTML = html;
     }
   })
-  .use(markdownitReplaceLink);
+  .use(markdownitReplaceLink)
+  .use(markdownitHighlightLines);
 
 import { PagicPlugin } from '../Pagic.ts';
 

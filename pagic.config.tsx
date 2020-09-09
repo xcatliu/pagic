@@ -107,7 +107,7 @@ export default {
           'Support React Hooks': '支持 React Hooks',
           'Pre-render to static HTML, run as an SPA once loaded': '预渲染生成静态 HTML，加载后作为 SPA 运行',
           'Themes and Plugins': '主题和插件',
-          'default/docs/blog themes with dark mode': '内置 default, docs, blog 等主题，支持黑暗模式',
+          'Built-in themes default/docs/blog with dark mode': '内置 default, docs, blog 等主题，支持黑暗模式',
           'Combine plugins to build process': '构建过程由插件组成，可随意组合',
           'Import third-party themes or plugins through url': '通过 url 引入第三方主题或插件',
           'Get up and running in seconds': '只需几行命令，快来体验吧',
