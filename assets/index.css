@@ -105,6 +105,13 @@ header li a:hover {
   color: var(--color-primary);
   text-decoration: none;
 }
+header select {
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size);
+  border: 0;
+  height: 2rem;
+}
 
 .toggle_dark {
   cursor: pointer;

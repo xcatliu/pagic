@@ -1,0 +1,246 @@
+<!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">_layout.tsx · Pagic</title>
+<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/news/">新闻</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link active">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1><code>_layout.tsx</code></h1>
+<blockquote>
+<p>从这一章开始的内容是提供给需要深度定制的用户的，如果你只是简单使用 Pagic，那么可以直接跳到<a href="./deployment.html">部署</a>章节。</p>
+</blockquote>
+<p><code>_layout.tsx</code> 是 Pagic 的核心理念之一。</p>
+<h2 id="%E4%BB%80%E4%B9%88%E6%98%AF-_layout.tsx">什么是 <code>_layout.tsx</code><a class="anchor" href="#%E4%BB%80%E4%B9%88%E6%98%AF-_layout.tsx">§</a></h2>
+<p><code>_layout.tsx</code> 可以理解为 Pagic 在渲染页面时的模版文件，所有页面文件（<code>md/tsx</code>）在渲染时都会以 <code>_layout.tsx</code> 为模版。</p>
+<p>我们不妨在之前的 <code>site</code> 项目中创建一个 <code>_layout.tsx</code>：</p>
+<pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
+├── _layout<span class="token punctuation">.</span>tsx
+├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+└── README<span class="token punctuation">.</span>md
+</code></pre>
+<p>其中 <code>_layout.tsx</code> 的内容如下：</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">Custom _layout.tsx</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Layout</span><span class="token punctuation">;</span>
+</code></pre>
+<p>接下来我们运行：</p>
+<pre class="language-bash"><code class="language-bash">pagic build --serve
+</code></pre>
+<p>然后打开 <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> ，可以看到页面中除了有标题 <code>Hello world</code> 之外，还有一个段落 <code>Custom _layout.tsx</code>，这说明此页面是用 <code>_layout.tsx</code> 作为模版渲染出来的。</p>
+<p>为什么在上一章中不需要 <code>_layout.tsx</code> 也可以构建出页面呢？</p>
+<p>那是因为 Pagic 默认会使用 default 主题中的 <code>_layout.tsx</code> 文件作为模版。当我们创建一个自己的 <code>_layout.tsx</code> 时，就会覆盖掉主题中的 <code>_layout.tsx</code> 了。</p>
+<h2 id="%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%AD%90%E6%A8%A1%E7%89%88">子页面和子模版<a class="anchor" href="#%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%AD%90%E6%A8%A1%E7%89%88">§</a></h2>
+<p><code>_layout.tsx</code> 的设计是符合直觉的，当我们创建子目录时，其中的页面会优先使用该目录下的 <code>_layout.tsx</code>，只有当子目录下没有 <code>_layout.tsx</code> 时才会向上级目录查找，直到找到 <code>_layout.tsx</code> 为止：</p>
+<pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
+|── dist    # 构建结果目录
+|   |── index<span class="token punctuation">.</span>html
+|   └── foo
+|       ├── index<span class="token punctuation">.</span>html
+|       └── bar
+|           └── index<span class="token punctuation">.</span>html
+├── _layout<span class="token punctuation">.</span>tsx
+├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+|── README<span class="token punctuation">.</span>md
+└── foo
+    ├── README<span class="token punctuation">.</span>md
+    └── bar
+        ├── _layout<span class="token punctuation">.</span>tsx
+        └── README<span class="token punctuation">.</span>md
+</code></pre>
+<p>在上面的例子中，<code>site/foo/bar/README.md</code> 会使用同级目录下的 <code>site/foo/bar/_layout.tsx</code> 作为模版，而 <code>site/foo/README.md</code> 则会使用 <code>site/_layout.tsx</code> 作为模版。</p>
+<blockquote>
+<p>通过配置页面头信息可以跳过此规则，强制指定一个模版。</p>
+</blockquote>
+<h2 id="%E7%BB%84%E4%BB%B6%E5%8C%96">组件化<a class="anchor" href="#%E7%BB%84%E4%BB%B6%E5%8C%96">§</a></h2>
+<p>组件化是 React 的重要特性之一，我们可以通过拆分 <code>_layout.tsx</code> 为一个个子组件来复用代码。不过在 Pagic 中，由于需要支持 <code>tsx</code> 文件渲染为页面，所以我们需要对子组件做一个约定——以 <code>_</code> 开头的组件为子组件：</p>
+<pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
+|── dist    # 构建结果目录
+|   └── hello<span class="token punctuation">.</span>html
+├── _layout<span class="token punctuation">.</span>tsx
+├── _sidebar<span class="token punctuation">.</span>tsx
+├── hello<span class="token punctuation">.</span>tsx
+└── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+</code></pre>
+<p>在上面的例子中，<code>hello.tsx</code> 会被构建为 <code>dist/hello.html</code>，而 <code>_sidebar.tsx</code> 由于是 <code>_</code> 开头，所以不会被构建为页面。这样就可以实现对 <code>_layout.tsx</code> 的拆分，将 <code>Sidebar</code> 组件拆分到 <code>_sidebar.tsx</code> 文件中，然后在 <code>_layout.tsx</code> 中引用即可：</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token maybe-class-name">PagicLayout</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token maybe-class-name">Sidebar</span> <span class="token keyword">from</span> <span class="token string">'./_sidebar.tsx'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token maybe-class-name">Layout</span><span class="token operator">:</span> <span class="token function-variable function"><span class="token maybe-class-name">PagicLayout</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> title<span class="token punctuation">,</span> content <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>title<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Sidebar</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+      </span><span class="token punctuation">{</span>content<span class="token punctuation">}</span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Layout</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="props"><code>props</code><a class="anchor" href="#props">§</a></h2>
+<p>注意到上面的例子中我们取用了 <code>props</code> 中的 <code>title</code> 和 <code>content</code>，那么除了这两个之外 <code>props</code> 中还有哪些属性可以使用呢？</p>
+<p>请参考下面的表格：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>依赖的插件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td><code>md</code>, <code>tsx</code></td>
+<td>页面的标题，一般会放到 <code>&lt;head&gt;&lt;title&gt;</code> 中</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td><code>string</code></td>
+<td><code>md</code>, <code>tsx</code>, <code>layout</code></td>
+<td>页面的内容，一般会放到 <code>&lt;body&gt;</code> 中</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td><code>PagicConfig</code></td>
+<td><code>init</code></td>
+<td>Pagic <strong>运行时</strong>的配置<sup><a href="#sup-1">[1]</a></sup></td>
+</tr>
+<tr>
+<td><code>pagePath</code></td>
+<td><code>string</code></td>
+<td><code>init</code></td>
+<td>页面路径，如 <code>docs/README.md</code></td>
+</tr>
+<tr>
+<td><code>layoutPath</code></td>
+<td><code>string</code></td>
+<td><code>init</code></td>
+<td>页面的模版路径，如 <code>docs/_layout.tsx</code></td>
+</tr>
+<tr>
+<td><code>outputPath</code></td>
+<td><code>string</code></td>
+<td><code>init</code></td>
+<td>页面的输出路径，如 <code>docs/index.html</code></td>
+</tr>
+<tr>
+<td><code>sidebar</code></td>
+<td><code>ReactElement</code></td>
+<td><code>sidebar</code></td>
+<td>由 <code>sidebar</code> 插件生成的 <code>ReactElement</code></td>
+</tr>
+<tr>
+<td><code>toc</code></td>
+<td><code>ReactElement</code></td>
+<td><code>md</code></td>
+<td>由 <code>md</code> 插件生成的 <code>ReactElement</code></td>
+</tr>
+<tr>
+<td><code>prev</code></td>
+<td><code>PagePropsSidebar[0]</code></td>
+<td><code>prev_next</code></td>
+<td>上一页的详细信息</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>PagePropsSidebar[0]</code></td>
+<td><code>prev_next</code></td>
+<td>下一页的详细信息</td>
+</tr>
+<tr>
+<td><code>script</code></td>
+<td><code>ReactElement</code></td>
+<td><code>script</code></td>
+<td>由 <code>script</code> 插件生成的 <code>ReactElement</code></td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td><code>boolean</code></td>
+<td><code>script</code></td>
+<td>页面是否在加载中</td>
+</tr>
+<tr>
+<td><code>ga</code></td>
+<td><code>ReactElement</code></td>
+<td><code>ga</code></td>
+<td>由 <code>ga</code> 插件生成的 <code>ReactElement</code></td>
+</tr>
+<tr>
+<td><code>gitalk</code></td>
+<td><code>ReactElement</code></td>
+<td><code>gitalk</code></td>
+<td>由 <code>gitalk</code> 插件生成的 <code>ReactElement</code></td>
+</tr>
+<tr>
+<td>其他</td>
+<td><code>any</code></td>
+<td>第三方插件</td>
+<td>第三方插件也可能扩充 <code>props</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">静态资源<a class="anchor" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">§</a></h2>
+<p>除了以上提到的特殊文件之外的其他文件均会被视为静态资源，直接复制到 <code>dist</code> 目录下。</p>
+<p>现将所有文件名约定汇总如下：</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以 <code>.</code> 开头</td>
+<td>隐藏文件，会被忽略</td>
+</tr>
+<tr>
+<td><code>pagic.config.ts</code> 或 <code>pagic.config.tsx</code></td>
+<td>配置文件</td>
+</tr>
+<tr>
+<td><code>_layout.tsx</code></td>
+<td>模版文件</td>
+</tr>
+<tr>
+<td>以 <code>_</code> 开头的 <code>tsx</code> 文件</td>
+<td>子组件</td>
+</tr>
+<tr>
+<td><code>md</code> 或 <code>tsx</code> 后缀的文件</td>
+<td>页面文件</td>
+</tr>
+<tr>
+<td>其他文件</td>
+<td>静态资源，会被直接复制到 <code>dist</code> 目录下</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">引用与注解<a class="anchor" href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">§</a></h2>
+<ol>
+<li><span id="sup-1"></span>Pagic <strong>运行时</strong>的配置与 <code>pagic.config.ts</code> 中的配置会有少许差异。</li>
+</ol></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/content.html">«  <!-- -->页面内容</a><a class="next button" href="/zh-CN/docs/themes.html">主题<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-_layout.tsx">什么是 _layout.tsx</a></li><li><a href="#%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%AD%90%E6%A8%A1%E7%89%88">子页面和子模版</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#props">props</a></li><li><a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">静态资源</a></li><li><a href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">引用与注解</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
