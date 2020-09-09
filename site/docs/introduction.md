@@ -26,7 +26,7 @@ Pagic refers to the design of Deno and requires users to import third-party them
 
 ## Compare to others
 
-As a "static website generator fanatic", I have used most of the popular static site generators. They are all excellent, but Pagic tried some new design concepts. Here are some key differences:
+As a "static site generator fanatic", I have used most of the popular static site generators. They are all excellent, but Pagic tried some new design concepts. Here are some key differences:
 
 |            | Pagic | VuePress | Hexo | Jekyll | Hugo |
 | ---------- | ----- | -------- | ---- | ------ | ---- |
