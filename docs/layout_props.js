@@ -78,5 +78,9 @@ export default {
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-_layout.tsx">什么是 _layout.tsx</a></li><li><a href="#%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%92%8C%E5%AD%90%E6%A8%A1%E7%89%88">子页面和子模版</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#props">props</a></li><li><a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">静态资源</a></li><li><a href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E6%B3%A8%E8%A7%A3">引用与注解</a></li></ol></nav>'
         } }),
-    'language': "en"
+    'language': {
+        "code": "en",
+        "name": "English",
+        "path": ""
+    }
 };

@@ -78,5 +78,9 @@ export default {
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题</a></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">主题支持的插件</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置</a><ol></ol></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">如何开发主题</a><ol><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6">主题的运行机制</a></li><li><a href="#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">入口文件</a><ol></ol></li><li><a href="#props">props</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题</a></li></ol></li></ol></nav>'
         } }),
-    'language': "zh-CN"
+    'language': {
+        "code": "zh-CN",
+        "name": "简体中文",
+        "path": "zh-CN/"
+    }
 };

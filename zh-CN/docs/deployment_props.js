@@ -78,5 +78,9 @@ export default {
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li></ol></nav>'
         } }),
-    'language': "zh-CN"
+    'language': {
+        "code": "zh-CN",
+        "name": "简体中文",
+        "path": "zh-CN/"
+    }
 };

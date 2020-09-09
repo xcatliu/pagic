@@ -78,5 +78,9 @@ export default {
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#%E5%AE%89%E8%A3%85">安装</a><ol><li><a href="#%E5%AE%89%E8%A3%85-deno">安装 Deno</a></li><li><a href="#%E5%AE%89%E8%A3%85-pagic">安装 Pagic</a></li></ol></li><li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">初始化项目</a></li><li><a href="#%E8%BF%90%E8%A1%8C-pagic-%E5%91%BD%E4%BB%A4">运行 pagic 命令</a></li></ol></nav>'
         } }),
-    'language': "zh-CN"
+    'language': {
+        "code": "zh-CN",
+        "name": "简体中文",
+        "path": "zh-CN/"
+    }
 };

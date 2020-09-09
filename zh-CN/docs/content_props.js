@@ -78,5 +78,9 @@ export default {
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#md-%E6%96%87%E4%BB%B6">md 文件</a><ol><li><a href="#title">title</a></li><li><a href="#toc">toc</a></li><li><a href="#%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">标题中的锚点</a></li><li><a href="#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">链接替换</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF">头信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7">局限性</a></li></ol></li><li><a href="#tsx-%E6%96%87%E4%BB%B6">tsx 文件</a><ol><li><a href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">基本用法</a></li><li><a href="#%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC">逻辑脚本</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF-2">头信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7-2">局限性</a></li></ol></li></ol></nav>'
         } }),
-    'language': "zh-CN"
+    'language': {
+        "code": "zh-CN",
+        "name": "简体中文",
+        "path": "zh-CN/"
+    }
 };

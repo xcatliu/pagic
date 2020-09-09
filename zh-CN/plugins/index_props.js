@@ -16,5 +16,9 @@ export default {
         React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': null,
-    'language': "zh-CN"
+    'language': {
+        "code": "zh-CN",
+        "name": "简体中文",
+        "path": "zh-CN/"
+    }
 };

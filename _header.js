@@ -3,7 +3,7 @@ const Header = ({ config, language, isDark, setIsDark }) => {
     var _a, _b, _c;
     return (React.createElement("header", null,
         React.createElement("h1", { className: "hide_on_mobile" },
-            React.createElement("a", { href: language === ((_a = config.i18n) === null || _a === void 0 ? void 0 : _a.languages[0].code) ? config.root : `${config.root}${language}/` }, config.title)),
+            React.createElement("a", { href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.path) !== null && _a !== void 0 ? _a : ''}` }, config.title)),
         React.createElement("nav", null,
             React.createElement("ul", null,
                 React.createElement("li", { className: "show_on_mobile flex_center" },
@@ -32,20 +32,18 @@ const Header = ({ config, language, isDark, setIsDark }) => {
                     React.createElement("a", { href: link, target: target }, text))) : (React.createElement("a", { href: link, target: target }, text))))),
                 config.github && (React.createElement("li", { className: "flex_center" },
                     React.createElement("a", { className: "czs-github-logo", href: config.github, target: "_blank", style: { backgroundImage: `url("${config.root}assets/czs-github-logo.svg")` } }))),
-                config.i18n && (React.createElement("li", { className: "flex_center" },
-                    React.createElement("select", { value: language, onChange: (e) => {
-                            var _a, _b;
+                config.i18n && language && (React.createElement("li", { className: "flex_center" },
+                    React.createElement("select", { value: language.code, onChange: (e) => {
+                            var _a;
                             // @ts-ignore
                             let url = new URL(location.href);
                             // @ts-ignore
-                            const nextLanguage = e.target.value;
-                            if (language === ((_a = config.i18n) === null || _a === void 0 ? void 0 : _a.languages[0].code)) {
-                                url.pathname = `/${language}${url.pathname}`;
+                            const nextLanguageCode = e.target.value;
+                            if (language.path !== '') {
+                                url.pathname = url.pathname.replace(language.path, '');
                             }
-                            url.pathname = url.pathname.replace(`/${language}/`, `/${nextLanguage}/`);
-                            if (nextLanguage === ((_b = config.i18n) === null || _b === void 0 ? void 0 : _b.languages[0].code)) {
-                                url.pathname = url.pathname.replace(`/${nextLanguage}/`, '/');
-                            }
+                            const nextLanguage = (_a = config.i18n) === null || _a === void 0 ? void 0 : _a.languages.find(({ code }) => code === nextLanguageCode);
+                            url.pathname = `/${nextLanguage.path}${url.pathname.slice(1)}`;
                             // @ts-ignore
                             location.href = url.toString();
                         } }, config.i18n.languages.map(({ code, name }) => (React.createElement("option", { key: code, value: code }, name)))))),

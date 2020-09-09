@@ -75,5 +75,9 @@ export default {
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#%E5%85%B6%E4%BB%96%E7%AB%A0%E8%8A%82%E4%B8%AD%E6%8F%90%E5%88%B0%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7">其他章节中提到的局限性</a></li></ol></nav>'
         } }),
-    'language': "en"
+    'language': {
+        "code": "en",
+        "name": "English",
+        "path": ""
+    }
 };
