@@ -20,7 +20,7 @@
 
 ### Easy to configure
 
-- Easy to configure
+- Convention over configuration
 - Single config file `pagic.config.ts`
 - Intuitive design
 
