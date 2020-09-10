@@ -47,7 +47,7 @@
 <h2 id="sub-pages-and-sub-templates">Sub-pages and sub-templates<a class="anchor" href="#sub-pages-and-sub-templates">§</a></h2>
 <p>The design of <code>_layout.tsx</code> is intuitive. When we create a subdirectory, the pages in it will give priority to the use of <code>_layout.tsx</code> in that directory. Only when there is no <code>_layout.tsx</code> in the subdirectory, will the page look in the upper-level directory until you find <code>_layout.tsx</code>:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   |── index<span class="token punctuation">.</span>html
 |   └── foo
 |       ├── index<span class="token punctuation">.</span>html
