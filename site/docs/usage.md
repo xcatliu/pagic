@@ -87,7 +87,7 @@ Note that the build result is in the dist directory (some minor files are hidden
 
 ```
 site/
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   └── index.html
 ├── pagic.config.ts
 └── README.md

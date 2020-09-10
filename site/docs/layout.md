@@ -56,7 +56,7 @@ The design of `_layout.tsx` is intuitive. When we create a subdirectory, the pag
 
 ```{8,14}
 site/
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   |── index.html
 |   └── foo
 |       ├── index.html
