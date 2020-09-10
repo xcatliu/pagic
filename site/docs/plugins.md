@@ -1,34 +1,34 @@
 # Plugins
 
-本章会介绍如何使用插件，以及如何开发插件。
+This chapter will introduce how to use plugins and how to develop plugins.
 
-如果你想查看所有插件的列表及其说明文档，请访问[插件列表](/plugins/)。
+If you want to see a list of all plugins and their documentation, please visit [plugins list](/plugins/).
 
-## 使用方式
+## How to use
 
-在 `pagic.config.ts` 中通过 `plugins` 来配置插件，它的类型是 `string[]`。
+The plugin is configured in `pagic.config.ts` through `plugins`, its type is `string[]`.
 
-按照插件的级别可以将插件分为内置插件、官方插件以及第三方插件。
+According to the level of the plugin, plugins can be divided into built-in plugins, official plugins and third-party plugins.
 
-### 内置插件
+### Built-in plugins
 
-内置插件（也可称为默认插件）是最重要的插件，它们组成了 Pagic 的整个构建过程——换句话说，Pagic 的整个构建过程被拆分为了内置插件。
+Built-in plugins (also called default plugins) are the most important plugins, they make up the entire Pagic build process, in other words, the entire Pagic build process is split into built-in plugins.
 
-内置插件包括：`['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']`，Pagic 的构建过程也是按照这个次序来的：
+The built-in plugins include `['clean','init','md','tsx','script','layout','out']`, the construction process of Pagic also follows this order:
 
-1. `clean`: 清空 `dist` 目录
-2. `init`: 初始化中间变量（`pagePropsMap`）
-3. `md`: 解析 `md` 文件，更新中间变量
-4. `tsx`: 解析 `tsx` 文件，更新中间变量
-5. `script`: 编译 `tsx` 文件，生成 `pagic.config.js`, `index.js`, `*_props.js`, `*_content.js` 等文件
-6. `layout`: 解析 `_layout.tsx` 文件，使用 `Layout` 组件来渲染
-7. `out`: 生成 HTML 文件，复制静态资源
+1. `clean`: Empty the `dist` directory
+2. `init`: Initialize intermediate variables (`pagePropsMap`)
+3. `md`: Parse the `md` file and update the intermediate variables
+4. `tsx`: Parse `tsx` files and update intermediate variables
+5. `script`: Compile `tsx` files to generate `pagic.config.js`, `index.js`, `*_props.js`, `*_content.js` and other files
+6. `layout`: Parse the `_layout.tsx` file and use the `Layout` component to render
+7. `out`: Generate HTML files, copy static resources
 
-> 其实第 1 步之前还有一些步骤：解析 `pagic.config.ts`、扫描项目目录、找出页面文件和模版文件。但是由于一些运行机制的原因，它们无法被拆分为插件。
+> In fact, there are some steps before step 1: parsing `pagic.config.ts`, scanning the project directory, finding page files and template files. However, due to some operating mechanisms, they cannot be split into plugins.
 
-内置插件默认就是开启的，你不需要添加配置来启用。
+The built-in plugin is enabled by default, you don't need to add configuration to enable it.
 
-通过配置以 `-` 开头的项，可以删除掉默认的插件，比如配置：
+By configuring items beginning with `-`, you can delete the default plugins, such as:
 
 ```ts
 export default {
@@ -36,28 +36,28 @@ export default {
 };
 ```
 
-此配置会删除掉默认的 `plugins` 中的 `script` 插件，这样生成的网站是没有 React 相关的 `<script>` 标签的，也失去了页面间跳转时的 SPA 能力。
+This configuration will delete the `script` plugin in the default `plugins`, so that the generated website does not have the React-related `<script>` tag, and it also loses the SPA ability when jumping between pages.
 
-但是对于非常简单的网站——比如只有一个页面——采用此配置是非常合适的。
+But for very simple websites, such as one-page-website, this configuration is very suitable.
 
-删除掉默认插件后再添加第三方插件的话，我们甚至可以完全的更改 Pagic 的构建过程。比如我们可以删除掉 `md` 插件，然后添加一个第三方的解析 Markdown 的插件，来替换 Markdown 文件的解析过程。
+If you delete the default plugin and then add a third-party plugin, we can even completely change Pagic's build process. For example, we can delete the `md` plugin, and then add a third-party plugin that parses markdown to replace the process of parsing markdown files.
 
-### 官方插件
+### Official plugin
 
-除了内置插件之外，我们还提供了一些常用的官方插件，它们包括：
+In addition to built-in plugins, we also provide some commonly used official plugins, including:
 
-- `sidebar`: 侧边栏插件，用于解析 `pagic.config.ts` 中配置的 `sidebar`，解析完成后由主题来渲染
-- `prev_next`: 上一页下一页插件，会根据 `sidebar` 的配置决定链接，由主题渲染到页面的文章底部
-- `ga`: 谷歌分析插件，该插件会生成一个 `ReactElement`，由主题插入到页面的 `<head>` 中
-- `gitalk`: Gitalk 插件，给页面添加评论功能，该插件会生成一个 `ReactElement`，由主题插入到页面的文章底部
+- `sidebar`: Sidebar plugin, used to parse the `sidebar` configured in `pagic.config.ts`, the theme will render sidebar after the parse is completed
+- `prev_next`: Previous page and next page plugin, which will determine the link according to the configuration of `sidebar`, the theme will render it to the bottom of the article
+- `ga`: Google Analytics plugin, the plugin will generate a `ReactElement`, the theme will inserted it into the page's `<head>`
+- `gitalk`: Gitalk plugin, add comment function to the page, the plugin will generate a `ReactElement`, the theme will insert it into the bottom of the page
 
-这些插件的配置可以在[配置文件](./config.md#页面内容)章节中查看。
+The configuration of these plugins can be viewed in the [Config](./config.md#page-content) chapter.
 
-通过配置 `plugins` 可以添加官方插件。
+Official plugins can be added by configuring `plugins`.
 
-需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中。
+It should be noted that the user-configured `plugins` will not replace the default `plugins`, but will be inserted into the default `plugins` according to a rule.
 
-以 [`pagic.org` 的配置](https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx)为例：
+Take [`pagic.org` config file](https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx) as an example:
 
 ```ts
 export default {
@@ -65,7 +65,7 @@ export default {
 };
 ```
 
-插入后的 `plugins` 为：
+The inserted `plugins` are:
 
 ```ts
 export default {
@@ -73,19 +73,19 @@ export default {
 };
 ```
 
-#### 那么这里是以什么规则插入的呢？
+#### So what is the rules?
 
-原来，每一个**非内置**插件都会有一个 `insert` 属性，它描述了插入时的位置，它的取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名。比如：
+It turns out that every **non-built-in** plugin will have an `insert` attribute, which describes the position when it is inserted, and its value is `before:xxx` or `after:xxx`, where `xxx` is one The name of the plugin. such as:
 
-- `sidebar` 的 `insert` 属性为 `after:tsx`，所以它会被插入到 `tsx` 后面
-- `prev_next` 的 `insert` 属性为 `after:sidebar`，所以它会被插入到 `sidebar` 后面
-- `ga` 的 `insert` 属性为 `before:script`，所以它会被插入到 `script` 前面
+- The `insert` attribute of `sidebar` is `after:tsx`, so it will be inserted after `tsx`
+- The `insert` attribute of `prev_next` is `after:sidebar`, so it will be inserted after `sidebar`
+- The `insert` attribute of `ga` is `before:script`, so it will be inserted before `script`
 
-得益于 Pagic 将构建过程拆分为了一个个内置插件，非内置插件可以很灵活的插入到构建的任何位置。这种设计比创建一些「钩子函数」来得更灵活也更容易理解。
+Thanks to Pagic's splitting of the build process into built-in plugins, non-built-in plugins can be flexibly inserted into any position of the build. This design is more flexible and easier to understand than creating some "hook functions".
 
-### 第三方插件
+### Third-party plugins
 
-当使用第三方插件时，数组中的项应为一个完整的入口文件链接：
+When using third-party plugins, the items in the array should be an entry file URL:
 
 ```ts
 export default {
@@ -93,11 +93,11 @@ export default {
 };
 ```
 
-## 如何开发插件
+## How to develop a plugin
 
-### 插件的结构
+### Plugin structure
 
-一个插件必须有一个默认导出，类型如下：
+A plugin must have a default export, the type is as follows:
 
 ```ts
 interface PagicPlugin {
@@ -107,26 +107,26 @@ interface PagicPlugin {
 }
 ```
 
-其中：
+Among them:
 
-- `name` 是插件的名称，当其他插件需要插入到此插件前后时，会用到此名称
-- `insert` 是此插件插入的位置，取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名
-- `fn` 函数是插件的核心逻辑，它接受一个参数 `ctx`，其为 `Pagic` 的实例
+- `name` is the name of the plugin. This name will be used when other plugins need to be inserted before or after this plugin
+- `insert` is the position where the plugin is inserted, the value is `before:xxx` or `after:xxx`, where `xxx` is a plugin name
+- The `fn` function is the core logic of the plugin, and it accepts a parameter `pagic`, which is an instance of `Pagic`
 
-> 此命名规则是参考了 [Deno Testing 的设计](https://deno.land/manual/testing)
+> This naming rule refers to [Deno Testing's design](https://deno.land/manual/testing)
 
-### `fn` 函数
+### `fn` function
 
-`fn` 函数是插件的核心逻辑，由于它的参数 `ctx` 是 `Pagic` 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：
+The `fn` function is the core logic of the plugin. Since its parameter `pagic` is the currently running instance of `Pagic`, it can do almost anything, including but not limited to:
 
-- 读取配置信息（`pagic.config.ts` 中的信息）
-- 获取静态资源列表
-- 获取页面列表
-- 修改页面的 `props`
-- 写入文件到 `dist` 目录中
-- 导入第三方模块并运行
+- Get configuration in `pagic.config.ts`
+- Get the list of static resources
+- Get page list
+- Modify the `props` of the page
+- Write files to the `dist` directory
+- Import and run third-party modules
 
-比如，我们可以创建一个插件，它给所有页面的 `title` 加一个前缀：
+For example, we can create a plugin that adds a prefix to the `title` of all pages:
 
 ```ts {6-15}
 import { PagicPlugin } from 'https://deno.land/x/pagic/mod.ts';
@@ -149,27 +149,27 @@ const prependTitle: PagicPlugin = {
 export default prependTitle;
 ```
 
-上例中，
+In the above example,
 
-- `pagic.pagePaths` 是**暂存的**所有扫描出的页面路径
-- `pagic.pagePropsMap` 是所有页面的 `props`
+- `pagic.pagePaths` is the **temporary** path of all scanned pages
+- `pagic.pagePropsMap` is the `props` of all pages
 
-我们通过 `for of` 循环遍历 `pagic.pagePaths`，并将每个页面的 `props` 重新赋值，这样就实现了给所有页面添加前缀了。
+We loop through `pagic.pagePaths` through `for of`, and re-assign the `props` of each page, so that we can add a prefix to all pages.
 
-除了这两个属性外，`pagic` 还有很多其他的属性，下面列出常用的 `pagic` 属性：
+In addition to these two attributes, `pagic` has many other attributes. The commonly used `pagic` attributes are listed below:
 
-| 属性           | 类型                      | 描述                                       |
-| -------------- | ------------------------- | ------------------------------------------ |
-| `config`       | `PagicConfig`             | Pagic **运行时**的配置                     |
-| `pagePaths`    | `string[]`                | **暂存的**所有扫描出的页面路径             |
-| `layoutPaths`  | `string[]`                | 所有扫描出的模版（包括主题）               |
-| `staticPaths`  | `string[]`                | **暂存的**所有扫描出的静态资源（包括主题） |
-| `pagePropsMap` | `{ [key:string]:any }`    | 所有页面的 `props`                         |
-| `writeFiles`   | `{ [key:string]:string }` | 将会在 `out` 插件中被写入到 `dist` 目录中  |
-| `rebuilding`   | `boolean`                 | `true` 表示重新构建，`false` 表示增量构建  |
+| Properties     | Type                      | Description                                                   |
+| -------------- | ------------------------- | ------------------------------------------------------------- |
+| `config`       | `PagicConfig`             | Pagic **runtime** configuration                               |
+| `pagePaths`    | `string[]`                | **Temporary** all scanned page paths                          |
+| `layoutPaths`  | `string[]`                | All scanned templates (including themes)                      |
+| `staticPaths`  | `string[]`                | **Temporary** all scanned static resources (including themes) |
+| `pagePropsMap` | `{ [key:string]:any }`    | `props` for all pages                                         |
+| `writeFiles`   | `{ [key:string]:string }` | Will be written to the `dist` directory in the `out` plugin   |
+| `rebuilding`   | `boolean`                 | `true` means rebuilding, `false` means incremental building   |
 
-注意，`pagePaths` 和 `staticPaths` 都是**暂存的**，并不是全量的，也就是说，增量构建（构建时运行的 `--watch` 模式）时它们都只包含增量的文件。
+Note that `pagePaths` and `staticPaths` are both **temporary**, not the full amount, that is to say, they only contain incremental during incremental builds (the `--watch` mode that runs during build) document.
 
-### 参考官方插件
+### Reference official plugin
 
-开发一个插件最佳的参考就是官方插件，你可以直接[查看官方插件的源码](https://github.com/xcatliu/pagic/tree/master/src/plugins)。
+The best reference for developing a plugin is the official plugin, you can directly [view the source code of the official plugin](https://github.com/xcatliu/pagic/tree/master/src/plugins).

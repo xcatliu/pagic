@@ -1,22 +1,42 @@
-# Pagic
+<h1 align="center">
+  <a href="https://pagic.org">
+    <img alt="Pagic" src="./site/assets/pagic_logo.png" width="64" />agic
+  </a>
+</h1>
 
-[![ci](https://github.com/xcatliu/pagic/workflows/ci/badge.svg)](https://github.com/xcatliu/pagic/actions)
-
-The easiest way to generate static html page from markdown, built with Deno! 🦕
+<h3 align="center">
+  A static site generator powered by Deno + React
+</h3>
+<p align="center">
+  <a href="https://pagic.org/zh-CN">简体中文</a> | <a href="https://pagic.org">Website</a> | <a href="https://pagic.org/docs/introduction.html">Docs</a> | <a href="https://pagic.org/docs/config.html">Config</a> | <a href="#demos">Demos</a> | <a href="https://pagic.org/themes/">Themes</a> | <a href="https://pagic.org/plugins/">Plugins</a> | <a href="https://pagic.org/news/">News</a>
+</p>
+<p align="center">
+  <a href="https://github.com/xcatliu/pagic/actions">
+    <img src="https://github.com/xcatliu/pagic/workflows/ci/badge.svg" alt="ci" />
+  </a>
+</p>
 
 ## Features
 
-- [Markdown + Layout => HTML](#markdown--layout--html)
-- [React component as a page](#react-component-as-a-page)
-- [Copy static files](#copy-static-files)
-- [Sub pages and layouts](#sub-pages-and-layouts)
-- [Front matter](#front-matter)
-- [Configuration](#configuration)
-- [Plugins and themes](#plugins-and-themes)
+### Easy to configure
 
-WARNING: This project is under development so api would changes without announce. The stable version will some soon when [v1.0.0](https://github.com/xcatliu/pagic/projects/3) finished.
+- Easy to configure
+- Single config file `pagic.config.ts`
+- Intuitive design
 
-## Live demo
+### Support md and tsx
+
+- Render `md/tsx` to static HTML page
+- Support React Hooks
+- Pre-render to static HTML, run as an SPA once loaded
+
+### Themes and plugins
+
+- Official themes default/docs/blog with dark mode
+- Combine plugins to build process
+- Import third-party themes or plugins through URL
+
+## Demos
 
 - [Deno X ranking](https://yoshixmk.github.io/deno-x-ranking/) ([GitHub](https://github.com/yoshixmk/deno-x-ranking))
 - [TypeScript 入门教程](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))
@@ -24,7 +44,7 @@ WARNING: This project is under development so api would changes without announce
 - [Deno 中文手册](https://manual.deno.js.cn/) ([GitHub](https://github.com/denocn/deno_manual))
 - [Add my site as a demo](https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&labels=demo&template=add-a-demo.md&title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com) 😝
 
-## Getting started
+## Get started
 
 ### Installation
 
@@ -35,306 +55,36 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
-#### Docker
+### Initialize the project
 
-`alias pagic='docker run -it --rm -v $PWD:/pagic yardenshoham/pagic'`
-
-### Markdown + Layout => HTML
-
-Let's say we have a project like this:
+To use `pagic` to build a static website, the project must include at least one `pagic.config.ts` config file and one `md/tsx` page file:
 
 ```
-docs/
-├── public/
-└── src/
-    ├── _layout.tsx
-    └── index.md
+site/
+├── pagic.config.ts
+└── README.md
 ```
 
-The `src/_layout.tsx` is a simple React component:
-
-```tsx
-import { React, PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
-
-const Layout: PagicLayout = ({ title, content }) => (
-  <html>
-    <head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-    </head>
-    <body>{content}</body>
-  </html>
-);
-
-export default Layout;
-```
-
-The `src/index.md` is a simple markdown file:
-
-```md
-# Pagic
-
-The easiest way to generate static html page from markdown, built with Deno! 🦕
-```
-
-Then run:
+You can create the above `site` project by running the following command:
 
 ```bash
-pagic build
+mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 ```
 
-We'll get an `index.html` file in `public` directory:
-
-```
-docs/
-├── public/
-|   └── index.html
-└── src/
-    ├── _layout.tsx
-    └── index.md
-```
-
-The content should be:
-
-```html
-<html>
-  <head>
-    <title>Pagic</title>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <article>
-      <h1 id="pagic">Pagic</h1>
-      <p>The easiest way to generate static html page from markdown, built with Deno! 🦕</p>
-    </article>
-  </body>
-</html>
-```
-
-### React component as a page
-
-A React component can also be built to html:
-
-```
-docs/
-├── public/
-|   ├── index.html
-|   └── hello.html
-└── src/
-    ├── _layout.tsx
-    ├── index.md
-    └── hello.tsx
-```
-
-Here we build `src/hello.tsx` to `public/hello.html`, using `src/_layout.tsx` as the layout.
-
-`src/hello.tsx` is a simple React component:
-
-```tsx
-import { React } from 'https://deno.land/x/pagic/mod.ts';
-
-const Hello = () => <h1>Hello world</h1>;
-
-export default Hello;
-```
-
-And `public/hello.html` would be:
-
-```tsx
-<html>
-  <head>
-    <title></title>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <h1>Hello world</h1>
-  </body>
-</html>
-```
-
-### Copy static files
-
-If there are other static files which are not end with `.{md,tsx}` or (start with `_` and end with `.tsx`), we will simply copy them:
-
-```
-docs/
-├── public/
-|   ├── assets
-|   |   └── index.css
-|   ├── index.html
-|   └── hello.html
-└── src/
-    ├── assets
-    |   └── index.css
-    ├── _layout.tsx
-    ├── _sidebar.tsx
-    ├── index.md
-    └── hello.tsx
-```
-
-### Sub pages and layouts
-
-We can have sub directory which contains markdown or component.
-
-Sub directory can also have a `_layout.tsx` file.
-
-For each markdown or React component, it will walk your file system looking for the nearest `_layout.tsx`. It starts from the current directory and then moves to the parent directory until it finds the `_layout.tsx`.
-
-```
-docs/
-├── public/
-|   ├── assets
-|   |   └── index.css
-|   ├── index.html
-|   └── hello.html
-|   └── sub
-|       └── index.html
-└── src/
-    ├── assets
-    |   └── index.css
-    ├── _layout.tsx
-    ├── _sidebar.tsx
-    |── index.md
-    └── sub
-        ├── _layout.tsx
-        └── index.md
-```
-
-### Front matter
-
-Front matter allows us add extra meta data to markdown:
-
-```markdown
----
-author: xcatliu
-published: 2020-05-20
----
-
-# Pagic
-
-The easiest way to generate static html page from markdown, built with Deno! 🦕
-```
-
-Every item in the front matter will pass to the `_layout.tsx` as the props:
-
-```tsx
-import { React, PagicLayout } from 'https://deno.land/x/pagic/mod.ts';
-
-const Layout: PagicLayout = ({ title, content, author, published }) => (
-  <html>
-    <head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-    </head>
-    <body>
-      {content}
-      <footer>
-        Author: ${author}, Published: ${published}
-      </footer>
-    </body>
-  </html>
-);
-
-export default Layout;
-```
-
-#### Front matter in React component
-
-In React component we can export a `frontMatter` variable:
-
-```tsx
-import { React } from 'https://deno.land/x/pagic/mod.ts';
-
-const Hello = () => <h1>Hello world</h1>;
-
-export default Hello;
-
-export const frontMatter = {
-  title: 'Hello world',
-  author: 'xcatliu',
-  published: '2020-05-20'
-};
-```
-
-### Configuration
-
-It's able to configurate Pagic by adding a `pagic.config.ts` file. The default configuration is:
-
-```ts
-export default {
-  srcDir: '.',
-  outDir: 'dist',
-  include: undefined,
-  exclude: [
-    // Dot files
-    '**/.*',
-    // Node common files
-    '**/package.json',
-    '**/package-lock.json',
-    '**/node_modules',
-    'pagic.config.ts',
-    'pagic.config.tsx',
-    // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
-    '**/config.gypi',
-    '**/CVS',
-    '**/npm-debug.log'
-
-    // ${config.outDir} will be added later
-  ],
-  root: '/',
-  theme: 'default',
-  plugins: ['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out'],
-  watch: false,
-  serve: false,
-  port: 8000
-};
-```
-
-Your `pagic.config.ts` will be **deep-merge** to the default config, that is, your `exclude` and `plugins` will be appended to default, not replace it.
-
-### Plugins and themes
-
-As you see default plugins are set to `['init', 'md', 'tsx', 'script', 'layout', 'write']`.
-
-We can add the optional plugins by setting the `plugins` in the `pagic.config.ts` file:
-
-```ts
-export default {
-  srcDir: 'site',
-  plugins: ['sidebar']
-};
-```
-
-`sidebar` plugin will add a `sidebar` properity to the props.
-
-We can also add our own plugin like this:
-
-```ts
-import myPlugin from './myPlugin.tsx';
-
-export default {
-  srcDir: 'site',
-  plugins: [myPlugin]
-};
-```
-
-To develop a `myPlugin` please checkout the [built-in plugins](https://github.com/xcatliu/pagic/tree/master/src/plugins).
-
-Themes is under development, please come back later!
-
-## Use Pagic as cli
-
-### `pagic build`
-
-We can use `pagic build` to build static pages, there are some options while using `build` command:
+### Run `pagic`
 
 ```bash
-pagic build [options]
-
-# --watch  watch src dir change
-# --serve  serve public dir
-# --port   override default port
+# Run pagic
+pagic build --watch --serve
 ```
+
+## More information
+
+- Visit the [official website](https://pagic.org)
+- Read the [documentation](https://pagic.org/docs/introduction.html)
+- [Configura](https://pagic.org/docs/config.html) your site
+- Checkout the [theme list](https://pagic.org/themes/) and the [plugin list](https://pagic.org/plugins/)
+- See [news](https://pagic.org/news/) about Pagic
 
 ## LICENSE
 

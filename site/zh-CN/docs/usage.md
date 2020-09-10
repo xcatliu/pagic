@@ -25,7 +25,7 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
-若需要安装指定版本的 Pagic，则可以在安装的 url 中加入版本号：
+若需要安装指定版本的 Pagic，则可以在安装的 URL 中加入版本号：
 
 ```bash
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic@v1.0.0/mod.ts

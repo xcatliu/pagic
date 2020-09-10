@@ -1,19 +1,19 @@
 # Config
 
-Pagic 提供了丰富的配置，大部分用户通过配置文件就可以构建出一个具有丰富功能的静态网站了。
+Pagic provides a wealth of configurations, and most users can build a static website with rich functions through config files.
 
-Pagic 的配置文件名称为 `pagic.config.ts` 或 `pagic.config.tsx`（如果你的配置文件中使用了 jsx 语法）。
+Pagic's config file name is `pagic.config.ts` or `pagic.config.tsx` (if you use jsx syntax in your config file).
 
-> 以下列出的是官方提供的配置字段，一些第三方主题或插件可能会包含额外的配置字段，需要参考其说明文档。
+> Listed below are the official config options. Some third-party themes or plugins may contain additional config options. Please refer to their documentation.
 
-## 输入和输出
+## Input and output
 
 ### `srcDir`
 
-- 类型：`string`
-- 默认值：`.`
+- Type: `string`
+- Default: `.`
 
-执行 Pagic 构建过程的源目录，默认为 `pagic.config.ts` 所在的当前目录 `.`：
+The source directory to execute the Pagic build process, the default is the current directory `.` where `pagic.config.ts` is located:
 
 ```ts
 export default {
@@ -23,13 +23,13 @@ export default {
 
 ```
 site/
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   └── index.html
 ├── pagic.config.ts
 └── README.md
 ```
 
-通常在给一个已有的项目写文档时，可以通过配置 `srcDir` 在子目录下写文档：
+Usually when writing a document for an existing project, you can write the document in a subdirectory by setting `srcDir` option:
 
 ```ts {2}
 export default {
@@ -39,19 +39,19 @@ export default {
 
 ```{5,6}
 site/
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   └── index.html
 ├── pagic.config.ts
-└── docs    # 构建源目录
+└── docs    # Source directory
     └── README.md
 ```
 
 ### `outDir`
 
-- 类型：`string`
-- 默认值：`dist`
+- Type: `string`
+- Default: `dist`
 
-Pagic 构建的结果目录，配合 `srcDir` 可以同时自定义输入和输出目录：
+The output directory constructed by Pagic can be used with `srcDir` to customize the input and output directories at the same time:
 
 ```ts {3}
 export default {
@@ -62,19 +62,19 @@ export default {
 
 ```{2,3}
 site/
-|── public  # 构建结果目录
+|── public  # Output directory
 |   └── index.html
 ├── pagic.config.ts
-└── docs    # 构建源目录
+└── docs    # Source directory
     └── README.md
 ```
 
 ### `include`
 
-- 类型：`glob[]`
-- 默认值：`undefined`
+- Type: `glob[]`
+- Default: `undefined`
 
-`include` 限制了 `srcDir` 中会被扫描到的文件。它常用于当 `srcDir` 配置为 `.` 时，指定部分文件或目录：
+`include` limits the files that will be scanned in `srcDir`. It is often used to specify some files or directories when `srcDir` is configured as `.`:
 
 ```ts {4}
 export default {
@@ -86,7 +86,7 @@ export default {
 
 ```{10-12}
 site/
-|── public  # 构建结果目录
+|── public  # Output directory
 |   |── index.html
 |   └── docs
 |       └── index.html
@@ -95,18 +95,18 @@ site/
 ├── test
 ├── pagic.config.ts
 ├── README.md
-└── docs    # 构建源目录
+└── docs    # Source directory
     └── README.md
 ```
 
-在上面的例子中，`src`, `dist`, `test` 均为不相关的目录，Pagic 只关心 `include` 指定的 `README.md` 文件和 `docs` 目录。
+In the above example, `src`, `dist`, and `test` are irrelevant directories. Pagic only cares about the `README.md` file and `docs` directory specified by `include`.
 
-> `include` 中允许配置 `glob` 格式的字符串，如 `docs/**/*.md` 就只会匹配到 `docs` 目录下的所有 `md` 文件。
+> `include` allows to configure a string in the format of `glob`, such as `docs/**/*.md` will only match all `md` files in the `docs` directory.
 
 ### `exclude`
 
-- 类型：`glob[]`
-- 默认值：如下
+- Type: `glob[]`
+- Default:
 
   ```ts
   [
@@ -127,11 +127,11 @@ site/
   ];
   ```
 
-`exclude` 与 `include` 类似，用于在 `srcDir` 中排除指定的文件。
+`exclude` is similar to `include` and is used to exclude specified files in `srcDir`.
 
-`exclude` 默认会排除一些显然不是 Pagic 构建需要的文件，如以 `.` 开头的隐藏文件、`package.json`、`node_modules` 等，需要注意的是，用户配置的 `outDir` 也会默认被排除掉。
+By default, `exclude` will exclude some files that are obviously not needed by Pagic to build, such as hidden files starting with `.`, `package.json`, `node_modules`, etc. It should be noted that the user configured `outDir` will also default be ruled out.
 
-当我们在 `pagic.config.ts` 中配置了 `exclude` 字段时，它不会覆盖掉默认值，而是会 `concat` 到默认值中，比如当我们按如下配置时：
+When we configure the `exclude` field in `pagic.config.ts`, it will not overwrite the default value, but will `concat` to the default value, for example, when we configure as follows:
 
 ```ts {2}
 export default {
@@ -139,7 +139,7 @@ export default {
 };
 ```
 
-最终运行时的 `exclude` 会是：
+The final runtime `exclude` will be:
 
 ```ts {18}
 export default {
@@ -164,50 +164,45 @@ export default {
 };
 ```
 
-> 与 `include` 类似，`exclude` 也允许配置 `glob` 格式的字符串。
+> Similar to `include`, `exclude` also allows configuration of strings in `glob` format.
 
 ### `root`
 
-- 类型：`string`
-- 默认值：`／`
+- Type: `string`
+- Default: `／`
 
-部署站点的根路径，常用于需要将网站部署到一个子路径下。比如在 GitHub pages 中，我们可以将网站部署到 https://foo.github.io/bar/ ，那么 `root` 应该被设置成 `'/bar/'`，它的值应当总是以斜杠开始，并以斜杠结束。
+The root path the site will be deployed at. You will need to set this if you plan to deploy your site under a sub path, for example, GitHub pages. If you plan to deploy your site to https://foo.github.io/bar/, then you should set `root` to `'/bar/'`. It should always start and end with a slash.
 
-## 主题和插件
+## Themes and plugins
 
 ### `theme`
 
-- 类型：`string`
-- 默认值：`'default'`
+- Type: `string`
+- Default: `'default'`
+  When using the official theme, the value should be `'default' |'docs' |'blog'`.
 
-当使用官方主题时，取值应为 `'default' | 'docs' | 'blog'`。
-
-当使用第三方主题时，取值应为形如：
+When using a third-party theme, the value should be an URL like this:
 
 ```
 https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts
 ```
 
-的链接。
-
 ### `plugins`
 
-- 类型：`string[]`
-- 默认值：`['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']`
+- Type: `string[]`
+- Default: `['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']`
 
-当使用官方插件时，数组中的项应为官方插件的名称，详见[官方插件列表](../plugins/)。
+When using official plugins, the items in the array should be the names of official plugins, see [Official Plugins List](../plugins/) for details.
 
-当使用第三方插件时，数组中的项应为形如：
+When using a third-party plugin, the items in the array should be an URL like this:
 
 ```
 https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts
 ```
 
-的链接。
+It should be noted that the `plugins` configured by the user will not replace the default `plugins`, but will be inserted into the default `plugins` according to a rule. For details, please refer to [How to develop a plugin](./plugins.md#how-to-develop-a-plugin).
 
-需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中，详见[如何开发插件](./plugins.md#如何开发插件)。
-
-以 [`pagic.org` 的配置](https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx)为例：
+Take [`pagic.org` config file](https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx) as an example:
 
 ```ts
 export default {
@@ -215,7 +210,7 @@ export default {
 };
 ```
 
-插入后的 `plugins` 为：
+The inserted `plugins` are:
 
 ```ts
 export default {
@@ -223,7 +218,7 @@ export default {
 };
 ```
 
-另外，通过配置以 `-` 开头的项，可以删除掉默认的插件，比如配置：
+In addition, you can delete the default plugins by setting items beginning with `-`, such as this:
 
 ```ts
 export default {
@@ -231,46 +226,46 @@ export default {
 };
 ```
 
-此配置会删除掉默认的 `plugins` 中的 `script` 插件，这样生成的网站是没有 React 相关的 `<script>` 标签的，也失去了页面间跳转时的 SPA 能力。
+This configuration will delete the `script` plugin in the default `plugins`, so that the generated website does not have the React-related `<script>` tag, and it also loses the SPA ability when jumping between pages.
 
-但是对于非常简单的网站——比如只有一个页面——采用此配置是非常合适的。
+But for very simple websites, such as one-page-website, this configuration is very suitable.
 
-## 页面内容
+## Page content
 
-页面内容相关的配置会在插件中做一些处理，然后[作为 `props` 传递到 `_layout.tsx` 中](./layout.md#props)。
+The option related to the page content will be processed in the plugin, and then [passed as `props` to `_layout.tsx`](./layout.md#props).
 
-最终如何使用 `props` 取决于主题，所以并不是任一主题都支持了任一配置。
+How to use `props` in the end depends on the theme, so not every theme supports any option.
 
-总之，进行页面内容的配置时，需要确保使用的是该配置支持的主题，同时添加了该配置依赖的插件。
+In short, when configuring the page content, you need to ensure that you are using the theme supported by the option, and add the plugins that the option depends on.
 
-以下会列出官方主题的支持情况，若使用的是第三方主题，请查看其文档确认。
+The support status of official themes is listed below. If you are using a third-party theme, please check its documentation to confirm.
 
 ### `title`
 
-- 类型：`string`
-- 默认值：`undefined`（页面内容的配置的默认值均为 `undefined`，以下不再赘述）
-- 支持的主题：全部
-- 依赖的插件：无
+- Type: `string`
+- Default: `undefined` (The default value of the page content option is always `undefined`)
+- Supported themes: all
+- Dependent plugins: none
 
-网站的标题，它将会被用作所有页面标题的后缀。
+The title of the website, it will be used as the suffix of all page titles.
 
 ### `description`
 
-- 类型：`string`
-- 支持的主题：全部
-- 依赖的插件：无
+- Type: `string`
+- Supported themes: all
+- Dependent plugins: none
 
-网站的描述，它将会以 `<meta>` 标签渲染到当前页面的 HTML 中。
+The description of the website, it will be rendered into the HTML of the current page with the `<meta>` tag.
 
 ### `head`
 
-- 类型：`React.ReactElement`
-- 支持的主题：全部
-- 依赖的插件：无
+- Type: `React.ReactElement`
+- Supported themes: all
+- Dependent plugins: none
 
-额外的需要被注入到当前页面的 HTML `<head>` 中的标签。由于用到了 jsx 语法，需要将配置文件重命名为 `pagic.config.tsx`，并且引入 `React`。
+Additional elements that need to be injected into the HTML `<head>` of the current page. Due to the use of jsx syntax, the config file needs to be renamed to `pagic.config.tsx` and make sure `React` is imported.
 
-举个例子，增加一个自定义的 favicon：
+For example, add a custom favicon:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -280,7 +275,7 @@ export default {
 };
 ```
 
-如果需要引入多个标签，则需要用 `<>` 标签包裹：
+If you need to inject multiple elements, you need to wrap it with `<>` tags:
 
 ```tsx {5,8}
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -297,11 +292,11 @@ export default {
 
 ### `nav`
 
-- 类型：较复杂，见示例
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：无
+- Type: complexity, please see below
+- Supported themes: `docs`, `blog`
+- Dependent plugins: none
 
-导航栏配置，示例如下：
+Navigation configuration, examples are as follows:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -309,11 +304,11 @@ import { React } from 'https://deno.land/x/pagic/mod.ts';
 export default {
   nav: [
     {
-      text: '文档',
+      text: 'Docs',
       link: '/docs/'
     },
     {
-      text: '赞助作者',
+      text: 'Buy me a coffee',
       link: 'https://github.com/xcatliu/buy-me-a-coffee',
       target: '_blank',
       popover: (
@@ -324,7 +319,7 @@ export default {
       )
     },
     {
-      text: '关于',
+      text: 'About',
       link: '/about/',
       align: 'right'
     }
@@ -334,19 +329,19 @@ export default {
 
 ### `github`
 
-- 类型：`string`
-- 支持的主题：全部
-- 依赖的插件：无
+- Type: `string`
+- Supported themes: all
+- Dependent plugins: none
 
-配置你的 github 账号，一般会展示一个链接在右上角。
+Configure your github account, usually a link will be displayed in the upper right corner.
 
 ### `sidebar`
 
-- 类型：较复杂，见示例
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：`sidebar`
+- Type: complexity, please see below
+- Supported themes: `docs`, `blog`
+- Dependent plugins: `sidebar`
 
-侧边栏配置，示例如下：
+Sidebar configuration, examples are as follows:
 
 ```ts
 export default {
@@ -368,15 +363,15 @@ export default {
 };
 ```
 
-在上面的例子中，以 `/docs/` 开头的页面会展示 docs 侧边栏，以 `/about/` 开头的页面会展示 about 侧边栏，其他页面会命中 `/`，展示默认的侧边栏。
+In the above example, the page starting with `/docs/` will display the docs sidebar, the page starting with `/about/` will display the about sidebar, and other pages will hit `/` to display the default sidebar.
 
 ### `tocAd`
 
-- 类型：`React.ReactElement`
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：无
+- Type: `React.ReactElement`
+- Supported themes: `docs`, `blog`
+- Dependent plugins: none
 
-展示在目录上方的广告，示例如下：
+Ads displayed at the top of the table of content, examples are as follows:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -405,11 +400,11 @@ export default {
 
 ### `tools`
 
-- 类型：`{ [key:string]:any }`
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：无
+- Type: `{ [key:string]:any }`
+- Supported themes: `docs`, `blog`
+- Dependent plugins: none
 
-一些小工具，比如 `editOnGithub`, `backToTop` 等，示例如下：
+Some small tools, such as `editOnGithub`, `backToTop`, etc. examples are as follows:
 
 ```ts
 export default {
@@ -422,11 +417,11 @@ export default {
 
 ### `ga`
 
-- 类型：`{ id:string }`
-- 支持的主题：全部
-- 依赖的插件：`ga`
+- Type: `{ id:string }`
+- Supported themes: all
+- Dependent plugins: `ga`
 
-[谷歌分析](https://analytics.google.com/)的配置，示例如下：
+[Google analytics](https://analytics.google.com/) configuration, examples are as follows:
 
 ```ts
 export default {
@@ -438,11 +433,11 @@ export default {
 
 ### `gitalk`
 
-- 类型：较复杂，见示例
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：`gitalk`
+- Type: complexity, please see below
+- Supported themes: `docs`, `blog`
+- Dependent plugins: `gitalk`
 
-[Gitalk](https://github.com/gitalk/gitalk) 可以给页面添加评论功能，示例如下：
+[Gitalk](https://github.com/gitalk/gitalk) can add comments to the page, examples are as follows:
 
 ```ts
 export default {
@@ -457,27 +452,27 @@ export default {
 };
 ```
 
-## 命令行选项
+## Cli options
 
-命令行选项也可以在 `pagic.config.ts` 中配置，真正运行时如果传了参数则会覆盖掉此配置。
+The command line options can also be configured in `pagic.config.ts`, and this options will be overwritten if the parameters are passed in the runtime.
 
 ### `watch`
 
-- 类型：`boolean`
-- 默认值：`false`
+- Type: `boolean`
+- Default: `false`
 
-监听文件变动以重新构建。
+Watch file changes to rebuild.
 
 ### `serve`
 
-- 类型：`boolean`
-- 默认值：`false`
+- Type: `boolean`
+- Default: `false`
 
-启动本地服务，预览静态网站。
+Start local service, preview static website.
 
 ### `port`
 
-- 类型：`number`
-- 默认值：`8000`
+- Type: `number`
+- Default: `8000`
 
-指定本地服务的端口号。
+Specify the port of the local service.

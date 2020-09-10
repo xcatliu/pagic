@@ -4,7 +4,9 @@ Pagic 支持将 `md/tsx` 文件渲染成静态页面，下面将分别介绍这�
 
 ## md 文件
 
-Pagic 使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来编译 Markdown 文件，它支持通过添加第三方插件来扩展原有的功能。Pagic 支持了以下特性：
+Pagic 使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来编译 Markdown 文件，它支持通过添加第三方插件来扩展原有的功能。
+
+Pagic 支持了以下特性：
 
 ### `title`
 
@@ -42,7 +44,7 @@ Pagic 使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来编译
 
 因为这样的链接不仅在生成的页面中支持点击跳转，在 GitHub 的 Markdown 预览中支持点击跳转，而且在 VSCode（或其他编辑器）中也支持 `cmd/ctrl + click` 跳转。
 
-不妨在[本页面的 GitHub 版](https://github.com/xcatliu/pagic/blob/master/site/docs/content.md#链接替换)试试吧。
+不妨在[本页面的 GitHub 版](https://github.com/xcatliu/pagic/blob/master/zh-CN/site/docs/content.md#链接替换)试试吧。
 
 需要注意的是，链接中的 `README.md` 不仅后缀会被替换为 `.html`，路径也会被替换为 `index`：
 

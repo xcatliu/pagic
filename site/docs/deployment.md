@@ -1,12 +1,12 @@
 # Deployment
 
-构建完成后的 `dist` 目录可以作为一个网站部署到你的服务器上。我们强烈推荐通过持续集成让部署过程自动化，下面列出几种常见的部署方式：
+The output `dist` directory can be deployed to your server as a website. We strongly recommend to use CI to automate the deployment process. Here are a few common deployment methods:
 
 ## GitHub Pages
 
-GitHub Pages 是最常见的一种托管静态网站的服务，通过 GitHub 官方提供的 CI 工具 [GitHub Actions](https://github.com/features/actions)，我们可以轻松的实现提交代码后自动构建并部署网站。
+GitHub Pages is the most common service for hosting static websites. Through the official CI tool [GitHub Actions](https://github.com/features/actions) provided by GitHub, we can automatically build and deploy the website.
 
-实现自动部署网站到 GitHub Pages 非常简单，只需要在你的 GitHub 项目中创建一个 `.github/workflows/ci.yml` 文件，内容如下：
+It is very simple to automatically build and deploy the website to GitHub Pages. You only need to create a `.github/workflows/ci.yml` file in your GitHub project with the following content:
 
 ```yml {33}
 name: gh-pages
@@ -44,6 +44,6 @@ jobs:
           cname: ts.xcatliu.com
 ```
 
-注意替换掉最后一行的 `ts.xcatliu.com` 为你自己的域名。
+Be sure to replace `ts.xcatliu.com` in the last line with your own domain.
 
-如果没有自己的域名的话，也可以使用 GitHub 提供的免费域名 `xxx.github.io`，此时只要将最后一行删除即可。注意此时可能需要修改 `pagic.config.ts` 中的 `root` 配置来支持子路径，详细可参考[配置文件](./config.md#root)章节。
+If you don't have your own domain, you can also use the free domain `xxx.github.io` provided by GitHub, just delete the last line. Note that you may need to modify the `root` configuration in `pagic.config.ts` to support sub-paths. For details, please refer to the [Config](./config.md#root) chapter.

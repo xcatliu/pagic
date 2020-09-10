@@ -131,7 +131,7 @@ const IndexPage: PagicLayout = ({ language }) => (
         <ul>
           <li>
             <Trans>
-              Render <code>md/tsx</code> to static html page
+              Render <code>md/tsx</code> to static HTML page
             </Trans>
           </li>
           <li>{t('Support React Hooks')}</li>
@@ -143,7 +143,7 @@ const IndexPage: PagicLayout = ({ language }) => (
         <ul>
           <li>{t('Official themes default/docs/blog with dark mode')}</li>
           <li>{t('Combine plugins to build process')}</li>
-          <li>{t('Import third-party themes or plugins through url')}</li>
+          <li>{t('Import third-party themes or plugins through URL')}</li>
         </ul>
       </div>
     </div>

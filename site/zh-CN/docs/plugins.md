@@ -111,13 +111,13 @@ interface PagicPlugin {
 
 - `name` 是插件的名称，当其他插件需要插入到此插件前后时，会用到此名称
 - `insert` 是此插件插入的位置，取值为 `before:xxx` 或 `after:xxx`，其中 `xxx` 为一个插件名
-- `fn` 函数是插件的核心逻辑，它接受一个参数 `ctx`，其为 `Pagic` 的实例
+- `fn` 函数是插件的核心逻辑，它接受一个参数 `pagic`，其为 `Pagic` 的实例
 
 > 此命名规则是参考了 [Deno Testing 的设计](https://deno.land/manual/testing)
 
 ### `fn` 函数
 
-`fn` 函数是插件的核心逻辑，由于它的参数 `ctx` 是 `Pagic` 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：
+`fn` 函数是插件的核心逻辑，由于它的参数 `pagic` 是 `Pagic` 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：
 
 - 读取配置信息（`pagic.config.ts` 中的信息）
 - 获取静态资源列表

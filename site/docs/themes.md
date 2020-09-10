@@ -1,14 +1,14 @@
 # Themes
 
-本章会介绍如何使用主题，以及如何开发主题。
+This chapter will introduce how to use themes and how to develop them.
 
-如果你想查看所有主题的列表及其支持的特性，请访问[主题列表](/themes/)。
+If you want to see a list of all themes and their supported features, please visit [theme list](/themes/).
 
-## 使用方式
+## How to use
 
-### 官方主题
+### Official theme
 
-Pagic 拥有官方的 default, docs, blog 等主题，在 `pagic.config.ts` 中配置 `theme` 即可使用。默认会使用 `default` 主题：
+Pagic has official default/docs/blog themes, which can be used by configuring `theme` in `pagic.config.ts`. The `default` theme will be used by default:
 
 ```ts
 export default {
@@ -16,9 +16,9 @@ export default {
 };
 ```
 
-### 第三方主题
+### Third party theme
 
-当使用第三方主题时，`theme` 的取值应为一个完整的入口文件链接：
+When using a third-party theme, the value of `theme` should be a complete URL:
 
 ```ts
 export default {
@@ -26,31 +26,31 @@ export default {
 };
 ```
 
-### 主题支持的插件
+### Theme supported plugins
 
-主题决定了页面如何展示，插件决定了页面支持的特性。
+The theme determines how the page is displayed, and the plugin determines the features supported by the page.
 
-选择了主题后，我们可以添加插件来扩展网页的特性，但前提是主题支持此插件。
+After selecting the theme, we can add plugins to extend the features of the webpage, but only if the theme supports this plugin.
 
-以 `sidebar` 插件为例，`sidebar` 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 `default` 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 `sidebar` 插件。不过 `docs` 主题和 `blog` 主题均支持 `sidebar` 插件。
+Take the `sidebar` plugin as an example. The `sidebar` plugin will display a configured sidebar on the left side of the page, but not all themes support this plugin. For example, the `default` theme is a very basic theme. It supports the most basic functions, so the `sidebar` plugin is not supported. However, both the `docs` theme and the `blog` theme support the `sidebar` plugin.
 
-一般可以在主题的文档中查看其支持的插件列表。
+Generally, you can view the list of plugins supported by the theme's documentation.
 
-### 主题的配置
+### Theme configuration
 
-在 `pagic.config.ts` 中可以配置主题相关的选项，常见的选项包括 `title`, `description`, `head` 等。它们的含义和用法可以参考[配置文件](./config.md#页面内容)章节。
+Theme-related options can be configured in `pagic.config.ts`, common options include `title`, `description`, `head`, etc. For their meaning and usage, please refer to the [Config](./config.md#page-content) chapter.
 
-#### 网站的配置？主题的配置？插件的配置？
+#### Website configuration? Theme configuration? Plugin configuration?
 
-你可能已经发现了，不像一些其他的静态网站生成器对于网站、主题和插件拥有不同的配置文件（或配置项），Pagic 只拥有一个配置文件 `pagic.config.ts`。
+You may have discovered that unlike some other static site generators that have different config files (or config items) for websites, themes and plugins, Pagic only has one config file `pagic.config.ts`.
 
-你也许会有一些疑惑：这不会很混乱吗？主题和插件之间的配置不会冲突吗？
+You may have some doubts: Isn't this confusing? Will the configuration between the theme and the plugin conflict?
 
-但其实 Pagic 这么设计是有其道理的：
+But in fact, Pagic’s design is justified:
 
-##### 1. 一个配置项可能需要同时被主题和插件读取
+##### 1. A configuration item may need to be read by the theme and plugin at the same time
 
-以 `sidebar` 为例，如果我们在 `pagic.config.ts` 中配置了这样的 `sidebar`：
+Take `sidebar` as an example, if we configure this `sidebar` in `pagic.config.ts`:
 
 ```ts
 export default {
@@ -71,44 +71,44 @@ export default {
 };
 ```
 
-那么：
+Then:
 
-- `sidebar` 插件需要解析它，并将其转化为 `React.ReactElement`
-- `docs` 主题需要支持渲染 `sidebar`，并提供折叠、SPA 跳转等功能
+- The `sidebar` plugin needs to parse it and convert it to `React.ReactElement`
+- `docs` theme needs to support rendering `sidebar`, and provide functions such as folding, SPA jump, etc.
 
-可见将 `sidebar` 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的，需要有一个地方统一管理这个配置。
+It can be seen that it is inappropriate to attribute the configuration of `sidebar` to the configuration of the theme, and it is also inappropriate to attribute the configuration of the plugin. There needs to be one place to manage this configuration.
 
-##### 2. 插件和插件之间可能有依赖关系
+##### 2. There may be dependencies between plugins and plugins
 
-以 `prev_next` 插件为例，它支持在页面底部自动插入上一页下一页的链接。但是它需要依赖 `sidebar` 的配置才能知道上一页下一页的链接是什么。
+Take the `prev_next` plugin as an example, it supports automatic insertion of links to the previous page and the next page at the bottom of the page. But it needs to rely on the configuration of `sidebar` to know what the link to the previous page is.
 
-所以 `prev_next` 插件需要能够读取到 `sidebar` 的配置，故将配置统一放到 `pagic.config.ts` 中更合适。
+Therefore, the `prev_next` plugin needs to be able to read the configuration of the `sidebar`, so it is more appropriate to put the configuration in the `pagic.config.ts`.
 
-##### 3. 这样可以降低用户的理解成本
+##### 3. This can reduce the user's understanding cost
 
-用户不用再思考一个配置到底是属于主题还是插件了，统一在 `pagic.config.ts` 中配置即可。
+Users don't need to think about whether a configuration belongs to a theme or a plugin. It can be configured in `pagic.config.ts`.
 
-##### 可是如何保证各种第三方主题和插件之间的配置不会有冲突呢？
+##### But how to ensure that the configuration between various third-party themes and plugins will not conflict?
 
-首先，插件的配置项一般与插件名一致（比如 `sidebar` 插件就提供了 `sidebar` 配置项），这保证了不同插件之间一般不会冲突。
+First of all, the configuration items of the plugin are generally the same as the plugin name (for example, the `sidebar` plugin provides the `sidebar` configuration item), which ensures that there is generally no conflict between different plugins.
 
-其次，我们将一些通用的配置项整理成文档，第三方主题和插件的开发者应尽可能参考[此文档](./config.md)，避免产生冲突。
+Second, we organize some common configuration items into documents. Developers of third-party themes and plugins should refer to [this document](./config.md) as much as possible to avoid conflicts.
 
-最后，这种设计其实约束了第三方主题和插件的开发者，使得大家需要按照同样的标准来设计配置项，意味着 Pagic 的第三方主题和插件拥有了更高的质量和兼容性。
+Finally, this design actually constrains the developers of third-party themes and plug-ins, so that everyone needs to design configuration items according to the same standard, which means that Pagic's third-party themes and plugins have higher quality and compatibility.
 
-## 如何开发主题
+## How to develop a theme
 
-恭喜你即将成为 Pagic 主题的开发者！
+Congratulations, you are about to become a developer of Pagic theme!
 
-只要理解了 Pagic 主题的运行机制，就可以轻松的开发出一个 Pagic 主题了。
+As long as you understand the operating mechanism of Pagic theme, you can easily develop a Pagic theme.
 
-### 主题的运行机制
+### Theme operating mechanism
 
-Pagic 主题的运行机制很容易理解，甚至用一句话就可以解释清楚：
+The operating mechanism of Pagic theme is easy to understand, and can even be explained clearly in one sentence:
 
-> Pagic 构建时会先把主题中的文件全部「复制」到用户的项目目录下，然后再运行 `pagic build` 脚本。
+> When Pagic builds, it will first "copy" all the files in the theme to the user's project directory, and then run the `pagic build` script.
 
-比如一个主题若包含以下文件：
+For example, if a theme contains the following files:
 
 ```{2-4}
 pagic_theme_custom/
@@ -117,7 +117,7 @@ pagic_theme_custom/
 └── _layout.tsx
 ```
 
-用户的项目的目录结构如下：
+The directory structure of the user's project is as follows:
 
 ```
 site/
@@ -125,7 +125,7 @@ site/
 └── README.tsx
 ```
 
-那么当用户使用此主题后，用户的项目的目录结构就会「变成这样」：
+Then when the user uses this theme, the directory structure of the user's project will "become like this":
 
 ```{2-4}
 site/
@@ -136,11 +136,11 @@ site/
 └── README.tsx
 ```
 
-此时执行 `pagic build` 时，`assets/index.css` 会被复制到 `dist/assets/index.css` 中，`README.md` 会以 `_layout.tsx` 为模版来渲染，生成 `dist/index.html`：
+At this time, when executing `pagic build`, `assets/index.css` will be copied to `dist/assets/index.css`, and `README.md` will be rendered with `_layout.tsx` as a template, and generate `dist/index.html`:
 
 ```{4,7}
 site/
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   |── assets
 |   |   └── index.css
 |   └── index.html
@@ -151,11 +151,11 @@ site/
 └── README.tsx
 ```
 
-Pagic 构建时每个页面文件（`md/tsx`）均会遵循 [\_layout.tsx](./layout.md) 章节中描述的规则来查找它对应的模版文件。
+When Pagic builds, each page file (`md/tsx`) will follow the rules described in the [\_layout.tsx](./layout.md) chapter to find its corresponding template file.
 
-一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。
+A typical application is to write a sub-template in a theme, and then require the directory structure of the project using this theme to conform to this convention.
 
-比如主题可以创建一个 `blog/_layout.tsx` 文件：
+For example, the theme can create a `blog/_layout.tsx` file:
 
 ```{4,5}
 pagic_theme_custom/
@@ -166,23 +166,23 @@ pagic_theme_custom/
 └── _layout.tsx
 ```
 
-这样用户的 `blog` 目录下的页面就会以 `blog/_layout.tsx` 作为模版来渲染了：
+In this way, the pages under the user's `blog` directory will be rendered with `blog/_layout.tsx` as a template:
 
 ```{2,3}
 site/
 |── blog
-|   └── hello.md    # 此页面会以主题中的 blog/_layout.tsx 作为模版来渲染
+|   └── hello.md # This page will be rendered with blog/_layout.tsx in the theme as a template
 |── pagic.config.ts
 └── README.tsx
 ```
 
-需要注意的是，主题中的文件并不会真的「复制」到用户的项目目录中，我们把这个「复制」看作是一种虚拟的执行即可。
+It should be noted that the files in the theme will not be "copied" to the user's project directory. We can regard this "copy" as a virtual execution.
 
-另外，如果用户的项目中有文件路径和主题中的一样，那么以用户的项目中的文件为准——即允许用户覆盖主题的文件。
+In addition, if there is a file path in the user's project that is the same as that in the theme, the file in the user's project shall prevail, that is, the file that allows the user to overwrite the theme.
 
-### 入口文件
+### Entry file
 
-之前提到过，当使用第三方主题时，`theme` 的取值应为一个完整的入口文件链接：
+As mentioned before, when using a third-party theme, the value of `theme` should be an entry file URL:
 
 ```ts
 export default {
@@ -190,7 +190,7 @@ export default {
 };
 ```
 
-下面列出一个典型的 `mod.ts` 入口文件：
+A typical `mod.ts` entry file is listed below:
 
 ```ts
 export default {
@@ -205,24 +205,24 @@ export default {
 };
 ```
 
-此入口文件中包含以下信息：
+This entry file contains the following information:
 
 #### `files`
 
-`files` 列出了主题的所有文件，它们都会被「复制」到用户的项目目录下。
+`files` lists all the files of the theme, they will be "copied" to the user's project directory.
 
-为什么要这么设计呢？为什么不能自动遍历主题目录下的所有文件呢？
+Why is it designed like this? Why can't it traverse all the files in the theme directory automatically?
 
-因为 Pagic 需要支持通过一个 url 来配置主题，而仅有一个 url 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 `https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/` 下的所有文件呢？
+Because Pagic needs to support an URL to configure the theme, and only one URL cannot traverse to which files are in the path. Just imagine how you can traverse `https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master`?
 
-综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。
+To sum up, although it is a bit troublesome, it is necessary to list all the files of the subject.
 
 ### `props`
 
-主题中最核心的文件就是 `_layout.tsx`，而编写 `_layout.tsx` 最重要的就是使用它的 `props`。
+The core file in the theme is `_layout.tsx`, and the most important thing to write `_layout.tsx` is to use its `props`.
 
-前一章已经介绍过了 `props`，如果需要了解所有的 `props`，可以直接查看 [\_layout.tsx 中的 props](./layout.md#props)。
+The previous chapter has introduced `props`, if you need to know all the `props`, you can directly view [\_layout.tsx props](./layout.md#props).
 
-### 参考官方主题
+### Reference official theme
 
-开发一个主题最佳的参考就是官方主题，你可以直接[查看官方主题的源码](https://github.com/xcatliu/pagic/tree/master/src/themes)。
+The best reference for developing a theme is the official theme. You can directly [view the source code of the official theme](https://github.com/xcatliu/pagic/tree/master/src/themes).

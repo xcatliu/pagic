@@ -213,7 +213,7 @@ export default {
 
 为什么要这么设计呢？为什么不能自动遍历主题目录下的所有文件呢？
 
-因为 Pagic 需要支持通过一个 url 来配置主题，而仅有一个 url 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 `https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/` 下的所有文件呢？
+因为 Pagic 需要支持通过一个 URL 来配置主题，而仅有一个 URL 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 `https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/` 下的所有文件呢？
 
 综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。
 

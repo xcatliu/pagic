@@ -1,21 +1,21 @@
 # Limitations
 
-Pagic 很优秀，但也有一些缺陷。
+Pagic is excellent, but it also has some limitations.
 
-由于 Pagic 构建的网站使用到了一些最新的 JavaScript 和 CSS 特性，所以必须使用现代浏览器（Chrome, Firefox, Safari, Edge 等）访问网站才能拥有完整的体验，如果你的目标用户使用的是 IE 浏览器，那么不建议使用 Pagic 来构建网站。
+Because the website built by Pagic uses some of the latest JavaScript and CSS features, you must use a modern browser (Chrome, Firefox, Safari, Edge, etc.) to visit the website to have a complete experience. If your target user is using IE browser, Then it is not recommended to use Pagic to build a website.
 
-Pagic 使用到的最新特性包括：
+The latest features used by Pagic include:
 
-- 通过 `<script type="module">` 加载 esm 模块（[浏览器支持性](https://caniuse.com/#feat=es6-module)）
-- 通过 `import()` 动态加载 esm 模块（[浏览器支持性](https://caniuse.com/#feat=es6-module-dynamic-import)）
-- `import`, `export`, `export default` 等 esm 语法（[浏览器支持性](https://caniuse.com/#feat=mdn-javascript_statements_import)）
-- `async` 函数（[浏览器兼容性](https://caniuse.com/#feat=async-functions)）
-- 常用的 ES6 语法，包括 `let`, `const`, `() => {}` 等
-- CSS Variables（[浏览器兼容性](https://caniuse.com/#feat=css-variables)）
-- CSS `calc()`（[浏览器兼容性](https://caniuse.com/#feat=calc)）
-- CSS flexbox（[浏览器兼容性](https://caniuse.com/#feat=flexbox)）
+- Load esm through `<script type="module">` ([Browser Support](https://caniuse.com/#feat=es6-module))
+- Load esm dynamically through `import()` ([Browser Support](https://caniuse.com/#feat=es6-module-dynamic-import))
+- `import`, `export`, `export default` and other esm syntax ([Browser Supportability](https://caniuse.com/#feat=mdn-javascript_statements_import))
+- `async` function ([Browser compatibility](https://caniuse.com/#feat=async-functions))
+- Common ES6 syntax, including `let`, `const`, `() => {}` etc.
+- CSS Variables ([browser compatibility](https://caniuse.com/#feat=css-variables))
+- CSS `calc()` ([Browser compatibility](https://caniuse.com/#feat=calc))
+- CSS flexbox ([Browser compatibility](https://caniuse.com/#feat=flexbox))
 
-## 其他章节中提到的局限性
+## Limitations mentioned in other chapters
 
-- [页面内容#局限性](./content.md#局限性)
-- [页面内容#局限性-2](./content.md#局限性-2)
+- [Content#limitations](./content.md#limitations)
+- [Content#limitations-2](./content.md#limitations-2)
