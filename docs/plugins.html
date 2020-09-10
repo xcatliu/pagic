@@ -1,5 +1,5 @@
 <!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
-<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static HTML page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">Plugins · Pagic</title>
 <link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
 <script data-react-helmet="true" >
@@ -10,99 +10,99 @@
     }
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/news/">News</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link active">Plugins</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Plugins</h1>
-<p>本章会介绍如何使用插件，以及如何开发插件。</p>
-<p>如果你想查看所有插件的列表及其说明文档，请访问<a href="/plugins/">插件列表</a>。</p>
-<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式<a class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">§</a></h2>
-<p>在 <code>pagic.config.ts</code> 中通过 <code>plugins</code> 来配置插件，它的类型是 <code>string[]</code>。</p>
-<p>按照插件的级别可以将插件分为内置插件、官方插件以及第三方插件。</p>
-<h3 id="%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件<a class="anchor" href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">§</a></h3>
-<p>内置插件（也可称为默认插件）是最重要的插件，它们组成了 Pagic 的整个构建过程——换句话说，Pagic 的整个构建过程被拆分为了内置插件。</p>
-<p>内置插件包括：<code>['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']</code>，Pagic 的构建过程也是按照这个次序来的：</p>
+<p>This chapter will introduce how to use plugins and how to develop plugins.</p>
+<p>If you want to see a list of all plugins and their documentation, please visit <a href="/plugins/">plugins list</a>.</p>
+<h2 id="how-to-use">How to use<a class="anchor" href="#how-to-use">§</a></h2>
+<p>The plugin is configured in <code>pagic.config.ts</code> through <code>plugins</code>, its type is <code>string[]</code>.</p>
+<p>According to the level of the plugin, plugins can be divided into built-in plugins, official plugins and third-party plugins.</p>
+<h3 id="built-in-plugins">Built-in plugins<a class="anchor" href="#built-in-plugins">§</a></h3>
+<p>Built-in plugins (also called default plugins) are the most important plugins, they make up the entire Pagic build process, in other words, the entire Pagic build process is split into built-in plugins.</p>
+<p>The built-in plugins include <code>['clean','init','md','tsx','script','layout','out']</code>, the construction process of Pagic also follows this order:</p>
 <ol>
-<li><code>clean</code>: 清空 <code>dist</code> 目录</li>
-<li><code>init</code>: 初始化中间变量（<code>pagePropsMap</code>）</li>
-<li><code>md</code>: 解析 <code>md</code> 文件，更新中间变量</li>
-<li><code>tsx</code>: 解析 <code>tsx</code> 文件，更新中间变量</li>
-<li><code>script</code>: 编译 <code>tsx</code> 文件，生成 <code>pagic.config.js</code>, <code>index.js</code>, <code>*_props.js</code>, <code>*_content.js</code> 等文件</li>
-<li><code>layout</code>: 解析 <code>_layout.tsx</code> 文件，使用 <code>Layout</code> 组件来渲染</li>
-<li><code>out</code>: 生成 HTML 文件，复制静态资源</li>
+<li><code>clean</code>: Empty the <code>dist</code> directory</li>
+<li><code>init</code>: Initialize intermediate variables (<code>pagePropsMap</code>)</li>
+<li><code>md</code>: Parse the <code>md</code> file and update the intermediate variables</li>
+<li><code>tsx</code>: Parse <code>tsx</code> files and update intermediate variables</li>
+<li><code>script</code>: Compile <code>tsx</code> files to generate <code>pagic.config.js</code>, <code>index.js</code>, <code>*_props.js</code>, <code>*_content.js</code> and other files</li>
+<li><code>layout</code>: Parse the <code>_layout.tsx</code> file and use the <code>Layout</code> component to render</li>
+<li><code>out</code>: Generate HTML files, copy static resources</li>
 </ol>
 <blockquote>
-<p>其实第 1 步之前还有一些步骤：解析 <code>pagic.config.ts</code>、扫描项目目录、找出页面文件和模版文件。但是由于一些运行机制的原因，它们无法被拆分为插件。</p>
+<p>In fact, there are some steps before step 1: parsing <code>pagic.config.ts</code>, scanning the project directory, finding page files and template files. However, due to some operating mechanisms, they cannot be split into plugins.</p>
 </blockquote>
-<p>内置插件默认就是开启的，你不需要添加配置来启用。</p>
-<p>通过配置以 <code>-</code> 开头的项，可以删除掉默认的插件，比如配置：</p>
+<p>The built-in plugin is enabled by default, you don't need to add configuration to enable it.</p>
+<p>By configuring items beginning with <code>-</code>, you can delete the default plugins, such as:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'-script'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>此配置会删除掉默认的 <code>plugins</code> 中的 <code>script</code> 插件，这样生成的网站是没有 React 相关的 <code>&lt;script&gt;</code> 标签的，也失去了页面间跳转时的 SPA 能力。</p>
-<p>但是对于非常简单的网站——比如只有一个页面——采用此配置是非常合适的。</p>
-<p>删除掉默认插件后再添加第三方插件的话，我们甚至可以完全的更改 Pagic 的构建过程。比如我们可以删除掉 <code>md</code> 插件，然后添加一个第三方的解析 Markdown 的插件，来替换 Markdown 文件的解析过程。</p>
-<h3 id="%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件<a class="anchor" href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
-<p>除了内置插件之外，我们还提供了一些常用的官方插件，它们包括：</p>
+<p>This configuration will delete the <code>script</code> plugin in the default <code>plugins</code>, so that the generated website does not have the React-related <code>&lt;script&gt;</code> tag, and it also loses the SPA ability when jumping between pages.</p>
+<p>But for very simple websites, such as one-page-website, this configuration is very suitable.</p>
+<p>If you delete the default plugin and then add a third-party plugin, we can even completely change Pagic's build process. For example, we can delete the <code>md</code> plugin, and then add a third-party plugin that parses markdown to replace the process of parsing markdown files.</p>
+<h3 id="official-plugin">Official plugin<a class="anchor" href="#official-plugin">§</a></h3>
+<p>In addition to built-in plugins, we also provide some commonly used official plugins, including:</p>
 <ul>
-<li><code>sidebar</code>: 侧边栏插件，用于解析 <code>pagic.config.ts</code> 中配置的 <code>sidebar</code>，解析完成后由主题来渲染</li>
-<li><code>prev_next</code>: 上一页下一页插件，会根据 <code>sidebar</code> 的配置决定链接，由主题渲染到页面的文章底部</li>
-<li><code>ga</code>: 谷歌分析插件，该插件会生成一个 <code>ReactElement</code>，由主题插入到页面的 <code>&lt;head&gt;</code> 中</li>
-<li><code>gitalk</code>: Gitalk 插件，给页面添加评论功能，该插件会生成一个 <code>ReactElement</code>，由主题插入到页面的文章底部</li>
+<li><code>sidebar</code>: Sidebar plugin, used to parse the <code>sidebar</code> configured in <code>pagic.config.ts</code>, the theme will render sidebar after the parse is completed</li>
+<li><code>prev_next</code>: Previous page and next page plugin, which will determine the link according to the configuration of <code>sidebar</code>, the theme will render it to the bottom of the article</li>
+<li><code>ga</code>: Google Analytics plugin, the plugin will generate a <code>ReactElement</code>, the theme will inserted it into the page's <code>&lt;head&gt;</code></li>
+<li><code>gitalk</code>: Gitalk plugin, add comment function to the page, the plugin will generate a <code>ReactElement</code>, the theme will insert it into the bottom of the page</li>
 </ul>
-<p>这些插件的配置可以在<a href="./config.html#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">配置文件</a>章节中查看。</p>
-<p>通过配置 <code>plugins</code> 可以添加官方插件。</p>
-<p>需要注意的是，用户配置的 <code>plugins</code> 不会替换掉默认的 <code>plugins</code>，而是以一种规则插入到默认的 <code>plugins</code> 中。</p>
-<p>以 <a href="https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx"><code>pagic.org</code> 的配置</a>为例：</p>
+<p>The configuration of these plugins can be viewed in the <a href="./config.html#page-content">Config</a> chapter.</p>
+<p>Official plugins can be added by configuring <code>plugins</code>.</p>
+<p>It should be noted that the user-configured <code>plugins</code> will not replace the default <code>plugins</code>, but will be inserted into the default <code>plugins</code> according to a rule.</p>
+<p>Take <a href="https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx"><code>pagic.org</code> config file</a> as an example:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'prev_next'</span><span class="token punctuation">,</span> <span class="token string">'ga'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>插入后的 <code>plugins</code> 为：</p>
+<p>The inserted <code>plugins</code> are:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'clean'</span><span class="token punctuation">,</span> <span class="token string">'init'</span><span class="token punctuation">,</span> <span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token string">'tsx'</span><span class="token punctuation">,</span> <span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'prev_next'</span><span class="token punctuation">,</span> <span class="token string">'ga'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'layout'</span><span class="token punctuation">,</span> <span class="token string">'out'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="%E9%82%A3%E4%B9%88%E8%BF%99%E9%87%8C%E6%98%AF%E4%BB%A5%E4%BB%80%E4%B9%88%E8%A7%84%E5%88%99%E6%8F%92%E5%85%A5%E7%9A%84%E5%91%A2%EF%BC%9F">那么这里是以什么规则插入的呢？<a class="anchor" href="#%E9%82%A3%E4%B9%88%E8%BF%99%E9%87%8C%E6%98%AF%E4%BB%A5%E4%BB%80%E4%B9%88%E8%A7%84%E5%88%99%E6%8F%92%E5%85%A5%E7%9A%84%E5%91%A2%EF%BC%9F">§</a></h4>
-<p>原来，每一个<strong>非内置</strong>插件都会有一个 <code>insert</code> 属性，它描述了插入时的位置，它的取值为 <code>before:xxx</code> 或 <code>after:xxx</code>，其中 <code>xxx</code> 为一个插件名。比如：</p>
+<h4 id="so-what-is-the-rules%3F">So what is the rules?<a class="anchor" href="#so-what-is-the-rules%3F">§</a></h4>
+<p>It turns out that every <strong>non-built-in</strong> plugin will have an <code>insert</code> attribute, which describes the position when it is inserted, and its value is <code>before:xxx</code> or <code>after:xxx</code>, where <code>xxx</code> is one The name of the plugin. such as:</p>
 <ul>
-<li><code>sidebar</code> 的 <code>insert</code> 属性为 <code>after:tsx</code>，所以它会被插入到 <code>tsx</code> 后面</li>
-<li><code>prev_next</code> 的 <code>insert</code> 属性为 <code>after:sidebar</code>，所以它会被插入到 <code>sidebar</code> 后面</li>
-<li><code>ga</code> 的 <code>insert</code> 属性为 <code>before:script</code>，所以它会被插入到 <code>script</code> 前面</li>
+<li>The <code>insert</code> attribute of <code>sidebar</code> is <code>after:tsx</code>, so it will be inserted after <code>tsx</code></li>
+<li>The <code>insert</code> attribute of <code>prev_next</code> is <code>after:sidebar</code>, so it will be inserted after <code>sidebar</code></li>
+<li>The <code>insert</code> attribute of <code>ga</code> is <code>before:script</code>, so it will be inserted before <code>script</code></li>
 </ul>
-<p>得益于 Pagic 将构建过程拆分为了一个个内置插件，非内置插件可以很灵活的插入到构建的任何位置。这种设计比创建一些「钩子函数」来得更灵活也更容易理解。</p>
-<h3 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
-<p>当使用第三方插件时，数组中的项应为一个完整的入口文件链接：</p>
+<p>Thanks to Pagic's splitting of the build process into built-in plugins, non-built-in plugins can be flexibly inserted into any position of the build. This design is more flexible and easier to understand than creating some &quot;hook functions&quot;.</p>
+<h3 id="third-party-plugins">Third-party plugins<a class="anchor" href="#third-party-plugins">§</a></h3>
+<p>When using third-party plugins, the items in the array should be an entry file URL:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts</a>'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">§</a></h2>
-<h3 id="%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构<a class="anchor" href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">§</a></h3>
-<p>一个插件必须有一个默认导出，类型如下：</p>
+<h2 id="how-to-develop-a-plugin">How to develop a plugin<a class="anchor" href="#how-to-develop-a-plugin">§</a></h2>
+<h3 id="plugin-structure">Plugin structure<a class="anchor" href="#plugin-structure">§</a></h3>
+<p>A plugin must have a default export, the type is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">interface</span> <span class="token class-name">PagicPlugin</span> <span class="token punctuation">{</span>
   name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
   insert<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
   <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>ctx<span class="token operator">:</span> Pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>其中：</p>
+<p>Among them:</p>
 <ul>
-<li><code>name</code> 是插件的名称，当其他插件需要插入到此插件前后时，会用到此名称</li>
-<li><code>insert</code> 是此插件插入的位置，取值为 <code>before:xxx</code> 或 <code>after:xxx</code>，其中 <code>xxx</code> 为一个插件名</li>
-<li><code>fn</code> 函数是插件的核心逻辑，它接受一个参数 <code>ctx</code>，其为 <code>Pagic</code> 的实例</li>
+<li><code>name</code> is the name of the plugin. This name will be used when other plugins need to be inserted before or after this plugin</li>
+<li><code>insert</code> is the position where the plugin is inserted, the value is <code>before:xxx</code> or <code>after:xxx</code>, where <code>xxx</code> is a plugin name</li>
+<li>The <code>fn</code> function is the core logic of the plugin, and it accepts a parameter <code>pagic</code>, which is an instance of <code>Pagic</code></li>
 </ul>
 <blockquote>
-<p>此命名规则是参考了 <a href="https://deno.land/manual/testing">Deno Testing 的设计</a></p>
+<p>This naming rule refers to <a href="https://deno.land/manual/testing">Deno Testing's design</a></p>
 </blockquote>
-<h3 id="fn-%E5%87%BD%E6%95%B0"><code>fn</code> 函数<a class="anchor" href="#fn-%E5%87%BD%E6%95%B0">§</a></h3>
-<p><code>fn</code> 函数是插件的核心逻辑，由于它的参数 <code>ctx</code> 是 <code>Pagic</code> 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：</p>
+<h3 id="fn-function"><code>fn</code> function<a class="anchor" href="#fn-function">§</a></h3>
+<p>The <code>fn</code> function is the core logic of the plugin. Since its parameter <code>pagic</code> is the currently running instance of <code>Pagic</code>, it can do almost anything, including but not limited to:</p>
 <ul>
-<li>读取配置信息（<code>pagic.config.ts</code> 中的信息）</li>
-<li>获取静态资源列表</li>
-<li>获取页面列表</li>
-<li>修改页面的 <code>props</code></li>
-<li>写入文件到 <code>dist</code> 目录中</li>
-<li>导入第三方模块并运行</li>
+<li>Get configuration in <code>pagic.config.ts</code></li>
+<li>Get the list of static resources</li>
+<li>Get page list</li>
+<li>Modify the <code>props</code> of the page</li>
+<li>Write files to the <code>dist</code> directory</li>
+<li>Import and run third-party modules</li>
 </ul>
-<p>比如，我们可以创建一个插件，它给所有页面的 <code>title</code> 加一个前缀：</p>
+<p>For example, we can create a plugin that adds a prefix to the <code>title</code> of all pages:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> PagicPlugin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> prependTitle<span class="token operator">:</span> PagicPlugin <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -111,59 +111,59 @@
 <span class="highlighted-line">  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><span class="highlighted-line">    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> pagePath <span class="token keyword">of</span> pagic<span class="token punctuation">.</span>pagePaths<span class="token punctuation">)</span> <span class="token punctuation">{</span></span><span class="highlighted-line">      <span class="token keyword">const</span> pageProps <span class="token operator">=</span> pagic<span class="token punctuation">.</span>pagePropsMap<span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span><span class="token punctuation">;</span></span><span class="highlighted-line"></span><span class="highlighted-line">      pagic<span class="token punctuation">.</span>pagePropsMap<span class="token punctuation">[</span>pagePath<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span></span><span class="highlighted-line">        <span class="token operator">...</span>pageProps<span class="token punctuation">,</span></span><span class="highlighted-line">        title<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Prefix </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pageProps<span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span></span><span class="highlighted-line">      <span class="token punctuation">}</span><span class="token punctuation">;</span></span><span class="highlighted-line">    <span class="token punctuation">}</span></span><span class="highlighted-line">  <span class="token punctuation">}</span></span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> prependTitle<span class="token punctuation">;</span>
-</code></pre><p>上例中，</p>
+</code></pre><p>In the above example,</p>
 <ul>
-<li><code>pagic.pagePaths</code> 是<strong>暂存的</strong>所有扫描出的页面路径</li>
-<li><code>pagic.pagePropsMap</code> 是所有页面的 <code>props</code></li>
+<li><code>pagic.pagePaths</code> is the <strong>temporary</strong> path of all scanned pages</li>
+<li><code>pagic.pagePropsMap</code> is the <code>props</code> of all pages</li>
 </ul>
-<p>我们通过 <code>for of</code> 循环遍历 <code>pagic.pagePaths</code>，并将每个页面的 <code>props</code> 重新赋值，这样就实现了给所有页面添加前缀了。</p>
-<p>除了这两个属性外，<code>pagic</code> 还有很多其他的属性，下面列出常用的 <code>pagic</code> 属性：</p>
+<p>We loop through <code>pagic.pagePaths</code> through <code>for of</code>, and re-assign the <code>props</code> of each page, so that we can add a prefix to all pages.</p>
+<p>In addition to these two attributes, <code>pagic</code> has many other attributes. The commonly used <code>pagic</code> attributes are listed below:</p>
 <table>
 <thead>
 <tr>
-<th>属性</th>
-<th>类型</th>
-<th>描述</th>
+<th>Properties</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>config</code></td>
 <td><code>PagicConfig</code></td>
-<td>Pagic <strong>运行时</strong>的配置</td>
+<td>Pagic <strong>runtime</strong> configuration</td>
 </tr>
 <tr>
 <td><code>pagePaths</code></td>
 <td><code>string[]</code></td>
-<td><strong>暂存的</strong>所有扫描出的页面路径</td>
+<td><strong>Temporary</strong> all scanned page paths</td>
 </tr>
 <tr>
 <td><code>layoutPaths</code></td>
 <td><code>string[]</code></td>
-<td>所有扫描出的模版（包括主题）</td>
+<td>All scanned templates (including themes)</td>
 </tr>
 <tr>
 <td><code>staticPaths</code></td>
 <td><code>string[]</code></td>
-<td><strong>暂存的</strong>所有扫描出的静态资源（包括主题）</td>
+<td><strong>Temporary</strong> all scanned static resources (including themes)</td>
 </tr>
 <tr>
 <td><code>pagePropsMap</code></td>
 <td><code>{ [key:string]:any }</code></td>
-<td>所有页面的 <code>props</code></td>
+<td><code>props</code> for all pages</td>
 </tr>
 <tr>
 <td><code>writeFiles</code></td>
 <td><code>{ [key:string]:string }</code></td>
-<td>将会在 <code>out</code> 插件中被写入到 <code>dist</code> 目录中</td>
+<td>Will be written to the <code>dist</code> directory in the <code>out</code> plugin</td>
 </tr>
 <tr>
 <td><code>rebuilding</code></td>
 <td><code>boolean</code></td>
-<td><code>true</code> 表示重新构建，<code>false</code> 表示增量构建</td>
+<td><code>true</code> means rebuilding, <code>false</code> means incremental building</td>
 </tr>
 </tbody>
 </table>
-<p>注意，<code>pagePaths</code> 和 <code>staticPaths</code> 都是<strong>暂存的</strong>，并不是全量的，也就是说，增量构建（构建时运行的 <code>--watch</code> 模式）时它们都只包含增量的文件。</p>
-<h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">§</a></h3>
-<p>开发一个插件最佳的参考就是官方插件，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">查看官方插件的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->Themes</a><a class="next button" href="/docs/deployment.html">Deployment<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%86%85%E7%BD%AE%E6%8F%92%E4%BB%B6">内置插件</a></li><li><a href="#%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">官方插件</a><ol></ol></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6">第三方插件</a></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a><ol><li><a href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84">插件的结构</a></li><li><a href="#fn-%E5%87%BD%E6%95%B0">fn 函数</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E6%8F%92%E4%BB%B6">参考官方插件</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>Note that <code>pagePaths</code> and <code>staticPaths</code> are both <strong>temporary</strong>, not the full amount, that is to say, they only contain incremental during incremental builds (the <code>--watch</code> mode that runs during build) document.</p>
+<h3 id="reference-official-plugin">Reference official plugin<a class="anchor" href="#reference-official-plugin">§</a></h3>
+<p>The best reference for developing a plugin is the official plugin, you can directly <a href="https://github.com/xcatliu/pagic/tree/master/src/plugins">view the source code of the official plugin</a>.</p></article><div class="prev_next"><a class="prev button" href="/docs/themes.html">«  <!-- -->Themes</a><a class="next button" href="/docs/deployment.html">Deployment<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#how-to-use">How to use</a><ol><li><a href="#built-in-plugins">Built-in plugins</a></li><li><a href="#official-plugin">Official plugin</a><ol></ol></li><li><a href="#third-party-plugins">Third-party plugins</a></li></ol></li><li><a href="#how-to-develop-a-plugin">How to develop a plugin</a><ol><li><a href="#plugin-structure">Plugin structure</a></li><li><a href="#fn-function">fn function</a></li><li><a href="#reference-official-plugin">Reference official plugin</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

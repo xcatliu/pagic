@@ -1,5 +1,5 @@
 <!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
-<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static HTML page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">Usage · Pagic</title>
 <link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
 <script data-react-helmet="true" >
@@ -10,57 +10,56 @@
     }
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/news/">News</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link active">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">Plugins</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Usage</h1>
-<p>本章会介绍 Pagic 的安装和使用方式。</p>
-<h2 id="%E5%AE%89%E8%A3%85">安装<a class="anchor" href="#%E5%AE%89%E8%A3%85">§</a></h2>
-<h3 id="%E5%AE%89%E8%A3%85-deno">安装 Deno<a class="anchor" href="#%E5%AE%89%E8%A3%85-deno">§</a></h3>
-<p>Pagic 是基于 Deno 实现的，所以使用前需要先安装 Deno。</p>
+<p>This chapter will introduce how to install and use Pagic.</p>
+<h2 id="installation">Installation<a class="anchor" href="#installation">§</a></h2>
+<h3 id="install-deno">Install Deno<a class="anchor" href="#install-deno">§</a></h3>
+<p>Pagic is based on Deno, so you need to install Deno before using it.</p>
 <pre class="language-bash"><code class="language-bash"><span class="token comment"># Shell (Mac, Linux):</span>
 <span class="token function">curl</span> -fsSL <a class="token url-link" href="https://deno.land/x/install/install.sh">https://deno.land/x/install/install.sh</a> <span class="token operator">|</span> <span class="token function">sh</span>
 </code></pre>
-<p>其他安装方式（PowerShell、Homebrew 等）可以参考 <a href="https://deno.land/#installation">Deno 官网</a>。</p>
-<p>中国大陆用户可以<a href="https://x.deno.js.cn/">使用镜像加速</a>安装。</p>
-<h3 id="%E5%AE%89%E8%A3%85-pagic">安装 Pagic<a class="anchor" href="#%E5%AE%89%E8%A3%85-pagic">§</a></h3>
-<p>执行以下命令以安装最新版本的 Pagic：</p>
+<p>Other installation methods (PowerShell, Homebrew, etc.) can be found in <a href="https://deno.land/#installation">Deno official website</a>。</p>
+<h3 id="install-pagic">Install Pagic<a class="anchor" href="#install-pagic">§</a></h3>
+<p>Execute the following command to install the latest version of Pagic:</p>
 <pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 </code></pre>
-<p>若需要安装指定版本的 Pagic，则可以在安装的 url 中加入版本号：</p>
+<p>If you need to install a specific version of Pagic, you can add the version in the URL:</p>
 <pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>
 </code></pre>
 <blockquote>
-<p>Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：</p>
+<p>Pagic will only require the necessary permissions. If you want to further restrict Pagic's runtime permissions, you can limit it by specifying the read and write directories:</p>
 <pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 </code></pre>
 </blockquote>
-<h2 id="%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">初始化项目<a class="anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">§</a></h2>
-<p>要使用 <code>pagic</code> 构建静态网站，则该项目<strong>至少需要包含</strong>一个 <code>pagic.config.ts</code> 配置文件和一个 <code>md/tsx</code> 页面文件：</p>
+<h2 id="initialize-the-project">Initialize the project<a class="anchor" href="#initialize-the-project">§</a></h2>
+<p>To use <code>pagic</code> to build a static website, the project must include at least one <code>pagic.config.ts</code> config file and one <code>md/tsx</code> page file:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
 ├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>md
 </code></pre>
-<p>当然，<code>pagic.config.ts</code> 一开始可以只导出一个空对象：</p>
+<p>Of course, <code>pagic.config.ts</code> can only export an empty object at the beginning:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p><code>README.md</code> 可以是一个简单的 Markdown 文件：</p>
+<p><code>README.md</code> can be a simple markdown file:</p>
 <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">#</span> Hello world</span>
 </code></pre>
 <blockquote>
-<p>你可以运行以下命令一次性创建出上面的 <code>site</code> 项目：</p>
+<p>You can create the above <code>site</code> project by running the following command:</p>
 <pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> site <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> site <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> <span class="token string">"export default {};"</span> <span class="token operator">></span> pagic.config.ts <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> <span class="token string">"# Hello world"</span> <span class="token operator">></span> README.md
 </code></pre>
 </blockquote>
-<h2 id="%E8%BF%90%E8%A1%8C-pagic-%E5%91%BD%E4%BB%A4">运行 <code>pagic</code> 命令<a class="anchor" href="#%E8%BF%90%E8%A1%8C-pagic-%E5%91%BD%E4%BB%A4">§</a></h2>
-<p>接下来，我们就可以在项目中使用 <code>pagic</code> 命令了。它的基本用法如下：</p>
-<pre class="language-bash"><code class="language-bash"><span class="token comment"># 构建静态网站</span>
+<h2 id="run-pagic">Run <code>pagic</code><a class="anchor" href="#run-pagic">§</a></h2>
+<p>Next, we can use the <code>pagic</code> command in the project. Its basic usage is as follows:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># Build a static website</span>
 pagic build <span class="token punctuation">[</span>options<span class="token punctuation">]</span>
-<span class="token comment"># --watch   监听文件变动以重新构建</span>
-<span class="token comment"># --serve   启动本地服务，预览静态网站</span>
-<span class="token comment"># --port    指定本地服务的端口号</span>
+<span class="token comment"># --watch   Watch file changes to rebuild</span>
+<span class="token comment"># --serve   Start local service, preview static website</span>
+<span class="token comment"># --port    Specify the port of the local service</span>
 </code></pre>
-<p>不妨试试在 <code>site</code> 目录下运行以下代码：</p>
+<p>Try running the following code in the <code>site</code> directory:</p>
 <pre class="language-bash"><code class="language-bash">pagic build --watch --serve
 </code></pre>
-<p>然后用浏览器打开 <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> ，看看是不是显示出 <code>Hello world</code> 了呢？</p>
-<p>注意，构建结果在 dist 目录中（这里隐藏了一些次要的文件）：</p>
+<p>Then open <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> with a browser, and see if it shows <code>Hello world</code>?</p>
+<p>Note that the build result is in the dist directory (some minor files are hidden here):</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
 |── dist    # 构建结果目录
 |   └── index<span class="token punctuation">.</span>html
@@ -68,5 +67,5 @@ pagic build <span class="token punctuation">[</span>options<span class="token pu
 └── README<span class="token punctuation">.</span>md
 </code></pre>
 <blockquote>
-<p>一般的 Markdown 文件会被构建为同名的 HTML 文件，但是 <code>README.md</code> 被构建为了 <code>index.html</code>，这是一种人性化的处理，方便同时在 GitHub 中和静态网站中展示首页的内容。</p>
-</blockquote></article><div class="prev_next"><a class="prev button" href="/docs/introduction.html">«  <!-- -->Introduction</a><a class="next button" href="/docs/config.html">Config<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E5%AE%89%E8%A3%85">安装</a><ol><li><a href="#%E5%AE%89%E8%A3%85-deno">安装 Deno</a></li><li><a href="#%E5%AE%89%E8%A3%85-pagic">安装 Pagic</a></li></ol></li><li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">初始化项目</a></li><li><a href="#%E8%BF%90%E8%A1%8C-pagic-%E5%91%BD%E4%BB%A4">运行 pagic 命令</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>Normal markdown files will be constructed as HTML files with the same name, but <code>README.md</code> is constructed as <code>index.html</code>, which is a kind of humanized processing, which is convenient for displaying the content of the homepage in GitHub and static websites at the same time .</p>
+</blockquote></article><div class="prev_next"><a class="prev button" href="/docs/introduction.html">«  <!-- -->Introduction</a><a class="next button" href="/docs/config.html">Config<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#installation">Installation</a><ol><li><a href="#install-deno">Install Deno</a></li><li><a href="#install-pagic">Install Pagic</a></li></ol></li><li><a href="#initialize-the-project">Initialize the project</a></li><li><a href="#run-pagic">Run pagic</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

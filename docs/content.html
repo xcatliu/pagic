@@ -1,5 +1,5 @@
 <!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
-<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static HTML page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">Content · Pagic</title>
 <link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
 <script data-react-helmet="true" >
@@ -10,105 +10,106 @@
     }
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/news/">News</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link active">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">Plugins</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Content</h1>
-<p>Pagic 支持将 <code>md/tsx</code> 文件渲染成静态页面，下面将分别介绍这两种文件支持的特性。</p>
-<h2 id="md-%E6%96%87%E4%BB%B6">md 文件<a class="anchor" href="#md-%E6%96%87%E4%BB%B6">§</a></h2>
-<p>Pagic 使用 <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> 来编译 Markdown 文件，它支持通过添加第三方插件来扩展原有的功能。Pagic 支持了以下特性：</p>
+<p>Pagic supports rendering <code>md/tsx</code> files into static HTML pages. The features supported by these two kind of files will be introduced below.</p>
+<h2 id="md-file">md file<a class="anchor" href="#md-file">§</a></h2>
+<p>Pagic uses <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> to compile markdown files. It supports adding third-party plugins to extend the original functions.</p>
+<p>Pagic supports the following features:</p>
 <h3 id="title"><code>title</code><a class="anchor" href="#title">§</a></h3>
-<p>文章中的第一个 <code>&lt;h1&gt;</code> 标签将会被提取出来作为整个页面的 <code>title</code>（再加上 <code>pagic.config.ts</code> 中的 <code>title</code> 作为后缀）。</p>
-<p>若文章中没有 <code>&lt;h1&gt;</code> 标签，则会使用 <code>pagic.config.ts</code> 中的 <code>title</code> 作为页面的 <code>title</code>。</p>
+<p>The first <code>&lt;h1&gt;</code> tag in the article will be extracted as the <code>title</code> of the entire page (plus the <code>title</code> in <code>pagic.config.ts</code> as the suffix).</p>
+<p>If there is no <code>&lt;h1&gt;</code> tag in the article, the <code>title</code> in <code>pagic.config.ts</code> will be used as the <code>title</code> of the page.</p>
 <h3 id="toc"><code>toc</code><a class="anchor" href="#toc">§</a></h3>
-<p>文章中所有的 <code>&lt;h2&gt;</code> 和 <code>&lt;h3&gt;</code> 标签会被提取出来作为页面的目录。</p>
-<p>若文章中没有 <code>&lt;h2&gt;</code> 或 <code>&lt;h3&gt;</code>，则 <code>toc</code> 为 <code>undefined</code>。</p>
-<h3 id="%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">标题中的锚点<a class="anchor" href="#%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">§</a></h3>
-<p>文章中所有的 <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code> 标签会被插入一个可点击的锚点 <code>§</code>。</p>
-<h3 id="%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">链接替换<a class="anchor" href="#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">§</a></h3>
-<p>文章中的链接如果是以 <code>.md</code> 结尾，则会在构建过程中被替换为 <code>.html</code>，比如：</p>
-<pre class="language-md"><code class="language-md"><span class="token url">[<span class="token content">配置文件</span>](./config.md)</span>
+<p>All the <code>&lt;h2&gt;</code> and <code>&lt;h3&gt;</code> tags in the article will be extracted as the table of contents of the page.</p>
+<p>If there is no <code>&lt;h2&gt;</code> or <code>&lt;h3&gt;</code> in the article, then <code>toc</code> is <code>undefined</code>.</p>
+<h3 id="anchor-in-title">Anchor in title<a class="anchor" href="#anchor-in-title">§</a></h3>
+<p>All the <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code> tags in the article will be inserted into a clickable anchor <code>§</code>.</p>
+<h3 id="link-replacement">Link replacement<a class="anchor" href="#link-replacement">§</a></h3>
+<p>If the link in the article ends with <code>.md</code>, it will be replaced with <code>.html</code> during the build process, for example:</p>
+<pre class="language-md"><code class="language-md"><span class="token url">[<span class="token content">Config</span>](./config.md)</span>
 </code></pre>
-<p>会被构建为：</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./config.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>配置文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<p>Will be constructed as:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./config.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Config<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
 </code></pre>
-<p>真实的构建结果：<a href="./config.html">配置文件</a>，不妨点击看看跳转效果。</p>
-<p>为什么要这么设计呢？</p>
-<p>因为这样的链接不仅在生成的页面中支持点击跳转，在 GitHub 的 Markdown 预览中支持点击跳转，而且在 VSCode（或其他编辑器）中也支持 <code>cmd/ctrl + click</code> 跳转。</p>
-<p>不妨在<a href="https://github.com/xcatliu/pagic/blob/master/site/docs/content.md#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">本页面的 GitHub 版</a>试试吧。</p>
-<p>需要注意的是，链接中的 <code>README.md</code> 不仅后缀会被替换为 <code>.html</code>，路径也会被替换为 <code>index</code>：</p>
-<pre class="language-md"><code class="language-md"><span class="token url">[<span class="token content">首页</span>](/README.md)</span>
+<p>The actual build result: <a href="./config.html">Config</a>, you might as well click to see the jump effect.</p>
+<p>Why is it designed like this?</p>
+<p>Because such a link not only supports click to jump in the generated page, but also supports click to jump in the markdown preview of GitHub, but also supports <code>cmd/ctrl + click</code> jump in VSCode (or other editors).</p>
+<p>Try it in <a href="https://github.com/xcatliu/pagic/blob/master/site/docs/content.md#link-replacement">GitHub version of this page</a>.</p>
+<p>It should be noted that not only the suffix of <code>README.md</code> in the link will be replaced with <code>.html</code>, the path will also be replaced with <code>index</code>:</p>
+<pre class="language-md"><code class="language-md"><span class="token url">[<span class="token content">Homepage</span>](/README.md)</span>
 </code></pre>
-<p>会被构建为：</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/index.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>首页<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<p>Will be constructed as:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/index.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Homepage<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
 </code></pre>
-<p>真实的构建结果：<a href="/index.html">首页</a>，不妨点击看看跳转效果。</p>
-<p>另外，如果链接是以 <code>http://</code> 或 <code>https://</code> 开头，则表示它是一个外部链接，那么无论后缀是什么都不会被替换了。</p>
-<h3 id="%E5%A4%B4%E4%BF%A1%E6%81%AF">头信息<a class="anchor" href="#%E5%A4%B4%E4%BF%A1%E6%81%AF">§</a></h3>
-<p>Markdown 文件的顶部允许设置一些头信息（frontMatter），它们将会作为 <code>props</code> 传递到 <code>_layout.tsx</code> 中，注意它的优先级是最高的，会覆盖掉任何插件添加的 <code>props</code>，比如：</p>
-<p>设置 <code>outputPath</code> 可以指定输出页面的路径（默认情况下输出路径是文件路径）：</p>
+<p>The actual build result: <a href="/index.html">Homepage</a>, you might as well click to see the jump effect.</p>
+<p>In addition, if the link starts with <code>http://</code> or <code>https://</code>, it means that it is an external link, and no matter what the suffix is, it will not be replaced.</p>
+<h3 id="front-matter">Front matter<a class="anchor" href="#front-matter">§</a></h3>
+<p>frontMatter is allowed to be set at the top of the markdown file, which will be passed as <code>props</code> to <code>_layout.tsx</code>. Note that it has the highest priority and will override any <code>props</code> added by plugins, such as:</p>
+<p>Set <code>outputPath</code> to specify the path of the output page (the output path is the file path by default):</p>
 <pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
 <span class="highlighted-line"><span class="token title important">outputPath: foo/bar.html</span></span><span><span class="token punctuation">---</span></span>
 
-<span class="token title important"><span class="token punctuation">#</span> 页面内容</span>
+<span class="token title important"><span class="token punctuation">#</span> Content</span>
 
 ...
-</code></pre><p>设置 <code>layoutPath</code> 可以指定本页面使用的模版文件：</p>
+</code></pre><p>Set <code>layoutPath</code> to specify the template file used on this page:</p>
 <pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
 <span class="highlighted-line"><span class="token title important">layoutPath: blog/_layout.tsx</span></span><span><span class="token punctuation">---</span></span>
 
-<span class="token title important"><span class="token punctuation">#</span> 页面内容</span>
+<span class="token title important"><span class="token punctuation">#</span> Content</span>
 
 ...
-</code></pre><p>设置 <code>toc</code> 为 <code>null</code> 可以禁用本页的目录：</p>
+</code></pre><p>Set <code>toc</code> to <code>null</code> to disable the table of content of this page:</p>
 <pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
 <span class="highlighted-line"><span class="token title important">toc: null</span></span><span><span class="token punctuation">---</span></span>
 
-<span class="token title important"><span class="token punctuation">#</span> 页面内容</span>
+<span class="token title important"><span class="token punctuation">#</span> Content</span>
 
 ...
-</code></pre><p>设置 <code>prev</code> 或 <code>next</code> 可以指定上一页下一页的路径（需要配合 <code>prev_next</code> 插件）：</p>
+</code></pre><p>Set <code>prev</code> or <code>next</code> to specify the path of the previous page and the next page (need to cooperate with the <code>prev_next</code> plugin):</p>
 <pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
 <span class="highlighted-line"><span class="token title important">prev: README.md</span></span><span><span class="token punctuation">---</span></span>
 
-<span class="token title important"><span class="token punctuation">#</span> 页面内容</span>
+<span class="token title important"><span class="token punctuation">#</span> Content</span>
 
 ...
-</code></pre><p>头信息的设置很灵活，搭配各种插件，或者自定义的 <code>_layout.tsx</code>，可以实现各种各样的效果。</p>
-<h3 id="%E5%B1%80%E9%99%90%E6%80%A7">局限性<a class="anchor" href="#%E5%B1%80%E9%99%90%E6%80%A7">§</a></h3>
-<p>目前 Pagic 的 Markdown 解析还存在一些局限性，这也是将来的改进方向：</p>
+</code></pre><p>The setting of the frontMatter is very flexible, with various plugins or custom <code>_layout.tsx</code>, various effects can be achieved.</p>
+<h3 id="limitations">Limitations<a class="anchor" href="#limitations">§</a></h3>
+<p>At present, Pagic's markdown parsing still has some limitations, which is also the direction for future improvement:</p>
 <ul>
-<li>不支持配置 <code>markdown-it</code> 的选项</li>
-<li>不支持科学公式、流程图等高级语法</li>
-<li>不支持内嵌 jsx</li>
+<li>The option to configure <code>markdown-it</code> is not supported</li>
+<li>Does not support advanced grammar such as scientific formulas and flowcharts</li>
+<li>Does not support embedded jsx</li>
 </ul>
-<h2 id="tsx-%E6%96%87%E4%BB%B6">tsx 文件<a class="anchor" href="#tsx-%E6%96%87%E4%BB%B6">§</a></h2>
-<p>tsx 文件渲染成静态页面是 Pagic 的特色之一，借助 React 组件的可编程性，极大的扩展了静态网站的能力。</p>
-<h3 id="%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">基本用法<a class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">§</a></h3>
-<p>任何不以 <code>_</code> 开头的 <code>tsx</code> 文件都会被视为一个 <code>tsx</code> 页面文件。</p>
-<p>我们不妨在之前的 <code>site</code> 项目中创建一个 <code>hello.tsx</code> 文件：</p>
+<h2 id="tsx-file">tsx file<a class="anchor" href="#tsx-file">§</a></h2>
+<p>Rendering tsx files into static HTML pages is one of Pagic's features. With the programmability of React components, the capabilities of static websites are greatly expanded.</p>
+<h3 id="basic-usage">Basic usage<a class="anchor" href="#basic-usage">§</a></h3>
+<p>Any <code>tsx</code> file that does not start with <code>_</code> will be treated as a <code>tsx</code> page file.</p>
+<p>Let's create a <code>hello.tsx</code> file in the previous <code>site</code> project:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
 ├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 <span class="highlighted-line">├── hello<span class="token punctuation">.</span>tsx</span>└── README<span class="token punctuation">.</span>md
-</code></pre><p>它的内容是：</p>
+</code></pre><p>Its content is:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">Hello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hello world</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
 </code></pre>
-<p>接下来我们运行：</p>
+<p>Next we run:</p>
 <pre class="language-bash"><code class="language-bash">pagic build --serve
 </code></pre>
-<p>然后打开 <a href="http://127.0.0.1:8000/hello.html">http://127.0.0.1:8000/hello.html</a> ，可以看到页面中显示出了 <code>Hello world</code>。</p>
-<p>同时 <code>dist</code> 目录下多了一个 <code>hello.html</code> 文件：</p>
+<p>Then open <a href="http://127.0.0.1:8000/hello.html">http://127.0.0.1:8000/hello.html</a> and you can see that <code>Hello world</code> is displayed on the page.</p>
+<p>At the same time, there is an additional file <code>hello.html</code> in the <code>dist</code> directory:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── dist    # 构建结果目录
-<span class="highlighted-line">|   |── hello<span class="token punctuation">.</span>html</span>|   └── index<span class="token punctuation">.</span>html
+|── dist    # Output directory
+<span class="highlighted-line">| |── hello<span class="token punctuation">.</span>html</span>| └── index<span class="token punctuation">.</span>html
 ├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 <span class="highlighted-line">├── hello<span class="token punctuation">.</span>tsx</span>└── README<span class="token punctuation">.</span>md
 </code></pre><blockquote>
-<p><code>hello.tsx</code> 中的<strong>默认导出</strong>（<code>export default</code>）会被视为页面的内容。</p>
+<p>The <strong>default export</strong> (<code>export default</code>) in <code>hello.tsx</code> will be regarded as the content of the page.</p>
 </blockquote>
-<h3 id="%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC">逻辑脚本<a class="anchor" href="#%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC">§</a></h3>
-<p>Pagic 不仅会在渲染页面时执行 <code>tsx</code> 文件中的逻辑，而且其中的逻辑在浏览器中也会运行。</p>
-<p>比如，我们可以使用 <code>React.setState</code> 实现一个计数器页面：</p>
+<h3 id="logic-script">Logic script<a class="anchor" href="#logic-script">§</a></h3>
+<p>Pagic will not only execute the logic in the <code>tsx</code> file when building the page, but also run in the browser.</p>
+<p>For example, we can use <code>React.setState</code> to implement a counter page:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">Hello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
@@ -121,18 +122,18 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
-</code></pre><p>访问 <a href="/hello.html">/hello.html</a> 可以查看其真实的渲染结果。</p>
+</code></pre><p>Visit <a href="/hello.html">/hello.html</a> to view the actual rendering results.</p>
 <blockquote>
-<p>由于 <code>react.d.ts</code> 的限制，使用 <code>React</code> 的子方法时必须用 <code>React.xxx</code>，而不能在导入时将子方法直接导入（<code>import React, { useState } ...</code>）。</p>
+<p>Due to the limitation of <code>react.d.ts</code>, you must use <code>React.xxx</code> when using the sub-methods of <code>React</code>, instead of directly <code>import React, {useState} ...</code>.</p>
 </blockquote>
-<h3 id="%E7%BB%84%E4%BB%B6%E5%8C%96">组件化<a class="anchor" href="#%E7%BB%84%E4%BB%B6%E5%8C%96">§</a></h3>
-<p>组件化是 React 的重要特性之一，我们可以通过拆分 <code>tsx</code> 页面为一个个子组件来复用代码。不过在 Pagic 中，由于需要支持 <code>tsx</code> 文件渲染为页面，所以我们需要对子组件做一个约定——以 <code>_</code> 开头的组件为子组件：</p>
+<h3 id="componentization">Componentization<a class="anchor" href="#componentization">§</a></h3>
+<p>Componentization is one of the important features of React. We can reuse code by splitting the <code>tsx</code> page into sub-components. However, in Pagic, due to the need to support rendering of <code>tsx</code> files as pages, we need to make a convention for sub-components, that is, starting with <code>_</code> are sub-components:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── dist    # 构建结果目录
-|   └── hello<span class="token punctuation">.</span>html
+|── dist    # Output directory
+| └── hello<span class="token punctuation">.</span>html
 <span class="highlighted-line">├── _count<span class="token punctuation">.</span>tsx</span>├── hello<span class="token punctuation">.</span>tsx
 └── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
-</code></pre><p>在上面的例子中，<code>hello.tsx</code> 会被构建为 <code>dist/hello.html</code>，而 <code>_count.tsx</code> 由于是 <code>_</code> 开头，所以不会被构建为页面。这样就可以实现对 <code>hello.tsx</code> 的拆分，将 <code>Count</code> 组件拆分到 <code>_count.tsx</code> 文件中，然后在 <code>hello.tsx</code> 中引用即可：</p>
+</code></pre><p>In the above example, <code>hello.tsx</code> will be constructed as <code>dist/hello.html</code>, and <code>_count.tsx</code> will not be constructed as a page because it starts with <code>_</code>. In this way, we can split the <code>Count</code> component into the <code>_count.tsx</code> file, and then import it in <code>hello.tsx</code>:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="highlighted-line"><span class="token keyword">import</span> <span class="token imports"><span class="token maybe-class-name">Count</span></span> <span class="token keyword">from</span> <span class="token string">'./_count.tsx'</span><span class="token punctuation">;</span></span>
@@ -143,18 +144,18 @@
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
-</code></pre><h3 id="%E5%A4%B4%E4%BF%A1%E6%81%AF-2">头信息<a class="anchor" href="#%E5%A4%B4%E4%BF%A1%E6%81%AF-2">§</a></h3>
-<p>与 <code>md</code> 文件类似，<code>tsx</code> 文件也支持头信息，它是通过导出一个 <code>frontMatter</code> 对象实现的：</p>
+</code></pre><h3 id="front-matter-2">Front matter<a class="anchor" href="#front-matter-2">§</a></h3>
+<p>Similar to <code>md</code> files, <code>tsx</code> files also support frontMatter, which is achieved by exporting a <code>frontMatter</code> object:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">Hello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hello world</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
 
-<span class="highlighted-line"><span class="token keyword">export</span> <span class="token keyword">const</span> frontMatter <span class="token operator">=</span> <span class="token punctuation">{</span></span><span class="highlighted-line">  outputPath<span class="token operator">:</span> <span class="token string">'foo/bar.html'</span></span><span class="highlighted-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre><h3 id="%E5%B1%80%E9%99%90%E6%80%A7-2">局限性<a class="anchor" href="#%E5%B1%80%E9%99%90%E6%80%A7-2">§</a></h3>
-<p>使用 <code>tsx</code> 文件同样存在一些局限性，这也是将来的改进方向：</p>
+<span class="highlighted-line"><span class="token keyword">export</span> <span class="token keyword">const</span> frontMatter <span class="token operator">=</span> <span class="token punctuation">{</span></span><span class="highlighted-line">  outputPath<span class="token operator">:</span> <span class="token string">'foo/bar.html'</span></span><span class="highlighted-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre><h3 id="limitations-2">Limitations<a class="anchor" href="#limitations-2">§</a></h3>
+<p>There are also some limitations when using <code>tsx</code> files, which are also the direction for future improvements:</p>
 <ul>
-<li>不支持代码高亮</li>
-<li>不支持内嵌 Markdown</li>
-<li>不支持自动生成目录</li>
-</ul></article><div class="prev_next"><a class="prev button" href="/docs/config.html">«  <!-- -->Config</a><a class="next button" href="/docs/layout.html">_layout.tsx<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#md-%E6%96%87%E4%BB%B6">md 文件</a><ol><li><a href="#title">title</a></li><li><a href="#toc">toc</a></li><li><a href="#%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">标题中的锚点</a></li><li><a href="#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">链接替换</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF">头信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7">局限性</a></li></ol></li><li><a href="#tsx-%E6%96%87%E4%BB%B6">tsx 文件</a><ol><li><a href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">基本用法</a></li><li><a href="#%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC">逻辑脚本</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF-2">头信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7-2">局限性</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<li>Does not support code highlighting</li>
+<li>Does not support embedded markdown</li>
+<li>Does not support automatic directory generation</li>
+</ul></article><div class="prev_next"><a class="prev button" href="/docs/config.html">«  <!-- -->Config</a><a class="next button" href="/docs/layout.html">_layout.tsx<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#md-file">md file</a><ol><li><a href="#title">title</a></li><li><a href="#toc">toc</a></li><li><a href="#anchor-in-title">Anchor in title</a></li><li><a href="#link-replacement">Link replacement</a></li><li><a href="#front-matter">Front matter</a></li><li><a href="#limitations">Limitations</a></li></ol></li><li><a href="#tsx-file">tsx file</a><ol><li><a href="#basic-usage">Basic usage</a></li><li><a href="#logic-script">Logic script</a></li><li><a href="#componentization">Componentization</a></li><li><a href="#front-matter-2">Front matter</a></li><li><a href="#limitations-2">Limitations</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

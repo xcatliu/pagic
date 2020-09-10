@@ -8,7 +8,7 @@ export default {
     'outputPath': "hello.html",
     'title': "",
     'content': React.createElement(Hello, { config: {
-            description: 'The easiest way to generate static html page from markdown, built with Deno! 🦕',
+            description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
             exclude: [
                 '**/.*',
                 '**/package.json',
@@ -86,12 +86,12 @@ export default {
                             'Easy to configure': '配置简单',
                             'Get Started': '开始使用',
                             'Get up and running in seconds': '只需几行命令，快来体验吧',
-                            'Import third-party themes or plugins through url': '通过 url 引入第三方主题或插件',
+                            'Import third-party themes or plugins through URL': '通过 URL 引入第三方主题或插件',
                             'Install pagic': '安装 pagic',
                             'Intuitive design': '符合直觉的设计',
                             'Official themes default/docs/blog with dark mode': '内置 default, docs, blog 等主题，支持黑暗模式',
                             'Pre-render to static HTML, run as an SPA once loaded': '预渲染生成静态 HTML，加载后作为 SPA 运行',
-                            'Render <1>md/tsx</1> to static html page': '支持将 <1>md/tsx</1> 文件渲染成静态页面',
+                            'Render <1>md/tsx</1> to static HTML page': '支持将 <1>md/tsx</1> 文件渲染成静态页面',
                             'Run pagic': '运行 pagic',
                             'Single config file': '一个配置文件',
                             'Support React Hooks': '支持 React Hooks',

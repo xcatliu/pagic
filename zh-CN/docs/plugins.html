@@ -1,5 +1,5 @@
 <!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
-<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static HTML page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">插件 · Pagic</title>
 <link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
 <script data-react-helmet="true" >
@@ -87,13 +87,13 @@
 <ul>
 <li><code>name</code> 是插件的名称，当其他插件需要插入到此插件前后时，会用到此名称</li>
 <li><code>insert</code> 是此插件插入的位置，取值为 <code>before:xxx</code> 或 <code>after:xxx</code>，其中 <code>xxx</code> 为一个插件名</li>
-<li><code>fn</code> 函数是插件的核心逻辑，它接受一个参数 <code>ctx</code>，其为 <code>Pagic</code> 的实例</li>
+<li><code>fn</code> 函数是插件的核心逻辑，它接受一个参数 <code>pagic</code>，其为 <code>Pagic</code> 的实例</li>
 </ul>
 <blockquote>
 <p>此命名规则是参考了 <a href="https://deno.land/manual/testing">Deno Testing 的设计</a></p>
 </blockquote>
 <h3 id="fn-%E5%87%BD%E6%95%B0"><code>fn</code> 函数<a class="anchor" href="#fn-%E5%87%BD%E6%95%B0">§</a></h3>
-<p><code>fn</code> 函数是插件的核心逻辑，由于它的参数 <code>ctx</code> 是 <code>Pagic</code> 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：</p>
+<p><code>fn</code> 函数是插件的核心逻辑，由于它的参数 <code>pagic</code> 是 <code>Pagic</code> 当前运行的实例，所以它几乎可以做任何事情，包括但不限于：</p>
 <ul>
 <li>读取配置信息（<code>pagic.config.ts</code> 中的信息）</li>
 <li>获取静态资源列表</li>

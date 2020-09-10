@@ -1,5 +1,5 @@
 <!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
-<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static html page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static HTML page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">Themes · Pagic</title>
 <link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
 <script data-react-helmet="true" >
@@ -10,34 +10,34 @@
     }
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/news/">News</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link active">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">Plugins</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Themes</h1>
-<p>本章会介绍如何使用主题，以及如何开发主题。</p>
-<p>如果你想查看所有主题的列表及其支持的特性，请访问<a href="/themes/">主题列表</a>。</p>
-<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式<a class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">§</a></h2>
-<h3 id="%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题<a class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h3>
-<p>Pagic 拥有官方的 default, docs, blog 等主题，在 <code>pagic.config.ts</code> 中配置 <code>theme</code> 即可使用。默认会使用 <code>default</code> 主题：</p>
+<p>This chapter will introduce how to use themes and how to develop them.</p>
+<p>If you want to see a list of all themes and their supported features, please visit <a href="/themes/">theme list</a>.</p>
+<h2 id="how-to-use">How to use<a class="anchor" href="#how-to-use">§</a></h2>
+<h3 id="official-theme">Official theme<a class="anchor" href="#official-theme">§</a></h3>
+<p>Pagic has official default/docs/blog themes, which can be used by configuring <code>theme</code> in <code>pagic.config.ts</code>. The <code>default</code> theme will be used by default:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   theme<span class="token operator">:</span> <span class="token string">'default'</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h3>
-<p>当使用第三方主题时，<code>theme</code> 的取值应为一个完整的入口文件链接：</p>
+<h3 id="third-party-theme">Third party theme<a class="anchor" href="#third-party-theme">§</a></h3>
+<p>When using a third-party theme, the value of <code>theme</code> should be a complete URL:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">主题支持的插件<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">§</a></h3>
-<p>主题决定了页面如何展示，插件决定了页面支持的特性。</p>
-<p>选择了主题后，我们可以添加插件来扩展网页的特性，但前提是主题支持此插件。</p>
-<p>以 <code>sidebar</code> 插件为例，<code>sidebar</code> 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 <code>default</code> 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 <code>sidebar</code> 插件。不过 <code>docs</code> 主题和 <code>blog</code> 主题均支持 <code>sidebar</code> 插件。</p>
-<p>一般可以在主题的文档中查看其支持的插件列表。</p>
-<h3 id="%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">§</a></h3>
-<p>在 <code>pagic.config.ts</code> 中可以配置主题相关的选项，常见的选项包括 <code>title</code>, <code>description</code>, <code>head</code> 等。它们的含义和用法可以参考<a href="./config.html#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">配置文件</a>章节。</p>
-<h4 id="%E7%BD%91%E7%AB%99%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E6%8F%92%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F">网站的配置？主题的配置？插件的配置？<a class="anchor" href="#%E7%BD%91%E7%AB%99%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F%E6%8F%92%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9F">§</a></h4>
-<p>你可能已经发现了，不像一些其他的静态网站生成器对于网站、主题和插件拥有不同的配置文件（或配置项），Pagic 只拥有一个配置文件 <code>pagic.config.ts</code>。</p>
-<p>你也许会有一些疑惑：这不会很混乱吗？主题和插件之间的配置不会冲突吗？</p>
-<p>但其实 Pagic 这么设计是有其道理的：</p>
-<h5 id="1.-%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%A2%AB%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E8%AF%BB%E5%8F%96">1. 一个配置项可能需要同时被主题和插件读取<a class="anchor" href="#1.-%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E9%A1%B9%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%A2%AB%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E8%AF%BB%E5%8F%96">§</a></h5>
-<p>以 <code>sidebar</code> 为例，如果我们在 <code>pagic.config.ts</code> 中配置了这样的 <code>sidebar</code>：</p>
+<h3 id="theme-supported-plugins">Theme supported plugins<a class="anchor" href="#theme-supported-plugins">§</a></h3>
+<p>The theme determines how the page is displayed, and the plugin determines the features supported by the page.</p>
+<p>After selecting the theme, we can add plugins to extend the features of the webpage, but only if the theme supports this plugin.</p>
+<p>Take the <code>sidebar</code> plugin as an example. The <code>sidebar</code> plugin will display a configured sidebar on the left side of the page, but not all themes support this plugin. For example, the <code>default</code> theme is a very basic theme. It supports the most basic functions, so the <code>sidebar</code> plugin is not supported. However, both the <code>docs</code> theme and the <code>blog</code> theme support the <code>sidebar</code> plugin.</p>
+<p>Generally, you can view the list of plugins supported by the theme's documentation.</p>
+<h3 id="theme-configuration">Theme configuration<a class="anchor" href="#theme-configuration">§</a></h3>
+<p>Theme-related options can be configured in <code>pagic.config.ts</code>, common options include <code>title</code>, <code>description</code>, <code>head</code>, etc. For their meaning and usage, please refer to the <a href="./config.html#page-content">Config</a> chapter.</p>
+<h4 id="website-configuration%3F-theme-configuration%3F-plugin-configuration%3F">Website configuration? Theme configuration? Plugin configuration?<a class="anchor" href="#website-configuration%3F-theme-configuration%3F-plugin-configuration%3F">§</a></h4>
+<p>You may have discovered that unlike some other static site generators that have different config files (or config items) for websites, themes and plugins, Pagic only has one config file <code>pagic.config.ts</code>.</p>
+<p>You may have some doubts: Isn't this confusing? Will the configuration between the theme and the plugin conflict?</p>
+<p>But in fact, Pagic’s design is justified:</p>
+<h5 id="1.-a-configuration-item-may-need-to-be-read-by-the-theme-and-plugin-at-the-same-time">1. A configuration item may need to be read by the theme and plugin at the same time<a class="anchor" href="#1.-a-configuration-item-may-need-to-be-read-by-the-theme-and-plugin-at-the-same-time">§</a></h5>
+<p>Take <code>sidebar</code> as an example, if we configure this <code>sidebar</code> in <code>pagic.config.ts</code>:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   sidebar<span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token string">'/docs/'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -55,69 +55,69 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>那么：</p>
+<p>Then:</p>
 <ul>
-<li><code>sidebar</code> 插件需要解析它，并将其转化为 <code>React.ReactElement</code></li>
-<li><code>docs</code> 主题需要支持渲染 <code>sidebar</code>，并提供折叠、SPA 跳转等功能</li>
+<li>The <code>sidebar</code> plugin needs to parse it and convert it to <code>React.ReactElement</code></li>
+<li><code>docs</code> theme needs to support rendering <code>sidebar</code>, and provide functions such as folding, SPA jump, etc.</li>
 </ul>
-<p>可见将 <code>sidebar</code> 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的，需要有一个地方统一管理这个配置。</p>
-<h5 id="2.-%E6%8F%92%E4%BB%B6%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E5%8F%AF%E8%83%BD%E6%9C%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">2. 插件和插件之间可能有依赖关系<a class="anchor" href="#2.-%E6%8F%92%E4%BB%B6%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E5%8F%AF%E8%83%BD%E6%9C%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">§</a></h5>
-<p>以 <code>prev_next</code> 插件为例，它支持在页面底部自动插入上一页下一页的链接。但是它需要依赖 <code>sidebar</code> 的配置才能知道上一页下一页的链接是什么。</p>
-<p>所以 <code>prev_next</code> 插件需要能够读取到 <code>sidebar</code> 的配置，故将配置统一放到 <code>pagic.config.ts</code> 中更合适。</p>
-<h5 id="3.-%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E7%9A%84%E7%90%86%E8%A7%A3%E6%88%90%E6%9C%AC">3. 这样可以降低用户的理解成本<a class="anchor" href="#3.-%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E7%9A%84%E7%90%86%E8%A7%A3%E6%88%90%E6%9C%AC">§</a></h5>
-<p>用户不用再思考一个配置到底是属于主题还是插件了，统一在 <code>pagic.config.ts</code> 中配置即可。</p>
-<h5 id="%E5%8F%AF%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8D%E4%BC%9A%E6%9C%89%E5%86%B2%E7%AA%81%E5%91%A2%EF%BC%9F">可是如何保证各种第三方主题和插件之间的配置不会有冲突呢？<a class="anchor" href="#%E5%8F%AF%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%90%84%E7%A7%8D%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8D%E4%BC%9A%E6%9C%89%E5%86%B2%E7%AA%81%E5%91%A2%EF%BC%9F">§</a></h5>
-<p>首先，插件的配置项一般与插件名一致（比如 <code>sidebar</code> 插件就提供了 <code>sidebar</code> 配置项），这保证了不同插件之间一般不会冲突。</p>
-<p>其次，我们将一些通用的配置项整理成文档，第三方主题和插件的开发者应尽可能参考<a href="./config.html">此文档</a>，避免产生冲突。</p>
-<p>最后，这种设计其实约束了第三方主题和插件的开发者，使得大家需要按照同样的标准来设计配置项，意味着 Pagic 的第三方主题和插件拥有了更高的质量和兼容性。</p>
-<h2 id="%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">如何开发主题<a class="anchor" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">§</a></h2>
-<p>恭喜你即将成为 Pagic 主题的开发者！</p>
-<p>只要理解了 Pagic 主题的运行机制，就可以轻松的开发出一个 Pagic 主题了。</p>
-<h3 id="%E4%B8%BB%E9%A2%98%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6">主题的运行机制<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6">§</a></h3>
-<p>Pagic 主题的运行机制很容易理解，甚至用一句话就可以解释清楚：</p>
+<p>It can be seen that it is inappropriate to attribute the configuration of <code>sidebar</code> to the configuration of the theme, and it is also inappropriate to attribute the configuration of the plugin. There needs to be one place to manage this configuration.</p>
+<h5 id="2.-there-may-be-dependencies-between-plugins-and-plugins">2. There may be dependencies between plugins and plugins<a class="anchor" href="#2.-there-may-be-dependencies-between-plugins-and-plugins">§</a></h5>
+<p>Take the <code>prev_next</code> plugin as an example, it supports automatic insertion of links to the previous page and the next page at the bottom of the page. But it needs to rely on the configuration of <code>sidebar</code> to know what the link to the previous page is.</p>
+<p>Therefore, the <code>prev_next</code> plugin needs to be able to read the configuration of the <code>sidebar</code>, so it is more appropriate to put the configuration in the <code>pagic.config.ts</code>.</p>
+<h5 id="3.-this-can-reduce-the-user's-understanding-cost">3. This can reduce the user's understanding cost<a class="anchor" href="#3.-this-can-reduce-the-user's-understanding-cost">§</a></h5>
+<p>Users don't need to think about whether a configuration belongs to a theme or a plugin. It can be configured in <code>pagic.config.ts</code>.</p>
+<h5 id="but-how-to-ensure-that-the-configuration-between-various-third-party-themes-and-plugins-will-not-conflict%3F">But how to ensure that the configuration between various third-party themes and plugins will not conflict?<a class="anchor" href="#but-how-to-ensure-that-the-configuration-between-various-third-party-themes-and-plugins-will-not-conflict%3F">§</a></h5>
+<p>First of all, the configuration items of the plugin are generally the same as the plugin name (for example, the <code>sidebar</code> plugin provides the <code>sidebar</code> configuration item), which ensures that there is generally no conflict between different plugins.</p>
+<p>Second, we organize some common configuration items into documents. Developers of third-party themes and plugins should refer to <a href="./config.html">this document</a> as much as possible to avoid conflicts.</p>
+<p>Finally, this design actually constrains the developers of third-party themes and plug-ins, so that everyone needs to design configuration items according to the same standard, which means that Pagic's third-party themes and plugins have higher quality and compatibility.</p>
+<h2 id="how-to-develop-a-theme">How to develop a theme<a class="anchor" href="#how-to-develop-a-theme">§</a></h2>
+<p>Congratulations, you are about to become a developer of Pagic theme!</p>
+<p>As long as you understand the operating mechanism of Pagic theme, you can easily develop a Pagic theme.</p>
+<h3 id="theme-operating-mechanism">Theme operating mechanism<a class="anchor" href="#theme-operating-mechanism">§</a></h3>
+<p>The operating mechanism of Pagic theme is easy to understand, and can even be explained clearly in one sentence:</p>
 <blockquote>
-<p>Pagic 构建时会先把主题中的文件全部「复制」到用户的项目目录下，然后再运行 <code>pagic build</code> 脚本。</p>
+<p>When Pagic builds, it will first &quot;copy&quot; all the files in the theme to the user's project directory, and then run the <code>pagic build</code> script.</p>
 </blockquote>
-<p>比如一个主题若包含以下文件：</p>
+<p>For example, if a theme contains the following files:</p>
 <pre class="language-autoit"><code class="language-autoit">pagic_theme_custom<span class="token operator">/</span>
-<span class="highlighted-line">|── assets</span><span class="highlighted-line">|   └── index<span class="token punctuation">.</span>css</span><span class="highlighted-line">└── _layout<span class="token punctuation">.</span>tsx</span></code></pre><p>用户的项目的目录结构如下：</p>
+<span class="highlighted-line">|── assets</span><span class="highlighted-line">|   └── index<span class="token punctuation">.</span>css</span><span class="highlighted-line">└── _layout<span class="token punctuation">.</span>tsx</span></code></pre><p>The directory structure of the user's project is as follows:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
 |── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre>
-<p>那么当用户使用此主题后，用户的项目的目录结构就会「变成这样」：</p>
+<p>Then when the user uses this theme, the directory structure of the user's project will &quot;become like this&quot;:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
 <span class="highlighted-line">|── assets</span><span class="highlighted-line">|   └── index<span class="token punctuation">.</span>css</span><span class="highlighted-line">|── _layout<span class="token punctuation">.</span>tsx</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
-</code></pre><p>此时执行 <code>pagic build</code> 时，<code>assets/index.css</code> 会被复制到 <code>dist/assets/index.css</code> 中，<code>README.md</code> 会以 <code>_layout.tsx</code> 为模版来渲染，生成 <code>dist/index.html</code>：</p>
+</code></pre><p>At this time, when executing <code>pagic build</code>, <code>assets/index.css</code> will be copied to <code>dist/assets/index.css</code>, and <code>README.md</code> will be rendered with <code>_layout.tsx</code> as a template, and generate <code>dist/index.html</code>:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── dist    # 构建结果目录
+|── dist    # Output directory
 |   |── assets
 <span class="highlighted-line">|   |   └── index<span class="token punctuation">.</span>css</span>|   └── index<span class="token punctuation">.</span>html
 |── assets
 <span class="highlighted-line">|   └── index<span class="token punctuation">.</span>css</span>|── _layout<span class="token punctuation">.</span>tsx
 |── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
-</code></pre><p>Pagic 构建时每个页面文件（<code>md/tsx</code>）均会遵循 <a href="./layout.html">_layout.tsx</a> 章节中描述的规则来查找它对应的模版文件。</p>
-<p>一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。</p>
-<p>比如主题可以创建一个 <code>blog/_layout.tsx</code> 文件：</p>
+</code></pre><p>When Pagic builds, each page file (<code>md/tsx</code>) will follow the rules described in the <a href="./layout.html">_layout.tsx</a> chapter to find its corresponding template file.</p>
+<p>A typical application is to write a sub-template in a theme, and then require the directory structure of the project using this theme to conform to this convention.</p>
+<p>For example, the theme can create a <code>blog/_layout.tsx</code> file:</p>
 <pre class="language-autoit"><code class="language-autoit">pagic_theme_custom<span class="token operator">/</span>
 |── assets
 |   └── index<span class="token punctuation">.</span>css
 <span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── _layout<span class="token punctuation">.</span>tsx</span>└── _layout<span class="token punctuation">.</span>tsx
-</code></pre><p>这样用户的 <code>blog</code> 目录下的页面就会以 <code>blog/_layout.tsx</code> 作为模版来渲染了：</p>
+</code></pre><p>In this way, the pages under the user's <code>blog</code> directory will be rendered with <code>blog/_layout.tsx</code> as a template:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-<span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── hello<span class="token punctuation">.</span>md    # 此页面会以主题中的 blog<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx 作为模版来渲染</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+<span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── hello<span class="token punctuation">.</span>md # This page will be rendered <span class="token keyword">with</span> blog<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx <span class="token keyword">in</span> the theme as a template</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
-</code></pre><p>需要注意的是，主题中的文件并不会真的「复制」到用户的项目目录中，我们把这个「复制」看作是一种虚拟的执行即可。</p>
-<p>另外，如果用户的项目中有文件路径和主题中的一样，那么以用户的项目中的文件为准——即允许用户覆盖主题的文件。</p>
-<h3 id="%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">入口文件<a class="anchor" href="#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">§</a></h3>
-<p>之前提到过，当使用第三方主题时，<code>theme</code> 的取值应为一个完整的入口文件链接：</p>
+</code></pre><p>It should be noted that the files in the theme will not be &quot;copied&quot; to the user's project directory. We can regard this &quot;copy&quot; as a virtual execution.</p>
+<p>In addition, if there is a file path in the user's project that is the same as that in the theme, the file in the user's project shall prevail, that is, the file that allows the user to overwrite the theme.</p>
+<h3 id="entry-file">Entry file<a class="anchor" href="#entry-file">§</a></h3>
+<p>As mentioned before, when using a third-party theme, the value of <code>theme</code> should be an entry file URL:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>下面列出一个典型的 <code>mod.ts</code> 入口文件：</p>
+<p>A typical <code>mod.ts</code> entry file is listed below:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   files<span class="token operator">:</span> <span class="token punctuation">[</span>
     <span class="token string">'assets/index.css'</span><span class="token punctuation">,</span>
@@ -129,14 +129,14 @@
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>此入口文件中包含以下信息：</p>
+<p>This entry file contains the following information:</p>
 <h4 id="files"><code>files</code><a class="anchor" href="#files">§</a></h4>
-<p><code>files</code> 列出了主题的所有文件，它们都会被「复制」到用户的项目目录下。</p>
-<p>为什么要这么设计呢？为什么不能自动遍历主题目录下的所有文件呢？</p>
-<p>因为 Pagic 需要支持通过一个 url 来配置主题，而仅有一个 url 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 <code>https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/</code> 下的所有文件呢？</p>
-<p>综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。</p>
+<p><code>files</code> lists all the files of the theme, they will be &quot;copied&quot; to the user's project directory.</p>
+<p>Why is it designed like this? Why can't it traverse all the files in the theme directory automatically?</p>
+<p>Because Pagic needs to support an URL to configure the theme, and only one URL cannot traverse to which files are in the path. Just imagine how you can traverse <code>https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master</code>?</p>
+<p>To sum up, although it is a bit troublesome, it is necessary to list all the files of the subject.</p>
 <h3 id="props"><code>props</code><a class="anchor" href="#props">§</a></h3>
-<p>主题中最核心的文件就是 <code>_layout.tsx</code>，而编写 <code>_layout.tsx</code> 最重要的就是使用它的 <code>props</code>。</p>
-<p>前一章已经介绍过了 <code>props</code>，如果需要了解所有的 <code>props</code>，可以直接查看 <a href="./layout.html#props">_layout.tsx 中的 props</a>。</p>
-<h3 id="%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题<a class="anchor" href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h3>
-<p>开发一个主题最佳的参考就是官方主题，你可以直接<a href="https://github.com/xcatliu/pagic/tree/master/src/themes">查看官方主题的源码</a>。</p></article><div class="prev_next"><a class="prev button" href="/docs/layout.html">«  <!-- -->_layout.tsx</a><a class="next button" href="/docs/plugins.html">Plugins<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">使用方式</a><ol><li><a href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题</a></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">主题支持的插件</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置</a><ol></ol></li></ol></li><li><a href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98">如何开发主题</a><ol><li><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6">主题的运行机制</a></li><li><a href="#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6">入口文件</a><ol></ol></li><li><a href="#props">props</a></li><li><a href="#%E5%8F%82%E8%80%83%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">参考官方主题</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>The core file in the theme is <code>_layout.tsx</code>, and the most important thing to write <code>_layout.tsx</code> is to use its <code>props</code>.</p>
+<p>The previous chapter has introduced <code>props</code>, if you need to know all the <code>props</code>, you can directly view <a href="./layout.html#props">_layout.tsx props</a>.</p>
+<h3 id="reference-official-theme">Reference official theme<a class="anchor" href="#reference-official-theme">§</a></h3>
+<p>The best reference for developing a theme is the official theme. You can directly <a href="https://github.com/xcatliu/pagic/tree/master/src/themes">view the source code of the official theme</a>.</p></article><div class="prev_next"><a class="prev button" href="/docs/layout.html">«  <!-- -->_layout.tsx</a><a class="next button" href="/docs/plugins.html">Plugins<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#how-to-use">How to use</a><ol><li><a href="#official-theme">Official theme</a></li><li><a href="#third-party-theme">Third party theme</a></li><li><a href="#theme-supported-plugins">Theme supported plugins</a></li><li><a href="#theme-configuration">Theme configuration</a><ol></ol></li></ol></li><li><a href="#how-to-develop-a-theme">How to develop a theme</a><ol><li><a href="#theme-operating-mechanism">Theme operating mechanism</a></li><li><a href="#entry-file">Entry file</a><ol></ol></li><li><a href="#props">props</a></li><li><a href="#reference-official-theme">Reference official theme</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script crossorigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js"></script><script crossorigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
