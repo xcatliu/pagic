@@ -8,7 +8,7 @@ If you want to see a list of all themes and their supported features, please vis
 
 ### Official theme
 
-Pagic has official default/docs/blog themes, which can be used by configuring `theme` in `pagic.config.ts`. The `default` theme will be used by default:
+Pagic has official themes default/docs/blog, which can be used by configuring `theme` in `pagic.config.ts`. The `default` theme will be used by default:
 
 ```ts
 export default {
