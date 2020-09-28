@@ -80,7 +80,7 @@ async function rerender(
     if (!hash) {
       window.scrollTo(0, 0);
     } else {
-      document.querySelector(hash)?.scrollIntoView();
+      document.getElementById(hash.slice(1))?.scrollIntoView();
     }
     window.dispatchEvent(new Event('rerender'));
   }
