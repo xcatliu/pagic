@@ -10,7 +10,9 @@ import {
   underlineToPascal,
   pick
 } from '../utils/mod.ts';
-import Pagic, { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
+// eslint-disable-next-line no-duplicate-imports
+import Pagic from '../Pagic.ts';
 
 const script: PagicPlugin = {
   name: 'script',

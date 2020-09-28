@@ -6,17 +6,23 @@
   "scripts": {
     "start": "deno run --unstable --allow-read --allow-write --allow-net mod.ts build --serve --watch",
     "test": "deno test --unstable --allow-read --allow-write --allow-net src",
+    "lint": "run-s eslint prettier",
+    "eslint": "eslint --ext .ts,.tsx,.js,.jsx .",
+    "eslint:fix": "eslint --ext .ts,.tsx,.js,.jsx --fix .",
+    "prettier": "prettier -l \"./**/*\"",
+    "prettier:fix": "prettier --write -l \"./**/*\"",
     "update": "npm install --save-dev @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-config-alloy@latest eslint-plugin-react@latest prettier@latest typescript@latest"
   },
   "author": "xcatliu <xcatliu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.9.0",
-    "@typescript-eslint/parser": "^3.9.0",
-    "eslint": "^7.6.0",
-    "eslint-config-alloy": "^3.7.4",
-    "eslint-plugin-react": "^7.20.6",
-    "prettier": "^2.0.5",
-    "typescript": "^3.9.7"
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "eslint": "^7.10.0",
+    "eslint-config-alloy": "^3.8.0",
+    "eslint-plugin-react": "^7.21.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
   }
 }

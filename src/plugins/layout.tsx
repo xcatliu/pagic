@@ -1,6 +1,6 @@
 import { fs, path, React } from '../../deps.ts';
 
-import { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 import { importDefault, importTheme } from '../utils/mod.ts';
 
 const layout: PagicPlugin = {

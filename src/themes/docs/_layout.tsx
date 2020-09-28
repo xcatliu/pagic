@@ -1,6 +1,6 @@
 import { React } from '../../../deps.ts';
 
-import { PagicLayout } from '../../Pagic.ts';
+import type { PagicLayout } from '../../Pagic.ts';
 import Head from './_head.tsx';
 import Header from './_header.tsx';
 import Sidebar from './_sidebar.tsx';

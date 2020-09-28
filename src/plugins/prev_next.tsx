@@ -1,5 +1,5 @@
-import { PagicPlugin } from '../Pagic.ts';
-import { PagePropsSidebar } from './sidebar.tsx';
+import type { PagicPlugin } from '../Pagic.ts';
+import type { PagePropsSidebar } from './sidebar.tsx';
 import { pick, depthFirstTraversal } from '../utils/mod.ts';
 
 const prev_next: PagicPlugin = {

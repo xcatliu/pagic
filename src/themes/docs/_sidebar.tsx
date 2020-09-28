@@ -1,7 +1,7 @@
 import { React } from '../../../deps.ts';
 
-import { PagicLayout, PageProps } from '../../Pagic.ts';
-import { PagePropsSidebar } from '../../plugins/sidebar.tsx';
+import type { PagicLayout, PageProps } from '../../Pagic.ts';
+import type { PagePropsSidebar } from '../../plugins/sidebar.tsx';
 import { classnames } from './_utils.tsx';
 
 const Sidebar: PagicLayout = ({ config, outputPath, sidebar }) => {

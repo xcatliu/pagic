@@ -1,4 +1,6 @@
-import Pagic, { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
+// eslint-disable-next-line no-duplicate-imports
+import type Pagic from '../Pagic.ts';
 
 export interface PagicConfigSidebar {
   [prefix: string]: OnePagicConfigSidebar;
@@ -36,7 +38,7 @@ const sidebar: PagicPlugin = {
       } = {};
       for (const [prefix, oneConfig] of Object.entries({
         ...pagic.config.sidebar,
-        ...(pagic.config.i18n?.overrides?.[pageProps.language?.code!]?.sidebar as PagicConfigSidebar)
+        ...(pagic.config.i18n?.overrides?.[pageProps.language?.code as string]?.sidebar as PagicConfigSidebar)
       })) {
         parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
       }

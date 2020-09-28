@@ -1,6 +1,8 @@
 import { asserts, path } from '../../deps.ts';
 
-import { Tree, unique, pick, omit, depthFirstTraversal, sortByInsert, getPagicConfigPath } from './common.ts';
+import type { Tree } from './common.ts';
+// eslint-disable-next-line no-duplicate-imports
+import { unique, pick, omit, depthFirstTraversal, sortByInsert, getPagicConfigPath } from './common.ts';
 
 Deno.test('[unique]', () => {
   asserts.assertEquals(unique([1, 5, 2, 1, 2, 1]), [1, 5, 2]);

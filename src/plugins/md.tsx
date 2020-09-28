@@ -53,7 +53,7 @@ const mdRenderer = new MarkdownIt({
   .use(markdownitReplaceLink)
   .use(markdownitHighlightLines);
 
-import { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 
 const md: PagicPlugin = {
   name: 'md',

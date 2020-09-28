@@ -2,7 +2,7 @@ import { React } from '../../../deps.ts';
 import ReactHelmet from 'https://dev.jspm.io/react-helmet@6.1.0';
 const { Helmet } = ReactHelmet;
 
-import { PagicLayout } from '../../Pagic.ts';
+import type { PagicLayout } from '../../Pagic.ts';
 
 const Head: PagicLayout<{
   isDark: boolean;

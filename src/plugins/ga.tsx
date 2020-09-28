@@ -1,6 +1,6 @@
 import { React } from '../../deps.ts';
 
-import { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 import Ga from './ga_component.tsx';
 import { compilePagicFile } from '../utils/mod.ts';
 

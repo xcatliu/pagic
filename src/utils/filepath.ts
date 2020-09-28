@@ -1,6 +1,6 @@
 import { fs, path } from '../../deps.ts';
 
-import { PagicConfig } from '../Pagic.ts';
+import type { PagicConfig } from '../Pagic.ts';
 
 /**
  * Get the runtime pagic root path, it should be a file-system-path or a url

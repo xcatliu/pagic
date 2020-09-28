@@ -2,7 +2,7 @@ import { fs, path, ReactDOMServer } from '../../deps.ts';
 import ReactHelmet from 'https://dev.jspm.io/react-helmet@6.1.0';
 const { Helmet } = ReactHelmet;
 
-import { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 import { ensureDirAndWriteFileStr, ensureDirAndCopy, copyPagicFile, download } from '../utils/mod.ts';
 
 const out: PagicPlugin = {

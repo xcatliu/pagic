@@ -17,5 +17,6 @@ module.exports = {
   },
   rules: {
     // Customize your rules
+    '@typescript-eslint/consistent-type-imports': 'error'
   }
 };

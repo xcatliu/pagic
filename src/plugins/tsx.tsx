@@ -1,6 +1,6 @@
 import { path, React } from '../../deps.ts';
 
-import { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 import { import_ } from '../utils/mod.ts';
 
 const tsx: PagicPlugin = {

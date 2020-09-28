@@ -1,4 +1,7 @@
+dist
+node_modules
+
+site/assets/vconsole.min.js
+
+src/types
 src/vendors
-src/types/react
-src/types/react-dom
-src/types/prop-types

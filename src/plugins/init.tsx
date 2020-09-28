@@ -1,4 +1,4 @@
-import { PagicPlugin } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 import { getOutputPath, findNearestLayoutPath } from '../utils/mod.ts';
 
 /** Init pagic.pagePropsMap */

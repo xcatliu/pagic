@@ -1,7 +1,7 @@
 import { React } from '../../../deps.ts';
 import throttle from 'https://dev.jspm.io/lodash@4.17.15/throttle';
 
-import { PagicLayout } from '../../Pagic.ts';
+import type { PagicLayout } from '../../Pagic.ts';
 import Loading from './_loading.tsx';
 
 const Main: PagicLayout = (props) => {

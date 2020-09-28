@@ -1,6 +1,6 @@
 import { React } from '../../../deps.ts';
 
-import { PagicLayout } from '../../Pagic.ts';
+import type { PagicLayout } from '../../Pagic.ts';
 import Popover from './_popover.tsx';
 
 const Header: PagicLayout<{

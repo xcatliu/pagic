@@ -1,5 +1,5 @@
 import { React, t, Trans } from '../mod.ts';
-import { PagicLayout } from '../src/Pagic.ts';
+import type { PagicLayout } from '../src/Pagic.ts';
 
 const style = `
 h2 {

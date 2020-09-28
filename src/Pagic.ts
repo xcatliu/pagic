@@ -1,5 +1,7 @@
-import { fs, path, colors, React } from '../deps.ts';
-import { Application, send } from 'https://deno.land/x/oak@v6.1.0/mod.ts';
+import type { React } from '../deps.ts';
+// eslint-disable-next-line no-duplicate-imports
+import { fs, path, colors } from '../deps.ts';
+import { Application, send } from 'https://deno.land/x/oak@v6.2.0/mod.ts';
 
 import {
   pick,
@@ -12,7 +14,7 @@ import {
   importPlugin,
   importTheme
 } from './utils/mod.ts';
-import { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
+import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 
 // #region types
 export interface PagicConfig {
