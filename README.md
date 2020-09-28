@@ -11,6 +11,12 @@
   <a href="https://pagic.org/zh-CN">简体中文</a> | <a href="https://pagic.org">Website</a> | <a href="https://pagic.org/docs/introduction.html">Docs</a> | <a href="https://pagic.org/docs/config.html">Config</a> | <a href="#demos">Demos</a> | <a href="https://pagic.org/themes/">Themes</a> | <a href="https://pagic.org/plugins/">Plugins</a> | <a href="https://pagic.org/news/">News</a>
 </p>
 <p align="center">
+  <a href="https://deno.land">
+    <img src="https://img.shields.io/badge/Deno-1.4.2-brightgreen.svg?logo=deno" alt="deno" />
+  </a>
+  <a href="https://pagic.org">
+    <img src="https://img.shields.io/badge/Pagic-0.9.2-orange.svg" alt="pagic" />
+  </a>
   <a href="https://github.com/xcatliu/pagic/actions">
     <img src="https://github.com/xcatliu/pagic/workflows/ci/badge.svg" alt="ci" />
   </a>
