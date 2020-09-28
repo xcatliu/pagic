@@ -53,8 +53,8 @@ async function rerender(
     // If render not complete in 0.1s, render a loading icon instead.
     setTimeout(() => {
       if (loading === false) return;
-      ReactDOM.render(
-        React.createElement(lastLayout, {
+      window.ReactDOM.render(
+        window.React.createElement(lastLayout, {
           ...lastProps,
           loading: true
         }),
@@ -73,10 +73,10 @@ async function rerender(
   let layoutPath = props.layoutPath.replace(/\.tsx$/, '.js');
   const Layout = (await import(`${props.config.root}${layoutPath}`)).default;
   if (isHydrate) {
-    ReactDOM.hydrate(React.createElement(Layout, props), document);
+    window.ReactDOM.hydrate(window.React.createElement(Layout, props), document);
   } else {
     pushState();
-    ReactDOM.render(React.createElement(Layout, props), document);
+    window.ReactDOM.render(window.React.createElement(Layout, props), document);
     window.scrollTo(0, 0);
     window.dispatchEvent(new Event('rerender'));
   }
