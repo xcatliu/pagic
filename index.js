@@ -77,7 +77,11 @@ async function rerender(
   } else {
     pushState();
     window.ReactDOM.render(window.React.createElement(Layout, props), document);
-    window.scrollTo(0, 0);
+    if (!hash) {
+      window.scrollTo(0, 0);
+    } else {
+      document.querySelector(hash)?.scrollIntoView();
+    }
     window.dispatchEvent(new Event('rerender'));
   }
   lastPathname = pathname;
