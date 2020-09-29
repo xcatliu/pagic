@@ -35,6 +35,16 @@ deno install --unstable --allow-read --allow-write --allow-net --name=pagic http
 > deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 > ```
 
+### Install via Docker
+
+Execute the following command to install Pagic via Docker:
+
+```bash
+alias pagic='docker run -it --rm -v $PWD:/pagic xcatliu/pagic'
+```
+
+It should be noted that executing the above command will only take effect in the current shell. If you want to take effect permanently, it is recommended to write it in `~/.bashrc` or `~/.bash_profile` or `~/.zshrc`.
+
 ## Initialize the project
 
 To use `pagic` to build a static website, the project must include at least one `pagic.config.ts` config file and one `md/tsx` page file:

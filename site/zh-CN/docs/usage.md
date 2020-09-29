@@ -19,7 +19,7 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 
 ### 安装 Pagic
 
-执行以下命令以安装最新版本的 Pagic：
+执行以下命令来安装最新版本的 Pagic：
 
 ```bash
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
@@ -36,6 +36,16 @@ deno install --unstable --allow-read --allow-write --allow-net --name=pagic http
 > ```bash
 > deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 > ```
+
+### 通过 Docker 安装
+
+执行以下命令可以通过 Docker 安装 Pagic：
+
+```bash
+alias pagic='docker run -it --rm -v $PWD:/pagic xcatliu/pagic'
+```
+
+需要注意的是，执行以上命令只会在当前 shell 生效，如果希望永久生效，建议将它写入到 `~/.bashrc` 或 `~/.bash_profile` 或 `~/.zshrc` 中。
 
 ## 初始化项目
 
