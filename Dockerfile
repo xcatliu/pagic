@@ -15,7 +15,7 @@ COPY deps.ts .
 
 # Default configuration
 WORKDIR /out/pagic
-RUN echo "export default {}" > pagic.config.ts
+RUN echo "export default {};" > pagic.config.ts
 
 FROM hayd/alpine-deno:1.4.2 AS runner
 COPY --from=organizer /out /
