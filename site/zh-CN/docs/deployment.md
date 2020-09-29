@@ -50,7 +50,7 @@ jobs:
 
 ## CloudBase
 
-[云开发 CloudBase](https://www.cloudbase.net/) 是腾讯云提供的云原生一体化开发环境和工具平台，现已支持一键部署 Pagic 应用，还拥有免费的默认域名、CDN 加速等功能。
+[云开发 CloudBase](https://www.cloudbase.net/) 是腾讯云提供的云原生一体化开发环境和工具平台，现[已支持一键部署 Pagic 应用](https://cloud.tencent.com/developer/news/680176)，还拥有免费的默认域名、CDN 加速等功能。
 
 你可以通过以下步骤来使用：
 
@@ -62,7 +62,7 @@ jobs:
 6. 运行 `tcb init --without-template` 来初始化 CloudBase 的配置文件 `cloudbaserc.json`
 7. 运行 `tcb framework deploy` 来构建并部署 Pagic 应用（此过程会自动识别当前目录下的 `pagic.config.ts` 文件）
 
-构建完成后，就可以访问到部署到免费域名的静态网站了（例子：[使用 CloudBase 部署的 Pagic 官网][]），接下来你可以在[腾讯云 CloudBase 控制台][]中绑定自己的域名。
+构建完成后，就可以访问部署到免费域名的静态网站了（例子：[使用 CloudBase 部署的 Pagic 官网][]），接下来你可以在[腾讯云 CloudBase 控制台][]中绑定自己的域名。
 
 参考：
 
