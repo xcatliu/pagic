@@ -11,6 +11,7 @@ FROM alpine:3.12 AS organizer
 WORKDIR /out/usr/src/install
 COPY src src
 COPY mod.ts .
+COPY deps.ts .
 
 # Default configuration
 WORKDIR /out/pagic
