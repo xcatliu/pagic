@@ -2,4 +2,5 @@
 
 !src
 !mod.ts
+!deps.ts
 !docker-entrypoint.sh
