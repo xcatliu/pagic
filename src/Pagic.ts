@@ -28,6 +28,10 @@ export interface PagicConfig {
   watch: boolean;
   serve: boolean;
   port: number;
+  md?: {
+    anchorLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
+    tocLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
+  };
   sidebar?: PagicConfigSidebar;
   i18n?: {
     languages: { code: string; name: string; path: string }[];
@@ -100,7 +104,11 @@ export default class Pagic {
     plugins: ['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out'],
     watch: false,
     serve: false,
-    port: 8000
+    port: 8000,
+    md: {
+      anchorLevel: [2, 3, 4, 5, 6],
+      tocLevel: [2, 3]
+    }
   };
   // foo.md
   public static REGEXP_PAGE = /[\/\\][^_][^\/\\]*\.(md|tsx)$/;

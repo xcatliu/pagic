@@ -46,14 +46,14 @@ export function getOutputPath(pagePath: string) {
     .slice(1);
 }
 /**
- * input: https://github.com/xcatliu
- * output: https://github.com/xcatliu
- *
  * input: foo/bar.md
  * output: foo/bar.html
  *
  * input: README.md
  * output: index.html
+ *
+ * input: https://github.com/xcatliu
+ * output: https://github.com/xcatliu
  */
 export function replaceLink(link: string) {
   if (/^https?:\/\//.test(link)) {
