@@ -32,11 +32,11 @@
 <p>Generally, you can view the list of plugins supported by the theme's documentation.</p>
 <h3 id="theme-configuration">Theme configuration<a class="anchor" href="#theme-configuration">§</a></h3>
 <p>Theme-related options can be configured in <code>pagic.config.ts</code>, common options include <code>title</code>, <code>description</code>, <code>head</code>, etc. For their meaning and usage, please refer to the <a href="./config.html#page-content">Config</a> chapter.</p>
-<h4 id="website-configuration%3F-theme-configuration%3F-plugin-configuration%3F">Website configuration? Theme configuration? Plugin configuration?<a class="anchor" href="#website-configuration%3F-theme-configuration%3F-plugin-configuration%3F">§</a></h4>
+<h4 id="website-configuration-theme-configuration-plugin-configuration">Website configuration? Theme configuration? Plugin configuration?<a class="anchor" href="#website-configuration-theme-configuration-plugin-configuration">§</a></h4>
 <p>You may have discovered that unlike some other static site generators that have different config files (or config items) for websites, themes and plugins, Pagic only has one config file <code>pagic.config.ts</code>.</p>
 <p>You may have some doubts: Isn't this confusing? Will the configuration between the theme and the plugin conflict?</p>
 <p>But in fact, Pagic’s design is justified:</p>
-<h5 id="1.-a-configuration-item-may-need-to-be-read-by-the-theme-and-plugin-at-the-same-time">1. A configuration item may need to be read by the theme and plugin at the same time<a class="anchor" href="#1.-a-configuration-item-may-need-to-be-read-by-the-theme-and-plugin-at-the-same-time">§</a></h5>
+<h5 id="1-a-configuration-item-may-need-to-be-read-by-the-theme-and-plugin-at-the-same-time">1. A configuration item may need to be read by the theme and plugin at the same time<a class="anchor" href="#1-a-configuration-item-may-need-to-be-read-by-the-theme-and-plugin-at-the-same-time">§</a></h5>
 <p>Take <code>sidebar</code> as an example, if we configure this <code>sidebar</code> in <code>pagic.config.ts</code>:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   sidebar<span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -61,12 +61,12 @@
 <li><code>docs</code> theme needs to support rendering <code>sidebar</code>, and provide functions such as folding, SPA jump, etc.</li>
 </ul>
 <p>It can be seen that it is inappropriate to attribute the configuration of <code>sidebar</code> to the configuration of the theme, and it is also inappropriate to attribute the configuration of the plugin. There needs to be one place to manage this configuration.</p>
-<h5 id="2.-there-may-be-dependencies-between-plugins-and-plugins">2. There may be dependencies between plugins and plugins<a class="anchor" href="#2.-there-may-be-dependencies-between-plugins-and-plugins">§</a></h5>
+<h5 id="2-there-may-be-dependencies-between-plugins-and-plugins">2. There may be dependencies between plugins and plugins<a class="anchor" href="#2-there-may-be-dependencies-between-plugins-and-plugins">§</a></h5>
 <p>Take the <code>prev_next</code> plugin as an example, it supports automatic insertion of links to the previous page and the next page at the bottom of the page. But it needs to rely on the configuration of <code>sidebar</code> to know what the link to the previous page is.</p>
 <p>Therefore, the <code>prev_next</code> plugin needs to be able to read the configuration of the <code>sidebar</code>, so it is more appropriate to put the configuration in the <code>pagic.config.ts</code>.</p>
-<h5 id="3.-this-can-reduce-the-user's-understanding-cost">3. This can reduce the user's understanding cost<a class="anchor" href="#3.-this-can-reduce-the-user's-understanding-cost">§</a></h5>
+<h5 id="3-this-can-reduce-the-users-understanding-cost">3. This can reduce the user's understanding cost<a class="anchor" href="#3-this-can-reduce-the-users-understanding-cost">§</a></h5>
 <p>Users don't need to think about whether a configuration belongs to a theme or a plugin. It can be configured in <code>pagic.config.ts</code>.</p>
-<h5 id="but-how-to-ensure-that-the-configuration-between-various-third-party-themes-and-plugins-will-not-conflict%3F">But how to ensure that the configuration between various third-party themes and plugins will not conflict?<a class="anchor" href="#but-how-to-ensure-that-the-configuration-between-various-third-party-themes-and-plugins-will-not-conflict%3F">§</a></h5>
+<h5 id="but-how-to-ensure-that-the-configuration-between-various-third-party-themes-and-plugins-will-not-conflict">But how to ensure that the configuration between various third-party themes and plugins will not conflict?<a class="anchor" href="#but-how-to-ensure-that-the-configuration-between-various-third-party-themes-and-plugins-will-not-conflict">§</a></h5>
 <p>First of all, the configuration items of the plugin are generally the same as the plugin name (for example, the <code>sidebar</code> plugin provides the <code>sidebar</code> configuration item), which ensures that there is generally no conflict between different plugins.</p>
 <p>Second, we organize some common configuration items into documents. Developers of third-party themes and plugins should refer to <a href="./config.html">this document</a> as much as possible to avoid conflicts.</p>
 <p>Finally, this design actually constrains the developers of third-party themes and plug-ins, so that everyone needs to design configuration items according to the same standard, which means that Pagic's third-party themes and plugins have higher quality and compatibility.</p>

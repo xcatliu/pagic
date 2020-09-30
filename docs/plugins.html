@@ -60,7 +60,7 @@
   plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'clean'</span><span class="token punctuation">,</span> <span class="token string">'init'</span><span class="token punctuation">,</span> <span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token string">'tsx'</span><span class="token punctuation">,</span> <span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'prev_next'</span><span class="token punctuation">,</span> <span class="token string">'ga'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'layout'</span><span class="token punctuation">,</span> <span class="token string">'out'</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="so-what-is-the-rules%3F">So what is the rules?<a class="anchor" href="#so-what-is-the-rules%3F">§</a></h4>
+<h4 id="so-what-is-the-rules">So what is the rules?<a class="anchor" href="#so-what-is-the-rules">§</a></h4>
 <p>It turns out that every <strong>non-built-in</strong> plugin will have an <code>insert</code> attribute, which describes the position when it is inserted, and its value is <code>before:xxx</code> or <code>after:xxx</code>, where <code>xxx</code> is one The name of the plugin. such as:</p>
 <ul>
 <li>The <code>insert</code> attribute of <code>sidebar</code> is <code>after:tsx</code>, so it will be inserted after <code>tsx</code></li>
