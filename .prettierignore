@@ -13,6 +13,8 @@
 Dockerfile
 LICENSE
 
+cdn
+
 dist
 site/assets/vconsole.min.js
 
