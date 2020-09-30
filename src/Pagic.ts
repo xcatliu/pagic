@@ -104,11 +104,7 @@ export default class Pagic {
     plugins: ['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out'],
     watch: false,
     serve: false,
-    port: 8000,
-    md: {
-      anchorLevel: [2, 3, 4, 5, 6],
-      tocLevel: [2, 3]
-    }
+    port: 8000
   };
   // foo.md
   public static REGEXP_PAGE = /[\/\\][^_][^\/\\]*\.(md|tsx)$/;

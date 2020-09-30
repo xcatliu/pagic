@@ -53,7 +53,7 @@ const md: PagicPlugin = {
     })
       .use(markdownItTitle)
       .use(markdownItAnchor, {
-        level: pagic.config.md?.anchorLevel,
+        level: pagic.config.md?.anchorLevel ?? [2, 3, 4, 5, 6],
         slugify,
         permalink: true,
         permalinkSpace: false,
@@ -62,7 +62,7 @@ const md: PagicPlugin = {
       })
       .use(markdownitTocDoneRight, {
         containerClass: 'toc',
-        level: pagic.config.md?.tocLevel,
+        level: pagic.config.md?.tocLevel ?? [2, 3],
         slugify,
         callback: (html: string) => {
           tocHTML = html;
