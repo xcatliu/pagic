@@ -2,7 +2,7 @@
 // http://www.lingoes.net/en/translator/langcode.htm
 
 import i18next from 'https://deno.land/x/i18next@v19.6.3/index.js';
-import { Trans as TransComponent } from '../vendors/react-i18next/Trans.js';
+import { Trans as TransComponent } from 'https://cdn.pagic.org/react-i18next@11.7.3/Trans.js';
 
 import { path, React } from '../../deps.ts';
 import type { PagicPlugin, PagicConfig } from '../Pagic.ts';
