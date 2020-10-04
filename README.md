@@ -12,7 +12,7 @@
 </p>
 <p align="center">
   <a href="https://deno.land">
-    <img src="https://img.shields.io/badge/Deno-1.4.2-brightgreen.svg?logo=deno" alt="deno" />
+    <img src="https://img.shields.io/badge/Deno-1.4.4-brightgreen.svg?logo=deno" alt="deno" />
   </a>
   <a href="https://pagic.org">
     <img src="https://img.shields.io/badge/Pagic-v0.9.7-orange.svg" alt="pagic" />

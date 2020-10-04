@@ -1,7 +1,6 @@
 import type { React } from '../deps.ts';
 // eslint-disable-next-line no-duplicate-imports
 import { fs, path, colors } from '../deps.ts';
-import { Application, send } from 'https://deno.land/x/oak@v6.2.0/mod.ts';
 
 import {
   pick,
@@ -12,7 +11,8 @@ import {
   walk,
   getPagicConfigPath,
   importPlugin,
-  importTheme
+  importTheme,
+  serve
 } from './utils/mod.ts';
 import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 
@@ -187,16 +187,11 @@ export default class Pagic {
   }
 
   private async serve() {
-    const app = new Application();
-
-    app.use(async (ctx) => {
-      await send(ctx, ctx.request.url.pathname.replace(new RegExp(`^${this.config.root}`), '/'), {
-        root: this.config.outDir,
-        index: 'index.html'
-      });
+    serve({
+      serveDir: this.config.outDir,
+      root: this.config.root,
+      port: this.config.port
     });
-
-    app.listen({ port: this.config.port });
     logger.success(
       'Serve',
       colors.underline(this.config.outDir),
