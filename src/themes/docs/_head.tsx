@@ -1,5 +1,5 @@
 import { React } from '../../../deps.ts';
-import ReactHelmet from 'https://dev.jspm.io/react-helmet@6.1.0';
+import ReactHelmet from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
 const { Helmet } = ReactHelmet;
 
 import type { PagicLayout } from '../../Pagic.ts';
