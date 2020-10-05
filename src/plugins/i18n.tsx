@@ -1,7 +1,7 @@
 // ISO Language Code Table
 // http://www.lingoes.net/en/translator/langcode.htm
 
-import i18next from 'https://deno.land/x/i18next@v19.6.3/index.js';
+import i18next from 'https://cdn.pagic.org/i18next@19.8.1/esnext/i18next.development.js';
 import { Trans as TransComponent } from 'https://cdn.pagic.org/react-i18next@11.7.3/Trans.js';
 
 import { path, React } from '../../deps.ts';
