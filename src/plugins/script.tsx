@@ -22,8 +22,11 @@ const script: PagicPlugin = {
 
       pageProps.script = (
         <>
-          <script crossOrigin="anonymous" src="https://unpkg.com/react@16.13.1/umd/react.production.min.js" />
-          <script crossOrigin="anonymous" src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" />
+          <script crossOrigin="anonymous" src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" />
+          <script
+            crossOrigin="anonymous"
+            src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"
+          />
           <script type="module" src={`${pagic.config.root}index.js`} />
         </>
       );
