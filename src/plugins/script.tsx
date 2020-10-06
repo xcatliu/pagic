@@ -1,11 +1,10 @@
-import { fs, path, React } from '../../deps.ts';
+import { fs, path, React, reactElementToJSXString } from '../../deps.ts';
 
 import {
   copyPagicFile,
   compile,
   compileFile,
   compilePagicFile,
-  reactElementToJSXString,
   replaceExt,
   underlineToPascal,
   pick

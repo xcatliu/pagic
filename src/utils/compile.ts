@@ -1,17 +1,14 @@
-import * as ts from 'https://dev.jspm.io/typescript@3.9.3';
-import reactElementToJSXStringModule from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
+import { typescript } from '../../deps.ts';
 
 import { logger } from './common.ts';
 import { pagicRootPath } from './filepath.ts';
-
-export const reactElementToJSXString = (reactElementToJSXStringModule as any).default;
 
 /**
  * Compile input code from tsx to js, by typescript compiler
  * Will replace `.tsx` to `.js` in `import` statement, and remove react and react-dom imports
  */
 export function compile(input: string) {
-  return (ts as any).default
+  return typescript
     .transpileModule(input, {
       compilerOptions: {
         target: 'ES2019',

@@ -1,5 +1,5 @@
 import { React } from '../../../deps.ts';
-import throttle from 'https://dev.jspm.io/lodash@4.17.15/throttle';
+import throttle from 'https://cdn.pagic.org/lodash@4.17.20/esnext/throttle.js';
 
 import type { PagicLayout } from '../../Pagic.ts';
 import Loading from './_loading.tsx';

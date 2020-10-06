@@ -1,7 +1,5 @@
-import { path, React } from '../../deps.ts';
-import fm from 'https://dev.jspm.io/front-matter@4.0.2';
-import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.0';
-import markdownItTitle from 'https://dev.jspm.io/markdown-it-title@3.0.0';
+import { path, React, frontMatter, MarkdownIt } from '../../deps.ts';
+import markdownItTitle from '../vendors/markdown-it-title/index.js';
 import markdownItAnchor from '../vendors/markdown-it-anchor/index.js';
 import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.js';
 import markdownitReplaceLink from '../vendors/markdown-it-replace-link/index.js';
@@ -75,9 +73,9 @@ const md: PagicPlugin = {
       const pageProps = pagic.pagePropsMap[pagePath];
 
       let content = await Deno.readTextFile(path.resolve(pagic.config.srcDir, pagePath));
-      const fmResult = fm(content);
-      const frontMatter = fmResult.attributes;
-      content = fmResult.body;
+      const frontMatterResult = frontMatter(content);
+      const frontMatterProps = frontMatterResult.attributes;
+      content = frontMatterResult.body;
 
       /**
        * Use markdown-it-title to get the title of the page
@@ -96,7 +94,7 @@ const md: PagicPlugin = {
           tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
             <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
           ),
-        ...frontMatter
+        ...frontMatterProps
       };
 
       tocHTML = '';
