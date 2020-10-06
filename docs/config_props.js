@@ -72,8 +72,8 @@ export default {
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#input-and-output">Input and output</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#themes-and-plugins">Themes and plugins</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#page-content">Page content</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li></ol></li><li><a href="#cli-options">Cli options</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav>'

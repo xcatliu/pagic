@@ -69,8 +69,8 @@ export default {
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#%E7%89%B9%E6%80%A7">特性</a><ol><li><a href="#%E9%85%8D%E7%BD%AE%E7%AE%80%E5%8D%95">配置简单</a></li><li><a href="#%E6%94%AF%E6%8C%81-md-%E5%92%8C-tsx">支持 md 和 tsx</a></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a></li></ol></li><li><a href="#%E7%AB%9E%E5%93%81%E5%AF%B9%E6%AF%94">竞品对比</a></li></ol></nav>'

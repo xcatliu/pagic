@@ -69,8 +69,8 @@ export default {
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#features">Features</a><ol><li><a href="#easy-to-configure">Easy to configure</a></li><li><a href="#support-md-and-tsx">Support md and tsx</a></li><li><a href="#themes-and-plugins">Themes and plugins</a></li></ol></li><li><a href="#compare-to-others">Compare to others</a></li></ol></nav>'

@@ -72,8 +72,8 @@ export default {
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://unpkg.com/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#how-to-use">How to use</a><ol><li><a href="#built-in-plugins">Built-in plugins</a></li><li><a href="#official-plugin">Official plugin</a><ol></ol></li><li><a href="#third-party-plugins">Third-party plugins</a></li></ol></li><li><a href="#how-to-develop-a-plugin">How to develop a plugin</a><ol><li><a href="#plugin-structure">Plugin structure</a></li><li><a href="#fn-function">fn function</a></li><li><a href="#reference-official-plugin">Reference official plugin</a></li></ol></li></ol></nav>'
