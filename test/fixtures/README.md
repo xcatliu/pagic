@@ -5,7 +5,7 @@ publicPath: foo/bar.html
 
 # Text Fixtures
 
-```ts
+```
 const foo: number = 1;
 ```
 

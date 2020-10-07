@@ -94,7 +94,7 @@ First of all, the configuration items of the plugin are generally the same as th
 
 Second, we organize some common configuration items into documents. Developers of third-party themes and plugins should refer to [this document](./config.md) as much as possible to avoid conflicts.
 
-Finally, this design actually constrains the developers of third-party themes and plug-ins, so that everyone needs to design configuration items according to the same standard, which means that Pagic's third-party themes and plugins have higher quality and compatibility.
+Finally, this design actually constrains the developers of third-party themes and plugins, so that everyone needs to design configuration items according to the same standard, which means that Pagic's third-party themes and plugins have higher quality and compatibility.
 
 ## How to develop a theme
 

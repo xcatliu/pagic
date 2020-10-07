@@ -70,8 +70,8 @@ export const logger = {
 
 // #region Pagic specific utils
 /**
- * input: [{name:'a'},{name:'b'},{name:'c',insert:'before:b'}]
- * output: [{name:'a'},{name:'c',insert:'before:b'},{name:'b'}]
+ * input:  [{name:'a'}, {name:'b'}, {name:'c',insert:'before:b'}]
+ * output: [{name:'a'}, {name:'c',insert:'before:b'}, {name:'b'}]
  */
 export function sortByInsert<
   T extends {

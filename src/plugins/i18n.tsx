@@ -5,7 +5,7 @@ import i18next from 'https://cdn.pagic.org/i18next@19.8.1/esnext/i18next.js';
 import { Trans as TransComponent } from 'https://cdn.pagic.org/react-i18next@11.7.3/Trans.js';
 
 import { path, React } from '../../deps.ts';
-import type { PagicPlugin, PagicConfig } from '../Pagic.ts';
+import type { PagicPlugin } from '../Pagic.ts';
 import { copyPagicFile } from '../utils/mod.ts';
 
 const i18n: PagicPlugin = {

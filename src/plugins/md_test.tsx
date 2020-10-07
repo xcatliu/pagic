@@ -62,7 +62,7 @@ Deno.test('[md]', async () => {
   asserts.assertEquals(
     pagePropsREADME.content!.props.dangerouslySetInnerHTML.__html,
     `<h1>Text Fixtures</h1>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">const</span> foo<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> foo<span class="token punctuation">:</span> number <span class="token operator">=</span> <span class="token number">1</span><span class="token comment">;</span>
 </code></pre>
 <h2 id="header-2">Header 2<a class="anchor" href="#header-2">§</a></h2>
 <h3 id="header-3">Header 3<a class="anchor" href="#header-3">§</a></h3>

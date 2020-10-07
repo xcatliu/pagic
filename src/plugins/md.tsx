@@ -11,9 +11,9 @@ import { replaceLink } from '../utils/mod.ts';
 import type { PagicPlugin } from '../Pagic.ts';
 
 /** Same with GitHub */
-const slugify = (s: string) =>
+const slugify = (hash: string) =>
   encodeURIComponent(
-    s
+    hash
       .trim()
       .toLowerCase()
       // whitespace

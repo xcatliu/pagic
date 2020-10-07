@@ -2,7 +2,7 @@ import { fs, path, ReactDOMServer } from '../../deps.ts';
 import { Helmet } from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
 
 import type { PagicPlugin } from '../Pagic.ts';
-import { ensureDirAndWriteFileStr, ensureDirAndCopy, copyPagicFile, download } from '../utils/mod.ts';
+import { ensureDirAndWriteTextFile, ensureDirAndCopy, copyPagicFile, download } from '../utils/mod.ts';
 
 const out: PagicPlugin = {
   name: 'out',
@@ -27,7 +27,7 @@ const out: PagicPlugin = {
       if (helmetString !== '<title data-react-helmet="true"></title>') {
         htmlString = htmlString.replace('</head>', `\n${helmetString}\n</head>`);
       }
-      await ensureDirAndWriteFileStr(fullFilePath, htmlString);
+      await ensureDirAndWriteTextFile(fullFilePath, htmlString);
     }
 
     for (const staticPath of pagic.staticPaths) {
@@ -46,7 +46,7 @@ const out: PagicPlugin = {
 
     for (const [filePath, content] of Object.entries(pagic.writeFiles)) {
       const fullFilePath = path.resolve(pagic.config.outDir, filePath);
-      await ensureDirAndWriteFileStr(fullFilePath, content);
+      await ensureDirAndWriteTextFile(fullFilePath, content);
     }
   }
 };

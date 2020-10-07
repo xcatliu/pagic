@@ -3,7 +3,7 @@ import { fs, path } from '../../deps.ts';
 import { logger } from './common.ts';
 import { pagicRootPath } from './filepath.ts';
 
-export async function ensureDirAndWriteFileStr(filename: string, content: string) {
+export async function ensureDirAndWriteTextFile(filename: string, content: string) {
   logger.success('Write', filename);
   await fs.ensureDir(path.dirname(filename));
   await Deno.writeTextFile(filename, content);
