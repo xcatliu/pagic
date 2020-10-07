@@ -8,8 +8,6 @@ import { path, React } from '../../deps.ts';
 import type { PagicPlugin, PagicConfig } from '../Pagic.ts';
 import { copyPagicFile } from '../utils/mod.ts';
 
-let pagicConfig: PagicConfig;
-
 const i18n: PagicPlugin = {
   name: 'i18n',
   insert: 'after:init',
@@ -41,8 +39,6 @@ const i18n: PagicPlugin = {
     }
 
     if (pagic.rebuilding) {
-      pagicConfig = pagic.config;
-
       await i18next.init(
         {
           interpolation: {
