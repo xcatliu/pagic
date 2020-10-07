@@ -72,8 +72,8 @@ export default {
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#md-file">md file</a><ol><li><a href="#title">title</a></li><li><a href="#toc">toc</a></li><li><a href="#anchor-in-title">Anchor in title</a></li><li><a href="#link-replacement">Link replacement</a></li><li><a href="#front-matter">Front matter</a></li><li><a href="#limitations">Limitations</a></li></ol></li><li><a href="#tsx-file">tsx file</a><ol><li><a href="#basic-usage">Basic usage</a></li><li><a href="#logic-script">Logic script</a></li><li><a href="#componentization">Componentization</a></li><li><a href="#front-matter-1">Front matter</a></li><li><a href="#limitations-1">Limitations</a></li></ol></li></ol></nav>'

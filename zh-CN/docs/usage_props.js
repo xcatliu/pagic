@@ -72,8 +72,8 @@ export default {
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
-        React.createElement("script", { crossOrigin: "anonymous", src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
+        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
+        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
             __html: '<nav class="toc"><ol><li><a href="#%E5%AE%89%E8%A3%85">安装</a><ol><li><a href="#%E5%AE%89%E8%A3%85-deno">安装 Deno</a></li><li><a href="#%E5%AE%89%E8%A3%85-pagic">安装 Pagic</a></li><li><a href="#%E9%80%9A%E8%BF%87-docker-%E5%AE%89%E8%A3%85">通过 Docker 安装</a></li></ol></li><li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE">初始化项目</a></li><li><a href="#%E8%BF%90%E8%A1%8C-pagic-%E5%91%BD%E4%BB%A4">运行 pagic 命令</a></li></ol></nav>'
