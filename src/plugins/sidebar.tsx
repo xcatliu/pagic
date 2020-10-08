@@ -8,7 +8,7 @@ export interface PagicConfigSidebar {
 
 export type OnePagicConfigSidebar = (
   | {
-      text?: string;
+      title?: string;
       link?: string;
       children?: OnePagicConfigSidebar;
     }
@@ -16,7 +16,7 @@ export type OnePagicConfigSidebar = (
 )[];
 
 export type PagePropsSidebar = {
-  text: string;
+  title: string;
   link?: string;
   children?: PagePropsSidebar;
   pagePath?: string;
@@ -37,8 +37,7 @@ const sidebar: PagicPlugin = {
         [prefix: string]: PagePropsSidebar;
       } = {};
       for (const [prefix, oneConfig] of Object.entries({
-        ...pagic.config.sidebar,
-        ...(pagic.config.i18n?.overrides?.[pageProps.language?.code as string]?.sidebar as PagicConfigSidebar)
+        ...pagic.getConfig(pagePath).sidebar
       })) {
         parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
       }
@@ -60,15 +59,15 @@ function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic):
   return sidebarConfig.map((sidebarConfigItem) => {
     if (typeof sidebarConfigItem === 'string') {
       return {
-        text: pagic.pagePropsMap[sidebarConfigItem].title,
+        title: pagic.pagePropsMap[sidebarConfigItem].title,
         link: pagic.pagePropsMap[sidebarConfigItem].outputPath,
         pagePath: pagic.pagePropsMap[sidebarConfigItem].pagePath
       };
     }
     // Deep clone
     let item = JSON.parse(JSON.stringify(sidebarConfigItem)) as PagePropsSidebar[0];
-    if (typeof item.text === 'undefined' && typeof item.link !== 'undefined') {
-      item.text = pagic.pagePropsMap[item.link].title;
+    if (typeof item.title === 'undefined' && typeof item.link !== 'undefined') {
+      item.title = pagic.pagePropsMap[item.link].title;
     }
     if (typeof item.link !== 'undefined') {
       item.pagePath = item.link;

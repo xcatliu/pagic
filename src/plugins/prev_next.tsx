@@ -10,13 +10,13 @@ const prev_next: PagicPlugin = {
       let pageProps = pagic.pagePropsMap[pagePath];
       if (typeof pageProps.prev === 'string') {
         pageProps.prev = {
-          text: pagic.pagePropsMap[pageProps.prev].title,
+          title: pagic.pagePropsMap[pageProps.prev].title,
           link: pagic.pagePropsMap[pageProps.prev].outputPath
         };
       }
       if (typeof pageProps.next === 'string') {
         pageProps.next = {
-          text: pagic.pagePropsMap[pageProps.next].title,
+          title: pagic.pagePropsMap[pageProps.next].title,
           link: pagic.pagePropsMap[pageProps.next].outputPath
         };
       }
@@ -51,8 +51,8 @@ function getPrevAndNext(pagePropsSidebar: PagePropsSidebar, pagePath: string) {
     }
   });
   return {
-    prev: pick(prev, ['text', 'link']),
-    next: pick(next, ['text', 'link'])
+    prev: pick(prev, ['title', 'link']),
+    next: pick(next, ['title', 'link'])
   };
 }
 

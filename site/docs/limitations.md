@@ -18,4 +18,4 @@ The latest features used by Pagic include:
 ## Limitations mentioned in other chapters
 
 - [Content#limitations](./content.md#limitations)
-- [Content#limitations-2](./content.md#limitations-2)
+- [Content#limitations-1](./content.md#limitations-1)

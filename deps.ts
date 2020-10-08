@@ -1,8 +1,8 @@
-export * as fs from 'https://deno.land/std@0.72.0/fs/mod.ts';
-export * as path from 'https://deno.land/std@0.72.0/path/mod.ts';
-export * as colors from 'https://deno.land/std@0.72.0/fmt/colors.ts';
-export * as server from 'https://deno.land/std@0.72.0/http/server.ts';
-export * as asserts from 'https://deno.land/std@0.72.0/testing/asserts.ts';
+export * as fs from 'https://deno.land/std@0.74.0/fs/mod.ts';
+export * as path from 'https://deno.land/std@0.74.0/path/mod.ts';
+export * as colors from 'https://deno.land/std@0.74.0/fmt/colors.ts';
+export * as server from 'https://deno.land/std@0.74.0/http/server.ts';
+export * as asserts from 'https://deno.land/std@0.74.0/testing/asserts.ts';
 
 // @deno-types="https://cdn.pagic.org/@types/react@16.9.50/index.d.ts"
 import * as React from 'https://cdn.pagic.org/react@16.13.1/esnext/react.development.js';
@@ -19,8 +19,10 @@ export { React, ReactDOM, ReactDOMServer };
 import frontMatter from 'https://dev.jspm.io/front-matter@4.0.2';
 import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.1';
 import reactElementToJSXStringMod from 'https://dev.jspm.io/react-element-to-jsx-string@14.3.1';
-const reactElementToJSXString = (reactElementToJSXStringMod as any).default;
+const reactElementToJSXString = reactElementToJSXStringMod.default;
+import reactHtmlParserMod from 'https://dev.jspm.io/react-html-parser@2.0.2';
+const reactHtmlParser = reactHtmlParserMod.default;
 import * as typescriptMod from 'https://dev.jspm.io/typescript@4.0.3';
-const typescript = (typescriptMod as any).default;
+const typescript = typescriptMod.default;
 
-export { frontMatter, MarkdownIt, reactElementToJSXString, typescript };
+export { frontMatter, MarkdownIt, reactElementToJSXString, reactHtmlParser, typescript };

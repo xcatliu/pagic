@@ -21,6 +21,7 @@ export default {
     '_loading.tsx',
     '_main.tsx',
     '_popover.tsx',
+    '_posts.tsx',
     '_sidebar.tsx',
     '_tools.tsx',
     '_utils.tsx',

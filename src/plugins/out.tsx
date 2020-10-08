@@ -1,4 +1,4 @@
-import { fs, path, ReactDOMServer } from '../../deps.ts';
+import { fs, path, React, ReactDOMServer } from '../../deps.ts';
 import { Helmet } from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
 
 import type { PagicPlugin } from '../Pagic.ts';

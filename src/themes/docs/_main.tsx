@@ -3,9 +3,10 @@ import throttle from 'https://cdn.pagic.org/lodash@4.17.20/esnext/throttle.js';
 
 import type { PagicLayout } from '../../Pagic.ts';
 import Loading from './_loading.tsx';
+import { dateFormatter } from './_utils.tsx';
 
 const Main: PagicLayout = (props) => {
-  const { config, content, loading, toc, prev, next, gitalk } = props;
+  const { config, content, contentTitle, contentText, blog, author, date, loading, toc, prev, next, gitalk } = props;
 
   React.useEffect(() => {
     if (window.Deno) {
@@ -51,17 +52,29 @@ const Main: PagicLayout = (props) => {
   return (
     <section className="main">
       <div className="main_article">
-        {loading ? <Loading /> : content}
+        {loading ? (
+          <Loading />
+        ) : blog?.isPost ? (
+          <>
+            {contentTitle}
+            <div className="main_post_meta">
+              <time dateTime={date}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
+            </div>
+            {contentText}
+          </>
+        ) : (
+          content
+        )}
         {(prev || next) && (
           <div className="prev_next">
             {prev && (
               <a className="prev button" href={`${config.root}${prev.link}`}>
-                «&nbsp;&nbsp;{prev.text}
+                «&nbsp;&nbsp;{prev.title}
               </a>
             )}
             {next && (
               <a className="next button" href={`${config.root}${next.link}`}>
-                {next.text}&nbsp;&nbsp;»
+                {next.title}&nbsp;&nbsp;»
               </a>
             )}
           </div>

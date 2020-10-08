@@ -1,7 +1,7 @@
 export default {
   srcDir: 'site',
   theme: 'docs',
-  plugins: ['sidebar', 'prev_next', 'i18n'],
+  plugins: ['sidebar', 'prev_next', 'i18n', 'blog'],
   title: 'Pagic',
   description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
   github: 'https://github.com/xcatliu/pagic',
@@ -25,8 +25,8 @@ export default {
       link: '/plugins/'
     },
     {
-      text: 'News',
-      link: '/news/'
+      text: 'Blog',
+      link: '/blog/'
     },
     {
       text: 'About',
@@ -46,6 +46,9 @@ export default {
       'docs/demos.md',
       'docs/limitations.md'
     ]
+  },
+  blog: {
+    path: 'blog/'
   },
   i18n: {
     languages: [
@@ -68,8 +71,8 @@ export default {
             link: '/zh-CN/plugins/'
           },
           {
-            text: '新闻',
-            link: '/zh-CN/news/'
+            text: '博客',
+            link: '/zh-CN/blog/'
           },
           {
             text: '关于',
@@ -89,6 +92,9 @@ export default {
             'zh-CN/docs/demos.md',
             'zh-CN/docs/limitations.md'
           ]
+        },
+        blog: {
+          path: 'zh-CN/blog/'
         }
       }
     },

@@ -19,10 +19,10 @@ jobs:
           deno-version: v1.3.1
 
       - name: Run tests
-        run: deno test --unstable --allow-read --allow-write --allow-net src
+        run: deno test --unstable --allow-read --allow-write --allow-net --allow-run src
 
       - name: Build gh-pages
-        run: deno run --unstable --allow-read --allow-write --allow-net mod.ts build
+        run: deno run --unstable --allow-read --allow-write --allow-net --allow-run mod.ts build
 
       - name: Deploy gh-pages
         if: |

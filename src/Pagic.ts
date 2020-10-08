@@ -151,6 +151,13 @@ export default class Pagic {
     }
   }
 
+  public getConfig(pagePath?: string) {
+    if (typeof pagePath === 'undefined') {
+      return this.config;
+    }
+    return this.pagePropsMap[pagePath].config;
+  }
+
   private async rebuild() {
     this.rebuilding = true;
     this.pagePropsMap = {};

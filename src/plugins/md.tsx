@@ -1,4 +1,4 @@
-import { path, React, frontMatter, MarkdownIt } from '../../deps.ts';
+import { path, React, frontMatter, MarkdownIt, reactHtmlParser } from '../../deps.ts';
 import markdownItTitle from '../vendors/markdown-it-title/index.js';
 import markdownItAnchor from '../vendors/markdown-it-anchor/index.js';
 import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.js';
@@ -6,7 +6,7 @@ import markdownitReplaceLink from '../vendors/markdown-it-replace-link/index.js'
 import markdownitHighlightLines from '../vendors/markdown-it-highlight-lines/index.js';
 
 import Prism from '../vendors/prism/mod.ts';
-import { replaceLink } from '../utils/mod.ts';
+import { replaceLink, getGitLog } from '../utils/mod.ts';
 
 import type { PagicPlugin } from '../Pagic.ts';
 
@@ -83,17 +83,26 @@ const md: PagicPlugin = {
        */
       const env: any = {};
       const contentHTML = mdRenderer.render(content, env).trim();
+      const contentTitleHTML = contentHTML.match(/^<h1[ >].*?<\/h1>/)?.[0];
+      const contentTextHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '');
       const title = env.title;
+      const { date, updated, author, contributors } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
         title,
         content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
+        contentTitle: reactHtmlParser(contentTitleHTML)[0],
+        contentText: <article dangerouslySetInnerHTML={{ __html: contentTextHTML }} />,
         // Set to null if toc is empty
         toc:
           tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
             <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
           ),
+        date,
+        updated,
+        author,
+        contributors,
         ...frontMatterProps
       };
 

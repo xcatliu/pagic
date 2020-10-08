@@ -8,11 +8,11 @@
   A static site generator powered by Deno + React
 </h3>
 <p align="center">
-  <a href="https://pagic.org/zh-CN">简体中文</a> | <a href="https://pagic.org">Website</a> | <a href="https://pagic.org/docs/introduction.html">Docs</a> | <a href="https://pagic.org/docs/config.html">Config</a> | <a href="#demos">Demos</a> | <a href="https://pagic.org/themes/">Themes</a> | <a href="https://pagic.org/plugins/">Plugins</a> | <a href="https://pagic.org/news/">News</a>
+  <a href="https://pagic.org/zh-CN">简体中文</a> | <a href="https://pagic.org">Website</a> | <a href="https://pagic.org/docs/introduction.html">Docs</a> | <a href="https://pagic.org/docs/config.html">Config</a> | <a href="#demos">Demos</a> | <a href="https://pagic.org/themes/">Themes</a> | <a href="https://pagic.org/plugins/">Plugins</a> | <a href="https://pagic.org/blog/">Blog</a>
 </p>
 <p align="center">
   <a href="https://deno.land">
-    <img src="https://img.shields.io/badge/Deno-1.4.4-brightgreen.svg?logo=deno" alt="deno" />
+    <img src="https://img.shields.io/badge/Deno-1.4.5-brightgreen.svg?logo=deno" alt="deno" />
   </a>
   <a href="https://pagic.org">
     <img src="https://img.shields.io/badge/Pagic-v0.9.8-orange.svg" alt="pagic" />
@@ -90,7 +90,7 @@ pagic build --watch --serve
 - Read the [documentation](https://pagic.org/docs/introduction.html)
 - [Configura](https://pagic.org/docs/config.html) your site
 - Checkout the [theme list](https://pagic.org/themes/) and the [plugin list](https://pagic.org/plugins/)
-- See [news](https://pagic.org/news/) about Pagic
+- Read the [blog](https://pagic.org/blog/) of Pagic
 
 ## LICENSE
 

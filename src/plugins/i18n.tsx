@@ -22,19 +22,21 @@ const i18n: PagicPlugin = {
         pagic.config.i18n.languages.slice(1).find(({ path }) => pagePath.startsWith(path)) ??
         pagic.config.i18n.languages[0];
 
+      const config = {
+        ...pagic.config,
+        ...pagic.config.i18n.overrides?.[language.code]
+      };
+
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
         language,
+        config,
         head: (
           <>
-            {pageProps.head}
+            {config.head}
             <script type="module" src={`${pagic.config.root}i18n.js`} />
           </>
-        ),
-        config: {
-          ...pagic.config,
-          ...pagic.config.i18n.overrides?.[language.code]
-        }
+        )
       };
     }
 

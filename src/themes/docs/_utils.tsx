@@ -21,3 +21,13 @@ export function classnames(
   }
   return unique(classList).join(' ');
 }
+
+export const dateFormatter = {
+  'YYYY-MM-DD': (date: Date | string) => {
+    const d = new Date(date);
+    const YYYY = d.getFullYear().toString();
+    const MM = `0${d.getMonth() + 1}`.slice(-2);
+    const DD = `0${d.getDate() + 1}`.slice(-2);
+    return `${YYYY}-${MM}-${DD}`;
+  }
+};
