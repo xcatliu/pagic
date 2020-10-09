@@ -8,6 +8,9 @@ export default {
     'outputPath': "index.html",
     'title': "",
     'content': React.createElement(IndexPage, { config: {
+            blog: {
+                path: 'blog/'
+            },
             description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
             exclude: [
                 '**/.*',
@@ -37,6 +40,9 @@ export default {
                 ],
                 overrides: {
                     'zh-CN': {
+                        blog: {
+                            path: 'zh-CN/blog/'
+                        },
                         nav: [
                             {
                                 link: '/zh-CN/docs/introduction.html',
@@ -51,8 +57,8 @@ export default {
                                 text: '插件'
                             },
                             {
-                                link: '/zh-CN/news/',
-                                text: '新闻'
+                                link: '/zh-CN/blog/',
+                                text: '博客'
                             },
                             {
                                 link: '/zh-CN/about/',
@@ -116,8 +122,8 @@ export default {
                     text: 'Plugins'
                 },
                 {
-                    link: '/news/',
-                    text: 'News'
+                    link: '/blog/',
+                    text: 'Blog'
                 },
                 {
                     link: '/about/',
@@ -135,7 +141,8 @@ export default {
                 'out',
                 'sidebar',
                 'prev_next',
-                'i18n'
+                'i18n',
+                'blog'
             ],
             port: 8000,
             root: '/',
@@ -175,5 +182,25 @@ export default {
         "code": "en",
         "name": "English",
         "path": ""
+    },
+    'blog': {
+        "isPost": false,
+        "isPosts": false,
+        "posts": [
+            {
+                "pagePath": "blog/second_blog.md",
+                "title": "Second Blog",
+                "link": "blog/second_blog.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            },
+            {
+                "pagePath": "blog/first_blog.md",
+                "title": "First Blog",
+                "link": "blog/first_blog.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            }
+        ]
     }
 };

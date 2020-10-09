@@ -20,5 +20,35 @@ export default {
         "code": "en",
         "name": "English",
         "path": ""
+    },
+    'contentTitle': React.createElement("h1", { key: "0" }, "Plugins"),
+    'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: ''
+        } }),
+    'date': "2020-10-08T16:28:03.000Z",
+    'updated': null,
+    'author': "xcatliu",
+    'contributors': [
+        "xcatliu"
+    ],
+    'blog': {
+        "isPost": false,
+        "isPosts": false,
+        "posts": [
+            {
+                "pagePath": "blog/second_blog.md",
+                "title": "Second Blog",
+                "link": "blog/second_blog.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            },
+            {
+                "pagePath": "blog/first_blog.md",
+                "title": "First Blog",
+                "link": "blog/first_blog.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            }
+        ]
     }
 };

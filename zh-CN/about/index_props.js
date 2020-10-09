@@ -20,5 +20,28 @@ export default {
         "code": "zh-CN",
         "name": "简体中文",
         "path": "zh-CN/"
+    },
+    'contentTitle': React.createElement("h1", { key: "0" }, "\u5173\u4E8E"),
+    'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: ''
+        } }),
+    'date': "2020-10-08T16:28:03.000Z",
+    'updated': null,
+    'author': "xcatliu",
+    'contributors': [
+        "xcatliu"
+    ],
+    'blog': {
+        "isPost": false,
+        "isPosts": false,
+        "posts": [
+            {
+                "pagePath": "zh-CN/blog/test.md",
+                "title": "Test",
+                "link": "zh-CN/blog/test.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            }
+        ]
     }
 };

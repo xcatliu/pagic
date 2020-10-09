@@ -282,6 +282,34 @@ h6:hover .anchor {
 }
 /* #endregion */
 
+/* #region Posts */
+.main_posts {
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+}
+.main_posts a {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+.main_posts li {
+  margin: 0.5rem 0 0;
+}
+.main_posts time {
+  color: var(--color-text-muted);
+  margin-right: 1rem;
+  font-size: var(--font-size-small);
+}
+/* #endregion */
+
+/* #region Post */
+.main_post_meta {
+  margin: 1rem 0 2rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+/* #endregion */
+
 /* #region Toc */
 .main_toc_container {
   width: calc(var(--width-toc) + 2rem);

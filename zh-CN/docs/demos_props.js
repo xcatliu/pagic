@@ -2,61 +2,61 @@ import projectConfig from '/pagic.config.js';
 var _a, _b;
 export default {
     'prev': {
-        "text": "部署",
+        "title": "部署",
         "link": "zh-CN/docs/deployment.html"
     },
     'next': {
-        "text": "局限性",
+        "title": "局限性",
         "link": "zh-CN/docs/limitations.html"
     },
     'sidebar': [
         {
-            "text": "介绍",
+            "title": "介绍",
             "link": "zh-CN/docs/introduction.html",
             "pagePath": "zh-CN/docs/introduction.md"
         },
         {
-            "text": "基本用法",
+            "title": "基本用法",
             "link": "zh-CN/docs/usage.html",
             "pagePath": "zh-CN/docs/usage.md"
         },
         {
-            "text": "配置文件",
+            "title": "配置文件",
             "link": "zh-CN/docs/config.html",
             "pagePath": "zh-CN/docs/config.md"
         },
         {
-            "text": "页面内容",
+            "title": "页面内容",
             "link": "zh-CN/docs/content.html",
             "pagePath": "zh-CN/docs/content.md"
         },
         {
-            "text": "_layout.tsx",
+            "title": "_layout.tsx",
             "link": "zh-CN/docs/layout.html",
             "pagePath": "zh-CN/docs/layout.md"
         },
         {
-            "text": "主题",
+            "title": "主题",
             "link": "zh-CN/docs/themes.html",
             "pagePath": "zh-CN/docs/themes.md"
         },
         {
-            "text": "插件",
+            "title": "插件",
             "link": "zh-CN/docs/plugins.html",
             "pagePath": "zh-CN/docs/plugins.md"
         },
         {
-            "text": "部署",
+            "title": "部署",
             "link": "zh-CN/docs/deployment.html",
             "pagePath": "zh-CN/docs/deployment.md"
         },
         {
-            "text": "示例网站",
+            "title": "示例网站",
             "link": "zh-CN/docs/demos.html",
             "pagePath": "zh-CN/docs/demos.md"
         },
         {
-            "text": "局限性",
+            "title": "局限性",
             "link": "zh-CN/docs/limitations.html",
             "pagePath": "zh-CN/docs/limitations.md"
         }
@@ -80,5 +80,28 @@ export default {
         "code": "zh-CN",
         "name": "简体中文",
         "path": "zh-CN/"
+    },
+    'contentTitle': React.createElement("h1", { key: "0" }, "\u793A\u4F8B\u7F51\u7AD9"),
+    'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: '\n<ul>\n<li><a href="https://yoshixmk.github.io/deno-x-ranking/">Deno X ranking</a> (<a href="https://github.com/yoshixmk/deno-x-ranking">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n<li><a href="https://deno-tutorial.js.org/">Deno 钻研之术</a> (<a href="https://github.com/hylerrix/deno-tutorial">GitHub</a>)</li>\n<li><a href="https://manual.deno.js.cn/">Deno 中文手册</a> (<a href="https://github.com/denocn/deno_manual">GitHub</a>)</li>\n<li><a href="https://cn.history.js.org/">JavaScript 20 年</a> (<a href="https://github.com/doodlewind/jshistory-cn">GitHub</a>)</li>\n<li><a href="https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&amp;labels=demo&amp;template=add-a-demo.md&amp;title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com">Add my site as a demo</a> 😝</li>\n</ul>'
+        } }),
+    'date': "2020-10-08T16:28:03.000Z",
+    'updated': null,
+    'author': "xcatliu",
+    'contributors': [
+        "xcatliu"
+    ],
+    'blog': {
+        "isPost": false,
+        "isPosts": false,
+        "posts": [
+            {
+                "pagePath": "zh-CN/blog/test.md",
+                "title": "Test",
+                "link": "zh-CN/blog/test.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            }
+        ]
     }
 };

@@ -8,6 +8,9 @@ export default {
     'outputPath': "zh-CN/index.html",
     'title': "",
     'content': React.createElement(IndexPage, { config: {
+            blog: {
+                path: 'zh-CN/blog/'
+            },
             description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
             exclude: [
                 '**/.*',
@@ -37,6 +40,9 @@ export default {
                 ],
                 overrides: {
                     'zh-CN': {
+                        blog: {
+                            path: 'zh-CN/blog/'
+                        },
                         nav: [
                             {
                                 link: '/zh-CN/docs/introduction.html',
@@ -51,8 +57,8 @@ export default {
                                 text: '插件'
                             },
                             {
-                                link: '/zh-CN/news/',
-                                text: '新闻'
+                                link: '/zh-CN/blog/',
+                                text: '博客'
                             },
                             {
                                 link: '/zh-CN/about/',
@@ -116,8 +122,8 @@ export default {
                     text: '插件'
                 },
                 {
-                    link: '/zh-CN/news/',
-                    text: '新闻'
+                    link: '/zh-CN/blog/',
+                    text: '博客'
                 },
                 {
                     link: '/zh-CN/about/',
@@ -135,7 +141,8 @@ export default {
                 'out',
                 'sidebar',
                 'prev_next',
-                'i18n'
+                'i18n',
+                'blog'
             ],
             port: 8000,
             root: '/',
@@ -175,5 +182,18 @@ export default {
         "code": "zh-CN",
         "name": "简体中文",
         "path": "zh-CN/"
+    },
+    'blog': {
+        "isPost": false,
+        "isPosts": false,
+        "posts": [
+            {
+                "pagePath": "zh-CN/blog/test.md",
+                "title": "Test",
+                "link": "zh-CN/blog/test.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            }
+        ]
     }
 };

@@ -1,13 +1,13 @@
 import projectConfig from '/pagic.config.js';
 var _a, _b;
 export default {
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
-    'pagePath': "zh-CN/plugins/README.md",
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['en'] },
+    'pagePath': "blog/second_blog.md",
     'layoutPath': "_layout.tsx",
-    'outputPath': "zh-CN/plugins/index.html",
-    'title': "插件",
+    'outputPath': "blog/second_blog.html",
+    'title': "Second Blog",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>插件</h1>'
+            __html: '<h1>Second Blog</h1>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
@@ -17,11 +17,11 @@ export default {
         React.createElement("script", { src: "/index.js", type: "module" })),
     'toc': null,
     'language': {
-        "code": "zh-CN",
-        "name": "简体中文",
-        "path": "zh-CN/"
+        "code": "en",
+        "name": "English",
+        "path": ""
     },
-    'contentTitle': React.createElement("h1", { key: "0" }, "\u63D2\u4EF6"),
+    'contentTitle': React.createElement("h1", { key: "0" }, "Second Blog"),
     'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: ''
         } }),
@@ -32,13 +32,20 @@ export default {
         "xcatliu"
     ],
     'blog': {
-        "isPost": false,
+        "isPost": true,
         "isPosts": false,
         "posts": [
             {
-                "pagePath": "zh-CN/blog/test.md",
-                "title": "Test",
-                "link": "zh-CN/blog/test.html",
+                "pagePath": "blog/second_blog.md",
+                "title": "Second Blog",
+                "link": "blog/second_blog.html",
+                "date": "2020-10-08T16:28:03.000Z",
+                "updated": null
+            },
+            {
+                "pagePath": "blog/first_blog.md",
+                "title": "First Blog",
+                "link": "blog/first_blog.html",
                 "date": "2020-10-08T16:28:03.000Z",
                 "updated": null
             }
