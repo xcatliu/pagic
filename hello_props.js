@@ -191,14 +191,14 @@ export default {
                 "pagePath": "blog/second_blog.md",
                 "title": "Second Blog",
                 "link": "blog/second_blog.html",
-                "date": "2020-10-08T16:28:03.000Z",
+                "date": "2020-10-10T02:32:28.000Z",
                 "updated": null
             },
             {
                 "pagePath": "blog/first_blog.md",
                 "title": "First Blog",
                 "link": "blog/first_blog.html",
-                "date": "2020-10-08T16:28:03.000Z",
+                "date": "2020-10-10T02:32:28.000Z",
                 "updated": null
             }
         ]

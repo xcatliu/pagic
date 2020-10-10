@@ -27,7 +27,7 @@ export default {
     'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '\n<p>hello</p>\n<p>world</p>\n<h2 id="title2">Title2<a class="anchor" href="#title2">§</a></h2>\n<p>title2 hello</p>\n<p>title2 world</p>\n<h3 id="title3">title3<a class="anchor" href="#title3">§</a></h3>\n<p>title2 world\ntitle2 world\ntitle2 world</p>'
         } }),
-    'date': "2020-10-08T16:28:03.000Z",
+    'date': "2020-10-10T02:32:28.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
@@ -41,7 +41,7 @@ export default {
                 "pagePath": "zh-CN/blog/test.md",
                 "title": "Test",
                 "link": "zh-CN/blog/test.html",
-                "date": "2020-10-08T16:28:03.000Z",
+                "date": "2020-10-10T02:32:28.000Z",
                 "updated": null
             }
         ]

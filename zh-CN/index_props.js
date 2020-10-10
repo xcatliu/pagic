@@ -191,7 +191,7 @@ export default {
                 "pagePath": "zh-CN/blog/test.md",
                 "title": "Test",
                 "link": "zh-CN/blog/test.html",
-                "date": "2020-10-08T16:28:03.000Z",
+                "date": "2020-10-10T02:32:28.000Z",
                 "updated": null
             }
         ]
