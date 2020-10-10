@@ -1,4 +1,4 @@
-import { React } from './deps.ts';
+// import { React } from './deps.ts';
 
 export default {
   srcDir: 'site',
@@ -7,12 +7,12 @@ export default {
   title: 'Pagic',
   description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
   github: 'https://github.com/xcatliu/pagic',
-  head: (
-    <>
-      <script src="https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" />
-      <script dangerouslySetInnerHTML={{ __html: 'var vConsole = new VConsole();' }} />
-    </>
-  ),
+  // head: (
+  //   <>
+  //     <script src="https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" />
+  //     <script dangerouslySetInnerHTML={{ __html: 'var vConsole = new VConsole();' }} />
+  //   </>
+  // ),
   nav: [
     {
       text: 'Docs',
