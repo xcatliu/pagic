@@ -10,11 +10,6 @@ export default {
             __html: '<h1>Test</h1>\n<p>hello</p>\n<p>world</p>\n<h2 id="title2">Title2<a class="anchor" href="#title2">§</a></h2>\n<p>title2 hello</p>\n<p>title2 world</p>\n<h3 id="title3">title3<a class="anchor" href="#title3">§</a></h3>\n<p>title2 world\ntitle2 world\ntitle2 world</p>'
         } }),
     'head': React.createElement(React.Fragment, null,
-        React.createElement(React.Fragment, { key: ".0" },
-            React.createElement("script", { src: "https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" }),
-            React.createElement("script", { dangerouslySetInnerHTML: {
-                    __html: 'var vConsole = new VConsole();'
-                } })),
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
@@ -32,7 +27,7 @@ export default {
     'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '\n<p>hello</p>\n<p>world</p>\n<h2 id="title2">Title2<a class="anchor" href="#title2">§</a></h2>\n<p>title2 hello</p>\n<p>title2 world</p>\n<h3 id="title3">title3<a class="anchor" href="#title3">§</a></h3>\n<p>title2 world\ntitle2 world\ntitle2 world</p>'
         } }),
-    'date': "2020-10-10T02:57:18.000Z",
+    'date': "2020-10-10T03:17:50.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
@@ -46,7 +41,7 @@ export default {
                 "pagePath": "zh-CN/blog/test.md",
                 "title": "Test",
                 "link": "zh-CN/blog/test.html",
-                "date": "2020-10-10T02:57:18.000Z",
+                "date": "2020-10-10T03:17:50.000Z",
                 "updated": null
             }
         ]

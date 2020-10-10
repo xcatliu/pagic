@@ -87,7 +87,10 @@ async function rerender(
     if (!hash) {
       window.scrollTo(0, 0);
     } else {
-      document.getElementById(hash.slice(1))?.scrollIntoView();
+      const element = document.getElementById(hash.slice(1));
+      if (element) {
+        element.scrollIntoView();
+      }
     }
     window.dispatchEvent(new Event('rerender'));
   }
