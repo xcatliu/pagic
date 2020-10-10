@@ -2,7 +2,7 @@ import throttle from 'https://cdn.pagic.org/lodash@4.17.20/esnext/throttle.js';
 import Loading from './_loading.js';
 import { dateFormatter } from './_utils.js';
 const Main = (props) => {
-    const { config, content, contentTitle, contentText, blog, author, date, loading, toc, prev, next, gitalk } = props;
+    const { config, content, contentTitle, contentBody, blog, author, date, loading, toc, prev, next, gitalk } = props;
     React.useEffect(() => {
         if (window.Deno) {
             return;
@@ -54,7 +54,7 @@ const Main = (props) => {
                 React.createElement("div", { className: "main_post_meta" },
                     React.createElement("time", { dateTime: date }, dateFormatter['YYYY-MM-DD'](date)),
                     " \u00B7 ", author !== null && author !== void 0 ? author : 'unknown'),
-                contentText)) : (content),
+                contentBody)) : (content),
             (prev || next) && (React.createElement("div", { className: "prev_next" },
                 prev && (React.createElement("a", { className: "prev button", href: `${config.root}${prev.link}` },
                     "\u00AB\u00A0\u00A0",

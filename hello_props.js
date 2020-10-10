@@ -165,12 +165,14 @@ export default {
             theme: 'docs',
             title: 'Pagic',
             watch: false
-        }, content: null, head: React.createElement(React.Fragment, null,
+        }, content: null, contentBody: null, contentTitle: null, head: React.createElement(React.Fragment, null,
             React.createElement("script", { src: "/i18n.js", type: "module" })), language: {
             code: 'en',
             name: 'English',
             path: ''
         }, layoutPath: "_layout.tsx", outputPath: "hello.html", pagePath: "hello.tsx", script: null, title: "", toc: null }),
+    'contentTitle': null,
+    'contentBody': null,
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
@@ -188,17 +190,10 @@ export default {
         "isPosts": false,
         "posts": [
             {
-                "pagePath": "blog/second_blog.md",
-                "title": "Second Blog",
-                "link": "blog/second_blog.html",
-                "date": "2020-10-10T03:17:50.000Z",
-                "updated": null
-            },
-            {
-                "pagePath": "blog/first_blog.md",
-                "title": "First Blog",
-                "link": "blog/first_blog.html",
-                "date": "2020-10-10T03:17:50.000Z",
+                "pagePath": "blog/design_pagic_config_ts.md",
+                "title": "Design pagic.config.ts",
+                "link": "blog/design_pagic_config_ts.html",
+                "date": "2020-07-12T00:00:00.000Z",
                 "updated": null
             }
         ]

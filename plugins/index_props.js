@@ -9,6 +9,10 @@ export default {
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '<h1>Plugins</h1>'
         } }),
+    'contentTitle': React.createElement("h1", { key: "0" }, "Plugins"),
+    'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: ''
+        } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
@@ -21,11 +25,7 @@ export default {
         "name": "English",
         "path": ""
     },
-    'contentTitle': React.createElement("h1", { key: "0" }, "Plugins"),
-    'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: ''
-        } }),
-    'date': "2020-10-10T03:17:50.000Z",
+    'date': "2020-10-10T13:43:58.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
@@ -36,17 +36,10 @@ export default {
         "isPosts": false,
         "posts": [
             {
-                "pagePath": "blog/second_blog.md",
-                "title": "Second Blog",
-                "link": "blog/second_blog.html",
-                "date": "2020-10-10T03:17:50.000Z",
-                "updated": null
-            },
-            {
-                "pagePath": "blog/first_blog.md",
-                "title": "First Blog",
-                "link": "blog/first_blog.html",
-                "date": "2020-10-10T03:17:50.000Z",
+                "pagePath": "blog/design_pagic_config_ts.md",
+                "title": "Design pagic.config.ts",
+                "link": "blog/design_pagic_config_ts.html",
+                "date": "2020-07-12T00:00:00.000Z",
                 "updated": null
             }
         ]

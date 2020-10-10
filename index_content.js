@@ -63,67 +63,69 @@ h2 {
   }
 }
 `;
-const IndexPage = ({ language }) => (React.createElement(React.Fragment, null,
-    React.createElement("div", null,
-        React.createElement("style", { dangerouslySetInnerHTML: { __html: style } }),
-        React.createElement("h1", { style: {
-                marginTop: '3.5rem',
-                textAlign: 'center',
-                fontSize: '64px',
-                color: 'hsl(210, 70%, 50%)'
+const IndexPage = ({ config, language }) => {
+    var _a, _b;
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", null,
+            React.createElement("style", { dangerouslySetInnerHTML: { __html: style } }),
+            React.createElement("h1", { style: {
+                    marginTop: '3.5rem',
+                    textAlign: 'center',
+                    fontSize: '64px',
+                    color: 'hsl(210, 70%, 50%)'
+                } },
+                React.createElement("img", { src: "/assets/pagic_logo.png", style: {
+                        width: 128,
+                        verticalAlign: 'bottom',
+                        margin: -16,
+                        opacity: 1
+                    } }),
+                "agic"),
+            React.createElement("p", { style: {
+                    fontSize: '28px',
+                    marginTop: '2rem',
+                    textAlign: 'center',
+                    color: 'var(--color-text-muted)'
+                } }, t('A static site generator powered by Deno + React')),
+            React.createElement("div", { style: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '2rem'
+                } },
+                React.createElement("a", { className: "btn btn-primary", href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.path) !== null && _a !== void 0 ? _a : ''}docs/introduction.html` }, t('Get Started')),
+                React.createElement("a", { className: "btn", href: `${config.root}${(_b = language === null || language === void 0 ? void 0 : language.path) !== null && _b !== void 0 ? _b : ''}docs/demos.html` }, t('Demos')))),
+        React.createElement("div", { className: "cards" },
+            React.createElement("div", null,
+                React.createElement("h2", null, t('Easy to configure')),
+                React.createElement("ul", null,
+                    React.createElement("li", null, t('Convention over configuration')),
+                    React.createElement("li", null,
+                        t('Single config file'),
+                        " ",
+                        React.createElement("code", null, "pagic.config.ts")),
+                    React.createElement("li", null, t('Intuitive design')))),
+            React.createElement("div", null,
+                React.createElement("h2", null, t('Support md and tsx')),
+                React.createElement("ul", null,
+                    React.createElement("li", null,
+                        React.createElement(Trans, null,
+                            "Render ",
+                            React.createElement("code", null, "md/tsx"),
+                            " to static HTML page")),
+                    React.createElement("li", null, t('Support React Hooks')),
+                    React.createElement("li", null, t('Pre-render to static HTML, run as an SPA once loaded')))),
+            React.createElement("div", null,
+                React.createElement("h2", null, t('Themes and plugins')),
+                React.createElement("ul", null,
+                    React.createElement("li", null, t('Official themes default/docs/blog with dark mode')),
+                    React.createElement("li", null, t('Combine plugins to build process')),
+                    React.createElement("li", null, t('Import third-party themes or plugins through URL'))))),
+        React.createElement("h2", null, t('Get up and running in seconds')),
+        React.createElement("pre", { style: {
+                fontSize: '1rem'
             } },
-            React.createElement("img", { src: "/assets/pagic_logo.png", style: {
-                    width: 128,
-                    verticalAlign: 'bottom',
-                    margin: -16,
-                    opacity: 1
-                } }),
-            "agic"),
-        React.createElement("p", { style: {
-                fontSize: '28px',
-                marginTop: '2rem',
-                textAlign: 'center',
-                color: 'var(--color-text-muted)'
-            } }, t('A static site generator powered by Deno + React')),
-        React.createElement("div", { style: {
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '2rem'
-            } },
-            React.createElement("a", { className: "btn btn-primary", href: `/${language.path}docs/introduction.html` }, t('Get Started')),
-            React.createElement("a", { className: "btn", href: `/${language.path}docs/demos.html` }, t('Demos')))),
-    React.createElement("div", { className: "cards" },
-        React.createElement("div", null,
-            React.createElement("h2", null, t('Easy to configure')),
-            React.createElement("ul", null,
-                React.createElement("li", null, t('Convention over configuration')),
-                React.createElement("li", null,
-                    t('Single config file'),
-                    " ",
-                    React.createElement("code", null, "pagic.config.ts")),
-                React.createElement("li", null, t('Intuitive design')))),
-        React.createElement("div", null,
-            React.createElement("h2", null, t('Support md and tsx')),
-            React.createElement("ul", null,
-                React.createElement("li", null,
-                    React.createElement(Trans, null,
-                        "Render ",
-                        React.createElement("code", null, "md/tsx"),
-                        " to static HTML page")),
-                React.createElement("li", null, t('Support React Hooks')),
-                React.createElement("li", null, t('Pre-render to static HTML, run as an SPA once loaded')))),
-        React.createElement("div", null,
-            React.createElement("h2", null, t('Themes and plugins')),
-            React.createElement("ul", null,
-                React.createElement("li", null, t('Official themes default/docs/blog with dark mode')),
-                React.createElement("li", null, t('Combine plugins to build process')),
-                React.createElement("li", null, t('Import third-party themes or plugins through URL'))))),
-    React.createElement("h2", null, t('Get up and running in seconds')),
-    React.createElement("pre", { style: {
-            fontSize: '1rem'
-        } },
-        React.createElement("code", { dangerouslySetInnerHTML: {
-                __html: `# ${t('Install pagic')}
+            React.createElement("code", { dangerouslySetInnerHTML: {
+                    __html: `# ${t('Install pagic')}
 deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
 
 # ${t('Create pagic.config.ts and README.md')}
@@ -131,5 +133,6 @@ mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# 
 
 # ${t('Run pagic')}
 pagic build --watch --serve`
-            } }))));
+                } }))));
+};
 export default IndexPage;

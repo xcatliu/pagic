@@ -9,6 +9,10 @@ export default {
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '<h1>插件</h1>'
         } }),
+    'contentTitle': React.createElement("h1", { key: "0" }, "\u63D2\u4EF6"),
+    'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
+            __html: ''
+        } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
@@ -21,11 +25,7 @@ export default {
         "name": "简体中文",
         "path": "zh-CN/"
     },
-    'contentTitle': React.createElement("h1", { key: "0" }, "\u63D2\u4EF6"),
-    'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: ''
-        } }),
-    'date': "2020-10-10T03:17:50.000Z",
+    'date': "2020-10-10T13:43:58.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
@@ -36,10 +36,10 @@ export default {
         "isPosts": false,
         "posts": [
             {
-                "pagePath": "zh-CN/blog/test.md",
-                "title": "Test",
-                "link": "zh-CN/blog/test.html",
-                "date": "2020-10-10T03:17:50.000Z",
+                "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
+                "title": "设计 pagic.config.ts",
+                "link": "zh-CN/blog/design_pagic_config_ts.html",
+                "date": "2020-07-12T00:00:00.000Z",
                 "updated": null
             }
         ]

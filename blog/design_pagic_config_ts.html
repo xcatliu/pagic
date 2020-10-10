@@ -1,0 +1,371 @@
+<!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="The easiest way to generate static HTML page from markdown, built with Deno! 🦕"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Design pagic.config.ts · Pagic</title>
+<link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/blog/">Blog</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><section class="main"><div class="main_article"><h1>Design pagic.config.ts</h1><div class="main_post_meta"><time dateTime="Sun Jul 12 2020 00:00:00 GMT+0000 (UTC)">2020-07-13</time> · <!-- -->xcatliu</div><article><blockquote>
+<p>Part of the content in this article may be out of date. Visit <a href="../docs/config.html">Config</a> to view the latest configuration fields.</p>
+</blockquote>
+<p>As a <del>senior markdown engineer</del> senior blogger, I am passionate about <del>blogging</del> to develop blog systems and have written many blog themes.</p>
+<p>Finally, I couldn't be satisfied with writing themes, and I started writing a blog system.</p>
+<p>Or in a more general sense, a static website generator.</p>
+<p>Now <a href="https://github.com/xcatliu/pagic">Pagic</a> has completed a prototype, I also invited some friends to try it out, after some iterations, I decided to redesign <code>pagic.config.ts</code>, after all, as a static website generator, most users only need to configure the <code>pagic.config.ts</code> to build a website, so the design of the configuration file is very important.</p>
+<h2 id="design-principles">Design principles<a class="anchor" href="#design-principles">§</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Convention_over_configuration">Convention over configuration</a></li>
+<li>As semantically as possible, clear at a glance</li>
+<li>The type is uniform, no options can pass both strings and functions</li>
+<li>Reference: <a href="https://deno.land/manual/contributing/style_guide">Deno</a>, <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">tsconfig.json</a>, <a href="https://webpack.js.org/configuration/">webpack</a>, <a href="https://hexo.io/zh-cn/docs/configuration">Hexo</a>, <a href="https://vuepress.vuejs.org/config/">VuePress</a>, <a href="https://gohugo.io/getting-started/configuration/">Hugo</a></li>
+</ol>
+<h2 id="naming-convention">Naming convention<a class="anchor" href="#naming-convention">§</a></h2>
+<h3 id="file-name-and-directory-name">File name and directory name<a class="anchor" href="#file-name-and-directory-name">§</a></h3>
+<p>Use underscore naming convention <code>foo_bar/baz_v2.md</code>。</p>
+<p>In accordance with: <a href="https://deno.land/manual/contributing/style_guide#use-underscores-not-dashes-in-filenames">Deno style guide</a></p>
+<h3 id="variables-and-parameters">Variables and parameters<a class="anchor" href="#variables-and-parameters">§</a></h3>
+<p>Use camel case naming convention <code>fooBar</code>。</p>
+<p>In accordance with: <a href="https://deno.land/manual/contributing/style_guide#exported-functions-max-2-args-put-the-rest-into-an-options-object">Deno style guide</a></p>
+<h3 id="config-file-name">Config file name<a class="anchor" href="#config-file-name">§</a></h3>
+<p><code>pagic.config.tsx</code> or <code>pagic.config.ts</code>.</p>
+<ul>
+<li>The priority of <code>pagic.config.tsx</code> is higher (In accordance with: <a href="https://webpack.js.org/configuration/resolve/#resolveextensions">webpack default loading order</a>)</li>
+<li>Why provide <code>tsx</code> and <code>ts</code>? Why not unified into <code>ts</code>? Because once the jsx syntax is used, it must be named <code>tsx</code>, which is a limitation of TypeScript</li>
+<li>Why not unified into <code>tsx</code>? Because in most cases, using <code>ts</code> is sufficient</li>
+<li>Only find the configuration file in the current running directory, <strong>does not provide</strong> <code>--config</code> to specify the configuration file (convention over configuration)</li>
+<li><code>json</code> format and <code>yaml</code> format have many restrictions, so use <code>ts</code> to write configuration files, <strong>not provide</strong> other options (convention over configuration)</li>
+<li>Among the configuration files of other static website generators, the most confusing thing is that the theme configuration is separated out, which makes me often need to hesitate whether a config item belongs to the main configuration file or the theme config file. So, there is only one config file in Pagic</li>
+</ul>
+<p>In accordance with:</p>
+<ul>
+<li><code>tsconfig.json</code>（ts）</li>
+<li><code>webpack.config.js</code>（webpack）</li>
+<li><code>.vuepress/config.js</code>（VuePress）</li>
+<li><code>_config.yml</code>（Hexo）</li>
+<li><code>config.json</code>（Hugo）</li>
+</ul>
+<h2 id="file-related-configuration">File related configuration<a class="anchor" href="#file-related-configuration">§</a></h2>
+<p>For file related configuration, refer to <code>tsconfig.json</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Config item</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>srcDir</code></td>
+<td><code>string</code></td>
+<td><code>'.'</code></td>
+<td>The source directory of the build. All of the pages will be built into <code>outDir</code> with the same directory structure. The default is the current directory, at this time the <code>README.md</code> in the current directory will be built into <code>${outDir}/index.html</code></td>
+</tr>
+<tr>
+<td><code>outDir</code></td>
+<td><code>string</code></td>
+<td><code>'dist'</code></td>
+<td>Output directory</td>
+</tr>
+<tr>
+<td><code>include</code></td>
+<td><code>glob[]</code></td>
+<td><code>undefined</code></td>
+<td><code>include</code> limits the files that will be scanned in <code>srcDir</code>. It is often used to specify some files or directories when <code>srcDir</code> is configured as <code>.</code>. glob syntax <a href="https://github.com/isaacs/minimatch">see here</a></td>
+</tr>
+<tr>
+<td><code>exclude</code></td>
+<td><code>glob[]</code></td>
+<td>Follow up in detail</td>
+<td><code>exclude</code> is similar to <code>include</code>, used to exclude the specified file in <code>srcDir</code></td>
+</tr>
+<tr>
+<td><code>root</code></td>
+<td><code>string</code></td>
+<td><code>'/'</code></td>
+<td>The base path of the deployment site. If the website is deployed in a sub-path, such as <code>https://xcatliu.github.io/pagic/</code>, then <code>root</code> should be set to <code>'/pagic/'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="exclude"><code>exclude</code><a class="anchor" href="#exclude">§</a></h3>
+<p>The default value for <code>exclude</code> is long:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token punctuation">[</span>
+  <span class="token comment">// Dot files</span>
+  <span class="token string">'**/.*'</span><span class="token punctuation">,</span>
+  <span class="token comment">// Node common files</span>
+  <span class="token string">'**/package.json'</span><span class="token punctuation">,</span>
+  <span class="token string">'**/package-lock.json'</span><span class="token punctuation">,</span>
+  <span class="token string">'**/node_modules'</span><span class="token punctuation">,</span>
+  <span class="token string">'pagic.config.ts'</span><span class="token punctuation">,</span>
+  <span class="token string">'pagic.config.tsx'</span><span class="token punctuation">,</span>
+  <span class="token comment">// <a class="token url-link" href="https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package">https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package</a></span>
+  <span class="token string">'**/config.gypi'</span><span class="token punctuation">,</span>
+  <span class="token string">'**/CVS'</span><span class="token punctuation">,</span>
+  <span class="token string">'**/npm-debug.log'</span>
+
+  <span class="token comment">// ${config.outDir} will be added later</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Note that each item here can be matched to a file or directory. Taking <code>**/node_modules</code> as an example, it:</p>
+<ul>
+<li>Not only can it match the <code>node_modules</code> directory under <code>${srcDir}</code> (and all files in this directory)</li>
+<li>It can also match the <code>node_modules</code> file under <code>${srcDir}</code></li>
+<li>Of course, it can also match the <code>node_modules</code> directory or file in any multi-level subdirectory under <code>${srcDir}</code></li>
+</ul>
+<p>In fact, <code>**/node_modules</code> will be converted to <code>**/node_modules{,/**}</code>, so that all the above situations can be matched.</p>
+<p>have to be aware of is:</p>
+<ul>
+<li>When matching, start with <code>srcDir</code> as the root directory. For example, <code>pagic.config.{ts,tsx}</code> can only match the files under <code>srcDir</code>, but not the files under the subdirectories of <code>srcDir</code>. To match the subdirectories, you need to add the prefix <code> */</code>, if you want to match any multi-level subdirectory, you need to add the prefix <code>**/</code></li>
+<li>The matching strategy of <code>include</code> is the same as that of <code>exclude</code></li>
+<li>User-configured <code>exclude</code> will append to the default value array instead of replacing it</li>
+</ul>
+<p>Through these configurations, Pagic can be flexibly used in various scenarios:</p>
+<h3 id="scenario-1-pure-website-separate-directory-to-store-source-files">Scenario 1: Pure website, separate directory to store source files<a class="anchor" href="#scenario-1-pure-website-separate-directory-to-store-source-files">§</a></h3>
+<p>If you just want to build a website, then the most convenient way is to use this directory structure to separate the source files from the built files:</p>
+<pre class="language-bash"><code class="language-bash">website/
+├── dist/
+<span class="token operator">|</span>   └── index.html
+├── src/
+<span class="token operator">|</span>   ├── _layout.tsx
+<span class="token operator">|</span>   └── README.md
+└── pagic.config.ts
+</code></pre>
+<p>At this time, the configuration of <code>pagic.config.ts</code> is very simple:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'src'</span><span class="token punctuation">,</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files<a class="anchor" href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">§</a></h3>
+<p>There is usually a <code>README.md</code> in the root directory of the project. Sometimes we want this file to be constructed as a page. At this time, we can set <code>srcDir</code> to <code>'.'</code>, for example, refer to the directory structure of GitBook Is like this:</p>
+<pre class="language-bash"><code class="language-bash">book/
+├── dist/
+<span class="token operator">|</span>   ├── basics/
+<span class="token operator">|</span>   <span class="token operator">|</span>   └── index.html
+<span class="token operator">|</span>   ├── advenced/
+<span class="token operator">|</span>   <span class="token operator">|</span>   └── index.html
+<span class="token operator">|</span>   └── index.html
+├── basics/
+<span class="token operator">|</span>   └── README.md
+├── advenced/
+<span class="token operator">|</span>   └── README.md
+├── _layout.tsx
+├── README.md
+└── pagic.config.ts
+</code></pre>
+<p>At this time, the configuration of <code>pagic.config.ts</code> is also very simple:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Note that if there are files that need to be excluded, you can use <code>exclude</code> to exclude them, for example:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
+  exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'examples'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="scene-3-project--website">Scene 3: Project + Website<a class="anchor" href="#scene-3-project--website">§</a></h3>
+<p>If you want to build a website in a project and you don't want to create another repo, then these two methods can meet the needs:</p>
+<ol>
+<li>Place the website source files in the <code>docs</code> directory, and configure <code>srcDir</code> as <code>'docs'</code>. The advantage is simple configuration, no need to configure <code>include</code> and <code>exclude</code></li>
+<li>Build the website directly under the root directory, configure <code>srcDir</code> as <code>'.'</code>, and then configure <code>include</code> to include the storage directory of the website. The advantage is that it contains <code>README.md</code> in the root directory</li>
+</ol>
+<h3 id="scene-4-only-show-readmemd">Scene 4: Only show <a href="http://README.md">README.md</a><a class="anchor" href="#scene-4-only-show-readmemd">§</a></h3>
+<p>Some projects are very simple. You only need a <code>README.md</code> and no other pages are needed. At this time, you can configure <code>include</code> to include only <code>README.md</code>:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
+  include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'README.md'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="plugin">Plugin<a class="anchor" href="#plugin">§</a></h2>
+<p>Plugins are the core function of Pagic, and Pagic even splits the most basic build process into built-in plugins. There are three types of plugins:</p>
+<ol>
+<li>Built-in plugin: the most basic build process, it will run by default</li>
+<li>Official plugin: plugin implemented by Pagic, optional, such as: <code>sidebar</code>, <code>ga</code>, etc.</li>
+<li>Third-party plugins: plugins implemented by third parties, optional. Following Deno's design, the entrance is a url, such as: <code>https://github.com/xcatliu/pagic_plugin_example/blob/master/mod.ts</code></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Config item</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plugins</code></td>
+<td><code>string[]</code></td>
+<td><code>['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']</code></td>
+<td>The plugin list, the value of the built-in plugin and the official plugin are the plugin name, and the value of the third-party plugin is its entrance url</td>
+</tr>
+</tbody>
+</table>
+<p>The order in which the plugins are executed is in the order of their configuration, unless the plugin is implemented with an insert attribute:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'customPlugin'</span><span class="token punctuation">,</span>
+  insert<span class="token operator">:</span> <span class="token string">'before:script'</span><span class="token punctuation">,</span>
+  <span class="token comment">// The design of fn refers to Deno <a class="token url-link" href="https://deno.land/manual/testing#writing-tests">https://deno.land/manual/testing#writing-tests</a></span>
+  <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">// balabala</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>name</code> is the unique identifier of the plugin, and it will be used to sort the plugins in <code>insert</code>.</p>
+<p>The syntax of <code>insert</code> is <code>before:${pluginName}</code> or <code>after:${pluginName}</code>. This method is more convenient and more flexible than other static website generators that need to register various life cycle hooks.</p>
+<p><code>fn</code> is a function that only accepts one parameter, an instance of <code>pagic</code>, which can access all the configurations and contexts of Pagic in operation. If the plugin requires some additional configuration, you can add a config item <code>customPlugin</code> in <code>pagic.config.ts</code>, and then you can get the configuration through <code>pagic.config.customPlugin</code> in <code>fn</code>.</p>
+<p>Have to be aware of is:</p>
+<ul>
+<li>User-configured <code>plugins</code> will be appended to the default array instead of replacing it</li>
+<li>When the plugin is running, it will be sorted according to its <code>insert</code> before running</li>
+<li>You can use the <code>-</code> prefix to delete a built-in plugin. This feature is not commonly used, and only needs to be used in the following two situations:
+<ol>
+<li>Just use React as a template engine. When you want to build an html page that does not load React, you can use <code>-script</code> to remove the plugin that builds js scripts. Note that scripts in React such as <code>useState</code> will not be available to execute on the client.</li>
+<li>Want to replace some built-in plugins by yourself, such as using <code>-md</code> to remove the plugin that parses the markdown file, and then add a custom plugin <code>https://github.com/xcatliu/pagic_plugin_custom_md/blob/master/mod.ts</code> This can modify Pagic's core construction process to achieve a higher degree of freedom of personalization</li>
+</ol>
+</li>
+<li>Third-party plugins generally require the <code>insert</code> attribute, otherwise it will run after <code>write</code>. Few plugins need to be executed after the build is completed and the file is written</li>
+</ul>
+<h2 id="themes">Themes<a class="anchor" href="#themes">§</a></h2>
+<p>Theme is one of the core functions in Pagic, there are two official themes and lots of third-party themes.</p>
+<table>
+<thead>
+<tr>
+<th>Config item</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>theme</code></td>
+<td><code>string</code></td>
+<td><code>default</code></td>
+<td>The value of the official theme is the theme name, and the value of the third-party plugin is its entrance url</td>
+</tr>
+</tbody>
+</table>
+<p>The operating mechanism of the theme is easy to understand: when you run <code>pagic build</code>, all files in the theme will be &quot;copied&quot; to <code>srcDir</code>, and then run <code>build</code> in the normal mode.</p>
+<p>Of course, this &quot;copy&quot; does not actually copy the file. And when conflicting files are encountered, the user's files shall prevail.</p>
+<p>Why does the theme need an entry file?</p>
+<p>Because in Deno’s design, module are based on urls. Imagine a URL represents a theme. We can’t use <code>fs.readdir</code> to find all files in this theme directory like node, so there must be an entry file to indicate which files are included in this topic:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'assets/index.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span> <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span> <span class="token string">'favicon.ico'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Among them, <code>files</code> means files that need to be &quot;copied&quot; to <code>srcDir</code>.</p>
+<h2 id="website-configuration">Website configuration<a class="anchor" href="#website-configuration">§</a></h2>
+<p>Here are some convential configurations, which are usually implemented by plugins or themes.</p>
+<table>
+<thead>
+<tr>
+<th>Config item</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td><code>undefined</code></td>
+<td>The title of the website, usually placed after the title of the page, such as: <code>Config · Pagic</code>, if there is no page title on the page, only the website title <code>Pagic</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td><code>undefined</code></td>
+<td>Website Description, usually displayed in <code>&lt;head&gt;&lt;meta name=&quot;description&quot;&gt;</code>, and may also be displayed on the page</td>
+</tr>
+<tr>
+<td><code>head</code></td>
+<td><code>React.ReactElement</code></td>
+<td><code>undefined</code></td>
+<td>Additional content injected into <code>&lt;head&gt;</code>, can be written in jsx. Note that you need to change the configuration file to <code>pagic.config.tsx</code></td>
+</tr>
+<tr>
+<td><code>sidebar</code></td>
+<td></td>
+<td><code>undefined</code></td>
+<td>Sidebar</td>
+</tr>
+<tr>
+<td><code>nav</code></td>
+<td></td>
+<td><code>undefined</code></td>
+<td>Navigation on the top</td>
+</tr>
+<tr>
+<td><code>github</code></td>
+<td><code>string</code></td>
+<td><code>undefined</code></td>
+<td>The GitHub address of the website, usually displayed in the upper right corner of the page</td>
+</tr>
+<tr>
+<td><code>ga</code></td>
+<td></td>
+<td><code>undefined</code></td>
+<td>Google Analytics configuration</td>
+</tr>
+<tr>
+<td><code>gitalk</code></td>
+<td></td>
+<td><code>undefined</code></td>
+<td>Gitalk configuration</td>
+</tr>
+<tr>
+<td><code>tocAd</code></td>
+<td><code>React.ReactNode</code></td>
+<td><code>undefined</code></td>
+<td>Ads displayed above toc</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td></td>
+<td><code>undefined</code></td>
+<td>Some extra features</td>
+</tr>
+</tbody>
+</table>
+<h2 id="development-environment-config">Development environment config<a class="anchor" href="#development-environment-config">§</a></h2>
+<table>
+<thead>
+<tr>
+<th>Config item</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>watch</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Watch file changes to rebuild.</td>
+</tr>
+<tr>
+<td><code>serve</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Start local service, preview static website.</td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td><code>number</code></td>
+<td><code>8000</code></td>
+<td>Specify the port of the local service.</td>
+</tr>
+</tbody>
+</table></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#design-principles">Design principles</a></li><li><a href="#naming-convention">Naming convention</a><ol><li><a href="#file-name-and-directory-name">File name and directory name</a></li><li><a href="#variables-and-parameters">Variables and parameters</a></li><li><a href="#config-file-name">Config file name</a></li></ol></li><li><a href="#file-related-configuration">File related configuration</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#scenario-1-pure-website-separate-directory-to-store-source-files">Scenario 1: Pure website, separate directory to store source files</a></li><li><a href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files</a></li><li><a href="#scene-3-project--website">Scene 3: Project + Website</a></li><li><a href="#scene-4-only-show-readmemd">Scene 4: Only show README.md</a></li></ol></li><li><a href="#plugin">Plugin</a></li><li><a href="#themes">Themes</a></li><li><a href="#website-configuration">Website configuration</a></li><li><a href="#development-environment-config">Development environment config</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
