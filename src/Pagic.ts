@@ -64,6 +64,8 @@ export interface PageProps {
   outputPath: string;
   title: string;
   content: React.ReactElement | null;
+  contentTitle: React.ReactElement | null;
+  contentBody: React.ReactElement | null;
   head: React.ReactElement | null;
   script: React.ReactElement | null;
   toc: React.ReactElement | null;

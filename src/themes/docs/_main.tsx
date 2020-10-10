@@ -6,7 +6,7 @@ import Loading from './_loading.tsx';
 import { dateFormatter } from './_utils.tsx';
 
 const Main: PagicLayout = (props) => {
-  const { config, content, contentTitle, contentText, blog, author, date, loading, toc, prev, next, gitalk } = props;
+  const { config, content, contentTitle, contentBody, blog, author, date, loading, toc, prev, next, gitalk } = props;
 
   React.useEffect(() => {
     if (window.Deno) {
@@ -60,7 +60,7 @@ const Main: PagicLayout = (props) => {
             <div className="main_post_meta">
               <time dateTime={date}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
             </div>
-            {contentText}
+            {contentBody}
           </>
         ) : (
           content

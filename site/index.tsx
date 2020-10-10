@@ -67,7 +67,7 @@ h2 {
 }
 `;
 
-const IndexPage: PagicLayout = ({ language }) => (
+const IndexPage: PagicLayout = ({ config, language }) => (
   <>
     <div>
       <style dangerouslySetInnerHTML={{ __html: style }} />
@@ -107,10 +107,10 @@ const IndexPage: PagicLayout = ({ language }) => (
           marginTop: '2rem'
         }}
       >
-        <a className="btn btn-primary" href={`/${language!.path}docs/introduction.html`}>
+        <a className="btn btn-primary" href={`${config.root}${language?.path ?? ''}docs/introduction.html`}>
           {t('Get Started')}
         </a>
-        <a className="btn" href={`/${language!.path}docs/demos.html`}>
+        <a className="btn" href={`${config.root}${language?.path ?? ''}docs/demos.html`}>
           {t('Demos')}
         </a>
       </div>

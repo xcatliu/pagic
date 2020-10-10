@@ -15,6 +15,8 @@ Deno.test('[md]', async () => {
       outputPath: 'index.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null
@@ -26,6 +28,8 @@ Deno.test('[md]', async () => {
       outputPath: 'no_toc.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null
@@ -37,6 +41,8 @@ Deno.test('[md]', async () => {
       outputPath: 'no_toc2.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null
@@ -48,6 +54,8 @@ Deno.test('[md]', async () => {
       outputPath: 'foo.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null

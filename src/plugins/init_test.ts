@@ -18,6 +18,8 @@ Deno.test('[init]', async () => {
       outputPath: 'index.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null
@@ -29,6 +31,8 @@ Deno.test('[init]', async () => {
       outputPath: 'foo.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null
@@ -40,6 +44,8 @@ Deno.test('[init]', async () => {
       outputPath: 'bar/baz.html',
       title: '',
       content: null,
+      contentTitle: null,
+      contentBody: null,
       head: null,
       script: null,
       toc: null

@@ -84,7 +84,7 @@ const md: PagicPlugin = {
       const env: any = {};
       const contentHTML = mdRenderer.render(content, env).trim();
       const contentTitleHTML = contentHTML.match(/^<h1[ >].*?<\/h1>/)?.[0];
-      const contentTextHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '');
+      const contentBodyHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '').trim();
       const title = env.title;
       const { date, updated, author, contributors } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
 
@@ -93,7 +93,7 @@ const md: PagicPlugin = {
         title,
         content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
         contentTitle: reactHtmlParser(contentTitleHTML)[0],
-        contentText: <article dangerouslySetInnerHTML={{ __html: contentTextHTML }} />,
+        contentBody: <article dangerouslySetInnerHTML={{ __html: contentBodyHTML }} />,
         // Set to null if toc is empty
         toc:
           tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (

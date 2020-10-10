@@ -103,7 +103,7 @@ const Header: PagicLayout<{
                   url.pathname = url.pathname.replace(language.path, '');
                 }
                 const nextLanguage = config.i18n?.languages.find(({ code }) => code === nextLanguageCode);
-                url.pathname = `/${nextLanguage!.path}${url.pathname.slice(1)}`;
+                url.pathname = `${config.root}${nextLanguage!.path}${url.pathname.slice(1)}`;
 
                 // @ts-ignore
                 location.href = url.toString();
