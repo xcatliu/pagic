@@ -27,9 +27,10 @@ const Head: PagicLayout<{
           rel="stylesheet"
           href={isDark ? `${config.root}assets/prism_tomorrow.css` : `${config.root}assets/prism.css`}
         />
+        <link rel="stylesheet" href={`${config.root}assets/index.css`} />
+
         <script>{scriptSetIsDark}</script>
       </Helmet>
-      <link rel="stylesheet" href={`${config.root}assets/index.css`} />
       {head}
     </head>
   );

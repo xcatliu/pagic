@@ -14,9 +14,7 @@ Dockerfile
 LICENSE
 
 cdn
-
 dist
-site/assets/vconsole.min.js
 
 src/vendors
 src/types
