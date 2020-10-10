@@ -15,8 +15,8 @@ const Head = ({ config, title, head, outputPath, isDark }) => {
             config.description && React.createElement("meta", { name: "description", content: config.description }),
             React.createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }),
             React.createElement("link", { id: "prismTheme", rel: "stylesheet", href: isDark ? `${config.root}assets/prism_tomorrow.css` : `${config.root}assets/prism.css` }),
+            React.createElement("link", { rel: "stylesheet", href: `${config.root}assets/index.css` }),
             React.createElement("script", null, scriptSetIsDark)),
-        React.createElement("link", { rel: "stylesheet", href: `${config.root}assets/index.css` }),
         head));
 };
 export default Head;

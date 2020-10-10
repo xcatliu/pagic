@@ -67,6 +67,11 @@ export default {
             __html: '<h1>Limitations</h1>\n<p>Pagic is excellent, but it also has some limitations.</p>\n<p>Because the website built by Pagic uses some of the latest JavaScript and CSS features, you must use a modern browser (Chrome, Firefox, Safari, Edge, etc.) to visit the website to have a complete experience. If your target user is using IE browser, Then it is not recommended to use Pagic to build a website.</p>\n<p>The latest features used by Pagic include:</p>\n<ul>\n<li>Load esm through <code>&lt;script type=&quot;module&quot;&gt;</code> (<a href="https://caniuse.com/#feat=es6-module">Browser Support</a>)</li>\n<li>Load esm dynamically through <code>import()</code> (<a href="https://caniuse.com/#feat=es6-module-dynamic-import">Browser Support</a>)</li>\n<li><code>import</code>, <code>export</code>, <code>export default</code> and other esm syntax (<a href="https://caniuse.com/#feat=mdn-javascript_statements_import">Browser Supportability</a>)</li>\n<li><code>async</code> function (<a href="https://caniuse.com/#feat=async-functions">Browser compatibility</a>)</li>\n<li>Common ES6 syntax, including <code>let</code>, <code>const</code>, <code>() =&gt; {}</code> etc.</li>\n<li>CSS Variables (<a href="https://caniuse.com/#feat=css-variables">browser compatibility</a>)</li>\n<li>CSS <code>calc()</code> (<a href="https://caniuse.com/#feat=calc">Browser compatibility</a>)</li>\n<li>CSS flexbox (<a href="https://caniuse.com/#feat=flexbox">Browser compatibility</a>)</li>\n</ul>\n<h2 id="limitations-mentioned-in-other-chapters">Limitations mentioned in other chapters<a class="anchor" href="#limitations-mentioned-in-other-chapters">§</a></h2>\n<ul>\n<li><a href="./content.html#limitations">Content#limitations</a></li>\n<li><a href="./content.html#limitations-1">Content#limitations-1</a></li>\n</ul>'
         } }),
     'head': React.createElement(React.Fragment, null,
+        React.createElement(React.Fragment, { key: ".0" },
+            React.createElement("script", { src: "https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" }),
+            React.createElement("script", { dangerouslySetInnerHTML: {
+                    __html: 'var vConsole = new VConsole();'
+                } })),
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
@@ -84,7 +89,7 @@ export default {
     'contentText': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '\n<p>Pagic is excellent, but it also has some limitations.</p>\n<p>Because the website built by Pagic uses some of the latest JavaScript and CSS features, you must use a modern browser (Chrome, Firefox, Safari, Edge, etc.) to visit the website to have a complete experience. If your target user is using IE browser, Then it is not recommended to use Pagic to build a website.</p>\n<p>The latest features used by Pagic include:</p>\n<ul>\n<li>Load esm through <code>&lt;script type=&quot;module&quot;&gt;</code> (<a href="https://caniuse.com/#feat=es6-module">Browser Support</a>)</li>\n<li>Load esm dynamically through <code>import()</code> (<a href="https://caniuse.com/#feat=es6-module-dynamic-import">Browser Support</a>)</li>\n<li><code>import</code>, <code>export</code>, <code>export default</code> and other esm syntax (<a href="https://caniuse.com/#feat=mdn-javascript_statements_import">Browser Supportability</a>)</li>\n<li><code>async</code> function (<a href="https://caniuse.com/#feat=async-functions">Browser compatibility</a>)</li>\n<li>Common ES6 syntax, including <code>let</code>, <code>const</code>, <code>() =&gt; {}</code> etc.</li>\n<li>CSS Variables (<a href="https://caniuse.com/#feat=css-variables">browser compatibility</a>)</li>\n<li>CSS <code>calc()</code> (<a href="https://caniuse.com/#feat=calc">Browser compatibility</a>)</li>\n<li>CSS flexbox (<a href="https://caniuse.com/#feat=flexbox">Browser compatibility</a>)</li>\n</ul>\n<h2 id="limitations-mentioned-in-other-chapters">Limitations mentioned in other chapters<a class="anchor" href="#limitations-mentioned-in-other-chapters">§</a></h2>\n<ul>\n<li><a href="./content.html#limitations">Content#limitations</a></li>\n<li><a href="./content.html#limitations-1">Content#limitations-1</a></li>\n</ul>'
         } }),
-    'date': "2020-10-10T02:32:28.000Z",
+    'date': "2020-10-10T02:57:18.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
@@ -98,14 +103,14 @@ export default {
                 "pagePath": "blog/second_blog.md",
                 "title": "Second Blog",
                 "link": "blog/second_blog.html",
-                "date": "2020-10-10T02:32:28.000Z",
+                "date": "2020-10-10T02:57:18.000Z",
                 "updated": null
             },
             {
                 "pagePath": "blog/first_blog.md",
                 "title": "First Blog",
                 "link": "blog/first_blog.html",
-                "date": "2020-10-10T02:32:28.000Z",
+                "date": "2020-10-10T02:57:18.000Z",
                 "updated": null
             }
         ]

@@ -25,6 +25,9 @@ export default {
                 'dist'
             ],
             github: 'https://github.com/xcatliu/pagic',
+            head: React.createElement(React.Fragment, null,
+                React.createElement("script", { src: "https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" }),
+                React.createElement("script", { dangerouslySetInnerHTML: { __html: 'var vConsole = new VConsole();' } })),
             i18n: {
                 languages: [
                     {
@@ -166,12 +169,20 @@ export default {
             title: 'Pagic',
             watch: false
         }, content: null, head: React.createElement(React.Fragment, null,
+            React.createElement(React.Fragment, { key: ".0" },
+                React.createElement("script", { src: "https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" }),
+                React.createElement("script", { dangerouslySetInnerHTML: { __html: 'var vConsole = new VConsole();' } })),
             React.createElement("script", { src: "/i18n.js", type: "module" })), language: {
             code: 'en',
             name: 'English',
             path: ''
         }, layoutPath: "_layout.tsx", outputPath: "index.html", pagePath: "index.tsx", script: null, title: "", toc: null }),
     'head': React.createElement(React.Fragment, null,
+        React.createElement(React.Fragment, { key: ".0" },
+            React.createElement("script", { src: "https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" }),
+            React.createElement("script", { dangerouslySetInnerHTML: {
+                    __html: 'var vConsole = new VConsole();'
+                } })),
         React.createElement("script", { src: "/i18n.js", type: "module" })),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
@@ -191,14 +202,14 @@ export default {
                 "pagePath": "blog/second_blog.md",
                 "title": "Second Blog",
                 "link": "blog/second_blog.html",
-                "date": "2020-10-10T02:32:28.000Z",
+                "date": "2020-10-10T02:57:18.000Z",
                 "updated": null
             },
             {
                 "pagePath": "blog/first_blog.md",
                 "title": "First Blog",
                 "link": "blog/first_blog.html",
-                "date": "2020-10-10T02:32:28.000Z",
+                "date": "2020-10-10T02:57:18.000Z",
                 "updated": null
             }
         ]
