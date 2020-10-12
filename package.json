@@ -13,10 +13,11 @@
     "prettier:fix": "prettier --write -l \"./**/*\"",
     "update": "npm install --save-dev @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-config-alloy@latest eslint-plugin-react@latest prettier@latest typescript@latest",
     "preversion": "run-s test",
-    "version": "run-s sed:README sed:site && git add -A",
+    "version": "run-s sed:README sed:pagic.org sed:pagic.cn && git add -A",
     "postversion": "git push --follow-tags",
     "sed:README": "sed -i \"\" \"s#Pagic-v.*-orange#Pagic-v$npm_package_version-orange#g\" README.md",
-    "sed:site": "find site -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\""
+    "sed:pagic.org": "find pagic.org -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\"",
+    "sed:pagic.cn": "find pagic.cn -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\""
   },
   "author": "xcatliu <xcatliu@gmail.com>",
   "license": "MIT",

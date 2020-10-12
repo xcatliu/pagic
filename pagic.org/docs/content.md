@@ -44,7 +44,7 @@ Why is it designed like this?
 
 Because such a link not only supports click to jump in the generated page, but also supports click to jump in the markdown preview of GitHub, but also supports `cmd/ctrl + click` jump in VSCode (or other editors).
 
-Try it in [GitHub version of this page](https://github.com/xcatliu/pagic/blob/master/site/docs/content.md#link-replacement).
+Try it in [GitHub version of this page](https://github.com/xcatliu/pagic/blob/master/pagic.org/docs/content.md#link-replacement).
 
 It should be noted that not only the suffix of `README.md` in the link will be replaced with `.html`, the path will also be replaced with `index`:
 

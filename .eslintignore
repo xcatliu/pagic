@@ -1,7 +1,7 @@
-dist
 node_modules
+dist
 
-cdn
+cdn.pagic.org
 
 src/types
 src/vendors

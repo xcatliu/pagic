@@ -13,8 +13,9 @@
 Dockerfile
 LICENSE
 
-cdn
 dist
+
+cdn.pagic.org
 
 src/vendors
 src/types
