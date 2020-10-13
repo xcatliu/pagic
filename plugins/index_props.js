@@ -25,7 +25,7 @@ export default {
         "name": "English",
         "path": ""
     },
-    'date': "2020-10-12T13:36:11.000Z",
+    'date': "2020-10-12T13:39:31.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
