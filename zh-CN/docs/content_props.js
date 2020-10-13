@@ -87,7 +87,7 @@ export default {
         "name": "简体中文",
         "path": "zh-CN/"
     },
-    'date': "2020-10-10T13:43:58.000Z",
+    'date': "2020-10-12T13:23:18.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [

@@ -4,7 +4,7 @@ export default {
     theme: 'docs',
     plugins: ['sidebar', 'prev_next', 'i18n', 'blog'],
     title: 'Pagic',
-    description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
+    description: 'A static site generator powered by Deno + React',
     github: 'https://github.com/xcatliu/pagic',
     // head: (
     //   <>

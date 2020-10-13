@@ -11,7 +11,7 @@ export default {
             blog: {
                 path: 'zh-CN/blog/'
             },
-            description: 'The easiest way to generate static HTML page from markdown, built with Deno! 🦕',
+            description: 'A static site generator powered by Deno + React',
             exclude: [
                 '**/.*',
                 '**/package.json',
