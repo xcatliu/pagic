@@ -161,7 +161,7 @@ export default {
                     'docs/limitations.md'
                 ]
             },
-            srcDir: 'site',
+            srcDir: 'pagic.org',
             theme: 'docs',
             title: 'Pagic',
             watch: false

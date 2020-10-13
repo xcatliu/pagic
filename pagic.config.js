@@ -1,6 +1,6 @@
 // import { React } from './deps.ts';
 export default {
-    srcDir: 'site',
+    srcDir: 'pagic.org',
     theme: 'docs',
     plugins: ['sidebar', 'prev_next', 'i18n', 'blog'],
     title: 'Pagic',
