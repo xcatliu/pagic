@@ -27,11 +27,12 @@ export default {
         "name": "English",
         "path": ""
     },
+    'contentHasKatex': false,
     'date': "2020-07-12T00:00:00.000Z",
     'updated': null,
-    'author': "MVEMCJSUNPE",
+    'author': "xcatliu",
     'contributors': [
-        "MVEMCJSUNPE"
+        "xcatliu"
     ],
     'blog': {
         "isPost": true,

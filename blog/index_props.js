@@ -25,11 +25,12 @@ export default {
         "name": "English",
         "path": ""
     },
-    'date': "2020-10-15T08:39:59.000Z",
+    'contentHasKatex': false,
+    'date': "2020-10-15T13:25:10.000Z",
     'updated': null,
-    'author': "MVEMCJSUNPE",
+    'author': "xcatliu",
     'contributors': [
-        "MVEMCJSUNPE"
+        "xcatliu"
     ],
     'blog': {
         "isPost": false,
