@@ -88,7 +88,7 @@ export default {
         "path": ""
     },
     'contentHasKatex': true,
-    'date': "2020-10-15T13:25:10.000Z",
+    'date': "2020-10-15T13:49:42.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [
