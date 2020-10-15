@@ -35,19 +35,8 @@ jobs:
           publish_dir: ./dist
           cname: pagic.org
 
-      - name: Build gitee-pages
+      - name: Deploy to CloudBase
         run: |
-          cd pagic.cn
-          deno run --unstable --allow-read --allow-write build.ts
-          deno run --unstable --allow-read --allow-write --allow-net --allow-run ../mod.ts build
-
-      - name: Deploy gitee-pages
-        if: |
-          matrix.os == 'ubuntu-latest' &&
-          github.event_name == 'push' &&
-          github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gitee-pages
-          publish_dir: ./pagic.cn/dist
+          npm i @cloudbase/cli -g
+          cloudbase login --apiKeyId ${{secrets.SECRETID}}  --apiKey ${{secrets.SECRETKEY}}
+          cloudbase framework:deploy
