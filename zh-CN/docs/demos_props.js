@@ -85,11 +85,11 @@ export default {
         "name": "简体中文",
         "path": "zh-CN/"
     },
-    'date': "2020-10-12T13:39:31.000Z",
+    'date': "2020-10-15T08:39:59.000Z",
     'updated': null,
-    'author': "xcatliu",
+    'author': "MVEMCJSUNPE",
     'contributors': [
-        "xcatliu"
+        "MVEMCJSUNPE"
     ],
     'blog': {
         "isPost": false,
