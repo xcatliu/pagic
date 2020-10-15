@@ -69,7 +69,9 @@ const md: PagicPlugin = {
       })
       .use(markdownitReplaceLink)
       .use(markdownitHighlightLines)
-      .use(markdownItKatex);
+      .use(markdownItKatex, {
+        output: 'mathml'
+      });
 
     for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
       const pageProps = pagic.pagePropsMap[pagePath];

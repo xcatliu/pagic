@@ -176,8 +176,6 @@ function math_plugin(md, options) {
 
     var katexBlock = function(latex){
         options.displayMode = true;
-        // html output is buggy
-        options.output = 'mathml';
         try{
             return "<p>" + katex.renderToString(latex, options) + "</p>";
         }
