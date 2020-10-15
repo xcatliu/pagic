@@ -156,7 +156,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
       <code
         dangerouslySetInnerHTML={{
           __html: `# ${t('Install pagic')}
-deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 
 # ${t('Create pagic.config.ts and README.md')}
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md

@@ -12,7 +12,7 @@
 </p>
 <p align="center">
   <a href="https://deno.land">
-    <img src="https://img.shields.io/badge/Deno-1.4.5-brightgreen.svg?logo=deno" alt="deno" />
+    <img src="https://img.shields.io/badge/Deno-1.4.6-brightgreen.svg?logo=deno" alt="deno" />
   </a>
   <a href="https://pagic.org">
     <img src="https://img.shields.io/badge/Pagic-v0.9.8-orange.svg" alt="pagic" />
@@ -60,7 +60,7 @@
 # Install deno https://deno.land/#installation
 curl -fsSL https://deno.land/x/install/install.sh | sh
 # Install Pagic
-deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
 ### Initialize the project
