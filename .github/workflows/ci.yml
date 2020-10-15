@@ -37,6 +37,6 @@ jobs:
 
       - name: Deploy to CloudBase
         run: |
-          npm i @cloudbase/cli -g
+          sudo npm i @cloudbase/cli -g
           cloudbase login --apiKeyId ${{secrets.SECRETID}}  --apiKey ${{secrets.SECRETKEY}}
           cloudbase framework:deploy
