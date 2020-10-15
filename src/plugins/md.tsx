@@ -4,6 +4,7 @@ import markdownItAnchor from '../vendors/markdown-it-anchor/index.js';
 import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.js';
 import markdownitReplaceLink from '../vendors/markdown-it-replace-link/index.js';
 import markdownitHighlightLines from '../vendors/markdown-it-highlight-lines/index.js';
+import markdownItKatex from '../vendors/markdown-it-katex/index.js';
 
 import Prism from '../vendors/prism/mod.ts';
 import { replaceLink, getGitLog } from '../utils/mod.ts';
@@ -67,7 +68,10 @@ const md: PagicPlugin = {
         }
       })
       .use(markdownitReplaceLink)
-      .use(markdownitHighlightLines);
+      .use(markdownitHighlightLines)
+      .use(markdownItKatex, {
+        output: 'mathml'
+      });
 
     for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
       const pageProps = pagic.pagePropsMap[pagePath];
