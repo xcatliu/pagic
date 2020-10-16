@@ -5,7 +5,9 @@ import type { PagicLayout } from '../../Pagic.ts';
 
 const Head: PagicLayout<{
   isDark: boolean;
-}> = ({ config, title, head, outputPath, isDark }) => {
+}> = ({ config, title, head, outputPath, contentHasKatex, isDark }) => {
+  const [katexCssLoadOnce, setKatexCssLoadOnce] = React.useState(contentHasKatex);
+  if (contentHasKatex && !katexCssLoadOnce) setKatexCssLoadOnce(true);
   const scriptSetIsDark = `
     const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (shouldSetIsDark) {
@@ -27,6 +29,14 @@ const Head: PagicLayout<{
           rel="stylesheet"
           href={isDark ? `${config.root}assets/prism_tomorrow.css` : `${config.root}assets/prism.css`}
         />
+        {katexCssLoadOnce && (
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+            integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+            crossOrigin="anonymous"
+          />
+        )}
         <link rel="stylesheet" href={`${config.root}assets/index.css`} />
 
         <script>{scriptSetIsDark}</script>

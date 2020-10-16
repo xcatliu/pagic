@@ -116,12 +116,44 @@ prev: README.md
 
 The setting of the frontMatter is very flexible, with various plugins or custom `_layout.tsx`, various effects can be achieved.
 
+### TeX (KaTeX)
+
+Inline: $E=mc^2$
+
+```md
+Inline: $E=mc^2$
+```
+
+Block:
+
+$$
+\frac{1}{
+  \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
+  \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
+    1+\frac{e^{-6\pi}}
+    {1+\frac{e^{-8\pi}}{1+\cdots}}
+  }
+}
+$$
+
+```md
+$$
+\frac{1}{
+  \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
+  \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
+    1+\frac{e^{-6\pi}}
+    {1+\frac{e^{-8\pi}}{1+\cdots}}
+  }
+}
+$$
+```
+
 ### Limitations
 
 At present, Pagic's markdown parsing still has some limitations, which is also the direction for future improvement:
 
 - The option to configure `markdown-it` is not supported
-- Does not support advanced grammar such as scientific formulas and flowcharts
+- Does not support advanced grammar such as flowcharts
 - Does not support embedded jsx
 
 ## tsx file

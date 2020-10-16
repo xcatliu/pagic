@@ -20,19 +20,19 @@ Other installation methods (PowerShell, Homebrew, etc.) can be found in [Deno of
 Execute the following command to install the latest version of Pagic:
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
 If you need to install a specific version of Pagic, you can add the version in the URL:
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --name=pagic https://deno.land/x/pagic@v0.9.8/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v0.10.0/mod.ts
 ```
 
 > Pagic will only require the necessary permissions. If you want to further restrict Pagic's runtime permissions, you can limit it by specifying the read and write directories:
 >
 > ```bash
-> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --name=pagic https://deno.land/x/pagic/mod.ts
+> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 > ```
 
 ### Install via Docker

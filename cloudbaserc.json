@@ -10,8 +10,8 @@
       "pagic": {
         "use": "@cloudbase/framework-plugin-website",
         "inputs": {
-          "buildCommand": "deno run --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts build",
-          "outputPath": "dist"
+          "buildCommand": "cd pagic.cn && deno run --unstable --allow-read --allow-write build.ts && deno run --unstable --allow-read --allow-write --allow-net --allow-run https://deno.land/x/pagic@v0.10.0/mod.ts build",
+          "outputPath": "pagic.cn/dist"
         }
       }
     }

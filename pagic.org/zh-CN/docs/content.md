@@ -116,12 +116,44 @@ prev: README.md
 
 头信息的设置很灵活，搭配各种插件，或者自定义的 `_layout.tsx`，可以实现各种各样的效果。
 
+### 科学公式 TeX (KaTeX)
+
+行内公式：$E=mc^2$
+
+```md
+行内公式：$E=mc^2$
+```
+
+多行公式：
+
+$$
+\frac{1}{
+  \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
+  \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
+    1+\frac{e^{-6\pi}}
+    {1+\frac{e^{-8\pi}}{1+\cdots}}
+  }
+}
+$$
+
+```md
+$$
+\frac{1}{
+  \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
+  \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
+    1+\frac{e^{-6\pi}}
+    {1+\frac{e^{-8\pi}}{1+\cdots}}
+  }
+}
+$$
+```
+
 ### 局限性
 
 目前 Pagic 的 Markdown 解析还存在一些局限性，这也是将来的改进方向：
 
 - 不支持配置 `markdown-it` 的选项
-- 不支持科学公式、流程图等高级语法
+- 不支持流程图等高级语法
 - 不支持内嵌 jsx
 
 ## tsx 文件

@@ -69,9 +69,7 @@ const md: PagicPlugin = {
       })
       .use(markdownitReplaceLink)
       .use(markdownitHighlightLines)
-      .use(markdownItKatex, {
-        output: 'mathml'
-      });
+      .use(markdownItKatex);
 
     for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
       const pageProps = pagic.pagePropsMap[pagePath];
@@ -91,6 +89,7 @@ const md: PagicPlugin = {
       const contentBodyHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '').trim();
       const title = env.title;
       const { date, updated, author, contributors } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
+      const contentHasKatex = /class="katex"/.test(contentHTML);
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
@@ -98,6 +97,7 @@ const md: PagicPlugin = {
         content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
         contentTitle: reactHtmlParser(contentTitleHTML)[0],
         contentBody: <article dangerouslySetInnerHTML={{ __html: contentBodyHTML }} />,
+        contentHasKatex,
         // Set to null if toc is empty
         toc:
           tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
