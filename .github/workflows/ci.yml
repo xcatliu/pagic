@@ -36,6 +36,10 @@ jobs:
           cname: pagic.org
 
       - name: Deploy to CloudBase
+        if: |
+          matrix.os == 'ubuntu-latest' &&
+          github.event_name == 'push' &&
+          github.ref == 'refs/heads/master'
         run: |
           sudo npm i @cloudbase/cli -g
           cloudbase login --apiKeyId ${{secrets.SECRETID}}  --apiKey ${{secrets.SECRETKEY}}
