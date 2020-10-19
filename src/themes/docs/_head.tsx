@@ -24,6 +24,7 @@ const Head: PagicLayout<{
         {config.description && <meta name="description" content={config.description} />}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        <link rel="stylesheet" href={`${config.root}assets/index.css`} />
         <link
           id="prismTheme"
           rel="stylesheet"
@@ -37,7 +38,6 @@ const Head: PagicLayout<{
             crossOrigin="anonymous"
           />
         )}
-        <link rel="stylesheet" href={`${config.root}assets/index.css`} />
 
         <script>{scriptSetIsDark}</script>
       </Helmet>
