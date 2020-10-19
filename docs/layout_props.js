@@ -89,7 +89,7 @@ export default {
         "path": ""
     },
     'contentHasKatex': false,
-    'date': "2020-10-16T02:28:37.000Z",
+    'date': "2020-10-19T04:13:27.000Z",
     'updated': null,
     'author': "xcatliu",
     'contributors': [

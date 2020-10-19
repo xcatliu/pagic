@@ -17,9 +17,9 @@ const Head = ({ config, title, head, outputPath, contentHasKatex, isDark }) => {
             React.createElement("title", null, title ? (outputPath !== 'index.html' ? `${title} · ${config.title}` : title) : config.title),
             config.description && React.createElement("meta", { name: "description", content: config.description }),
             React.createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }),
+            React.createElement("link", { rel: "stylesheet", href: `${config.root}assets/index.css` }),
             React.createElement("link", { id: "prismTheme", rel: "stylesheet", href: isDark ? `${config.root}assets/prism_tomorrow.css` : `${config.root}assets/prism.css` }),
             katexCssLoadOnce && (React.createElement("link", { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css", integrity: "sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X", crossOrigin: "anonymous" })),
-            React.createElement("link", { rel: "stylesheet", href: `${config.root}assets/index.css` }),
             React.createElement("script", null, scriptSetIsDark)),
         head));
 };
