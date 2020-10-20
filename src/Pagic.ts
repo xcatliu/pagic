@@ -61,9 +61,9 @@ export type PagicLayout<
 export interface PageProps {
   config: PagicConfig;
   blog?: {
-    isPost: false;
-    isPosts: false;
-    posts: [];
+    isPost: boolean;
+    isPosts: boolean;
+    posts: Array< { pagePath: string, title: string, outputPath: PageProps, date: Date, updated: boolean } >;
   };
   pagePath: string;
   layoutPath: string;
