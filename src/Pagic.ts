@@ -57,8 +57,14 @@ export type PagicLayout<
   }
 > = React.FC<PageProps & T>;
 
+
 export interface PageProps {
   config: PagicConfig;
+  blog?: {
+    isPost: false;
+    isPosts: false;
+    posts: [];
+  };
   pagePath: string;
   layoutPath: string;
   outputPath: string;

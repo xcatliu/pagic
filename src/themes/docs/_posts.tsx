@@ -12,7 +12,7 @@ const Posts: PagicLayout = (props) => {
         <article>
           {contentTitle}
           <ul className="main_posts">
-            {blog.posts.map(({ title, link, date }: any) => (
+            {blog?.posts.map(({ title, link, date }: any) => (
               <li key={link}>
                 <time dateTime={date}>{dateFormatter['YYYY-MM-DD'](date)}</time>
                 <a href={`${config.root}${link}`}>{title}</a>

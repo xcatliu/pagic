@@ -21,7 +21,7 @@ const Layout: PagicLayout = (props) => {
       <body>
         <Header {...props} isDark={isDark} setIsDark={setIsDark} />
         <Sidebar {...props} />
-        {props.blog.isPosts ? <Posts {...props} /> : <Main {...props} />}
+        {props.blog?.isPosts ? <Posts {...props} /> : <Main {...props} />}
         <Footer {...props} />
         <Tools {...props} />
         {props.script}
