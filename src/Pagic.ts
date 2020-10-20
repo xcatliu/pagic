@@ -308,20 +308,6 @@ export default class Pagic {
       )
     ]);
 
-    console.log('Location of mod.ts: ');
-    console.log(`${this.config.outDir}/mod.ts`);
-    await Deno.writeTextFile(`${this.config.outDir}/mod.ts`, 
-      `export default {
-          files: [
-            `);
-    let foo = this.staticPaths.concat(this.layoutPaths);
-    console.log(foo);
-    for (const modFile of this.staticPaths.concat(this.layoutPaths)) {
-        Deno.writeTextFile(`${this.config.outDir}/mod.ts`, "'" + modFile + ',\n');
-    }
-    await Deno.writeTextFile(`${this.config.outDir}/mod.ts`, `]
-  }`);
-    console.log('After writing files')
   }
 
   private async runPlugins() {
