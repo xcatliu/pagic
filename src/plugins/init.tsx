@@ -10,7 +10,6 @@ const init: PagicPlugin = {
       const outputPath = getOutputPath(pagePath);
       pagic.pagePropsMap[pagePath] = {
         config: pagic.config,
-        blog: { isPost: false, isPosts: false, posts: [] },
         pagePath,
         layoutPath,
         outputPath,
