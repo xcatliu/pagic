@@ -64,11 +64,11 @@ export interface PageProps {
     isPost: boolean;
     isPosts: boolean;
     posts: { 
-      pagePath: string; 
-      title: string; 
-      link: string; 
-      date: Date | string; 
-      updated: Date | string; 
+      pagePath: string;
+      title: string;
+      link: string;
+      date: Date | string;
+      updated: Date | string;
     } [];
   };
   pagePath: string;
