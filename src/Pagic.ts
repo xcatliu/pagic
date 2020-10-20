@@ -58,6 +58,7 @@ export type PagicLayout<
 > = React.FC<PageProps & T>;
 
 export interface PageProps {
+  blog: Record<string, any>;
   config: PagicConfig;
   pagePath: string;
   layoutPath: string;
@@ -295,6 +296,7 @@ export default class Pagic {
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
     ]);
+
   }
 
   private async runPlugins() {

@@ -9,6 +9,7 @@ const init: PagicPlugin = {
       const layoutPath = findNearestLayoutPath(pagePath, pagic.layoutPaths);
       const outputPath = getOutputPath(pagePath);
       pagic.pagePropsMap[pagePath] = {
+        blog: {},
         config: pagic.config,
         pagePath,
         layoutPath,
