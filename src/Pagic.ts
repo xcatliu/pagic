@@ -63,7 +63,13 @@ export interface PageProps {
   blog?: {
     isPost: boolean;
     isPosts: boolean;
-    posts: Array< { pagePath: string, title: string, link: string, date: Date, updated: boolean } >;
+    posts: { 
+      pagePath: string; 
+      title: string; 
+      link: string; 
+      date: Date | string; 
+      updated: Date | string; 
+    } [];
   };
   pagePath: string;
   layoutPath: string;
@@ -301,6 +307,21 @@ export default class Pagic {
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
     ]);
+
+    console.log('Location of mod.ts: ');
+    console.log(`${this.config.outDir}/mod.ts`);
+    await Deno.writeTextFile(`${this.config.outDir}/mod.ts`, 
+      `export default {
+          files: [
+            `);
+    let foo = this.staticPaths.concat(this.layoutPaths);
+    console.log(foo);
+    for (const modFile of this.staticPaths.concat(this.layoutPaths)) {
+        Deno.writeTextFile(`${this.config.outDir}/mod.ts`, "'" + modFile + ',\n');
+    }
+    await Deno.writeTextFile(`${this.config.outDir}/mod.ts`, `]
+  }`);
+    console.log('After writing files')
   }
 
   private async runPlugins() {
