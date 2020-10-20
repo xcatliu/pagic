@@ -63,7 +63,7 @@ export interface PageProps {
   blog?: {
     isPost: boolean;
     isPosts: boolean;
-    posts: Array< { pagePath: string, title: string, link: string, outputPath: string, date: Date, updated: boolean } >;
+    posts: Array< { pagePath: string, title: string, link: string, date: Date, updated: boolean } >;
   };
   pagePath: string;
   layoutPath: string;
