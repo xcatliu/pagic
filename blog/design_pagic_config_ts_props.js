@@ -30,9 +30,9 @@ export default {
     'contentHasKatex': false,
     'date': "2020-07-12T00:00:00.000Z",
     'updated': null,
-    'author': "xcatliu",
+    'author': "MVEMCJSUNPE",
     'contributors': [
-        "xcatliu"
+        "MVEMCJSUNPE"
     ],
     'blog': {
         "isPost": true,

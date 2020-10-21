@@ -88,11 +88,11 @@ export default {
         "path": "zh-CN/"
     },
     'contentHasKatex': true,
-    'date': "2020-10-19T04:13:27.000Z",
+    'date': "2020-10-21T01:20:37.000Z",
     'updated': null,
-    'author': "xcatliu",
+    'author': "MVEMCJSUNPE",
     'contributors': [
-        "xcatliu"
+        "MVEMCJSUNPE"
     ],
     'blog': {
         "isPost": false,
