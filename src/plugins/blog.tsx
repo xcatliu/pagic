@@ -6,24 +6,28 @@ const blog: PagicPlugin = {
   fn: async (pagic) => {
     for (const pagePath of pagic.pagePaths) {
       const { outputPath } = pagic.pagePropsMap[pagePath];
-      const configBlogPath = pagic.getConfig(pagePath).blog.path;
+      const configBlogPath = pagic.getConfig(pagePath).blog?.path;
+      if (!configBlogPath) continue;
 
       pagic.pagePropsMap[pagePath].blog = {
         isPost: pagePath.startsWith(configBlogPath) && !`/${outputPath}`.endsWith('/index.html'),
         isPosts: pagePath.startsWith(configBlogPath) && `/${outputPath}`.endsWith('/index.html'),
         posts: Object.values(pagic.pagePropsMap)
           .filter(
-            ({ pagePath, outputPath }) =>
-              pagePath.startsWith(configBlogPath) && !`/${outputPath}`.endsWith('/index.html')
+            ({ pagePath, outputPath, date, updated }) =>
+              pagePath.startsWith(configBlogPath) &&
+              !`/${outputPath}`.endsWith('/index.html') &&
+              typeof date !== 'undefined' &&
+              typeof updated !== 'undefined'
           )
           .map(({ pagePath, title, outputPath, date, updated }) => ({
             pagePath,
             title,
             link: outputPath,
-            date,
-            updated
+            date: date!,
+            updated: updated!
           }))
-          .sort((a, b) => b.date - a.date)
+          .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
       };
     }
   }

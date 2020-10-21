@@ -57,9 +57,11 @@ const Main: PagicLayout = (props) => {
         ) : blog?.isPost ? (
           <>
             {contentTitle}
-            <div className="main_post_meta">
-              <time dateTime={date}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
-            </div>
+            {date && (
+              <div className="main_post_meta">
+                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
+              </div>
+            )}
             {contentBody}
           </>
         ) : (
