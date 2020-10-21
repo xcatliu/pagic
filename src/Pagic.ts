@@ -165,13 +165,31 @@ export default class Pagic {
     }
   }
 
+  public async genMod() {
+    this.config = Pagic.defaultConfig;
+    this.config.srcDir = '.';
+    if (this.config.exclude) {
+      this.config.exclude.push('mod.ts');
+    } else {
+      this.config.exclude = [ 'mod.ts' ];
+    }
+
+    await this.initPaths();
+
+    await Deno.writeTextFile('./mod.ts', 'export default {\n' + '  files: [\n');
+    for (const modFile of this.staticPaths.concat(this.layoutPaths)) {
+        await Deno.writeTextFile('./mod.ts', `    '${modFile}',` + '\n', { append: true });
+    }
+    await Deno.writeTextFile('./mod.ts', '  ]\n' + '}\n', { append: true });
+  }
+
   public getConfig(pagePath?: string) {
     if (typeof pagePath === 'undefined') {
       return this.config;
     }
     return this.pagePropsMap[pagePath].config;
   }
-
+  
   private async rebuild() {
     this.rebuilding = true;
     this.pagePropsMap = {};

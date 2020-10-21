@@ -15,7 +15,7 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 
-  const validSubCommands = ['build'];
+  const validSubCommands = ['build', 'genmod'];
   if (!validSubCommands.includes(subCommand)) {
     throw new Error(`Invalid subCommand ${subCommand}`);
   }
@@ -53,5 +53,8 @@ if (import.meta.main) {
   const pagic = new Pagic(options);
   if (subCommand === 'build') {
     pagic.build();
+  }
+  if (subCommand === 'genmod') {
+    pagic.genMod();
   }
 }
