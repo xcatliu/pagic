@@ -8,7 +8,7 @@ Deno.test('[serve]', async () => {
     port: 8000
   });
   const no_toc = await fetch('http://127.0.0.1:8000/no_toc.md');
-  asserts.assertEquals(await no_toc.text(), 'foo\n');
+  asserts.assertEquals((await no_toc.text()).trim(), 'foo');
   const not_found = await fetch('http://127.0.0.1:8000/not_found');
   asserts.assertEquals(await not_found.status, 404);
   asserts.assertEquals(await not_found.text(), 'Not found');
@@ -22,6 +22,6 @@ Deno.test('[serve] root option', async () => {
     port: 8000
   });
   const no_toc = await fetch('http://127.0.0.1:8000/foo/no_toc.md');
-  asserts.assertEquals(await no_toc.text(), 'foo\n');
+  asserts.assertEquals((await no_toc.text()).trim(), 'foo');
   server.close();
 });
