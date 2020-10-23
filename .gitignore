@@ -3,3 +3,4 @@ node_modules
 dist
 
 pagic.cn
+test/fixtures/test_copy_dir
