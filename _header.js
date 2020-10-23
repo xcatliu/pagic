@@ -43,7 +43,7 @@ const Header = ({ config, language, isDark, setIsDark }) => {
                                 url.pathname = url.pathname.replace(language.path, '');
                             }
                             const nextLanguage = (_a = config.i18n) === null || _a === void 0 ? void 0 : _a.languages.find(({ code }) => code === nextLanguageCode);
-                            url.pathname = `${config.root}${nextLanguage.path}${url.pathname.slice(1)}`;
+                            url.pathname = `${config.root}${nextLanguage.path}${url.pathname.replace(config.root, '')}`;
                             // @ts-ignore
                             location.href = url.toString();
                         } }, config.i18n.languages.map(({ code, name }) => (React.createElement("option", { key: code, value: code }, name)))))),
