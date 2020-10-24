@@ -40,6 +40,7 @@ if (import.meta.main) {
            });
 
   await new Command()
+    .name('pagic')
     .command('build', build)
     .command('init', init)
     .parse(Deno.args);
