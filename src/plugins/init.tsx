@@ -15,11 +15,8 @@ const init: PagicPlugin = {
         outputPath,
         title: '',
         content: null,
-        contentTitle: null,
-        contentBody: null,
-        head: pagic.config.head,
-        script: null,
-        toc: null
+        head: pagic.config.head ?? null,
+        script: null
       };
     }
   }

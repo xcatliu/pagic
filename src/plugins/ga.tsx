@@ -8,6 +8,9 @@ const ga: PagicPlugin = {
   name: 'ga',
   insert: 'before:script',
   fn: async (pagic) => {
+    if (!pagic.config.ga) {
+      return;
+    }
     for (const pagePath of pagic.pagePaths) {
       const pageProps = pagic.pagePropsMap[pagePath];
 

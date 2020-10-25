@@ -1,14 +1,14 @@
 import { React, ReactDOM } from '../../deps.ts';
 
-interface GitalkProps {
+export interface GitalkProps {
   clientID: string;
   clientSecret: string;
   repo: string;
   owner: string;
   admin: string[];
-  id: string;
-  title: string;
   pagerDirection: 'last' | 'first';
+  id?: string;
+  title?: string;
 }
 
 const Gitalk = (props: GitalkProps) => {

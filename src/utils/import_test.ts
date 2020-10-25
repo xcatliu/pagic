@@ -16,11 +16,11 @@ Deno.test('[importPlugin]', async () => {
 });
 Deno.test('[importTheme]', async () => {
   const themeMod = await importTheme('default');
-  asserts.assertEquals(Array.isArray(themeMod.files), true);
+  asserts.assert(Array.isArray(themeMod.files));
 });
 Deno.test('[importTheme] _layout.tsx', async () => {
   const Layout = await importTheme('default', '_layout.tsx');
-  asserts.assertEquals(Layout instanceof Function, true);
+  asserts.assert(Layout instanceof Function);
 });
 Deno.test('[importPagicMod]', async () => {
   const output = await importPagicMod('test/fixtures/test_export.ts');

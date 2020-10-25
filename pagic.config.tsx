@@ -3,7 +3,7 @@
 export default {
   srcDir: 'pagic.org',
   theme: 'docs',
-  plugins: ['sidebar', 'prev_next', 'i18n', 'blog'],
+  plugins: ['sidebar', 'prev_next', 'i18n', 'blog', 'ga'],
   title: 'Pagic',
   description: 'A static site generator powered by Deno + React',
   github: 'https://github.com/xcatliu/pagic',
@@ -124,6 +124,9 @@ export default {
           'Run pagic': '运行 pagic'
         }
       }
+    },
+    ga: {
+      id: 'G-JPPPP5EF38'
     }
   }
 };

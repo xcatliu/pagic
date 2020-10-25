@@ -2,7 +2,6 @@
 
 import { path, server } from '../../deps.ts';
 const { extname, posix } = path;
-const { listenAndServe } = server;
 
 const encoder = new TextEncoder();
 
@@ -69,10 +68,12 @@ const defaultServeOptions: Required<ServeOptions> = {
   root: '/',
   port: 8000
 };
-export function serve(options?: ServeOptions): void {
+
+/** Serve dir as static server */
+export function serve(options?: ServeOptions) {
   const { serveDir, root, port } = { ...defaultServeOptions, ...options };
 
-  const handler = async (req: server.ServerRequest): Promise<void> => {
+  const handler = async (req: server.ServerRequest) => {
     let normalizedUrl = posix.normalize(req.url);
     try {
       normalizedUrl = decodeURIComponent(normalizedUrl);
@@ -81,7 +82,7 @@ export function serve(options?: ServeOptions): void {
         throw e;
       }
     }
-    let fsPath = posix.join(serveDir, normalizedUrl);
+    let fsPath = posix.join(serveDir, normalizedUrl.replace(root, '/'));
 
     let response: server.Response | undefined;
     try {
@@ -101,5 +102,21 @@ export function serve(options?: ServeOptions): void {
     }
   };
 
-  listenAndServe(`127.0.0.1:${port}`, handler);
+  return listenAndServe(`127.0.0.1:${port}`, handler);
+}
+
+// https://github.com/denoland/deno/issues/5060
+export function listenAndServe(
+  addr: string | server.HTTPOptions,
+  handler: (req: server.ServerRequest) => void
+): server.Server {
+  const serverInstance = server.serve(addr);
+
+  const handleRequests = async () => {
+    for await (const request of serverInstance) {
+      handler(request);
+    }
+  };
+  handleRequests();
+  return serverInstance;
 }

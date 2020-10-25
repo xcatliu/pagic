@@ -1,5 +1,5 @@
 ---
-author: xcatliu
+author: Tom
 publicPath: foo/bar.html
 ---
 
