@@ -39,7 +39,7 @@ export function omit(obj: any, keys: string[]) {
   return result;
 }
 /** Traversal a tree or tree[] */
-export function depthFirstTraversal<T>(tree: Tree<T> | Tree<T>[], callback: AnyFunction) {
+export function depthFirstTraversal<T>(tree: Tree<T> | Tree<T>[], callback: (item: T) => void) {
   let remain = Array.isArray(tree) ? [...tree] : [tree];
   while (remain.length > 0) {
     const current = remain.shift()!;

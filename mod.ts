@@ -51,4 +51,5 @@ if (import.meta.main) {
     .command('build', build)
     .command('init', init)
     .parse(Deno.args);
+
 }

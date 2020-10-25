@@ -15,9 +15,12 @@ import {
   serve
 } from './utils/mod.ts';
 import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
+import type { GaProps } from './plugins/ga_component.tsx';
+import type { GitalkProps } from './plugins/gitalk_component.tsx';
 
 // #region types
 export interface PagicConfig {
+  // base
   srcDir: string;
   outDir: string;
   include?: string[];
@@ -28,16 +31,42 @@ export interface PagicConfig {
   watch: boolean;
   serve: boolean;
   port: number;
+
+  // theme config
+  title?: string;
+  description?: string;
+  head?: React.ReactElement | null;
+  github?: string;
+  tocAd?: React.ReactElement;
+  tools?: {
+    editOnGithub: boolean;
+    backToTop: boolean;
+  };
+
+  // plugins
+  nav?: {
+    text: string;
+    link: string;
+    target?: '_blank' | string;
+    popover?: React.ReactElement;
+    align?: 'left' | 'right';
+  }[];
+  sidebar?: PagicConfigSidebar;
   md?: {
     anchorLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
     tocLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
   };
-  sidebar?: PagicConfigSidebar;
+  blog?: {
+    path: string;
+  };
+  ga?: GaProps;
+  gitalk?: GitalkProps;
   i18n?: {
     languages: { code: string; name: string; path: string }[];
-    overrides?: { [code: string]: any };
-    resources?: { [code: string]: { translation: { [key: string]: string } } };
+    overrides?: Record<string, any>;
+    resources?: Record<string, { translation: Record<string, string> }>;
   };
+
   [key: string]: any;
 }
 
@@ -51,42 +80,51 @@ export interface PagicPlugin {
   fn: (ctx: Pagic) => Promise<void>;
 }
 
-export type PagicLayout<
-  T = {
-    [key: string]: any;
-  }
-> = React.FC<PageProps & T>;
-
+export type PagicLayout<T = Record<string, any>> = React.FC<PageProps & T>;
 
 export interface PageProps {
+  // md
+  title: string;
+  content: React.ReactElement | null;
+  contentTitle?: React.ReactElement;
+  contentBody?: React.ReactElement;
+  contentHasKatex?: boolean;
+  toc?: React.ReactElement | null;
+  date?: Date | string;
+  updated?: Date | string | null;
+  author?: string;
+  contributors?: string[];
+
+  // init
   config: PagicConfig;
+  pagePath: string;
+  layoutPath: string;
+  outputPath: string;
+  head: React.ReactElement | null;
+  script: React.ReactElement | null;
+
+  // script
+  loading?: boolean;
+
+  // other plugins
+  sidebar?: PagePropsSidebar;
+  prev?: PagePropsSidebar[0];
+  next?: PagePropsSidebar[0];
   blog?: {
     isPost: boolean;
     isPosts: boolean;
-    posts: { 
+    posts: {
       pagePath: string;
       title: string;
       link: string;
       date: Date | string;
       updated: Date | string;
-    } [];
+    }[];
   };
-  pagePath: string;
-  layoutPath: string;
-  outputPath: string;
-  title: string;
-  content: React.ReactElement | null;
-  contentTitle: React.ReactElement | null;
-  contentBody: React.ReactElement | null;
-  head: React.ReactElement | null;
-  script: React.ReactElement | null;
-  toc: React.ReactElement | null;
-  loading?: boolean;
-  sidebar?: PagePropsSidebar;
-  prev?: PagePropsSidebar[0] | null;
-  next?: PagePropsSidebar[0] | null;
+  ga?: React.ReactElement;
+  gitalk?: React.ReactElement;
   language?: { code: string; name: string; path: string };
-  gitalk?: React.ReactElement | null;
+
   [key: string]: any;
 }
 // #endregion
@@ -128,20 +166,16 @@ export default class Pagic {
   // @ts-ignore
   public pagicConfigPath: string;
   // @ts-ignore
-  public config: PagicConfig;
+  public config: PagicConfig = {};
 
   /** Pages that need to be build */
   public pagePaths: string[] = [];
   public layoutPaths: string[] = [];
   public staticPaths: string[] = [];
   /** Files that need to be write */
-  public writeFiles: {
-    [filePath: string]: string;
-  } = {};
+  public writeFiles: Record<string, string> = {};
   /** A map stored all pageProps */
-  public pagePropsMap: {
-    [pagePath: string]: PageProps;
-  } = {};
+  public pagePropsMap: Record<string, PageProps> = {};
   public rebuilding = true;
 
   public projectConfig: Partial<PagicConfig> = {};
@@ -335,7 +369,6 @@ export default class Pagic {
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
     ]);
-
   }
 
   private async runPlugins() {

@@ -12,6 +12,8 @@ jobs:
         os: [windows-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup deno
         uses: denolib/setup-deno@v2

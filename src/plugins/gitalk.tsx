@@ -8,12 +8,15 @@ const gitalk: PagicPlugin = {
   name: 'gitalk',
   insert: 'before:script',
   fn: async (pagic) => {
+    if (!pagic.config.gitalk) {
+      return;
+    }
     for (const pagePath of pagic.pagePaths) {
       const pageProps = pagic.pagePropsMap[pagePath];
 
       pagic.pagePropsMap[pagePath] = {
-        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />,
-        ...pageProps
+        ...pageProps,
+        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />
       };
     }
 

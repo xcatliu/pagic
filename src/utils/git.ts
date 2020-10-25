@@ -2,6 +2,7 @@ import { unique } from './common.ts';
 
 const now = new Date();
 
+/** Get and parse messages from git log */
 export async function getGitLog(
   pagePath: string
 ): Promise<{
@@ -34,7 +35,7 @@ export async function getGitLog(
       gitLogResult.updated = null;
     } else {
       gitLogResult.date = new Date(dateList[0]);
-      gitLogResult.updated = new Date(dateList[dateList.length]);
+      gitLogResult.updated = new Date(dateList[dateList.length - 1]);
     }
   }
 

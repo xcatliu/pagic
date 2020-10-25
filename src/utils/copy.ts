@@ -29,4 +29,5 @@ export async function download(httpPath: string, dest: string) {
   // https://stackoverflow.com/q/61945050/2777142
   const file = await Deno.open(dest, { create: true, write: true });
   await Deno.writeAll(file, new Uint8Array(await res.arrayBuffer()));
+  Deno.close(file.rid);
 }

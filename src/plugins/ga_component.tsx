@@ -1,6 +1,6 @@
 import { React } from '../../deps.ts';
 
-interface GaProps {
+export interface GaProps {
   id: string;
 }
 

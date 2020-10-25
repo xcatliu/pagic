@@ -1,11 +1,12 @@
 {
   "name": "pagic",
-  "version": "0.10.1",
+  "version": "0.10.3",
   "description": "A static site generator powered by Deno + React",
   "main": "mod.ts",
   "scripts": {
     "start": "deno run --unstable --allow-read --allow-write --allow-net --allow-run mod.ts build --serve --watch",
-    "test": "deno test --unstable --allow-read --allow-write --allow-net --allow-run --coverage src",
+    "build": "deno run --unstable --allow-read --allow-write --allow-net --allow-run mod.ts build",
+    "test": "deno test --unstable --allow-read --allow-write --allow-net --allow-run src",
     "lint": "run-s eslint prettier",
     "eslint": "eslint --ext .ts,.tsx,.js,.jsx .",
     "eslint:fix": "eslint --ext .ts,.tsx,.js,.jsx --fix .",

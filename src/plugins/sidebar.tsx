@@ -2,9 +2,7 @@ import type { PagicPlugin } from '../Pagic.ts';
 // eslint-disable-next-line no-duplicate-imports
 import type Pagic from '../Pagic.ts';
 
-export interface PagicConfigSidebar {
-  [prefix: string]: OnePagicConfigSidebar;
-}
+export type PagicConfigSidebar = Record<string, OnePagicConfigSidebar>;
 
 export type OnePagicConfigSidebar = (
   | {
@@ -18,8 +16,8 @@ export type OnePagicConfigSidebar = (
 export type PagePropsSidebar = {
   title: string;
   link?: string;
-  children?: PagePropsSidebar;
   pagePath?: string;
+  children?: PagePropsSidebar;
 }[];
 
 const sidebar: PagicPlugin = {
@@ -33,20 +31,16 @@ const sidebar: PagicPlugin = {
     for (const pagePath of pagic.pagePaths) {
       const pageProps = pagic.pagePropsMap[pagePath];
 
-      let parsedSidebar: {
-        [prefix: string]: PagePropsSidebar;
-      } = {};
-      for (const [prefix, oneConfig] of Object.entries({
-        ...pagic.getConfig(pagePath).sidebar
-      })) {
+      let parsedSidebar: Record<string, PagePropsSidebar> = {};
+      for (const [prefix, oneConfig] of Object.entries({ ...pagic.getConfig(pagePath).sidebar })) {
         parsedSidebar[prefix] = parseSidebarConfig(oneConfig, pagic);
       }
 
       for (const [prefix, pagePropsSidebar] of Object.entries(parsedSidebar)) {
         if (`/${pageProps.outputPath}`.startsWith(prefix)) {
           pagic.pagePropsMap[pagePath] = {
-            sidebar: pagePropsSidebar,
-            ...pageProps
+            ...pageProps,
+            sidebar: pagePropsSidebar
           };
           break;
         }
