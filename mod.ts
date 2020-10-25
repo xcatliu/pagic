@@ -4,6 +4,7 @@ export { t, Trans } from './src/plugins/i18n.tsx';
 
 import Pagic from './src/Pagic.ts';
 import { Command } from 'https://deno.land/x/cliffy/command/mod.ts';
+import { Select } from 'https://deno.land/x/cliffy/prompt/select.ts';
 import { logger } from './src/utils/mod.ts';
 export default Pagic;
 
@@ -22,20 +23,26 @@ if (import.meta.main) {
 
   const init = new Command()
            .description('automatically generate pagic_config.ts, pagic_config.tsx, or mod.ts')
-           .arguments('[conf:string]')
-           .action((options: any, conf: string) => {
+           .action(async (options: any) => {
+             const confName: string = await Select.prompt({
+               message: 'Choose a file to generate',
+               options: [
+                 { name: 'mod.ts', value: 'mod.ts' },
+                 { name: 'pagic.config.ts', value: 'pagic.config.ts' },
+                 { name: 'pagic.config.tsx', value: 'pagic.config.tsx' }
+               ]
+             });
              const pagic = new Pagic();
-             switch (conf) {
+             switch (confName) {
                case 'mod.ts':
                  pagic.genMod();
                  break;
                case 'pagic.config.ts':
                case 'pagic.config.tsx':
-                 pagic.genConf(conf);
+                 pagic.genConf(confName);
                  break;
-                default:
-                  console.log('Invalid file name');
-                  return;
+               default:
+                 console.error('Invalid filename');
              }
            });
 
