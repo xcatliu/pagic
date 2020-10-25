@@ -29,25 +29,35 @@ const prev_next: PagicPlugin = {
   }
 };
 
-function getPrevAndNext(pagePropsSidebar: PagePropsSidebar, pagePath: string) {
-  let last: any = null;
-  let prev: any = null;
-  let next: any = null;
+function getPrevAndNext(
+  pagePropsSidebar: PagePropsSidebar,
+  pagePath: string
+): {
+  prev?: { title: string; link: string };
+  next?: { title: string; link: string };
+} {
+  let last: any;
+  let prev: any;
+  let next: any;
   let found = false;
   let shouldBreak = false;
   // Deep clone
   depthFirstTraversal(pagePropsSidebar, (current) => {
     if (shouldBreak) return;
     if (found) {
-      next = current;
-      shouldBreak = true;
+      if (typeof current.link !== 'undefined') {
+        next = current;
+        shouldBreak = true;
+      }
       return;
     }
     if (current.pagePath === pagePath) {
       found = true;
       prev = last;
     } else {
-      last = current;
+      if (typeof current.link !== 'undefined') {
+        last = current;
+      }
     }
   });
   return {

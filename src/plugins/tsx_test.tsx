@@ -5,7 +5,7 @@ import tsx from './tsx.tsx';
 
 Deno.test('[tsx]', async () => {
   const pagic = new Pagic();
-  pagic.config = { srcDir: 'test/fixtures' } as any;
+  pagic.config.srcDir = 'test/fixtures';
   pagic.pagePaths = ['hello.tsx', 'README.md'];
   pagic.pagePropsMap = {
     'hello.tsx': {
@@ -16,8 +16,7 @@ Deno.test('[tsx]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null,
-      toc: null
+      script: null
     },
     'README.md': {
       config: pagic.config,
@@ -27,8 +26,7 @@ Deno.test('[tsx]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null,
-      toc: null
+      script: null
     }
   };
   await tsx.fn(pagic);

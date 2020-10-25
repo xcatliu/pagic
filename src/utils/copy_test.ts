@@ -21,11 +21,11 @@ Deno.test('[ensureDirAndCopy]', async () => {
 Deno.test('[copyPagicFile]', async () => {
   await copyPagicFile('src/plugins/script_index.js', 'test/fixtures/test_copy_dir/index.js');
   const fileExists = await fs.exists('test/fixtures/test_copy_dir/index.js');
-  asserts.assertEquals(fileExists, true);
+  asserts.assert(fileExists);
 });
 
 Deno.test('[download]', async () => {
   await download('https://cdn.pagic.org/lodash@4.17.20/esnext/throttle.js', 'test/fixtures/test_copy_dir/throttle.js');
   const fileExists = await fs.exists('test/fixtures/test_copy_dir/throttle.js');
-  asserts.assertEquals(fileExists, true);
+  asserts.assert(fileExists);
 });

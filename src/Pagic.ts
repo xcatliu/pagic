@@ -15,6 +15,8 @@ import {
   serve
 } from './utils/mod.ts';
 import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
+import type { GaProps } from './plugins/ga_component.tsx';
+import type { GitalkProps } from './plugins/gitalk_component.tsx';
 
 // #region types
 export interface PagicConfig {
@@ -57,17 +59,8 @@ export interface PagicConfig {
   blog?: {
     path: string;
   };
-  ga?: {
-    id: string;
-  };
-  gitalk?: {
-    clientID: string;
-    clientSecret: string;
-    repo: string;
-    owner: string;
-    admin: string[];
-    pagerDirection: 'last' | 'first';
-  };
+  ga?: GaProps;
+  gitalk?: GitalkProps;
   i18n?: {
     languages: { code: string; name: string; path: string }[];
     overrides?: Record<string, any>;
@@ -115,8 +108,8 @@ export interface PageProps {
 
   // other plugins
   sidebar?: PagePropsSidebar;
-  prev?: PagePropsSidebar[0] | null;
-  next?: PagePropsSidebar[0] | null;
+  prev?: PagePropsSidebar[0];
+  next?: PagePropsSidebar[0];
   blog?: {
     isPost: boolean;
     isPosts: boolean;
@@ -173,20 +166,16 @@ export default class Pagic {
   // @ts-ignore
   public pagicConfigPath: string;
   // @ts-ignore
-  public config: PagicConfig;
+  public config: PagicConfig = {};
 
   /** Pages that need to be build */
   public pagePaths: string[] = [];
   public layoutPaths: string[] = [];
   public staticPaths: string[] = [];
   /** Files that need to be write */
-  public writeFiles: {
-    [filePath: string]: string;
-  } = {};
+  public writeFiles: Record<string, string> = {};
   /** A map stored all pageProps */
-  public pagePropsMap: {
-    [pagePath: string]: PageProps;
-  } = {};
+  public pagePropsMap: Record<string, PageProps> = {};
   public rebuilding = true;
 
   public projectConfig: Partial<PagicConfig> = {};

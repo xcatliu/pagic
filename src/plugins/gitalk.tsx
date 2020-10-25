@@ -15,8 +15,8 @@ const gitalk: PagicPlugin = {
       const pageProps = pagic.pagePropsMap[pagePath];
 
       pagic.pagePropsMap[pagePath] = {
-        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />,
-        ...pageProps
+        ...pageProps,
+        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />
       };
     }
 

@@ -3,9 +3,7 @@ import { path } from '../../deps.ts';
 import { pagicRootPath } from './filepath.ts';
 import type { PagicPlugin, PagicThemeConfig } from '../Pagic.ts';
 
-const importCache: {
-  [importPath: string]: any;
-} = {};
+const importCache: Record<string, any> = {};
 
 interface ImportOptions {
   reload?: boolean;

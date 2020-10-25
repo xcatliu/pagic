@@ -5,8 +5,6 @@ import init from './init.tsx';
 
 Deno.test('[init]', async () => {
   const pagic = new Pagic();
-  // @ts-ignore
-  pagic.config = { head: null };
   pagic.pagePaths = ['README.md', 'foo.tsx', 'bar/baz.md'];
   pagic.layoutPaths = ['bar/_layout.tsx', '_layout.tsx'];
   await init.fn(pagic);

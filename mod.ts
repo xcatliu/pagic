@@ -21,7 +21,7 @@ if (import.meta.main) {
   }
 
   const validOptions = ['serve', 'watch', 'port'];
-  let options: { [key: string]: any } = {};
+  let options: Record<string, any> = {};
   for (let i = 0; i < restArgs.length; i++) {
     const currentArg = restArgs[i];
     const nextArg = restArgs[i + 1];
