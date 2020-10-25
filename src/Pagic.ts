@@ -66,7 +66,7 @@ export interface PagicConfig {
     repo: string;
     owner: string;
     admin: string[];
-    pagerDirection: string;
+    pagerDirection: 'last' | 'first';
   };
   i18n?: {
     languages: { code: string; name: string; path: string }[];
