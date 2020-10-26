@@ -4,3 +4,6 @@
 !mod.ts
 !deps.ts
 !docker-entrypoint.sh
+
+src/**/*_test.ts
+src/**/*_test.tsx
