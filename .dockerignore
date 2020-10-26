@@ -5,5 +5,5 @@
 !deps.ts
 !docker-entrypoint.sh
 
-src/**/*_test.ts
-src/**/*_test.tsx
+src/*/*_test.ts
+src/*/*_test.tsx
