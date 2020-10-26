@@ -26,6 +26,9 @@ export default {
             ],
             github: 'https://github.com/xcatliu/pagic',
             i18n: {
+                ga: {
+                    id: 'G-JPPPP5EF38'
+                },
                 languages: [
                     {
                         code: 'en',
@@ -142,7 +145,8 @@ export default {
                 'sidebar',
                 'prev_next',
                 'i18n',
-                'blog'
+                'blog',
+                'ga'
             ],
             port: 8000,
             root: '/',
