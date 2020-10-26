@@ -29,9 +29,14 @@ if (import.meta.main) {
                options: [
                  { name: 'mod.ts', value: 'mod.ts' },
                  { name: 'pagic.config.ts', value: 'pagic.config.ts' },
-                 { name: 'pagic.config.tsx', value: 'pagic.config.tsx' }
+                 { name: 'pagic.config.tsx', value: 'pagic.config.tsx' },
+                 { name: 'quit', value: 'q' },
                ]
              });
+
+             if (confName === 'q') {
+              return;
+             }
              const pagic = new Pagic();
              switch (confName) {
                case 'mod.ts':
