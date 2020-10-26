@@ -45,7 +45,9 @@ const script: PagicPlugin = {
                 return `config: { ${JSON.stringify(pick(Pagic.defaultConfig, ['root'])).slice(
                   1,
                   -1
-                )}, ...projectConfig, ...projectConfig.i18n?.overrides?.['${pageProps.language?.code}'] }`;
+                )}, ...projectConfig${
+                  pageProps.language?.code ? `, ...projectConfig.i18n?.overrides?.['${pageProps.language?.code}']` : ''
+                } }`;
               } else if (React.isValidElement(value)) {
                 if (typeof value.type !== 'string' && typeof value.type.name !== 'undefined') {
                   const componentName = value.type.name;

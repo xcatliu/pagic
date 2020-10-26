@@ -1,7 +1,10 @@
-import { asserts, ReactDOMServer } from '../../deps.ts';
+import { asserts, fs, ReactDOMServer } from '../../deps.ts';
 
 import Pagic from '../Pagic.ts';
 import i18n from './i18n.tsx';
+
+// Empty test/fixtures/test_i18n_dir before output files to it
+fs.emptyDirSync('test/fixtures/test_i18n_dir');
 
 Deno.test('[i18n]', async () => {
   const pagic = new Pagic();
@@ -9,7 +12,7 @@ Deno.test('[i18n]', async () => {
   // pagic.config.i18n is undefined, nothing happened
   asserts.assertEquals(pagic.pagePropsMap, {});
 
-  pagic.config.outDir = 'dist';
+  pagic.config.outDir = 'test/fixtures/test_i18n_dir';
   pagic.config.root = '/';
   pagic.config.blog = { path: 'blog/' };
   pagic.config.i18n = {
@@ -73,4 +76,6 @@ Deno.test('[i18n]', async () => {
     ReactDOMServer.renderToString(pagic.pagePropsMap['zh-CN/README.md'].head!),
     '<script type="module" src="/i18n.js" data-reactroot=""></script>'
   );
+
+  asserts.assert(await fs.exists('test/fixtures/test_i18n_dir/i18n.js'));
 });

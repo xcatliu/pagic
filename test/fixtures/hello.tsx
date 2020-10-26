@@ -1,4 +1,4 @@
-import { React } from 'https://deno.land/x/pagic/mod.ts';
+import { React } from '../../deps.ts';
 
 const Hello = () => <h1>Hello world</h1>;
 export default Hello;
