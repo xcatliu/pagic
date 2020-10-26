@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://pagic.org">
-    <img alt="Pagic" src="./pagic.org/assets/pagic_logo.png" width="64" align="center" />agic
+    <img alt="P" src="./pagic.org/assets/pagic_logo.png" width="64" align="center" />agic
   </a>
 </h1>
 
