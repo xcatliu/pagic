@@ -74,7 +74,7 @@ const IndexPage = ({ config, language }) => {
                     fontSize: '64px',
                     color: 'hsl(210, 70%, 50%)'
                 } },
-                React.createElement("img", { src: "/assets/pagic_logo.png", style: {
+                React.createElement("img", { alt: "P", src: "/assets/pagic_logo.png", style: {
                         width: 128,
                         verticalAlign: 'bottom',
                         margin: -16,
