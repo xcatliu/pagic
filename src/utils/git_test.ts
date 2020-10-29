@@ -9,7 +9,7 @@ Deno.test('[getGitLog]', async () => {
     author: 'xcatliu',
     contributors: ['xcatliu', 'somebody_for_test'],
     date: new Date('Sat Jul 11 20:13:54 2020 +0800'),
-    updated: new Date('Thu Oct 22 23:05:45 2020 +0800')
+    updated: new Date('Mon Oct 26 13:21:21 2020 +0800')
   });
 });
 

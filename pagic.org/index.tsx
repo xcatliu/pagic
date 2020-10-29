@@ -80,6 +80,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
         }}
       >
         <img
+          alt="P"
           src="/assets/pagic_logo.png"
           style={{
             width: 128,

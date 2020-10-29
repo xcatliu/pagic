@@ -25,7 +25,7 @@ WORKDIR /usr/src/install
 ENV PATH "/root/.deno/bin:$PATH"
 RUN deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic mod.ts \
   # Install dependencies
-  && deno cache --unstable $(find src -name "*.ts*")
+  && deno cache --unstable $(find src -name "*.ts*" ! -name "*_test.ts*")
 
 WORKDIR /pagic
 COPY --from=permissions-giver /out/docker-entrypoint.sh /usr/local/bin
