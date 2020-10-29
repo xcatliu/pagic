@@ -9,16 +9,11 @@ jobs:
     strategy:
       matrix:
         # os: [windows-latest, macos-latest, ubuntu-latest]
-        os: [windows-latest, ubuntu-latest]
+        os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Setup deno
-        uses: denolib/setup-deno@v2
-        with:
-          deno-version: v1.3.1
 
       - name: Run tests
         run: deno test --unstable --allow-read --allow-write --allow-net --allow-run src
