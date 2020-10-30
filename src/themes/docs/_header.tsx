@@ -9,7 +9,7 @@ const Header: PagicLayout<{
 }> = ({ config, language, isDark, setIsDark }) => (
   <header>
     <h1 className="hide_on_mobile">
-      <a href={`${config.root}${language?.path ?? ''}`}>{config.title}</a>
+      <a href={`${config.root}${language?.root.slice(1) ?? ''}`}>{config.title}</a>
     </h1>
     <nav>
       <ul>
@@ -99,11 +99,11 @@ const Header: PagicLayout<{
 
                 // @ts-ignore
                 const nextLanguageCode = e.target.value;
-                if (language.path !== '') {
-                  url.pathname = url.pathname.replace(language.path, '');
+                if (language.root !== '/') {
+                  url.pathname = url.pathname.replace(language.root, '/');
                 }
                 const nextLanguage = config.i18n?.languages.find(({ code }) => code === nextLanguageCode);
-                url.pathname = `${config.root}${nextLanguage!.path}${url.pathname.replace(config.root, '')}`;
+                url.pathname = `${config.root}${nextLanguage!.root.slice(1)}${url.pathname.replace(config.root, '')}`;
 
                 // @ts-ignore
                 location.href = url.toString();

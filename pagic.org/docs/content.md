@@ -2,7 +2,7 @@
 
 Pagic supports rendering `md/tsx` files into static HTML pages. The features supported by these two kind of files will be introduced below.
 
-## md file
+## `md` file
 
 Pagic uses [markdown-it](https://github.com/markdown-it/markdown-it) to compile markdown files. It supports adding third-party plugins to extend the original functions.
 
@@ -20,9 +20,13 @@ All the `<h2>` and `<h3>` tags in the article will be extracted as the table of 
 
 If there is no `<h2>` or `<h3>` in the article, then `toc` is `undefined`.
 
+You can modify the extracted title level through the [config `md.tocLevel`](./config.md#md).
+
 ### Anchor in title
 
 All the `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>` tags in the article will be inserted into a clickable anchor `§`.
+
+You can modify the level of the title that will insert anchor through the [config `md.anchorLevel`](./config.md#md).
 
 ### Link replacement
 
@@ -148,6 +152,17 @@ $$
 $$
 ```
 
+### Get information from `git log`, such as `author`
+
+When parsing a Markdown file, Pagic will run a script to get its `git log` and extract useful information from it. They include:
+
+- `author`: The first committer of the file
+- `contributors`: All submitters of the file (including the first submitter), sorted by the time of the first submission (first submitted first)
+- `date`: The date when the file was first submitted
+- `updated`: the date the file was last submitted
+
+These information will be written into the `props` of the page.
+
 ### Limitations
 
 At present, Pagic's markdown parsing still has some limitations, which is also the direction for future improvement:
@@ -156,9 +171,9 @@ At present, Pagic's markdown parsing still has some limitations, which is also t
 - Does not support advanced grammar such as flowcharts
 - Does not support embedded jsx
 
-## tsx file
+## `tsx` file
 
-Rendering tsx files into static HTML pages is one of Pagic's features. With the programmability of React components, the capabilities of static websites are greatly expanded.
+Rendering `tsx` files into static HTML pages is one of Pagic's features. With the programmability of React components, the capabilities of static websites are greatly expanded.
 
 ### Basic usage
 
@@ -277,6 +292,10 @@ export const frontMatter = {
   outputPath: 'foo/bar.html'
 };
 ```
+
+### Get information from `git log`, such as `author`
+
+Like the `md` file, the `tsx` file will also get information such as `author`, `contributors`, `date`, `updated`, and they will be written into the `props` of the page.
 
 ### Limitations
 

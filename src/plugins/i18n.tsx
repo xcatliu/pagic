@@ -19,7 +19,7 @@ const i18n: PagicPlugin = {
       const pageProps = pagic.pagePropsMap[pagePath];
 
       const language =
-        pagic.config.i18n.languages.slice(1).find(({ path }) => pagePath.startsWith(path)) ??
+        pagic.config.i18n.languages.slice(1).find(({ root }) => `/${pagePath}`.startsWith(root)) ??
         pagic.config.i18n.languages[0];
 
       const config = {

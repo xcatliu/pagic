@@ -171,7 +171,7 @@ export default {
 - 类型：`string`
 - 默认值：`／`
 
-部署站点的根路径，常用于需要将网站部署到一个子路径下。比如在 GitHub pages 中，我们可以将网站部署到 https://foo.github.io/bar/ ，那么 `root` 应该被设置成 `'/bar/'`，它的值应当总是以斜杠开始，并以斜杠结束。
+部署站点的根路径，常用于需要将网站部署到一个子路径下。比如在 GitHub Pages 中，我们可以将网站部署到 https://foo.github.io/bar/ ，那么 `root` 应该被设置成 `'/bar/'`，它的值应当总是以斜杠开始，并以斜杠结束。
 
 ## 主题和插件
 
@@ -182,13 +182,11 @@ export default {
 
 当使用官方主题时，取值应为 `'default' | 'docs' | 'blog'`。
 
-当使用第三方主题时，取值应为形如：
+当使用第三方主题时，取值应为完整的链接：
 
 ```
 https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts
 ```
-
-的链接。
 
 ### `plugins`
 
@@ -197,13 +195,11 @@ https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts
 
 当使用官方插件时，数组中的项应为官方插件的名称，详见[官方插件列表](../plugins/)。
 
-当使用第三方插件时，数组中的项应为形如：
+当使用第三方插件时，数组中的项应为完整的链接：
 
 ```
 https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts
 ```
-
-的链接。
 
 需要注意的是，用户配置的 `plugins` 不会替换掉默认的 `plugins`，而是以一种规则插入到默认的 `plugins` 中，详见[如何开发插件](./plugins.md#如何开发插件)。
 
@@ -370,6 +366,27 @@ export default {
 
 在上面的例子中，以 `/docs/` 开头的页面会展示 docs 侧边栏，以 `/about/` 开头的页面会展示 about 侧边栏，其他页面会命中 `/`，展示默认的侧边栏。
 
+### `md`
+
+- 类型：较复杂，见示例
+- 支持的主题：全部
+- 依赖的插件：`md`
+
+解析 Markdown 文件的配置，示例如下：
+
+```ts
+export default {
+  md: {
+    anchorLevel: [1, 2, 3, 4, 5, 6],
+    tocLevel: [1, 2, 3, 4]
+};
+```
+
+在上面的例子中：
+
+- `anchorLevel` 用来配置 Markdown 转成 HTML 时，各级标题是否需要渲染一个锚点链接。`[1, 2, 3, 4, 5, 6]` 表示 `h1` 到 `h6` 都得展示锚点链接。它的默认值是 `[2, 3, 4, 5, 6]`。
+- `tocLevel` 用来配置页面中的目录（Table of Content）需要包含的标题级别。`[1, 2, 3, 4]` 表示 `h1` 到 `h4` 的标题都会展示在目录中。它的默认值是 `[2, 3]`。
+
 ### `tocAd`
 
 - 类型：`React.ReactElement`
@@ -456,6 +473,92 @@ export default {
   }
 };
 ```
+
+### `blog`
+
+- 类型：`{ root:string; }`
+- 支持的主题：`docs`, `blog`
+- 依赖的插件：`blog`
+
+博客相关的配置，示例如下：
+
+```ts
+export default {
+  blog: {
+    root: '/blog/'
+  }
+};
+```
+
+在上面的例子中，`root` 表示存储博客文章的根目录，它的默认值是 `/blog/`，表示所有 `${srcDir}/blog/` 目录下的页面（除了 `README.md` 之外）都会被识别为博客文章（即 posts）。注意，它的值应当总是以斜杠开始，并以斜杠结束。
+
+### `i18n`
+
+- 类型：较复杂，见示例
+- 支持的主题：`docs`
+- 依赖的插件：`i18n`
+
+国际化的配置，示例如下：
+
+```ts
+export default {
+  i18n: {
+    languages: [
+      { code: 'en', name: 'English', root: '/' },
+      { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' }
+    ],
+    overrides: {
+      'zh-CN': {
+        sidebar: {
+          '/zh-CN/docs/': [
+            'zh-CN/docs/introduction.md',
+            'zh-CN/docs/usage.md',
+            'zh-CN/docs/config.md',
+            'zh-CN/docs/content.md',
+            'zh-CN/docs/layout.md',
+            'zh-CN/docs/themes.md',
+            'zh-CN/docs/plugins.md',
+            'zh-CN/docs/deployment.md',
+            'zh-CN/docs/demos.md',
+            'zh-CN/docs/limitations.md'
+          ]
+        },
+        blog: {
+          root: '/zh-CN/blog/'
+        }
+      }
+    },
+    resources: {
+      'zh-CN': {
+        translation: {
+          'A static site generator powered by Deno + React': 'Deno + React 驱动的静态网站生成器',
+          'Get Started': '开始使用',
+          Demos: '示例网站',
+          'Render <1>md/tsx</1> to static HTML page': '支持将 <1>md/tsx</1> 文件渲染成静态页面'
+        }
+      }
+    }
+  }
+};
+```
+
+#### `i18n.language`
+
+`i18n.language` 表示你的网站支持的语言列表数组，数组的每一项都需要符合 `{ code:string, name:string, root:string }` 的格式，其中：
+
+- `code` 是该语言的 _ISO Language Code_，可以参考[这个网站](http://www.lingoes.net/en/translator/langcode.htm)来设置
+- `name` 是该语言展示在语言切换组件中的选项
+- `root` 是该语言所在的根目录，它的值应当总是以斜杠开始，并以斜杠结束
+
+注意，`i18n.language` 的第一项是网站的默认语言，它的 `root` 必须是 `/`。
+
+#### `i18n.overrides`
+
+`i18n.overrides` 是一个特殊的配置项，它可以允许特定语言下覆盖 `pagic.config.ts` 中的字段，它的类型是 `{ [key:string]:PagicConfig }`，其中键必须是 `i18n.language` 中的 `code` 字段，值的类型是整个 `pagic.config.ts` 的类型。当访问该语言的页面时，读取的 `pagic.config` 会是合并后的结果。
+
+#### `i18n.resources`
+
+`i18n.resources` 描述了各语言的翻译，`tsx` 文件中使用的 `t('Get Started')` 或 `<Trans>Render <code>md/tsx</code> to static HTML page</Trans>` 将会使用这里配置的翻译资源。`t()` 和 `<Trans>` 的具体语法请参考 [react-i18next](https://react.i18next.com/getting-started#simple-content)。
 
 ## 命令行选项
 

@@ -6,16 +6,16 @@ const blog: PagicPlugin = {
   fn: async (pagic) => {
     for (const pagePath of pagic.pagePaths) {
       const { outputPath } = pagic.pagePropsMap[pagePath];
-      const configBlogPath = pagic.getConfig(pagePath).blog?.path;
+      const configBlogPath = pagic.getConfig(pagePath).blog?.root ?? '/blog/';
       if (!configBlogPath) continue;
 
       pagic.pagePropsMap[pagePath].blog = {
-        isPost: pagePath.startsWith(configBlogPath) && !`/${outputPath}`.endsWith('/index.html'),
-        isPosts: pagePath.startsWith(configBlogPath) && `/${outputPath}`.endsWith('/index.html'),
+        isPost: `/${pagePath}`.startsWith(configBlogPath) && !`/${outputPath}`.endsWith('/index.html'),
+        isPosts: `/${pagePath}`.startsWith(configBlogPath) && `/${outputPath}`.endsWith('/index.html'),
         posts: Object.values(pagic.pagePropsMap)
           .filter(
             ({ pagePath, outputPath, date, updated }) =>
-              pagePath.startsWith(configBlogPath) &&
+              `/${pagePath}`.startsWith(configBlogPath) &&
               !`/${outputPath}`.endsWith('/index.html') &&
               typeof date !== 'undefined' &&
               typeof updated !== 'undefined'

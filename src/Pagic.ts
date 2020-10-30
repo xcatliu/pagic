@@ -56,13 +56,13 @@ export interface PagicConfig {
     anchorLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
     tocLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
   };
-  blog?: {
-    path: string;
-  };
   ga?: GaProps;
   gitalk?: GitalkProps;
+  blog?: {
+    root: string;
+  };
   i18n?: {
-    languages: { code: string; name: string; path: string }[];
+    languages: { code: string; name: string; root: string }[];
     overrides?: Record<string, any>;
     resources?: Record<string, { translation: Record<string, string> }>;
   };
@@ -123,7 +123,7 @@ export interface PageProps {
   };
   ga?: React.ReactElement;
   gitalk?: React.ReactElement;
-  language?: { code: string; name: string; path: string };
+  language?: { code: string; name: string; root: string };
 
   [key: string]: any;
 }

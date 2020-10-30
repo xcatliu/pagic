@@ -28,11 +28,11 @@ Pagic refers to the design of Deno and requires users to import third-party them
 
 As a "static site generator fanatic", I have used most of the popular static site generators. They are all excellent, but Pagic tried some new design concepts. Here are some key differences:
 
-|            | Pagic | VuePress | Hexo | Jekyll | Hugo |
-| ---------- | ----- | -------- | ---- | ------ | ---- |
-| Support md | ✓     | ✓        | ✓    | ✓      | ✓    |
-| React/Vue  | ✓     | ✓        |      |        |      |
-| SPA        | ✓     | ✓        |      |        |      |
-| ...        |       |          |      |        |      |
+|              | Pagic | VuePress | Hexo | Jekyll | Hugo |
+| ------------ | ----- | -------- | ---- | ------ | ---- |
+| Support `md` | ✓     | ✓        | ✓    | ✓      | ✓    |
+| React/Vue    | ✓     | ✓        |      |        |      |
+| SPA          | ✓     | ✓        |      |        |      |
+| ...          |       |          |      |        |      |
 
 Pagic stands on the shoulders of giants and refers to the config options and documents of some other static site generators. Hereby, I would like to express my sincere thanks to these open source projects and communities.

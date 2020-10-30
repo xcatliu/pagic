@@ -14,16 +14,16 @@ Deno.test('[i18n]', async () => {
 
   pagic.config.outDir = 'test/fixtures/test_i18n_dir';
   pagic.config.root = '/';
-  pagic.config.blog = { path: 'blog/' };
+  pagic.config.blog = { root: '/blog/' };
   pagic.config.i18n = {
     languages: [
-      { code: 'en', name: 'English', path: '' },
-      { code: 'zh-CN', name: '简体中文', path: 'zh-CN/' }
+      { code: 'en', name: 'English', root: '/' },
+      { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' }
     ],
     overrides: {
       'zh-CN': {
         blog: {
-          path: 'zh-CN/blog/'
+          root: '/zh-CN/blog/'
         }
       }
     },
@@ -60,8 +60,8 @@ Deno.test('[i18n]', async () => {
   };
 
   await i18n.fn(pagic);
-  asserts.assertEquals(pagic.pagePropsMap['README.md'].language, { code: 'en', name: 'English', path: '' });
-  asserts.assertEquals(pagic.pagePropsMap['README.md'].config.blog, { path: 'blog/' });
+  asserts.assertEquals(pagic.pagePropsMap['README.md'].language, { code: 'en', name: 'English', root: '/' });
+  asserts.assertEquals(pagic.pagePropsMap['README.md'].config.blog, { root: '/blog/' });
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagic.pagePropsMap['README.md'].head!),
     '<script type="module" src="/i18n.js" data-reactroot=""></script>'
@@ -69,9 +69,9 @@ Deno.test('[i18n]', async () => {
   asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].language, {
     code: 'zh-CN',
     name: '简体中文',
-    path: 'zh-CN/'
+    root: '/zh-CN/'
   });
-  asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].config.blog, { path: 'zh-CN/blog/' });
+  asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].config.blog, { root: '/zh-CN/blog/' });
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagic.pagePropsMap['zh-CN/README.md'].head!),
     '<script type="module" src="/i18n.js" data-reactroot=""></script>'

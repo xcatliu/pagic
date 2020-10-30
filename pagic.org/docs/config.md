@@ -171,7 +171,7 @@ export default {
 - Type: `string`
 - Default: `／`
 
-The root path the site will be deployed at. You will need to set this if you plan to deploy your site under a sub path, for example, GitHub pages. If you plan to deploy your site to https://foo.github.io/bar/, then you should set `root` to `'/bar/'`. It should always start and end with a slash.
+The root path the site will be deployed at. You will need to set this if you plan to deploy your site under a sub path, for example, GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/, then you should set `root` to `'/bar/'`. It should always start and end with a slash.
 
 ## Themes and plugins
 
@@ -292,11 +292,11 @@ export default {
 
 ### `nav`
 
-- Type: complexity, please see below
+- Type: complex, please see below
 - Supported themes: `docs`, `blog`
 - Dependent plugins: none
 
-Navigation configuration, examples are as follows:
+Navigation configuration, an examples is as follows:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -337,11 +337,11 @@ Configure your github account, usually a link will be displayed in the upper rig
 
 ### `sidebar`
 
-- Type: complexity, please see below
+- Type: complex, please see below
 - Supported themes: `docs`, `blog`
 - Dependent plugins: `sidebar`
 
-Sidebar configuration, examples are as follows:
+Sidebar configuration, an example is as follows:
 
 ```ts
 export default {
@@ -365,13 +365,34 @@ export default {
 
 In the above example, the page starting with `/docs/` will display the docs sidebar, the page starting with `/about/` will display the about sidebar, and other pages will hit `/` to display the default sidebar.
 
+### `md`
+
+- Type: complex, please see below
+- Supported themes: all
+- Dependent plugins: `md`
+
+The configuration of how to parse markdown files, an example is as follows:
+
+```ts
+export default {
+   md: {
+     anchorLevel: [1, 2, 3, 4, 5, 6],
+     tocLevel: [1, 2, 3, 4]
+};
+```
+
+In the above example:
+
+- `AnchorLevel` is used to configure which levels of titles need to render an anchor link when markdown is converted to HTML. `[1, 2, 3, 4, 5, 6]` means that the anchor link must be displayed from `h1` to `h6`. Its default value is `[2, 3, 4, 5, 6]`.
+- `tocLevel` is used to configure which levels of titles need to be included in toc (table of content). `[1, 2, 3, 4]` means that titles from `h1` to `h4` will be included in toc. Its default value is `[2, 3]`.
+
 ### `tocAd`
 
 - Type: `React.ReactElement`
 - Supported themes: `docs`, `blog`
 - Dependent plugins: none
 
-Ads displayed at the top of the table of content, examples are as follows:
+Ads displayed at the top of the table of content, an example is as follows:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -404,7 +425,7 @@ export default {
 - Supported themes: `docs`, `blog`
 - Dependent plugins: none
 
-Some small tools, such as `editOnGithub`, `backToTop`, etc. examples are as follows:
+Some small tools, such as `editOnGithub`, `backToTop`, etc. an examples is as follows:
 
 ```ts
 export default {
@@ -421,7 +442,7 @@ export default {
 - Supported themes: all
 - Dependent plugins: `ga`
 
-[Google analytics](https://analytics.google.com/) configuration, examples are as follows:
+[Google analytics](https://analytics.google.com/) configuration, an examples is as follows:
 
 ```ts
 export default {
@@ -433,11 +454,11 @@ export default {
 
 ### `gitalk`
 
-- Type: complexity, please see below
+- Type: complex, please see below
 - Supported themes: `docs`, `blog`
 - Dependent plugins: `gitalk`
 
-[Gitalk](https://github.com/gitalk/gitalk) can add comments to the page, examples are as follows:
+[Gitalk](https://github.com/gitalk/gitalk) can add comments to the page, an example is as follows:
 
 ```ts
 export default {
@@ -451,6 +472,92 @@ export default {
   }
 };
 ```
+
+### `blog`
+
+- Type: `{ root:string; }`
+- Supported themes: `docs`, `blog`
+- Dependent plugins: `blog`
+
+Blog configuration, an examples is as follows:
+
+```ts
+export default {
+  blog: {
+    root: '/blog/'
+  }
+};
+```
+
+In the above example, `root` means the root directory where blog posts are stored, and its default value is `/blog/`, which means all pages under the `${srcDir}/blog/` directory (except `README.md`) will be recognized as blog posts. Note that its value should always start and end with a slash.
+
+### `i18n`
+
+- Type: complex, please see below
+- Supported topics: `docs`
+- Dependent plugin: `i18n`
+
+Internationalized configuration, an examples is as follows:
+
+```ts
+export default {
+  i18n: {
+    languages: [
+      { code: 'en', name: 'English', root: '/' },
+      { code: 'zh-CN', name: 'Simplified Chinese', root: '/zh-CN/' }
+    ],
+    overrides: {
+      'zh-CN': {
+        sidebar: {
+          '/zh-CN/docs/': [
+            'zh-CN/docs/introduction.md',
+            'zh-CN/docs/usage.md',
+            'zh-CN/docs/config.md',
+            'zh-CN/docs/content.md',
+            'zh-CN/docs/layout.md',
+            'zh-CN/docs/themes.md',
+            'zh-CN/docs/plugins.md',
+            'zh-CN/docs/deployment.md',
+            'zh-CN/docs/demos.md',
+            'zh-CN/docs/limitations.md'
+          ]
+        },
+        blog: {
+          root: '/zh-CN/blog/'
+        }
+      }
+    },
+    resources: {
+      'zh-CN': {
+        translation: {
+          'A static site generator powered by Deno + React': 'Deno + React driven static website generator',
+          'Get Started': 'Get Started',
+          Demos: 'Sample website',
+          'Render <1>md/tsx</1> to static HTML page': 'Support rendering <1>md/tsx</1> files into static HTML page'
+        }
+      }
+    }
+  }
+};
+```
+
+#### `i18n.language`
+
+`i18n.language` represents an array of language lists supported by your website. Each item in the array must match `{ code:string, name:string, root:string }`, where:
+
+- `code` is the _ISO Language Code_, you can refer to [this website](http://www.lingoes.net/en/translator/langcode.htm)
+- `name` is the option displayed in the language switch component
+- `root` is the root directory where the language is located, and its value should always start and end with a slash
+
+Note that the first item of `i18n.language` is the default language of the website, and its `root` must be `/`.
+
+#### `i18n.overrides`
+
+`i18n.overrides` is a special configuration item, which allows to override the fields in `pagic.config.ts` in a specific language. Its type is `{ [key:string]:PagicConfig }`, where the key must be one of the `code` field in `i18n.language`, the value type is the type of the entire `pagic.config.ts`. When visiting a page in this language, `pagic.config` will be the result of the merge.
+
+#### `i18n.resources`
+
+`i18n.resources` describes the translation of each language, `t('Get Started')` and `<Trans>Render <code>md/tsx</code> to static HTML page</ Trans>` in `tsx` file will use the translation resources configured here. For the specific syntax of `t()` and `<Trans>`, please refer to [react-i18next](https://react.i18next.com/getting-started#simple-content).
 
 ## Cli options
 

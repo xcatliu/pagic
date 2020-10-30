@@ -2,7 +2,7 @@
 
 Pagic 支持将 `md/tsx` 文件渲染成静态页面，下面将分别介绍这两种文件支持的特性。
 
-## md 文件
+## `md` 文件
 
 Pagic 使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来编译 Markdown 文件，它支持通过添加第三方插件来扩展原有的功能。
 
@@ -20,9 +20,13 @@ Pagic 支持了以下特性：
 
 若文章中没有 `<h2>` 或 `<h3>`，则 `toc` 为 `undefined`。
 
+可以通过[配置 `md.tocLevel`](./config.md#md) 来修改提取的标题等级。
+
 ### 标题中的锚点
 
 文章中所有的 `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>` 标签会被插入一个可点击的锚点 `§`。
+
+可以通过[配置 `md.anchorLevel`](./config.md#md) 来修改会被插入锚点的标题等级。
 
 ### 链接替换
 
@@ -148,6 +152,17 @@ $$
 $$
 ```
 
+### 通过 `git log` 获取 `author` 等信息
+
+解析 Markdown 文件时，Pagic 会运行脚本来获取它的 `git log` 并提取其中的有用信息，它们包括：
+
+- `author`: 该文件的第一个提交者
+- `contributors`: 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面）
+- `date`: 该文件第一次提交时日期
+- `updated`: 该文件最后一次提交的日期
+
+这些信息都会写入到页面的 `props` 中。
+
 ### 局限性
 
 目前 Pagic 的 Markdown 解析还存在一些局限性，这也是将来的改进方向：
@@ -156,9 +171,9 @@ $$
 - 不支持流程图等高级语法
 - 不支持内嵌 jsx
 
-## tsx 文件
+## `tsx` 文件
 
-tsx 文件渲染成静态页面是 Pagic 的特色之一，借助 React 组件的可编程性，极大的扩展了静态网站的能力。
+`tsx` 文件渲染成静态页面是 Pagic 的特色之一，借助 React 组件的可编程性，极大的扩展了静态网站的能力。
 
 ### 基本用法
 
@@ -277,6 +292,10 @@ export const frontMatter = {
   outputPath: 'foo/bar.html'
 };
 ```
+
+### 通过 `git log` 获取 `author` 等信息
+
+同 `md` 文件一样，`tsx` 文件也会获取 `author`, `contributors`, `date`, `updated` 等信息并写入到页面的 `props` 中。
 
 ### 局限性
 
