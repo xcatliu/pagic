@@ -3,55 +3,58 @@ export { React, ReactDOM, ReactDOMServer } from './deps.ts';
 export { t, Trans } from './src/plugins/i18n.tsx';
 
 import Pagic from './src/Pagic.ts';
+import { Command } from 'https://deno.land/x/cliffy/command/mod.ts';
+import { Select } from 'https://deno.land/x/cliffy/prompt/select.ts';
 import { logger } from './src/utils/mod.ts';
 export default Pagic;
 
 export * from './src/Pagic.ts';
 
 if (import.meta.main) {
-  const [subCommand, ...restArgs] = Deno.args;
-  if (subCommand === undefined) {
-    logger.info(` Miss valid subCommand, known as 'pagic build'.`);
-    Deno.exit(1);
-  }
+  const build = new Command()
+          .description('Build a static website')
+          .option('--watch [watch:boolean]', 'Watch file changes to rebuild', { default: false })
+          .option('--serve [serve:boolean]', 'Start local service, preview static website', { default: false })
+          .option('--port <port:number>', 'Specify the local port of the service', { default: 8000 })
+          .action((options: any) => {
+            const pagic = new Pagic(options);
+            pagic.build();
+          });
 
-  const validSubCommands = ['build'];
-  if (!validSubCommands.includes(subCommand)) {
-    throw new Error(`Invalid subCommand ${subCommand}`);
-  }
+  const init = new Command()
+           .description('automatically generate pagic_config.ts, pagic_config.tsx, or mod.ts')
+           .action(async (options: any) => {
+             const confName: string = await Select.prompt({
+               message: 'Choose a file to generate',
+               options: [
+                 { name: 'mod.ts', value: 'mod.ts' },
+                 { name: 'pagic.config.ts', value: 'pagic.config.ts' },
+                 { name: 'pagic.config.tsx', value: 'pagic.config.tsx' },
+                 { name: 'quit', value: 'q' },
+               ]
+             });
 
-  const validOptions = ['serve', 'watch', 'port'];
-  let options: Record<string, any> = {};
-  for (let i = 0; i < restArgs.length; i++) {
-    const currentArg = restArgs[i];
-    const nextArg = restArgs[i + 1];
-    if (currentArg.startsWith('--')) {
-      const key = currentArg.slice(2);
-      if (!validOptions.includes(key)) {
-        throw new Error(`Invalid option ${key}`);
-      }
-      if (typeof nextArg === 'undefined' || nextArg.startsWith('-')) {
-        options[key] = true;
-      } else {
-        if (Number(nextArg).toString() === nextArg) {
-          options[key] = Number(nextArg);
-        } else {
-          options[key] = nextArg;
-        }
-        i++;
-      }
-    } else if (currentArg.startsWith('-')) {
-      const key = currentArg.slice(1);
-      if (!validOptions.includes(key)) {
-        throw new Error(`Invalid option ${key}`);
-      }
-      options[key] = true;
-    } else {
-      throw new Error(`Invalid args ${currentArg}`);
-    }
-  }
-  const pagic = new Pagic(options);
-  if (subCommand === 'build') {
-    pagic.build();
-  }
+             if (confName === 'q') {
+              return;
+             }
+             const pagic = new Pagic();
+             switch (confName) {
+               case 'mod.ts':
+                 pagic.genMod();
+                 break;
+               case 'pagic.config.ts':
+               case 'pagic.config.tsx':
+                 pagic.genConf(confName);
+                 break;
+               default:
+                 console.error('Invalid filename');
+             }
+           });
+
+  await new Command()
+    .name('pagic')
+    .command('build', build)
+    .command('init', init)
+    .parse(Deno.args);
+
 }
