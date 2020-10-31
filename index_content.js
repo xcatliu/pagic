@@ -92,8 +92,8 @@ const IndexPage = ({ config, language }) => {
                     justifyContent: 'center',
                     marginTop: '2rem'
                 } },
-                React.createElement("a", { className: "btn btn-primary", href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.path) !== null && _a !== void 0 ? _a : ''}docs/introduction.html` }, t('Get Started')),
-                React.createElement("a", { className: "btn", href: `${config.root}${(_b = language === null || language === void 0 ? void 0 : language.path) !== null && _b !== void 0 ? _b : ''}docs/demos.html` }, t('Demos')))),
+                React.createElement("a", { className: "btn btn-primary", href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.root.slice(1)) !== null && _a !== void 0 ? _a : ''}docs/introduction.html` }, t('Get Started')),
+                React.createElement("a", { className: "btn", href: `${config.root}${(_b = language === null || language === void 0 ? void 0 : language.root.slice(1)) !== null && _b !== void 0 ? _b : ''}docs/demos.html` }, t('Demos')))),
         React.createElement("div", { className: "cards" },
             React.createElement("div", null,
                 React.createElement("h2", null, t('Easy to configure')),

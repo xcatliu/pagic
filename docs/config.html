@@ -1,4 +1,8 @@
-<!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
+<!doctype html><html class="" data-reactroot=""><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', 'G-JPPPP5EF38', 'auto');
+            ga('send', 'pageview');</script><script type="module" src="/i18n.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
 <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="A static site generator powered by Deno + React"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">Config · Pagic</title>
 <link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
@@ -9,7 +13,7 @@
       document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
     }
   </script>
-</head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/blog/">Blog</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link active">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">Plugins</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Config</h1>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/blog/">Blog</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link active">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">Plugins</a></li><li class=""><a href="/docs/blog.html" class="nav_link">Blog</a></li><li class=""><a href="/docs/i18n.html" class="nav_link">Internationalization</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Config</h1>
 <p>Pagic provides a wealth of configurations, and most users can build a static website with rich functions through config files.</p>
 <p>Pagic's config file name is <code>pagic.config.ts</code> or <code>pagic.config.tsx</code> (if you use jsx syntax in your config file).</p>
 <blockquote>
@@ -134,7 +138,7 @@
 <li>Type: <code>string</code></li>
 <li>Default: <code>／</code></li>
 </ul>
-<p>The root path the site will be deployed at. You will need to set this if you plan to deploy your site under a sub path, for example, GitHub pages. If you plan to deploy your site to <a href="https://foo.github.io/bar/">https://foo.github.io/bar/</a>, then you should set <code>root</code> to <code>'/bar/'</code>. It should always start and end with a slash.</p>
+<p>The root path the site will be deployed at. You will need to set this if you plan to deploy your site under a sub path, for example, GitHub Pages. If you plan to deploy your site to <a href="https://foo.github.io/bar/">https://foo.github.io/bar/</a>, then you should set <code>root</code> to <code>'/bar/'</code>. It should always start and end with a slash.</p>
 <h2 id="themes-and-plugins">Themes and plugins<a class="anchor" href="#themes-and-plugins">§</a></h2>
 <h3 id="theme"><code>theme</code><a class="anchor" href="#theme">§</a></h3>
 <ul>
@@ -217,11 +221,11 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre><h3 id="nav"><code>nav</code><a class="anchor" href="#nav">§</a></h3>
 <ul>
-<li>Type: complexity, please see below</li>
+<li>Type: complex, please see below</li>
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Navigation configuration, examples are as follows:</p>
+<p>Navigation configuration, an examples is as follows:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
@@ -258,11 +262,11 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <p>Configure your github account, usually a link will be displayed in the upper right corner.</p>
 <h3 id="sidebar"><code>sidebar</code><a class="anchor" href="#sidebar">§</a></h3>
 <ul>
-<li>Type: complexity, please see below</li>
+<li>Type: complex, please see below</li>
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: <code>sidebar</code></li>
 </ul>
-<p>Sidebar configuration, examples are as follows:</p>
+<p>Sidebar configuration, an example is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   sidebar<span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token string">'/docs/'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'docs/introduction.md'</span><span class="token punctuation">,</span> <span class="token string">'docs/usage.md'</span><span class="token punctuation">,</span> <span class="token string">'docs/config.md'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -282,13 +286,31 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>In the above example, the page starting with <code>/docs/</code> will display the docs sidebar, the page starting with <code>/about/</code> will display the about sidebar, and other pages will hit <code>/</code> to display the default sidebar.</p>
+<h3 id="md"><code>md</code><a class="anchor" href="#md">§</a></h3>
+<ul>
+<li>Type: complex, please see below</li>
+<li>Supported themes: all</li>
+<li>Dependent plugins: <code>md</code></li>
+</ul>
+<p>The configuration of how to parse markdown files, an example is as follows:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+   md<span class="token operator">:</span> <span class="token punctuation">{</span>
+     anchorLevel<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+     tocLevel<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In the above example:</p>
+<ul>
+<li><code>AnchorLevel</code> is used to configure which levels of titles need to render an anchor link when markdown is converted to HTML. <code>[1, 2, 3, 4, 5, 6]</code> means that the anchor link must be displayed from <code>h1</code> to <code>h6</code>. Its default value is <code>[2, 3, 4, 5, 6]</code>.</li>
+<li><code>tocLevel</code> is used to configure which levels of titles need to be included in toc (table of content). <code>[1, 2, 3, 4]</code> means that titles from <code>h1</code> to <code>h4</code> will be included in toc. Its default value is <code>[2, 3]</code>.</li>
+</ul>
 <h3 id="tocad"><code>tocAd</code><a class="anchor" href="#tocad">§</a></h3>
 <ul>
 <li>Type: <code>React.ReactElement</code></li>
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Ads displayed at the top of the table of content, examples are as follows:</p>
+<p>Ads displayed at the top of the table of content, an example is as follows:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
@@ -318,7 +340,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Some small tools, such as <code>editOnGithub</code>, <code>backToTop</code>, etc. examples are as follows:</p>
+<p>Some small tools, such as <code>editOnGithub</code>, <code>backToTop</code>, etc. an examples is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   tools<span class="token operator">:</span> <span class="token punctuation">{</span>
     editOnGithub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
@@ -332,7 +354,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <li>Supported themes: all</li>
 <li>Dependent plugins: <code>ga</code></li>
 </ul>
-<p><a href="https://analytics.google.com/">Google analytics</a> configuration, examples are as follows:</p>
+<p><a href="https://analytics.google.com/">Google analytics</a> configuration, an examples is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   ga<span class="token operator">:</span> <span class="token punctuation">{</span>
     id<span class="token operator">:</span> <span class="token string">'UA-45256157-14'</span>
@@ -341,11 +363,11 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 </code></pre>
 <h3 id="gitalk"><code>gitalk</code><a class="anchor" href="#gitalk">§</a></h3>
 <ul>
-<li>Type: complexity, please see below</li>
+<li>Type: complex, please see below</li>
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: <code>gitalk</code></li>
 </ul>
-<p><a href="https://github.com/gitalk/gitalk">Gitalk</a> can add comments to the page, examples are as follows:</p>
+<p><a href="https://github.com/gitalk/gitalk">Gitalk</a> can add comments to the page, an example is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   gitalk<span class="token operator">:</span> <span class="token punctuation">{</span>
     clientID<span class="token operator">:</span> <span class="token string">'29aa4941759fc887ed4f'</span><span class="token punctuation">,</span>
@@ -357,6 +379,81 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>
+<ul>
+<li>Type: <code>{ root:string; }</code></li>
+<li>Supported themes: <code>docs</code>, <code>blog</code></li>
+<li>Dependent plugins: <code>blog</code></li>
+</ul>
+<p>Blog configuration, an examples is as follows:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  blog<span class="token operator">:</span> <span class="token punctuation">{</span>
+    root<span class="token operator">:</span> <span class="token string">'/blog/'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In the above example, <code>root</code> means the root directory where blog posts are stored, and its default value is <code>/blog/</code>, which means all pages under the <code>${srcDir}/blog/</code> directory (except <code>README.md</code>) will be recognized as blog posts. Note that its value should always start and end with a slash.</p>
+<h3 id="i18n"><code>i18n</code><a class="anchor" href="#i18n">§</a></h3>
+<ul>
+<li>Type: complex, please see below</li>
+<li>Supported topics: <code>docs</code></li>
+<li>Dependent plugin: <code>i18n</code></li>
+</ul>
+<p>Internationalized configuration, an examples is as follows:</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  i18n<span class="token operator">:</span> <span class="token punctuation">{</span>
+    languages<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> code<span class="token operator">:</span> <span class="token string">'en'</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'English'</span><span class="token punctuation">,</span> root<span class="token operator">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> code<span class="token operator">:</span> <span class="token string">'zh-CN'</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'Simplified Chinese'</span><span class="token punctuation">,</span> root<span class="token operator">:</span> <span class="token string">'/zh-CN/'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    overrides<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'zh-CN'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        sidebar<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'/zh-CN/docs/'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'zh-CN/docs/introduction.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/usage.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/config.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/content.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/layout.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/themes.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/plugins.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/blog.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/i18n.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/deployment.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/demos.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/limitations.md'</span>
+          <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        blog<span class="token operator">:</span> <span class="token punctuation">{</span>
+          root<span class="token operator">:</span> <span class="token string">'/zh-CN/blog/'</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    resources<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'zh-CN'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        translation<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'A static site generator powered by Deno + React'</span><span class="token operator">:</span> <span class="token string">'Deno + React driven static website generator'</span><span class="token punctuation">,</span>
+          <span class="token string">'Get Started'</span><span class="token operator">:</span> <span class="token string">'Get Started'</span><span class="token punctuation">,</span>
+          Demos<span class="token operator">:</span> <span class="token string">'Sample website'</span><span class="token punctuation">,</span>
+          <span class="token string">'Render &lt;1>md/tsx&lt;/1> to static HTML page'</span><span class="token operator">:</span> <span class="token string">'Support rendering &lt;1>md/tsx&lt;/1> files into static HTML page'</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="i18nlanguage"><code>i18n.language</code><a class="anchor" href="#i18nlanguage">§</a></h4>
+<p><code>i18n.language</code> represents an array of language lists supported by your website. Each item in the array must match <code>{ code:string, name:string, root:string }</code>, where:</p>
+<ul>
+<li><code>code</code> is the <em>ISO Language Code</em>, you can refer to <a href="http://www.lingoes.net/en/translator/langcode.htm">this website</a></li>
+<li><code>name</code> is the option displayed in the language switch component</li>
+<li><code>root</code> is the root directory where the language is located, and its value should always start and end with a slash</li>
+</ul>
+<p>Note that the first item of <code>i18n.language</code> is the default language of the website, and its <code>root</code> must be <code>/</code>.</p>
+<h4 id="i18noverrides"><code>i18n.overrides</code><a class="anchor" href="#i18noverrides">§</a></h4>
+<p><code>i18n.overrides</code> is a special configuration item, which allows to override the fields in <code>pagic.config.ts</code> in a specific language. Its type is <code>{ [key:string]:PagicConfig }</code>, where the key must be one of the <code>code</code> field in <code>i18n.language</code>, the value type is the type of the entire <code>pagic.config.ts</code>. When visiting a page in this language, <code>pagic.config</code> will be the result of the merge.</p>
+<h4 id="i18nresources"><code>i18n.resources</code><a class="anchor" href="#i18nresources">§</a></h4>
+<p><code>i18n.resources</code> describes the translation of each language, <code>t('Get Started')</code> and <code>&lt;Trans&gt;Render &lt;code&gt;md/tsx&lt;/code&gt; to static HTML page&lt;/ Trans&gt;</code> in <code>tsx</code> file will use the translation resources configured here. For the specific syntax of <code>t()</code> and <code>&lt;Trans&gt;</code>, please refer to <a href="https://react.i18next.com/getting-started#simple-content">react-i18next</a>.</p>
 <h2 id="cli-options">Cli options<a class="anchor" href="#cli-options">§</a></h2>
 <p>The command line options can also be configured in <code>pagic.config.ts</code>, and this options will be overwritten if the parameters are passed in the runtime.</p>
 <h3 id="watch"><code>watch</code><a class="anchor" href="#watch">§</a></h3>
@@ -376,4 +473,4 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <li>Type: <code>number</code></li>
 <li>Default: <code>8000</code></li>
 </ul>
-<p>Specify the port of the local service.</p></article><div class="prev_next"><a class="prev button" href="/docs/usage.html">«  <!-- -->Usage</a><a class="next button" href="/docs/content.html">Content<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#input-and-output">Input and output</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#themes-and-plugins">Themes and plugins</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#page-content">Page content</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li></ol></li><li><a href="#cli-options">Cli options</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>Specify the port of the local service.</p></article><div class="prev_next"><a class="prev button" href="/docs/usage.html">«  <!-- -->Usage</a><a class="next button" href="/docs/content.html">Content<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#input-and-output">Input and output</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#themes-and-plugins">Themes and plugins</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#page-content">Page content</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#md">md</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#blog">blog</a></li><li><a href="#i18n">i18n</a><ol></ol></li></ol></li><li><a href="#cli-options">Cli options</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

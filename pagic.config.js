@@ -43,18 +43,23 @@ export default {
             'docs/layout.md',
             'docs/themes.md',
             'docs/plugins.md',
+            'docs/blog.md',
+            'docs/i18n.md',
             'docs/deployment.md',
             'docs/demos.md',
             'docs/limitations.md'
         ]
     },
+    ga: {
+        id: 'G-JPPPP5EF38'
+    },
     blog: {
-        path: 'blog/'
+        root: '/blog/'
     },
     i18n: {
         languages: [
-            { code: 'en', name: 'English', path: '' },
-            { code: 'zh-CN', name: '简体中文', path: 'zh-CN/' }
+            { code: 'en', name: 'English', root: '/' },
+            { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' }
         ],
         overrides: {
             'zh-CN': {
@@ -89,13 +94,15 @@ export default {
                         'zh-CN/docs/layout.md',
                         'zh-CN/docs/themes.md',
                         'zh-CN/docs/plugins.md',
+                        'zh-CN/docs/blog.md',
+                        'zh-CN/docs/i18n.md',
                         'zh-CN/docs/deployment.md',
                         'zh-CN/docs/demos.md',
                         'zh-CN/docs/limitations.md'
                     ]
                 },
                 blog: {
-                    path: 'zh-CN/blog/'
+                    root: '/zh-CN/blog/'
                 }
             }
         },
@@ -123,9 +130,6 @@ export default {
                     'Run pagic': '运行 pagic'
                 }
             }
-        },
-        ga: {
-            id: 'G-JPPPP5EF38'
         }
     }
 };

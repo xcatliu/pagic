@@ -1,7 +1,11 @@
-<!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
+<!doctype html><html class="" data-reactroot=""><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', 'G-JPPPP5EF38', 'auto');
+            ga('send', 'pageview');</script><script type="module" src="/i18n.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
 <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="A static site generator powered by Deno + React"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">页面内容 · Pagic</title>
-<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/><link data-react-helmet="true" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossOrigin="anonymous"/>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
 <script data-react-helmet="true" >
     const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (shouldSetIsDark) {
@@ -9,9 +13,9 @@
       document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
     }
   </script>
-</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/blog/">博客</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link active">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>页面内容</h1>
+</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/blog/">博客</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link active">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/blog.html" class="nav_link">博客</a></li><li class=""><a href="/zh-CN/docs/i18n.html" class="nav_link">国际化</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>页面内容</h1>
 <p>Pagic 支持将 <code>md/tsx</code> 文件渲染成静态页面，下面将分别介绍这两种文件支持的特性。</p>
-<h2 id="md-%E6%96%87%E4%BB%B6">md 文件<a class="anchor" href="#md-%E6%96%87%E4%BB%B6">§</a></h2>
+<h2 id="md-%E6%96%87%E4%BB%B6"><code>md</code> 文件<a class="anchor" href="#md-%E6%96%87%E4%BB%B6">§</a></h2>
 <p>Pagic 使用 <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> 来编译 Markdown 文件，它支持通过添加第三方插件来扩展原有的功能。</p>
 <p>Pagic 支持了以下特性：</p>
 <h3 id="title"><code>title</code><a class="anchor" href="#title">§</a></h3>
@@ -20,8 +24,10 @@
 <h3 id="toc"><code>toc</code><a class="anchor" href="#toc">§</a></h3>
 <p>文章中所有的 <code>&lt;h2&gt;</code> 和 <code>&lt;h3&gt;</code> 标签会被提取出来作为页面的目录。</p>
 <p>若文章中没有 <code>&lt;h2&gt;</code> 或 <code>&lt;h3&gt;</code>，则 <code>toc</code> 为 <code>undefined</code>。</p>
+<p>可以通过<a href="./config.html#md">配置 <code>md.tocLevel</code></a> 来修改提取的标题等级。</p>
 <h3 id="%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">标题中的锚点<a class="anchor" href="#%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">§</a></h3>
 <p>文章中所有的 <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code> 标签会被插入一个可点击的锚点 <code>§</code>。</p>
+<p>可以通过<a href="./config.html#md">配置 <code>md.anchorLevel</code></a> 来修改会被插入锚点的标题等级。</p>
 <h3 id="%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">链接替换<a class="anchor" href="#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">§</a></h3>
 <p>文章中的链接如果是以 <code>.md</code> 结尾，则会在构建过程中被替换为 <code>.html</code>，比如：</p>
 <pre class="language-md"><code class="language-md"><span class="token url">[<span class="token content">配置文件</span>](./config.md)</span>
@@ -116,6 +122,15 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 }
 $$
 </code></pre>
+<h3 id="git-log-%E4%BF%A1%E6%81%AF"><code>git log</code> 信息<a class="anchor" href="#git-log-%E4%BF%A1%E6%81%AF">§</a></h3>
+<p>解析 Markdown 文件时，Pagic 会运行脚本来获取它的 <code>git log</code> 并提取其中的有用信息，它们包括：</p>
+<ul>
+<li><code>author</code>: 该文件的第一个提交者</li>
+<li><code>contributors</code>: 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面）</li>
+<li><code>date</code>: 该文件第一次提交的日期</li>
+<li><code>updated</code>: 该文件最后一次提交的日期</li>
+</ul>
+<p>这些信息都会写入到页面的 <code>props</code> 中。</p>
 <h3 id="%E5%B1%80%E9%99%90%E6%80%A7">局限性<a class="anchor" href="#%E5%B1%80%E9%99%90%E6%80%A7">§</a></h3>
 <p>目前 Pagic 的 Markdown 解析还存在一些局限性，这也是将来的改进方向：</p>
 <ul>
@@ -123,8 +138,8 @@ $$
 <li>不支持流程图等高级语法</li>
 <li>不支持内嵌 jsx</li>
 </ul>
-<h2 id="tsx-%E6%96%87%E4%BB%B6">tsx 文件<a class="anchor" href="#tsx-%E6%96%87%E4%BB%B6">§</a></h2>
-<p>tsx 文件渲染成静态页面是 Pagic 的特色之一，借助 React 组件的可编程性，极大的扩展了静态网站的能力。</p>
+<h2 id="tsx-%E6%96%87%E4%BB%B6"><code>tsx</code> 文件<a class="anchor" href="#tsx-%E6%96%87%E4%BB%B6">§</a></h2>
+<p><code>tsx</code> 文件渲染成静态页面是 Pagic 的特色之一，借助 React 组件的可编程性，极大的扩展了静态网站的能力。</p>
 <h3 id="%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">基本用法<a class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">§</a></h3>
 <p>任何不以 <code>_</code> 开头的 <code>tsx</code> 文件都会被视为一个 <code>tsx</code> 页面文件。</p>
 <p>我们不妨在之前的 <code>site</code> 项目中创建一个 <code>hello.tsx</code> 文件：</p>
@@ -196,10 +211,12 @@ $$
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token maybe-class-name">Hello</span><span class="token punctuation">;</span>
 
-<span class="highlighted-line"><span class="token keyword">export</span> <span class="token keyword">const</span> frontMatter <span class="token operator">=</span> <span class="token punctuation">{</span></span><span class="highlighted-line">  outputPath<span class="token operator">:</span> <span class="token string">'foo/bar.html'</span></span><span class="highlighted-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre><h3 id="%E5%B1%80%E9%99%90%E6%80%A7-1">局限性<a class="anchor" href="#%E5%B1%80%E9%99%90%E6%80%A7-1">§</a></h3>
+<span class="highlighted-line"><span class="token keyword">export</span> <span class="token keyword">const</span> frontMatter <span class="token operator">=</span> <span class="token punctuation">{</span></span><span class="highlighted-line">  outputPath<span class="token operator">:</span> <span class="token string">'foo/bar.html'</span></span><span class="highlighted-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre><h3 id="git-log-%E4%BF%A1%E6%81%AF-1"><code>git log</code> 信息<a class="anchor" href="#git-log-%E4%BF%A1%E6%81%AF-1">§</a></h3>
+<p>同 <code>md</code> 文件一样，<code>tsx</code> 文件也会获取 <code>author</code>, <code>contributors</code>, <code>date</code>, <code>updated</code> 等信息并写入到页面的 <code>props</code> 中。</p>
+<h3 id="%E5%B1%80%E9%99%90%E6%80%A7-1">局限性<a class="anchor" href="#%E5%B1%80%E9%99%90%E6%80%A7-1">§</a></h3>
 <p>使用 <code>tsx</code> 文件同样存在一些局限性，这也是将来的改进方向：</p>
 <ul>
 <li>不支持代码高亮</li>
 <li>不支持内嵌 Markdown</li>
 <li>不支持自动生成目录</li>
-</ul></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/config.html">«  <!-- -->配置文件</a><a class="next button" href="/zh-CN/docs/layout.html">_layout.tsx<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#md-%E6%96%87%E4%BB%B6">md 文件</a><ol><li><a href="#title">title</a></li><li><a href="#toc">toc</a></li><li><a href="#%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">标题中的锚点</a></li><li><a href="#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">链接替换</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF">头信息</a></li><li><a href="#%E7%A7%91%E5%AD%A6%E5%85%AC%E5%BC%8F-tex-katex">科学公式 TeX (KaTeX)</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7">局限性</a></li></ol></li><li><a href="#tsx-%E6%96%87%E4%BB%B6">tsx 文件</a><ol><li><a href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">基本用法</a></li><li><a href="#%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC">逻辑脚本</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF-1">头信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7-1">局限性</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</ul></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/config.html">«  <!-- -->配置文件</a><a class="next button" href="/zh-CN/docs/layout.html">_layout.tsx<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#md-%E6%96%87%E4%BB%B6">md 文件</a><ol><li><a href="#title">title</a></li><li><a href="#toc">toc</a></li><li><a href="#%E6%A0%87%E9%A2%98%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">标题中的锚点</a></li><li><a href="#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">链接替换</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF">头信息</a></li><li><a href="#%E7%A7%91%E5%AD%A6%E5%85%AC%E5%BC%8F-tex-katex">科学公式 TeX (KaTeX)</a></li><li><a href="#git-log-%E4%BF%A1%E6%81%AF">git log 信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7">局限性</a></li></ol></li><li><a href="#tsx-%E6%96%87%E4%BB%B6">tsx 文件</a><ol><li><a href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95">基本用法</a></li><li><a href="#%E9%80%BB%E8%BE%91%E8%84%9A%E6%9C%AC">逻辑脚本</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96">组件化</a></li><li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF-1">头信息</a></li><li><a href="#git-log-%E4%BF%A1%E6%81%AF-1">git log 信息</a></li><li><a href="#%E5%B1%80%E9%99%90%E6%80%A7-1">局限性</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

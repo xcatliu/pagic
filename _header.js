@@ -3,7 +3,7 @@ const Header = ({ config, language, isDark, setIsDark }) => {
     var _a, _b, _c;
     return (React.createElement("header", null,
         React.createElement("h1", { className: "hide_on_mobile" },
-            React.createElement("a", { href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.path) !== null && _a !== void 0 ? _a : ''}` }, config.title)),
+            React.createElement("a", { href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.root.slice(1)) !== null && _a !== void 0 ? _a : ''}` }, config.title)),
         React.createElement("nav", null,
             React.createElement("ul", null,
                 React.createElement("li", { className: "show_on_mobile flex_center" },
@@ -39,11 +39,11 @@ const Header = ({ config, language, isDark, setIsDark }) => {
                             let url = new URL(location.href);
                             // @ts-ignore
                             const nextLanguageCode = e.target.value;
-                            if (language.path !== '') {
-                                url.pathname = url.pathname.replace(language.path, '');
+                            if (language.root !== '/') {
+                                url.pathname = url.pathname.replace(language.root, '/');
                             }
                             const nextLanguage = (_a = config.i18n) === null || _a === void 0 ? void 0 : _a.languages.find(({ code }) => code === nextLanguageCode);
-                            url.pathname = `${config.root}${nextLanguage.path}${url.pathname.replace(config.root, '')}`;
+                            url.pathname = `${config.root}${nextLanguage.root.slice(1)}${url.pathname.replace(config.root, '')}`;
                             // @ts-ignore
                             location.href = url.toString();
                         } }, config.i18n.languages.map(({ code, name }) => (React.createElement("option", { key: code, value: code }, name)))))),

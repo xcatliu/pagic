@@ -9,6 +9,8 @@ import pagicConfig from './pagic.config.js';
       interpolation: {
         escapeValue: false // not needed for react as it escapes by default
       },
+      // https://stackoverflow.com/a/44799437/2777142
+      keySeparator: false,
       ...pagicConfig.i18n
     },
     () => {}

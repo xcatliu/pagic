@@ -1,5 +1,6 @@
 import projectConfig from '/pagic.config.js';
 import IndexPage from './index_content.js';
+import Ga from '/_ga.js';
 var _a, _b;
 export default {
     config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
@@ -9,7 +10,7 @@ export default {
     'title': "",
     'content': React.createElement(IndexPage, { config: {
             blog: {
-                path: 'zh-CN/blog/'
+                root: '/zh-CN/blog/'
             },
             description: 'A static site generator powered by Deno + React',
             exclude: [
@@ -24,27 +25,27 @@ export default {
                 '**/npm-debug.log',
                 'dist'
             ],
+            ga: {
+                id: 'G-JPPPP5EF38'
+            },
             github: 'https://github.com/xcatliu/pagic',
             i18n: {
-                ga: {
-                    id: 'G-JPPPP5EF38'
-                },
                 languages: [
                     {
                         code: 'en',
                         name: 'English',
-                        path: ''
+                        root: '/'
                     },
                     {
                         code: 'zh-CN',
                         name: '简体中文',
-                        path: 'zh-CN/'
+                        root: '/zh-CN/'
                     }
                 ],
                 overrides: {
                     'zh-CN': {
                         blog: {
-                            path: 'zh-CN/blog/'
+                            root: '/zh-CN/blog/'
                         },
                         nav: [
                             {
@@ -77,6 +78,8 @@ export default {
                                 'zh-CN/docs/layout.md',
                                 'zh-CN/docs/themes.md',
                                 'zh-CN/docs/plugins.md',
+                                'zh-CN/docs/blog.md',
+                                'zh-CN/docs/i18n.md',
                                 'zh-CN/docs/deployment.md',
                                 'zh-CN/docs/demos.md',
                                 'zh-CN/docs/limitations.md'
@@ -160,6 +163,8 @@ export default {
                     'zh-CN/docs/layout.md',
                     'zh-CN/docs/themes.md',
                     'zh-CN/docs/plugins.md',
+                    'zh-CN/docs/blog.md',
+                    'zh-CN/docs/i18n.md',
                     'zh-CN/docs/deployment.md',
                     'zh-CN/docs/demos.md',
                     'zh-CN/docs/limitations.md'
@@ -173,10 +178,12 @@ export default {
             React.createElement("script", { src: "/i18n.js", type: "module" })), language: {
             code: 'zh-CN',
             name: '简体中文',
-            path: 'zh-CN/'
+            root: '/zh-CN/'
         }, layoutPath: "_layout.tsx", outputPath: "zh-CN/index.html", pagePath: "zh-CN/index.tsx", script: null, title: "" }),
     'head': React.createElement(React.Fragment, null,
-        React.createElement("script", { src: "/i18n.js", type: "module" })),
+        React.createElement(Ga, { id: "G-JPPPP5EF38" }),
+        React.createElement(React.Fragment, { key: ".1" },
+            React.createElement("script", { src: "/i18n.js", type: "module" }))),
     'script': React.createElement(React.Fragment, null,
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
         React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
@@ -184,7 +191,7 @@ export default {
     'language': {
         "code": "zh-CN",
         "name": "简体中文",
-        "path": "zh-CN/"
+        "root": "/zh-CN/"
     },
     'blog': {
         "isPost": false,

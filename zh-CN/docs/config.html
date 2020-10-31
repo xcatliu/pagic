@@ -1,4 +1,8 @@
-<!doctype html><html class="" data-reactroot=""><head><script type="module" src="/i18n.js"></script>
+<!doctype html><html class="" data-reactroot=""><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+            window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
+
+            ga('create', 'G-JPPPP5EF38', 'auto');
+            ga('send', 'pageview');</script><script type="module" src="/i18n.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
 <meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="A static site generator powered by Deno + React"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
 <title data-react-helmet="true">配置文件 · Pagic</title>
 <link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
@@ -9,7 +13,7 @@
       document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
     }
   </script>
-</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/blog/">博客</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link active">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>配置文件</h1>
+</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/blog/">博客</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link active">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/blog.html" class="nav_link">博客</a></li><li class=""><a href="/zh-CN/docs/i18n.html" class="nav_link">国际化</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>配置文件</h1>
 <p>Pagic 提供了丰富的配置，大部分用户通过配置文件就可以构建出一个具有丰富功能的静态网站了。</p>
 <p>Pagic 的配置文件名称为 <code>pagic.config.ts</code> 或 <code>pagic.config.tsx</code>（如果你的配置文件中使用了 jsx 语法）。</p>
 <blockquote>
@@ -134,7 +138,7 @@
 <li>类型：<code>string</code></li>
 <li>默认值：<code>／</code></li>
 </ul>
-<p>部署站点的根路径，常用于需要将网站部署到一个子路径下。比如在 GitHub pages 中，我们可以将网站部署到 <a href="https://foo.github.io/bar/">https://foo.github.io/bar/</a> ，那么 <code>root</code> 应该被设置成 <code>'/bar/'</code>，它的值应当总是以斜杠开始，并以斜杠结束。</p>
+<p>部署站点的根路径，常用于需要将网站部署到一个子路径下。比如在 GitHub Pages 中，我们可以将网站部署到 <a href="https://foo.github.io/bar/">https://foo.github.io/bar/</a> ，那么 <code>root</code> 应该被设置成 <code>'/bar/'</code>，它的值应当总是以斜杠开始，并以斜杠结束。</p>
 <h2 id="%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">§</a></h2>
 <h3 id="theme"><code>theme</code><a class="anchor" href="#theme">§</a></h3>
 <ul>
@@ -142,20 +146,18 @@
 <li>默认值：<code>'default'</code></li>
 </ul>
 <p>当使用官方主题时，取值应为 <code>'default' | 'docs' | 'blog'</code>。</p>
-<p>当使用第三方主题时，取值应为形如：</p>
+<p>当使用第三方主题时，取值应为完整的链接：</p>
 <pre class="language-autoit"><code class="language-autoit">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>raw<span class="token punctuation">.</span>githubusercontent<span class="token punctuation">.</span>com<span class="token operator">/</span>xcatliu<span class="token operator">/</span>pagic_theme_custom<span class="token operator">/</span>master<span class="token operator">/</span>mod<span class="token punctuation">.</span>ts
 </code></pre>
-<p>的链接。</p>
 <h3 id="plugins"><code>plugins</code><a class="anchor" href="#plugins">§</a></h3>
 <ul>
 <li>类型：<code>string[]</code></li>
 <li>默认值：<code>['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out']</code></li>
 </ul>
 <p>当使用官方插件时，数组中的项应为官方插件的名称，详见<a href="../plugins/">官方插件列表</a>。</p>
-<p>当使用第三方插件时，数组中的项应为形如：</p>
+<p>当使用第三方插件时，数组中的项应为完整的链接：</p>
 <pre class="language-autoit"><code class="language-autoit">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>raw<span class="token punctuation">.</span>githubusercontent<span class="token punctuation">.</span>com<span class="token operator">/</span>xcatliu<span class="token operator">/</span>pagic_plugin_custom<span class="token operator">/</span>master<span class="token operator">/</span>mod<span class="token punctuation">.</span>ts
 </code></pre>
-<p>的链接。</p>
 <p>需要注意的是，用户配置的 <code>plugins</code> 不会替换掉默认的 <code>plugins</code>，而是以一种规则插入到默认的 <code>plugins</code> 中，详见<a href="./plugins.html#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6">如何开发插件</a>。</p>
 <p>以 <a href="https://github.com/xcatliu/pagic/blob/master/pagic.config.tsx"><code>pagic.org</code> 的配置</a>为例：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
@@ -284,6 +286,24 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>在上面的例子中，以 <code>/docs/</code> 开头的页面会展示 docs 侧边栏，以 <code>/about/</code> 开头的页面会展示 about 侧边栏，其他页面会命中 <code>/</code>，展示默认的侧边栏。</p>
+<h3 id="md"><code>md</code><a class="anchor" href="#md">§</a></h3>
+<ul>
+<li>类型：较复杂，见示例</li>
+<li>支持的主题：全部</li>
+<li>依赖的插件：<code>md</code></li>
+</ul>
+<p>解析 Markdown 文件的配置，示例如下：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  md<span class="token operator">:</span> <span class="token punctuation">{</span>
+    anchorLevel<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    tocLevel<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在上面的例子中：</p>
+<ul>
+<li><code>anchorLevel</code> 用来配置 Markdown 转成 HTML 时，各级标题是否需要渲染一个锚点链接。<code>[1, 2, 3, 4, 5, 6]</code> 表示 <code>h1</code> 到 <code>h6</code> 都得展示锚点链接。它的默认值是 <code>[2, 3, 4, 5, 6]</code>。</li>
+<li><code>tocLevel</code> 用来配置页面中的目录（Table of Content）需要包含的标题级别。<code>[1, 2, 3, 4]</code> 表示 <code>h1</code> 到 <code>h4</code> 的标题都会展示在目录中。它的默认值是 <code>[2, 3]</code>。</li>
+</ul>
 <h3 id="tocad"><code>tocAd</code><a class="anchor" href="#tocad">§</a></h3>
 <ul>
 <li>类型：<code>React.ReactElement</code></li>
@@ -359,6 +379,81 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>
+<ul>
+<li>类型：<code>{ root:string; }</code></li>
+<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>依赖的插件：<code>blog</code></li>
+</ul>
+<p>博客相关的配置，示例如下：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  blog<span class="token operator">:</span> <span class="token punctuation">{</span>
+    root<span class="token operator">:</span> <span class="token string">'/blog/'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在上面的例子中，<code>root</code> 表示存储博客文章的根目录，它的默认值是 <code>/blog/</code>，表示所有 <code>${srcDir}/blog/</code> 目录下的页面（除了 <code>README.md</code> 之外）都会被识别为博客文章（即 posts）。注意，它的值应当总是以斜杠开始，并以斜杠结束。</p>
+<h3 id="i18n"><code>i18n</code><a class="anchor" href="#i18n">§</a></h3>
+<ul>
+<li>类型：较复杂，见示例</li>
+<li>支持的主题：<code>docs</code></li>
+<li>依赖的插件：<code>i18n</code></li>
+</ul>
+<p>国际化的配置，示例如下：</p>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  i18n<span class="token operator">:</span> <span class="token punctuation">{</span>
+    languages<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> code<span class="token operator">:</span> <span class="token string">'en'</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'English'</span><span class="token punctuation">,</span> root<span class="token operator">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> code<span class="token operator">:</span> <span class="token string">'zh-CN'</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'简体中文'</span><span class="token punctuation">,</span> root<span class="token operator">:</span> <span class="token string">'/zh-CN/'</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    overrides<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'zh-CN'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        sidebar<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'/zh-CN/docs/'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'zh-CN/docs/introduction.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/usage.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/config.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/content.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/layout.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/themes.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/plugins.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/blog.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/i18n.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/deployment.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/demos.md'</span><span class="token punctuation">,</span>
+            <span class="token string">'zh-CN/docs/limitations.md'</span>
+          <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        blog<span class="token operator">:</span> <span class="token punctuation">{</span>
+          root<span class="token operator">:</span> <span class="token string">'/zh-CN/blog/'</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    resources<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'zh-CN'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        translation<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'A static site generator powered by Deno + React'</span><span class="token operator">:</span> <span class="token string">'Deno + React 驱动的静态网站生成器'</span><span class="token punctuation">,</span>
+          <span class="token string">'Get Started'</span><span class="token operator">:</span> <span class="token string">'开始使用'</span><span class="token punctuation">,</span>
+          Demos<span class="token operator">:</span> <span class="token string">'示例网站'</span><span class="token punctuation">,</span>
+          <span class="token string">'Render &lt;1>md/tsx&lt;/1> to static HTML page'</span><span class="token operator">:</span> <span class="token string">'支持将 &lt;1>md/tsx&lt;/1> 文件渲染成静态页面'</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="i18nlanguage"><code>i18n.language</code><a class="anchor" href="#i18nlanguage">§</a></h4>
+<p><code>i18n.language</code> 表示你的网站支持的语言列表数组，数组的每一项都需要符合 <code>{ code:string, name:string, root:string }</code> 的格式，其中：</p>
+<ul>
+<li><code>code</code> 是该语言的 <em>ISO Language Code</em>，可以参考<a href="http://www.lingoes.net/en/translator/langcode.htm">这个网站</a>来设置</li>
+<li><code>name</code> 是该语言展示在语言切换组件中的选项</li>
+<li><code>root</code> 是该语言所在的根目录，它的值应当总是以斜杠开始，并以斜杠结束</li>
+</ul>
+<p>注意，<code>i18n.language</code> 的第一项是网站的默认语言，它的 <code>root</code> 必须是 <code>/</code>。</p>
+<h4 id="i18noverrides"><code>i18n.overrides</code><a class="anchor" href="#i18noverrides">§</a></h4>
+<p><code>i18n.overrides</code> 是一个特殊的配置项，它可以允许特定语言下覆盖 <code>pagic.config.ts</code> 中的字段，它的类型是 <code>{ [key:string]:PagicConfig }</code>，其中键必须是 <code>i18n.language</code> 中的 <code>code</code> 字段，值的类型是整个 <code>pagic.config.ts</code> 的类型。当访问该语言的页面时，读取的 <code>pagic.config</code> 会是合并后的结果。</p>
+<h4 id="i18nresources"><code>i18n.resources</code><a class="anchor" href="#i18nresources">§</a></h4>
+<p><code>i18n.resources</code> 描述了各语言的翻译，<code>tsx</code> 文件中使用的 <code>t('Get Started')</code> 或 <code>&lt;Trans&gt;Render &lt;code&gt;md/tsx&lt;/code&gt; to static HTML page&lt;/Trans&gt;</code> 将会使用这里配置的翻译资源。<code>t()</code> 和 <code>&lt;Trans&gt;</code> 的具体语法请参考 <a href="https://react.i18next.com/getting-started#simple-content">react-i18next</a>。</p>
 <h2 id="%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项<a class="anchor" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">§</a></h2>
 <p>命令行选项也可以在 <code>pagic.config.ts</code> 中配置，真正运行时如果传了参数则会覆盖掉此配置。</p>
 <h3 id="watch"><code>watch</code><a class="anchor" href="#watch">§</a></h3>
@@ -378,4 +473,4 @@
 <li>类型：<code>number</code></li>
 <li>默认值：<code>8000</code></li>
 </ul>
-<p>指定本地服务的端口号。</p></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/usage.html">«  <!-- -->基本用法</a><a class="next button" href="/zh-CN/docs/content.html">页面内容<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">输入和输出</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">页面内容</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li></ol></li><li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>指定本地服务的端口号。</p></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/usage.html">«  <!-- -->基本用法</a><a class="next button" href="/zh-CN/docs/content.html">页面内容<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">输入和输出</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">页面内容</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#md">md</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#blog">blog</a></li><li><a href="#i18n">i18n</a><ol></ol></li></ol></li><li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
