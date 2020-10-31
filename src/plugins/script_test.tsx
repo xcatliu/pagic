@@ -24,9 +24,16 @@ Deno.test('[script]', async () => {
       outputPath: 'hello.html',
       title: '',
       content: <Hello />,
-      head: null,
-      script: null,
-      ga: <Ga id="G-JPPPP5EF38" />
+      head: (
+        <>
+          <Ga id="G-JPPPP5EF38" />
+          <>
+            <link rel="icon" type="image/png" href="/favicon.png" />
+            <script src="/assets/custom.js" />
+          </>
+        </>
+      ),
+      script: null
     }
   };
 
@@ -41,7 +48,7 @@ Deno.test('[script]', async () => {
   );
   asserts.assertEquals(
     pagic.writeFiles['hello_props.js'],
-    `import projectConfig from '/pagic.config.js';\nimport Hello from './hello_content.js';\nimport Ga from '/_ga.js';\nexport default {\n    config: { "root": "/", ...projectConfig },\n    'pagePath': "hello.tsx",\n    'layoutPath': "_layout.tsx",\n    'outputPath': "hello.html",\n    'title': "",\n    'content': React.createElement(Hello, null),\n    'head': null,\n    'script': React.createElement(React.Fragment, null,\n        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),\n        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),\n        React.createElement("script", { src: "/index.js", type: "module" })),\n    'ga': React.createElement(Ga, { id: "G-JPPPP5EF38" })\n};\n`
+    `import projectConfig from '/pagic.config.js';\nimport Hello from './hello_content.js';\nimport Ga from '/_ga.js';\nexport default {\n    config: { "root": "/", ...projectConfig },\n    'pagePath': "hello.tsx",\n    'layoutPath': "_layout.tsx",\n    'outputPath': "hello.html",\n    'title': "",\n    'content': React.createElement(Hello, null),\n    'head': React.createElement(React.Fragment, null,\n        React.createElement(Ga, { id: "G-JPPPP5EF38" }),\n        React.createElement(React.Fragment, { key: ".1" },\n            React.createElement("link", { href: "/favicon.png", rel: "icon", type: "image/png" }),\n            React.createElement("script", { src: "/assets/custom.js" }))),\n    'script': React.createElement(React.Fragment, null,\n        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),\n        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),\n        React.createElement("script", { src: "/index.js", type: "module" }))\n};\n`
   );
   asserts.assertEquals(typeof pagic.writeFiles['pagic.config.js'], 'string');
   asserts.assertEquals(

@@ -71,6 +71,9 @@ const md: PagicPlugin = {
       .use(markdownitHighlightLines)
       .use(markdownItKatex);
 
+    // If one of the content has KaTeX, then set contentHasKaTeX to true
+    let contentHasKaTeX = false;
+
     for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
       const pageProps = pagic.pagePropsMap[pagePath];
 
@@ -88,8 +91,10 @@ const md: PagicPlugin = {
       const contentTitleHTML = contentHTML.match(/^<h1[ >].*?<\/h1>/)?.[0];
       const contentBodyHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '').trim();
       const title = env.title;
-      const { date, updated, author, contributors } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
-      const contentHasKatex = /class="katex"/.test(contentHTML);
+      const { author, contributors, date, updated } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
+      if (!contentHasKaTeX && /class="katex"/.test(contentHTML)) {
+        contentHasKaTeX = true;
+      }
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
@@ -97,20 +102,39 @@ const md: PagicPlugin = {
         content: <article dangerouslySetInnerHTML={{ __html: contentHTML }} />,
         contentTitle: reactHtmlParser(contentTitleHTML)[0],
         contentBody: <article dangerouslySetInnerHTML={{ __html: contentBodyHTML }} />,
-        contentHasKatex,
         // Set to null if toc is empty
         toc:
           tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
             <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
           ),
-        date,
-        updated,
         author,
         contributors,
+        date,
+        updated,
         ...frontMatterProps
       };
 
       tocHTML = '';
+    }
+
+    if (contentHasKaTeX) {
+      for (const pagePath of pagic.pagePaths.filter((pagePath) => pagePath.endsWith('.md'))) {
+        const pageProps = pagic.pagePropsMap[pagePath];
+        pagic.pagePropsMap[pagePath] = {
+          ...pageProps,
+          head: (
+            <>
+              {pageProps.head}
+              <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+                integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+                crossOrigin="anonymous"
+              />
+            </>
+          )
+        };
+      }
     }
   }
 };

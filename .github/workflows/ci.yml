@@ -8,8 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # os: [windows-latest, macos-latest, ubuntu-latest]
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        # os: [windows-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -44,5 +44,5 @@ jobs:
           github.ref == 'refs/heads/master'
         run: |
           sudo npm i @cloudbase/cli -g
-          cloudbase login --apiKeyId ${{secrets.SECRETID}}  --apiKey ${{secrets.SECRETKEY}}
+          cloudbase login --apiKeyId ${{secrets.SECRETID}} --apiKey ${{secrets.SECRETKEY}}
           cloudbase framework:deploy

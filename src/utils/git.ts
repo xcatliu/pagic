@@ -13,6 +13,25 @@ export async function getGitLog(
 }> {
   const gitLogResult: any = {};
 
+  const gitLogAuthorProcess = Deno.run({
+    cmd: ['git', 'log', '--reverse', '--format=%an', '--', pagePath],
+    stdout: 'piped',
+    stderr: 'piped'
+  });
+  const gitLogAuthorOutput = await gitLogAuthorProcess.output(); // "piped" must be set
+  const gitLogAuthor = new TextDecoder().decode(gitLogAuthorOutput).trim();
+  gitLogAuthorProcess.stderr.close();
+  gitLogAuthorProcess.close();
+
+  if (gitLogAuthor === '') {
+    gitLogResult.author = undefined;
+    gitLogResult.contributors = [];
+  } else {
+    let contributors = gitLogAuthor.split('\n');
+    gitLogResult.author = contributors[0];
+    gitLogResult.contributors = unique(contributors);
+  }
+
   const gitLogDateProcess = Deno.run({
     cmd: ['git', 'log', '--reverse', '--format=%ad', '--', pagePath],
     stdout: 'piped',
@@ -37,25 +56,6 @@ export async function getGitLog(
       gitLogResult.date = new Date(dateList[0]);
       gitLogResult.updated = new Date(dateList[dateList.length - 1]);
     }
-  }
-
-  const gitLogAuthorProcess = Deno.run({
-    cmd: ['git', 'log', '--reverse', '--format=%an', '--', pagePath],
-    stdout: 'piped',
-    stderr: 'piped'
-  });
-  const gitLogAuthorOutput = await gitLogAuthorProcess.output(); // "piped" must be set
-  const gitLogAuthor = new TextDecoder().decode(gitLogAuthorOutput).trim();
-  gitLogAuthorProcess.stderr.close();
-  gitLogAuthorProcess.close();
-
-  if (gitLogAuthor === '') {
-    gitLogResult.author = undefined;
-    gitLogResult.contributors = [];
-  } else {
-    let contributors = gitLogAuthor.split('\n');
-    gitLogResult.author = contributors[0];
-    gitLogResult.contributors = unique(contributors);
   }
 
   return gitLogResult;

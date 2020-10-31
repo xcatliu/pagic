@@ -88,12 +88,11 @@ export interface PageProps {
   content: React.ReactElement | null;
   contentTitle?: React.ReactElement;
   contentBody?: React.ReactElement;
-  contentHasKatex?: boolean;
   toc?: React.ReactElement | null;
-  date?: Date | string;
-  updated?: Date | string | null;
   author?: string;
   contributors?: string[];
+  date?: Date | string;
+  updated?: Date | string | null;
 
   // init
   config: PagicConfig;
@@ -110,6 +109,8 @@ export interface PageProps {
   sidebar?: PagePropsSidebar;
   prev?: PagePropsSidebar[0];
   next?: PagePropsSidebar[0];
+  ga?: React.ReactElement;
+  gitalk?: React.ReactElement;
   blog?: {
     isPost: boolean;
     isPosts: boolean;
@@ -121,8 +122,6 @@ export interface PageProps {
       updated: Date | string;
     }[];
   };
-  ga?: React.ReactElement;
-  gitalk?: React.ReactElement;
   language?: { code: string; name: string; root: string };
 
   [key: string]: any;
@@ -204,14 +203,14 @@ export default class Pagic {
     if (this.config.exclude) {
       this.config.exclude.push('mod.ts');
     } else {
-      this.config.exclude = [ 'mod.ts' ];
+      this.config.exclude = ['mod.ts'];
     }
 
     await this.initPaths();
 
     await Deno.writeTextFile('./mod.ts', 'export default {\n' + '  files: [\n');
     for (const modFile of this.staticPaths.concat(this.layoutPaths)) {
-        await Deno.writeTextFile('./mod.ts', `    '${modFile}',` + '\n', { append: true });
+      await Deno.writeTextFile('./mod.ts', `    '${modFile}',` + '\n', { append: true });
     }
     await Deno.writeTextFile('./mod.ts', '  ]\n' + '}\n', { append: true });
   }
@@ -233,7 +232,7 @@ export default class Pagic {
     }
     return this.pagePropsMap[pagePath].config;
   }
-  
+
   private async rebuild() {
     this.rebuilding = true;
     this.pagePropsMap = {};

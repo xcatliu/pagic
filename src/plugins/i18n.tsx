@@ -33,7 +33,7 @@ const i18n: PagicPlugin = {
         config,
         head: (
           <>
-            {config.head}
+            {pageProps.head}
             <script type="module" src={`${pagic.config.root}i18n.js`} />
           </>
         )
@@ -46,6 +46,8 @@ const i18n: PagicPlugin = {
           interpolation: {
             escapeValue: false // not needed for react as it escapes by default
           },
+          // https://stackoverflow.com/a/44799437/2777142
+          keySeparator: false,
           ...pagic.config.i18n
         },
         () => {}

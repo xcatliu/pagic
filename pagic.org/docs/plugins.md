@@ -46,10 +46,12 @@ If you delete the default plugin and then add a third-party plugin, we can even 
 
 In addition to built-in plugins, we also provide some commonly used official plugins, including:
 
-- `sidebar`: Sidebar plugin, used to parse the `sidebar` configured in `pagic.config.ts`, the theme will render sidebar after the parse is completed
-- `prev_next`: Previous page and next page plugin, which will determine the link according to the configuration of `sidebar`, the theme will render it to the bottom of the article
+- `sidebar`: Used to parse the `sidebar` configured in `pagic.config.ts`, the theme will render sidebar after the parse is completed
+- `prev_next`: Will get the link of previous page and the next page according to the configuration of `sidebar`, the theme will render it to the bottom of the article
 - `ga`: Google Analytics plugin, the plugin will generate a `ReactElement`, the theme will inserted it into the page's `<head>`
-- `gitalk`: Gitalk plugin, add comment function to the page, the plugin will generate a `ReactElement`, the theme will insert it into the bottom of the page
+- `gitalk`: Add comment function to the page, the plugin will generate a `ReactElement`, the theme will insert it into the bottom of the page
+- `blog`: Parse the `md/tsx` file as a post in the specified directory
+- `i18n`: Internationalization plugin, which make the website support multiple languages
 
 The configuration of these plugins can be viewed in the [Config](./config.md#page-content) chapter.
 
@@ -151,25 +153,30 @@ export default prependTitle;
 
 In the above example,
 
-- `pagic.pagePaths` is the **temporary** path of all scanned pages
+- `pagic.pagePaths` is the _temporary_<sup><a href="#sup-1">[1]</a></sup> path of all scanned pages
 - `pagic.pagePropsMap` is the `props` of all pages
 
 We loop through `pagic.pagePaths` through `for of`, and re-assign the `props` of each page, so that we can add a prefix to all pages.
 
 In addition to these two attributes, `pagic` has many other attributes. The commonly used `pagic` attributes are listed below:
 
-| Properties     | Type                      | Description                                                   |
-| -------------- | ------------------------- | ------------------------------------------------------------- |
-| `config`       | `PagicConfig`             | Pagic **runtime** configuration                               |
-| `pagePaths`    | `string[]`                | **Temporary** all scanned page paths                          |
-| `layoutPaths`  | `string[]`                | All scanned templates (including themes)                      |
-| `staticPaths`  | `string[]`                | **Temporary** all scanned static resources (including themes) |
-| `pagePropsMap` | `{ [key:string]:any }`    | `props` for all pages                                         |
-| `writeFiles`   | `{ [key:string]:string }` | Will be written to the `dist` directory in the `out` plugin   |
-| `rebuilding`   | `boolean`                 | `true` means rebuilding, `false` means incremental building   |
+| Properties     | Type                      | Description                                                                                    |
+| -------------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| `config`       | `PagicConfig`             | Pagic _runtime_<sup><a href="#sup-2">[2]</a></sup> configuration                               |
+| `pagePaths`    | `string[]`                | _Temporary_<sup><a href="#sup-1">[1]</a></sup> all scanned page paths                          |
+| `layoutPaths`  | `string[]`                | All scanned templates (including themes)                                                       |
+| `staticPaths`  | `string[]`                | _Temporary_<sup><a href="#sup-1">[1]</a></sup> all scanned static resources (including themes) |
+| `pagePropsMap` | `{ [key:string]:any }`    | `props` for all pages                                                                          |
+| `writeFiles`   | `{ [key:string]:string }` | Will be written to the `dist` directory in the `out` plugin                                    |
+| `rebuilding`   | `boolean`                 | `true` means rebuilding, `false` means incremental building                                    |
 
-Note that `pagePaths` and `staticPaths` are both **temporary**, not the full amount, that is to say, they only contain incremental during incremental builds (the `--watch` mode that runs during build) document.
+Note that
 
 ### Reference official plugin
 
 The best reference for developing a plugin is the official plugin, you can directly [view the source code of the official plugin](https://github.com/xcatliu/pagic/tree/master/src/plugins).
+
+## Annotations
+
+1. <span id="sup-1"></span> `pagePaths` and `staticPaths` are both _temporary_, that is to say, they only contain incremental during incremental builds (`--watch` mode)
+2. <span id="sup-2"></span> The _runtime_ configuration of Pagic is slightly different from the configuration in `pagic.config.ts`

@@ -152,13 +152,13 @@ $$
 $$
 ```
 
-### 通过 `git log` 获取 `author` 等信息
+### `git log` 信息
 
 解析 Markdown 文件时，Pagic 会运行脚本来获取它的 `git log` 并提取其中的有用信息，它们包括：
 
 - `author`: 该文件的第一个提交者
 - `contributors`: 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面）
-- `date`: 该文件第一次提交时日期
+- `date`: 该文件第一次提交的日期
 - `updated`: 该文件最后一次提交的日期
 
 这些信息都会写入到页面的 `props` 中。
@@ -293,7 +293,7 @@ export const frontMatter = {
 };
 ```
 
-### 通过 `git log` 获取 `author` 等信息
+### `git log` 信息
 
 同 `md` 文件一样，`tsx` 文件也会获取 `author`, `contributors`, `date`, `updated` 等信息并写入到页面的 `props` 中。
 

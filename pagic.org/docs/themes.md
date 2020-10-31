@@ -63,6 +63,8 @@ export default {
       'docs/layout.md',
       'docs/themes.md',
       'docs/plugins.md',
+      'docs/blog.md',
+      'docs/i18n.md',
       'docs/deployment.md',
       'docs/demos.md',
       'docs/limitations.md'

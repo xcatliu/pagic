@@ -50,6 +50,8 @@ export default {
 - `prev_next`: 上一页下一页插件，会根据 `sidebar` 的配置决定链接，由主题渲染到页面的文章底部
 - `ga`: 谷歌分析插件，该插件会生成一个 `ReactElement`，由主题插入到页面的 `<head>` 中
 - `gitalk`: Gitalk 插件，给页面添加评论功能，该插件会生成一个 `ReactElement`，由主题插入到页面的文章底部
+- `blog`: 博客插件，将指定目录下的 `md/tsx` 文件解析为博客文章
+- `i18n`: 国际化插件，使网站支持多语言能力
 
 这些插件的配置可以在[配置文件](./config.md#页面内容)章节中查看。
 
@@ -151,25 +153,28 @@ export default prependTitle;
 
 上例中，
 
-- `pagic.pagePaths` 是**暂存的**所有扫描出的页面路径
+- `pagic.pagePaths` 是*暂存的*<sup><a href="#sup-1">[1]</a></sup>所有扫描出的页面路径
 - `pagic.pagePropsMap` 是所有页面的 `props`
 
 我们通过 `for of` 循环遍历 `pagic.pagePaths`，并将每个页面的 `props` 重新赋值，这样就实现了给所有页面添加前缀了。
 
 除了这两个属性外，`pagic` 还有很多其他的属性，下面列出常用的 `pagic` 属性：
 
-| 属性           | 类型                      | 描述                                       |
-| -------------- | ------------------------- | ------------------------------------------ |
-| `config`       | `PagicConfig`             | Pagic **运行时**的配置                     |
-| `pagePaths`    | `string[]`                | **暂存的**所有扫描出的页面路径             |
-| `layoutPaths`  | `string[]`                | 所有扫描出的模版（包括主题）               |
-| `staticPaths`  | `string[]`                | **暂存的**所有扫描出的静态资源（包括主题） |
-| `pagePropsMap` | `{ [key:string]:any }`    | 所有页面的 `props`                         |
-| `writeFiles`   | `{ [key:string]:string }` | 将会在 `out` 插件中被写入到 `dist` 目录中  |
-| `rebuilding`   | `boolean`                 | `true` 表示重新构建，`false` 表示增量构建  |
-
-注意，`pagePaths` 和 `staticPaths` 都是**暂存的**，并不是全量的，也就是说，增量构建（构建时运行的 `--watch` 模式）时它们都只包含增量的文件。
+| 属性           | 类型                      | 描述                                                                        |
+| -------------- | ------------------------- | --------------------------------------------------------------------------- |
+| `config`       | `PagicConfig`             | Pagic _运行时_<sup><a href="#sup-2">[2]</a></sup>的配置                     |
+| `pagePaths`    | `string[]`                | _暂存的_<sup><a href="#sup-1">[1]</a></sup>所有扫描出的页面路径             |
+| `layoutPaths`  | `string[]`                | 所有扫描出的模版（包括主题）                                                |
+| `staticPaths`  | `string[]`                | _暂存的_<sup><a href="#sup-1">[1]</a></sup>所有扫描出的静态资源（包括主题） |
+| `pagePropsMap` | `{ [key:string]:any }`    | 所有页面的 `props`                                                          |
+| `writeFiles`   | `{ [key:string]:string }` | 将会在 `out` 插件中被写入到 `dist` 目录中                                   |
+| `rebuilding`   | `boolean`                 | `true` 表示重新构建，`false` 表示增量构建                                   |
 
 ### 参考官方插件
 
 开发一个插件最佳的参考就是官方插件，你可以直接[查看官方插件的源码](https://github.com/xcatliu/pagic/tree/master/src/plugins)。
+
+## 注解
+
+1. <span id="sup-1"></span>`pagePaths` 和 `staticPaths` 都是*暂存的*，并不是全量的，也就是说，增量构建（`--watch` 模式）时它们都只包含增量的文件
+2. <span id="sup-2"></span>Pagic *运行时*的配置与 `pagic.config.ts` 中的配置会有少许差异

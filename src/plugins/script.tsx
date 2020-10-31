@@ -6,7 +6,7 @@ import {
   compileFile,
   compilePagicFile,
   replaceExt,
-  underlineToPascal,
+  pascalToUnderline,
   pick
 } from '../utils/mod.ts';
 import type { PagicPlugin } from '../Pagic.ts';
@@ -33,31 +33,39 @@ const script: PagicPlugin = {
         pagic.writeFiles[contentDest] = await compileFile(compileSrc);
       }
 
-      /** First is module name, second is module path */
-      let importComponentList: [string, string][] = [];
+      let importComponentList: Record<string, string> = {};
       let propsCompileResult = compile(`
         export default {
           ${Object.keys(pageProps)
             .map((key) => {
               const value: any = pageProps[key];
               if (key === 'config') {
-                importComponentList.push(['projectConfig', `${pagic.config.root}pagic.config.js`]);
+                importComponentList.projectConfig = `${pagic.config.root}pagic.config.js`;
                 return `config: { ${JSON.stringify(pick(Pagic.defaultConfig, ['root'])).slice(
                   1,
                   -1
                 )}, ...projectConfig${
                   pageProps.language?.code ? `, ...projectConfig.i18n?.overrides?.['${pageProps.language?.code}']` : ''
                 } }`;
+              } else if (key === 'content') {
+                const element = value;
+                if (typeof element.type === 'function' && element.type.name !== '') {
+                  const componentName = element.type.name;
+                  const modulePath = `./${replaceExt(path.basename(pageProps.outputPath), `_content.js`)}`;
+                  importComponentList[componentName] = modulePath;
+                }
+                return `'${key}': ${reactElementToJSXString(value)}`;
               } else if (React.isValidElement(value)) {
-                if (typeof value.type !== 'string' && typeof value.type.name !== 'undefined') {
-                  const componentName = value.type.name;
-                  let modulePath: string;
-                  if (underlineToPascal(`_${key}`) === componentName) {
-                    modulePath = `${pagic.config.root}_${key}.js`;
-                  } else {
-                    modulePath = `./${replaceExt(path.basename(pageProps.outputPath), `_${key}.js`)}`;
+                traverseElement(value);
+                // eslint-disable-next-line no-inner-declarations
+                function traverseElement(element?: React.ReactElement) {
+                  if (!element) return;
+                  if (typeof element.type === 'function' && element.type.name !== '') {
+                    const componentName = element.type.name;
+                    const modulePath = `${pagic.config.root}${pascalToUnderline(componentName)}.js`;
+                    importComponentList[componentName] = modulePath;
                   }
-                  importComponentList.push([componentName, modulePath]);
+                  element.props?.children?.forEach(traverseElement);
                 }
                 return `'${key}': ${reactElementToJSXString(value)}`;
               } else {
@@ -68,7 +76,7 @@ const script: PagicPlugin = {
         }
       `);
 
-      propsCompileResult = `${importComponentList
+      propsCompileResult = `${Object.entries(importComponentList)
         .map(([componentName, modulePath]) => `import ${componentName} from '${modulePath}';`)
         .join('\n')}\n${propsCompileResult}`;
 

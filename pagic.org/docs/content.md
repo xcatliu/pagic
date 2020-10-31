@@ -152,14 +152,14 @@ $$
 $$
 ```
 
-### Get information from `git log`, such as `author`
+### `git log` message
 
 When parsing a Markdown file, Pagic will run a script to get its `git log` and extract useful information from it. They include:
 
 - `author`: The first committer of the file
 - `contributors`: All submitters of the file (including the first submitter), sorted by the time of the first submission (first submitted first)
 - `date`: The date when the file was first submitted
-- `updated`: the date the file was last submitted
+- `updated`: The date when the file was last submitted
 
 These information will be written into the `props` of the page.
 
@@ -293,7 +293,7 @@ export const frontMatter = {
 };
 ```
 
-### Get information from `git log`, such as `author`
+### `git log` message
 
 Like the `md` file, the `tsx` file will also get information such as `author`, `contributors`, `date`, `updated`, and they will be written into the `props` of the page.
 
