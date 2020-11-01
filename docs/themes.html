@@ -141,6 +141,7 @@
 <p>Why is it designed like this? Why can't it traverse all the files in the theme directory automatically?</p>
 <p>Because Pagic needs to support an URL to configure the theme, and only one URL cannot traverse to which files are in the path. Just imagine how you can traverse <code>https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master</code>?</p>
 <p>To sum up, although it is a bit troublesome, it is necessary to list all the files of the subject.</p>
+<p>When you are developing a theme, you can run <code>pagic init</code> and select <code>theme</code> to automatically scan the files in the current directory and generate a <code>mod.ts</code>.</p>
 <h3 id="props"><code>props</code><a class="anchor" href="#props">§</a></h3>
 <p>The core file in the theme is <code>_layout.tsx</code>, and the most important thing to write <code>_layout.tsx</code> is to use its <code>props</code>.</p>
 <p>The previous chapter has introduced <code>props</code>, if you need to know all the <code>props</code>, you can directly view <a href="./layout.html#props">_layout.tsx props</a>.</p>

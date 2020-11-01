@@ -1,4 +1,5 @@
-import { Helmet } from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
+// @deno-types="../../types/any.d.ts"
+import Helmet from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
 const Head = ({ config, title, head, outputPath, isDark }) => {
     const scriptSetIsDark = `
     const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;

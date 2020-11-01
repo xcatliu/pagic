@@ -141,6 +141,7 @@
 <p>为什么要这么设计呢？为什么不能自动遍历主题目录下的所有文件呢？</p>
 <p>因为 Pagic 需要支持通过一个 URL 来配置主题，而仅有一个 URL 是无法遍历到该路径下有哪些文件的——试想你如何去遍历 <code>https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/</code> 下的所有文件呢？</p>
 <p>综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。</p>
+<p>当你在开发主题时，可以运行 <code>pagic init</code> 然后选择 <code>theme</code> 来自动扫描当前目录下的文件并生成一个 <code>mod.ts</code>。</p>
 <h3 id="props"><code>props</code><a class="anchor" href="#props">§</a></h3>
 <p>主题中最核心的文件就是 <code>_layout.tsx</code>，而编写 <code>_layout.tsx</code> 最重要的就是使用它的 <code>props</code>。</p>
 <p>前一章已经介绍过了 <code>props</code>，如果需要了解所有的 <code>props</code>，可以直接查看 <a href="./layout.html#props">_layout.tsx 中的 props</a>。</p>
