@@ -219,6 +219,8 @@ Because Pagic needs to support an URL to configure the theme, and only one URL c
 
 To sum up, although it is a bit troublesome, it is necessary to list all the files of the subject.
 
+When you are developing a theme, you can run `pagic init` and select `theme` to automatically scan the files in the current directory and generate a `mod.ts`.
+
 ### `props`
 
 The core file in the theme is `_layout.tsx`, and the most important thing to write `_layout.tsx` is to use its `props`.

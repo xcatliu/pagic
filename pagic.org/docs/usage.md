@@ -73,9 +73,11 @@ export default {};
 > mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 > ```
 
-## Run `pagic`
+You can also run `pagic init` and select `site` to generate a `pagic.config.ts` file in the current directory.
 
-Next, we can use the `pagic` command in the project. Its basic usage is as follows:
+## Run `pagic build`
+
+Next, we can use the `pagic build` command in the project. Its basic usage is as follows:
 
 ```bash
 # Build a static website

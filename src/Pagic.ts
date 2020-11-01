@@ -198,32 +198,19 @@ export default class Pagic {
     }
   }
 
-  public async genMod() {
-    this.config = Pagic.defaultConfig;
-    if (this.config.exclude) {
-      this.config.exclude.push('mod.ts');
-    } else {
-      this.config.exclude = ['mod.ts'];
-    }
+  public async generateThemeMod() {
+    this.config = {
+      ...Pagic.defaultConfig,
+      exclude: [...Pagic.defaultConfig.exclude!, 'mod.ts']
+    };
 
     await this.initPaths();
-
-    await Deno.writeTextFile('./mod.ts', 'export default {\n' + '  files: [\n');
-    for (const modFile of this.staticPaths.concat(this.layoutPaths)) {
-      await Deno.writeTextFile('./mod.ts', `    '${modFile}',` + '\n', { append: true });
-    }
-    await Deno.writeTextFile('./mod.ts', '  ]\n' + '}\n', { append: true });
-  }
-
-  public async genConf(confFileName: string) {
-    /*
-     * See https://stackoverflow.com/questions/11233498/json-stringify-without-quotes-on-properties
-     * Since we're passing Pagic.defaultConfig, we shouldn't have to worry about extreme cases.
-     */
-    let configStr = JSON.stringify(Pagic.defaultConfig, null, 2).replace(/"([^"]+)":/g, '$1:');
-    await Deno.writeTextFile(confFileName, 'export default ');
-    await Deno.writeTextFile(confFileName, configStr, { append: true });
-    await Deno.writeTextFile(confFileName, ';\n', { append: true });
+    await Deno.writeTextFile(
+      './mod.ts',
+      `export default {\n  files: [\n    ${[...this.staticPaths, ...this.layoutPaths]
+        .map((filePath) => `    '${filePath}'`)
+        .join(',\n')}\n  ]\n};\n`
+    );
   }
 
   public getConfig(pagePath?: string) {

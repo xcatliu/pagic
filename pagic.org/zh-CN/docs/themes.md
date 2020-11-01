@@ -219,6 +219,8 @@ export default {
 
 综上所述，虽然麻烦了点，但是列出主题的所有文件是必要的。
 
+当你在开发主题时，可以运行 `pagic init` 然后选择 `theme` 来自动扫描当前目录下的文件并生成一个 `mod.ts`。
+
 ### `props`
 
 主题中最核心的文件就是 `_layout.tsx`，而编写 `_layout.tsx` 最重要的就是使用它的 `props`。

@@ -5,3 +5,5 @@ cdn.pagic.org
 
 src/types
 src/vendors
+
+test/fixtures/test_*

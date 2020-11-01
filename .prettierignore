@@ -8,6 +8,7 @@
 .dockerignore
 .DS_Store
 .eslintignore
+.gitattributes
 .gitignore
 .prettierignore
 Dockerfile
@@ -23,3 +24,4 @@ src/**/prism_tomorrow.css
 src/**/prism.css
 
 test/fixtures/walk
+test/fixtures/test_*

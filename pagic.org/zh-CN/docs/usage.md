@@ -75,9 +75,11 @@ export default {};
 > mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 > ```
 
-## 运行 `pagic` 命令
+你也可以运行 `pagic init` 然后选择 `site` 在当前目录下生成一个 `pagic.config.ts` 文件。
 
-接下来，我们就可以在项目中使用 `pagic` 命令了。它的基本用法如下：
+## 运行 `pagic build`
+
+接下来，我们就可以在项目中使用 `pagic build` 命令了。它的基本用法如下：
 
 ```bash
 # 构建静态网站

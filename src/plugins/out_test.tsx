@@ -1,5 +1,6 @@
-import { Helmet } from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
 import { asserts, React, fs } from '../../deps.ts';
+// @deno-types="../types/any.d.ts"
+import Helmet from 'https://cdn.pagic.org/react-helmet@6.1.0/esnext/react-helmet.js';
 
 import Pagic from '../Pagic.ts';
 import out from './out.tsx';
