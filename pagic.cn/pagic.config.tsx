@@ -51,6 +51,6 @@ export default {
     ]
   },
   blog: {
-    path: 'blog/'
+    root: '/blog/'
   }
 };
