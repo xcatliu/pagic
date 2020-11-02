@@ -107,10 +107,10 @@ const IndexPage: PagicLayout = ({ config, language }) => (
           marginTop: '2rem'
         }}
       >
-        <a className="btn btn-primary" href={`${config.root}${language?.path ?? ''}docs/introduction.html`}>
+        <a className="btn btn-primary" href={`${config.root}${language?.root ?? ''}docs/introduction.html`}>
           开始使用
         </a>
-        <a className="btn" href={`${config.root}${language?.path ?? ''}docs/demos.html`}>
+        <a className="btn" href={`${config.root}${language?.root ?? ''}docs/demos.html`}>
           示例网站
         </a>
       </div>
