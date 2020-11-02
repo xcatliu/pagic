@@ -89,7 +89,7 @@ pagic build --watch --serve
 
 - Visit the [official website](https://pagic.org)
 - Read the [documentation](https://pagic.org/docs/introduction.html)
-- [Configuration](https://pagic.org/docs/config.html) your site
+- [Configure](https://pagic.org/docs/config.html) your site
 - Checkout the [theme list](https://pagic.org/themes/) and the [plugin list](https://pagic.org/plugins/)
 - Read the [blog](https://pagic.org/blog/) of Pagic
 
