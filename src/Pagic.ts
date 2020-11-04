@@ -207,7 +207,7 @@ export default class Pagic {
     await this.initPaths();
     await Deno.writeTextFile(
       './mod.ts',
-      `export default {\n  files: [\n    ${[...this.staticPaths, ...this.layoutPaths]
+      `export default {\n  files: [\n${[...this.staticPaths, ...this.layoutPaths]
         .map((filePath) => `    '${filePath}'`)
         .join(',\n')}\n  ]\n};\n`
     );
