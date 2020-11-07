@@ -1,20 +1,20 @@
-import { React } from '../../../deps.ts';
+import { React } from '../../../../deps.ts';
 
-import type { PagicLayout } from '../../Pagic.ts';
-import { dateFormatter } from './_utils.tsx';
+import type { PagicLayout } from '../../../Pagic.ts';
+import { dateFormatter } from '../_utils.tsx';
 
 const Posts: PagicLayout = (props) => {
-  const { config, contentTitle, blog } = props;
+  const { config, contentTitle, title, blog } = props;
 
   return (
     <section className="main">
       <div className="main_article">
         <article>
-          {contentTitle}
+          {contentTitle ?? <h1>{title}</h1>}
           <ul className="main_posts">
-            {blog?.posts.map(({ title, link, date }: any) => (
+            {blog?.posts.map(({ title, link, date }) => (
               <li key={link}>
-                <time dateTime={date}>{dateFormatter['YYYY-MM-DD'](date)}</time>
+                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
                 <a href={`${config.root}${link}`}>{title}</a>
               </li>
             ))}

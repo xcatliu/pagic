@@ -47,6 +47,7 @@ export interface PagicConfig {
   nav?: {
     text: string;
     link: string;
+    icon?: string;
     target?: '_blank' | string;
     popover?: React.ReactElement;
     align?: 'left' | 'right';
@@ -60,6 +61,13 @@ export interface PagicConfig {
   gitalk?: GitalkProps;
   blog?: {
     root: string;
+    social: {
+      github: string;
+      email: string;
+      twitter: string;
+      v2ex: string;
+      zhihu: string;
+    };
   };
   i18n?: {
     languages: { code: string; name: string; root: string }[];
@@ -93,6 +101,8 @@ export interface PageProps {
   contributors?: string[];
   date?: Date | string;
   updated?: Date | string | null;
+  tags?: string[];
+  categories?: string[];
 
   // init
   config: PagicConfig;
@@ -113,13 +123,22 @@ export interface PageProps {
   gitalk?: React.ReactElement;
   blog?: {
     isPost: boolean;
-    isPosts: boolean;
     posts: {
       pagePath: string;
       title: string;
       link: string;
       date: Date | string;
       updated: Date | string;
+    }[];
+    tags: {
+      name: string;
+      count: number;
+      link: string;
+    }[];
+    categories: {
+      name: string;
+      count: number;
+      link: string;
     }[];
   };
   language?: { code: string; name: string; root: string };
@@ -345,7 +364,7 @@ export default class Pagic {
         match: [Pagic.REGEXP_LAYOUT]
       })),
       ...themeFiles.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
-    ]);
+    ]).sort();
     this.staticPaths = unique([
       ...(await walk(this.config.srcDir, {
         ...pick(this.config, ['include', 'exclude']),
@@ -354,7 +373,7 @@ export default class Pagic {
       ...themeFiles.filter(
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
-    ]);
+    ]).sort();
   }
 
   private async runPlugins() {

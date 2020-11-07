@@ -48,6 +48,9 @@ const script: PagicPlugin = {
                   pageProps.language?.code ? `, ...projectConfig.i18n?.overrides?.['${pageProps.language?.code}']` : ''
                 } }`;
               } else if (key === 'content') {
+                if (value === null) {
+                  return `'${key}': null`;
+                }
                 const element = value;
                 if (typeof element.type === 'function' && element.type.name !== '') {
                   const componentName = element.type.name;
