@@ -34,11 +34,11 @@ export default {
     '_loading.tsx',
     '_main.tsx',
     '_popover.tsx',
-    '_posts.tsx',
     '_utils.tsx',
     'archives/_layout.tsx',
     'categories/_layout.tsx',
     'posts/_layout.tsx',
+    'posts/_posts.tsx',
     'tags/_layout.tsx'
   ]
 };

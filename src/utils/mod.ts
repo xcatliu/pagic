@@ -5,3 +5,4 @@ export * from './git.ts';
 export * from './import.ts';
 export * from './filepath.ts';
 export * from './serve.ts';
+export * from './substring.ts';

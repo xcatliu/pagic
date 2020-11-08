@@ -74,7 +74,7 @@ const Aside: PagicLayout<{
           <li key={link}>
             <a
               className={classnames('flex_center', {
-                active: `/${outputPath}`.startsWith(link)
+                active: outputPath === 'index.html' ? link === '/' : link !== '/' && `/${outputPath}`.startsWith(link)
               })}
               href={link}
               target={target}

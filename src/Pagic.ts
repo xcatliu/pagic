@@ -101,6 +101,8 @@ export interface PageProps {
   contributors?: string[];
   date?: Date | string;
   updated?: Date | string | null;
+  excerpt?: string;
+  cover?: string;
   tags?: string[];
   categories?: string[];
 
@@ -129,16 +131,20 @@ export interface PageProps {
       link: string;
       date: Date | string;
       updated: Date | string;
+      author?: string;
+      contributors: string[];
+      tags?: string[];
+      categories?: string[];
+      excerpt?: string;
+      cover?: string;
     }[];
     tags: {
       name: string;
       count: number;
-      link: string;
     }[];
     categories: {
       name: string;
       count: number;
-      link: string;
     }[];
   };
   language?: { code: string; name: string; root: string };

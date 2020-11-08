@@ -9,9 +9,9 @@ const Tags: PagicLayout = (props) => (
       <article>
         {props.contentTitle}
         <ul className="main_tags">
-          {props.blog?.tags.map(({ name, count, link }) => (
-            <li key={link}>
-              <a href={`${props.config.root}${link}`}>
+          {props.blog?.tags.map(({ name, count }) => (
+            <li key={name}>
+              <a href={`${props.config.root}tags/${name}/`}>
                 {name} ({count})
               </a>
             </li>

@@ -10,12 +10,27 @@ const Posts: PagicLayout = (props) => {
     <section className="main">
       <div className="main_article">
         <article>
-          {contentTitle ?? <h1>{title}</h1>}
+          {contentTitle ?? (title && <h1>{title}</h1>)}
           <ul className="main_posts">
-            {blog?.posts.map(({ title, link, date }) => (
+            {blog?.posts.map(({ title, link, date, author, categories, excerpt, cover }) => (
               <li key={link}>
-                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
-                <a href={`${config.root}${link}`}>{title}</a>
+                {cover && (
+                  <div
+                    className="cover"
+                    style={{
+                      backgroundImage: `url("${cover}")`
+                    }}
+                  />
+                )}
+                <h1>{title}</h1>
+                {excerpt && <p>{excerpt}</p>}
+                <div className="main_posts_meta">
+                  {categories?.[0] && <a href={`${config.root}categories/${categories[0]}/`}>{categories[0]}</a>}
+                  &nbsp;·&nbsp;
+                  <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
+                  &nbsp;·&nbsp;
+                  {author ?? 'unknown'}
+                </div>
               </li>
             ))}
           </ul>

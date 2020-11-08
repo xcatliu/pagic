@@ -1,4 +1,4 @@
-import { path, React, frontMatter, MarkdownIt, reactHtmlParser } from '../../deps.ts';
+import { path, React, frontMatter, removeMarkdown, MarkdownIt, reactHtmlParser } from '../../deps.ts';
 import markdownItTitle from '../vendors/markdown-it-title/index.js';
 import markdownItAnchor from '../vendors/markdown-it-anchor/index.js';
 import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.js';
@@ -7,7 +7,7 @@ import markdownitHighlightLines from '../vendors/markdown-it-highlight-lines/ind
 import markdownItKatex from '../vendors/markdown-it-katex/index.js';
 
 import Prism from '../vendors/prism/mod.ts';
-import { replaceLink, getGitLog } from '../utils/mod.ts';
+import { replaceLink, getGitLog, substring } from '../utils/mod.ts';
 
 import type { PagicPlugin } from '../Pagic.ts';
 
@@ -81,6 +81,8 @@ const md: PagicPlugin = {
       const frontMatterResult = frontMatter(content);
       const frontMatterProps = frontMatterResult.attributes;
       content = frontMatterResult.body;
+      let excerpt = substring(removeMarkdown(content).trim().replace(/\s+/g, ' '), 140, '...');
+      const cover = content.match(/!\[.*?\]\((.*?)\)/)?.[1];
 
       /**
        * Use markdown-it-title to get the title of the page
@@ -91,6 +93,7 @@ const md: PagicPlugin = {
       const contentTitleHTML = contentHTML.match(/^<h1[ >].*?<\/h1>/)?.[0];
       const contentBodyHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '').trim();
       const title = env.title;
+      excerpt = excerpt.replace(new RegExp(`^${title}`), '').trim();
       const { author, contributors, date, updated } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
       if (!contentHasKaTeX && /class="katex"/.test(contentHTML)) {
         contentHasKaTeX = true;
@@ -111,6 +114,8 @@ const md: PagicPlugin = {
         contributors,
         date,
         updated,
+        excerpt,
+        cover,
         ...frontMatterProps
       };
 

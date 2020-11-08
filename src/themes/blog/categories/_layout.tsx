@@ -9,9 +9,9 @@ const Categories: PagicLayout = (props) => (
       <article>
         {props.contentTitle}
         <ul className="main_categories">
-          {props.blog?.categories.map(({ name, count, link }) => (
-            <li key={link}>
-              <a href={`${props.config.root}${link}`}>
+          {props.blog?.categories.map(({ name, count }) => (
+            <li key={name}>
+              <a href={`${props.config.root}categories/${name}`}>
                 {name} ({count})
               </a>
             </li>

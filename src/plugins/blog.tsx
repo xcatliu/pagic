@@ -4,17 +4,6 @@ const blog: PagicPlugin = {
   name: 'blog',
   insert: 'after:tsx',
   fn: async (pagic) => {
-    let tagPathPrefix = '';
-    let categoriesPathPrefix = '';
-    for (const pagePath of pagic.pagePaths) {
-      const { layoutPath, outputPath } = pagic.pagePropsMap[pagePath];
-      if (layoutPath === 'tags/_layout.tsx') {
-        tagPathPrefix = outputPath.replace(/index\.html$/, '');
-      } else if (layoutPath === 'categories/_layout.tsx') {
-        categoriesPathPrefix = outputPath.replace(/index\.html$/, '');
-      }
-    }
-
     for (const pagePath of pagic.pagePaths) {
       const { outputPath, blog } = pagic.pagePropsMap[pagePath];
       if (typeof blog !== 'undefined') continue;
@@ -29,13 +18,21 @@ const blog: PagicPlugin = {
             typeof date !== 'undefined' &&
             typeof updated !== 'undefined'
         )
-        .map(({ pagePath, title, outputPath, date, updated }) => ({
-          pagePath,
-          title,
-          link: outputPath,
-          date: date!,
-          updated: updated!
-        }))
+        .map(
+          ({ pagePath, title, outputPath, date, updated, author, contributors, categories, tags, excerpt, cover }) => ({
+            pagePath,
+            title,
+            link: outputPath,
+            date: date!,
+            updated: updated!,
+            author,
+            contributors: contributors!,
+            categories,
+            tags,
+            excerpt,
+            cover
+          })
+        )
         .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
 
       const tags = posts
@@ -43,7 +40,6 @@ const blog: PagicPlugin = {
           {
             name: string;
             count: number;
-            link: string;
           }[]
         >((prev, { pagePath }) => {
           const pageTags = pagic.pagePropsMap[pagePath].tags ?? [];
@@ -54,8 +50,7 @@ const blog: PagicPlugin = {
             } else {
               prev.push({
                 name: tagName,
-                count: 1,
-                link: `${tagPathPrefix}${tagName}/`
+                count: 1
               });
             }
           });
@@ -69,7 +64,6 @@ const blog: PagicPlugin = {
           {
             name: string;
             count: number;
-            link: string;
           }[]
         >((prev, { pagePath }) => {
           const pageCategories = pagic.pagePropsMap[pagePath].categories ?? [];
@@ -80,8 +74,7 @@ const blog: PagicPlugin = {
             } else {
               prev.push({
                 name: categoryName,
-                count: 1,
-                link: `${categoriesPathPrefix}${categoryName}/`
+                count: 1
               });
             }
           });
@@ -90,16 +83,17 @@ const blog: PagicPlugin = {
         .sort((a, b) => (a.name.toLowerCase() > b.name.toLocaleLowerCase() ? 1 : -1))
         .sort((a, b) => b.count - a.count);
 
-      tags.forEach(({ name, link }) => {
-        if (pagic.pagePaths.includes(link)) {
+      tags.forEach(({ name }) => {
+        const pagePath = `tags/${name}/`;
+        if (pagic.pagePaths.includes(pagePath)) {
           return;
         }
-        pagic.pagePaths.push(link);
-        pagic.pagePropsMap[link] = {
+        pagic.pagePaths.push(pagePath);
+        pagic.pagePropsMap[pagePath] = {
           config: pagic.config,
-          pagePath: link,
-          layoutPath: 'posts/_layout.tsx',
-          outputPath: `${link}index.html`,
+          pagePath,
+          layoutPath: 'archives/_layout.tsx',
+          outputPath: `${pagePath}index.html`,
           head: null,
           script: null,
           title: name,
@@ -113,13 +107,17 @@ const blog: PagicPlugin = {
         };
       });
 
-      categories.forEach(({ name, link }) => {
-        pagic.pagePaths.push(link);
-        pagic.pagePropsMap[link] = {
+      categories.forEach(({ name }) => {
+        const pagePath = `categories/${name}/`;
+        if (pagic.pagePaths.includes(pagePath)) {
+          return;
+        }
+        pagic.pagePaths.push(pagePath);
+        pagic.pagePropsMap[pagePath] = {
           config: pagic.config,
-          pagePath: link,
-          layoutPath: 'posts/_layout.tsx',
-          outputPath: `${link}index.html`,
+          pagePath,
+          layoutPath: 'archives/_layout.tsx',
+          outputPath: `${pagePath}index.html`,
           head: null,
           script: null,
           title: name,
