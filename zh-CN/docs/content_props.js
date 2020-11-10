@@ -44,20 +44,28 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-12T13:36:11.000Z",
+    'date': "2020-08-10T04:25:19.000Z",
     'updated': "2020-10-31T14:04:46.000Z",
+    'excerpt': "Pagic 支持将 md/tsx 文件渲染成静态页面，下面将分别介绍这两种文件支持的特性。 md 文件 Pagic 使用 markdown-it 来编译 Markdown 文件，它支持通过添加第三方插件来扩展原有的功能。 Pagic 支持了以下特性： title 文章中的...",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     },
     'sidebar': [
         {

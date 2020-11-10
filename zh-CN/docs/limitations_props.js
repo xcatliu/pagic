@@ -41,20 +41,28 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-12T13:36:11.000Z",
-    'updated': null,
+    'date': "2020-08-11T05:59:50.000Z",
+    'updated': "2020-10-12T13:36:11.000Z",
+    'excerpt': "Pagic 很优秀，但也有一些缺陷。 由于 Pagic 构建的网站使用到了一些最新的 JavaScript 和 CSS 特性，所以必须使用现代浏览器（Chrome, Firefox, Safari, Edge 等）访问网站才能拥有完整的体验，如果你的目标用户使用的是 IE 浏...",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     },
     'sidebar': [
         {

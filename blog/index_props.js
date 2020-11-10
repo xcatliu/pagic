@@ -4,7 +4,7 @@ var _a, _b;
 export default {
     config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['en'] },
     'pagePath': "blog/README.md",
-    'layoutPath': "_layout.tsx",
+    'layoutPath': "blog/_layout.tsx",
     'outputPath': "blog/index.html",
     'title': "Blog",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
@@ -34,19 +34,27 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-12T13:36:11.000Z",
-    'updated': null,
+    'date': "2020-10-08T16:28:03.000Z",
+    'updated': "2020-10-12T13:36:11.000Z",
+    'excerpt': "",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": true,
         "posts": [
             {
                 "pagePath": "blog/design_pagic_config_ts.md",
                 "title": "Design pagic.config.ts",
                 "link": "blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "As a senior blogger, I am passionate about to develop blog systems and have written many blog themes. Finally, I couldn't be satisfied with writing themes, and I started writing a blog system. Or in a more gene..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     }
 };

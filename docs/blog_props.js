@@ -42,20 +42,28 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-31T14:04:46.000Z",
-    'updated': null,
+    'date': "2020-10-08T16:28:03.000Z",
+    'updated': "2020-10-31T14:04:46.000Z",
+    'excerpt': "",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "blog/design_pagic_config_ts.md",
                 "title": "Design pagic.config.ts",
                 "link": "blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "As a senior blogger, I am passionate about to develop blog systems and have written many blog themes. Finally, I couldn't be satisfied with writing themes, and I started writing a blog system. Or in a more gene..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     },
     'sidebar': [
         {

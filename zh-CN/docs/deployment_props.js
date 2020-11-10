@@ -44,20 +44,28 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-12T13:36:11.000Z",
+    'date': "2020-08-10T04:25:19.000Z",
     'updated': "2020-11-01T17:22:19.000Z",
+    'excerpt': "构建完成后的 dist 目录可以作为一个网站部署到你的服务器上。我们强烈推荐通过持续集成让部署过程自动化，下面列出几种常见的部署方式： GitHub Pages GitHub Pages 是最常见的一种托管静态网站的服务，通过 GitHub 官方提供的...",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     },
     'sidebar': [
         {

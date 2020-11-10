@@ -44,20 +44,28 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-12T13:36:11.000Z",
+    'date': "2020-07-19T14:12:09.000Z",
     'updated': "2020-10-31T14:04:46.000Z",
+    'excerpt': "本章会介绍如何使用插件，以及如何开发插件。 如果你想查看所有插件的列表及其说明文档，请访问插件列表。 使用方式 在 pagic.config.ts 中通过 plugins 来配置插件，它的类型是 string[]。 按照插件的级别可以将插件分为内置插...",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     },
     'sidebar': [
         {

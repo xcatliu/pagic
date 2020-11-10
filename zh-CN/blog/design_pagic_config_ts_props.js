@@ -4,7 +4,7 @@ var _a, _b;
 export default {
     config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
     'pagePath': "zh-CN/blog/design_pagic_config_ts.md",
-    'layoutPath': "_layout.tsx",
+    'layoutPath': "blog/_layout.tsx",
     'outputPath': "zh-CN/blog/design_pagic_config_ts.html",
     'title': "设计 pagic.config.ts",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
@@ -37,18 +37,26 @@ export default {
         "xcatliu"
     ],
     'date': "2020-07-12T00:00:00.000Z",
-    'updated': null,
+    'updated': "2020-10-12T13:36:11.000Z",
+    'excerpt': "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经...",
+    'cover': undefined,
     'blog': {
         "isPost": true,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     }
 };

@@ -45,20 +45,28 @@ export default {
     'contributors': [
         "xcatliu"
     ],
-    'date': "2020-10-12T13:36:11.000Z",
+    'date': "2020-08-10T04:25:19.000Z",
     'updated': "2020-10-31T14:04:46.000Z",
+    'excerpt': "_layout.tsx 是 Pagic 的核心理念之一。 什么是 _layout.tsx _layout.tsx 可以理解为 Pagic 在渲染页面时的模版文件，所有页面文件（md/tsx）在渲染时都会以 _layout.tsx 为模版。 我们不妨在之前的 site 项目中创建一个 _layo...",
+    'cover': undefined,
     'blog': {
         "isPost": false,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "zh-CN/blog/design_pagic_config_ts.md",
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     },
     'sidebar': [
         {

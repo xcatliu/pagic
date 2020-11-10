@@ -4,7 +4,7 @@ var _a, _b;
 export default {
     config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['en'] },
     'pagePath': "blog/design_pagic_config_ts.md",
-    'layoutPath': "_layout.tsx",
+    'layoutPath': "blog/_layout.tsx",
     'outputPath': "blog/design_pagic_config_ts.html",
     'title': "Design pagic.config.ts",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
@@ -37,18 +37,26 @@ export default {
         "xcatliu"
     ],
     'date': "2020-07-12T00:00:00.000Z",
-    'updated': null,
+    'updated': "2020-10-12T13:36:11.000Z",
+    'excerpt': "As a senior blogger, I am passionate about to develop blog systems and have written many blog themes. Finally, I couldn't be satisfied with writing themes, and I started writing a blog system. Or in a more gene...",
+    'cover': undefined,
     'blog': {
         "isPost": true,
-        "isPosts": false,
         "posts": [
             {
                 "pagePath": "blog/design_pagic_config_ts.md",
                 "title": "Design pagic.config.ts",
                 "link": "blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": null
+                "updated": "2020-10-12T13:36:11.000Z",
+                "author": "xcatliu",
+                "contributors": [
+                    "xcatliu"
+                ],
+                "excerpt": "As a senior blogger, I am passionate about to develop blog systems and have written many blog themes. Finally, I couldn't be satisfied with writing themes, and I started writing a blog system. Or in a more gene..."
             }
-        ]
+        ],
+        "tags": [],
+        "categories": []
     }
 };
