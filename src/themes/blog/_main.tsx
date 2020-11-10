@@ -9,23 +9,21 @@ const Main: PagicLayout = (props) => {
 
   return (
     <section className="main">
-      <div className="main_article">
-        {loading ? (
-          <Loading />
-        ) : blog?.isPost ? (
-          <>
-            {contentTitle}
-            {date && (
-              <div className="main_post_meta">
-                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
-              </div>
-            )}
-            {contentBody}
-          </>
-        ) : (
-          content
-        )}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : blog?.isPost ? (
+        <>
+          {contentTitle}
+          {date && (
+            <div className="main_post_meta">
+              <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
+            </div>
+          )}
+          {contentBody}
+        </>
+      ) : (
+        content
+      )}
     </section>
   );
 };

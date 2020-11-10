@@ -8,34 +8,36 @@ const Posts: PagicLayout = (props) => {
 
   return (
     <section className="main">
-      <div className="main_article">
-        <article>
-          {contentTitle ?? (title && <h1>{title}</h1>)}
-          <ul className="main_posts">
-            {blog?.posts.map(({ title, link, date, author, categories, excerpt, cover }) => (
-              <li key={link}>
-                {cover && (
-                  <div
-                    className="cover"
-                    style={{
-                      backgroundImage: `url("${cover}")`
-                    }}
-                  />
+      <article>
+        {contentTitle ?? (title && <h1>{title}</h1>)}
+        <ul className="main_posts">
+          {blog?.posts.map(({ title, link, date, author, categories, excerpt, cover }) => (
+            <li key={link}>
+              {cover && (
+                <div
+                  className="main_posts_cover"
+                  style={{
+                    backgroundImage: `url("${cover}")`
+                  }}
+                />
+              )}
+              <h1>
+                <a href={link}>{title}</a>
+              </h1>
+              {excerpt && <p>{excerpt}</p>}
+              <div className="main_posts_meta">
+                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
+                {author && <>&nbsp;·&nbsp;{author}</>}
+                {categories?.[0] && (
+                  <>
+                    &nbsp;·&nbsp;<a href={`${config.root}categories/${categories[0]}/`}>{categories[0]}</a>
+                  </>
                 )}
-                <h1>{title}</h1>
-                {excerpt && <p>{excerpt}</p>}
-                <div className="main_posts_meta">
-                  {categories?.[0] && <a href={`${config.root}categories/${categories[0]}/`}>{categories[0]}</a>}
-                  &nbsp;·&nbsp;
-                  <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
-                  &nbsp;·&nbsp;
-                  {author ?? 'unknown'}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </article>
-      </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </article>
     </section>
   );
 };

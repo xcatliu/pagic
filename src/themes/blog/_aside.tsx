@@ -1,7 +1,6 @@
 import { React } from '../../../deps.ts';
 
-import type { PagicConfig, PagicLayout } from '../../Pagic.ts';
-import Popover from './_popover.tsx';
+import type { PagicLayout } from '../../Pagic.ts';
 import { classnames } from './_utils.tsx';
 
 const SOCIAL_MAP: Record<
@@ -36,10 +35,10 @@ const SOCIAL_MAP: Record<
 const Aside: PagicLayout<{
   isDark: boolean;
   setIsDark: (isDark: boolean) => void;
-}> = ({ config, language, isDark, setIsDark, blog, outputPath }) => (
+}> = ({ config, isDark, setIsDark, outputPath }) => (
   <aside>
     <h1>
-      <a href={`${config.root}${language?.root.slice(1) ?? ''}`}>{config.title}</a>
+      <a href={config.root}>{config.title}</a>
     </h1>
     <p className="description">{config.description}</p>
     <ul className="social">

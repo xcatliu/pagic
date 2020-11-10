@@ -19,7 +19,8 @@ export { React, ReactDOM, ReactDOMServer };
 // @deno-types="./src/types/any.d.ts"
 import frontMatter from 'https://dev.jspm.io/front-matter@4.0.2';
 // @deno-types="./src/types/any.d.ts"
-import removeMarkdown from 'https://dev.jspm.io/remove-markdown@0.3.0';
+import htmlToTextMod from 'https://dev.jspm.io/html-to-text@6.0.0';
+const { htmlToText } = htmlToTextMod;
 // @deno-types="./src/types/any.d.ts"
 import MarkdownIt from 'https://dev.jspm.io/markdown-it@11.0.1';
 // @deno-types="./src/types/any.d.ts"
@@ -32,4 +33,4 @@ const reactHtmlParser = reactHtmlParserMod.default;
 import * as typescriptMod from 'https://dev.jspm.io/typescript@4.0.3';
 const typescript = typescriptMod.default;
 
-export { frontMatter, removeMarkdown, MarkdownIt, reactElementToJSXString, reactHtmlParser, typescript };
+export { frontMatter, htmlToText, MarkdownIt, reactElementToJSXString, reactHtmlParser, typescript };

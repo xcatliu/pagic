@@ -1,4 +1,4 @@
-import { path, React, frontMatter, removeMarkdown, MarkdownIt, reactHtmlParser } from '../../deps.ts';
+import { path, React, frontMatter, htmlToText, MarkdownIt, reactHtmlParser } from '../../deps.ts';
 import markdownItTitle from '../vendors/markdown-it-title/index.js';
 import markdownItAnchor from '../vendors/markdown-it-anchor/index.js';
 import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.js';
@@ -81,7 +81,6 @@ const md: PagicPlugin = {
       const frontMatterResult = frontMatter(content);
       const frontMatterProps = frontMatterResult.attributes;
       content = frontMatterResult.body;
-      let excerpt = substring(removeMarkdown(content).trim().replace(/\s+/g, ' '), 140, '...');
       const cover = content.match(/!\[.*?\]\((.*?)\)/)?.[1];
 
       /**
@@ -93,7 +92,27 @@ const md: PagicPlugin = {
       const contentTitleHTML = contentHTML.match(/^<h1[ >].*?<\/h1>/)?.[0];
       const contentBodyHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '').trim();
       const title = env.title;
-      excerpt = excerpt.replace(new RegExp(`^${title}`), '').trim();
+      const excerpt = substring(
+        htmlToText(contentBodyHTML.replace(/§/g, ''), {
+          wordwrap: 420,
+          tags: {
+            a: { options: { ignoreHref: true } },
+            img: { format: 'skip' },
+            blockquote: { format: 'skip' },
+            del: { format: 'skip' },
+            ul: { options: { itemPrefix: ' - ' } },
+            h1: { options: { uppercase: false } },
+            h2: { options: { uppercase: false } },
+            h3: { options: { uppercase: false } },
+            h4: { options: { uppercase: false } },
+            h5: { options: { uppercase: false } },
+            h6: { options: { uppercase: false } },
+            table: { options: { uppercaseHeaderCells: false } }
+          }
+        }).replace(/\s+/g, ' '),
+        210,
+        '...'
+      );
       const { author, contributors, date, updated } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
       if (!contentHasKaTeX && /class="katex"/.test(contentHTML)) {
         contentHasKaTeX = true;
