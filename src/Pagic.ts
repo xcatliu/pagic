@@ -12,7 +12,8 @@ import {
   getPagicConfigPath,
   importPlugin,
   importTheme,
-  serve
+  serve,
+  getGitBranch
 } from './utils/mod.ts';
 import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 import type { GaProps } from './plugins/ga_component.tsx';
@@ -42,6 +43,7 @@ export interface PagicConfig {
     editOnGithub: boolean;
     backToTop: boolean;
   };
+  branch?: string;
 
   // plugins
   nav?: {
@@ -61,7 +63,7 @@ export interface PagicConfig {
   gitalk?: GitalkProps;
   blog?: {
     root: string;
-    social: {
+    social?: {
       github: string;
       email: string;
       twitter: string;
@@ -266,6 +268,10 @@ export default class Pagic {
       ...this.projectConfig,
       ...this.runtimeConfig
     };
+    if (typeof config.branch === 'undefined') {
+      const branch = await getGitBranch();
+      config.branch = branch;
+    }
     config.exclude = unique([
       ...(Pagic.defaultConfig.exclude ?? []),
       ...(this.projectConfig.exclude ?? []),

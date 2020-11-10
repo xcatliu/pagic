@@ -6,7 +6,7 @@ import { Trans as TransComponent } from 'https://cdn.pagic.org/react-i18next@11.
 
 import { path, React } from '../../deps.ts';
 import type { PagicPlugin } from '../Pagic.ts';
-import { copyPagicFile } from '../utils/mod.ts';
+import { copyPagicFile, findNearestLayoutPath } from '../utils/mod.ts';
 
 const i18n: PagicPlugin = {
   name: 'i18n',
@@ -27,8 +27,14 @@ const i18n: PagicPlugin = {
         ...pagic.config.i18n.overrides?.[language.code]
       };
 
+      const layoutPath = findNearestLayoutPath(
+        `/${pagePath}`.replace(new RegExp(`^${language.root}`), ''),
+        pagic.layoutPaths
+      );
+
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
+        layoutPath,
         language,
         config,
         head: (

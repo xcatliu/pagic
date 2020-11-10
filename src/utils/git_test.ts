@@ -8,7 +8,7 @@ Deno.test('[getGitLog]', async () => {
   asserts.assertEquals(gitLogResult, {
     author: 'xcatliu',
     contributors: ['xcatliu', 'somebody_for_test'],
-    date: new Date('Sat Jul 11 20:13:54 2020 +0800'),
+    date: new Date('Sat Jun 03 20:48:16 2020 +0800'),
     updated: new Date('Mon Oct 26 13:21:21 2020 +0800')
   });
 });

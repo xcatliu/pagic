@@ -62,3 +62,18 @@ export async function getGitLog(
 
   return gitLogResult;
 }
+
+export async function getGitBranch() {
+  const gitBranchProcess = Deno.run({
+    // https://stackoverflow.com/a/36561814/2777142
+    cmd: ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+    stdout: 'piped',
+    stderr: 'piped'
+  });
+  const gitBranchOutput = await gitBranchProcess.output(); // "piped" must be set
+  const gitBranch = new TextDecoder().decode(gitBranchOutput).trim();
+  gitBranchProcess.stderr.close();
+  gitBranchProcess.close();
+
+  return gitBranch;
+}
