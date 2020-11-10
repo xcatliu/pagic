@@ -366,6 +366,10 @@ footer {
 }
 .tools a {
   margin-top: 0.5rem;
+  background-color: var(--color-background-sidebar);
+}
+.tools a:hover {
+  background-color: var(--color-background-faded);
 }
 /* #endregion */
 

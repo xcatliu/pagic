@@ -38,7 +38,8 @@ textarea {
 code,
 kbd,
 samp,
-pre {
+pre,
+time {
   font-family: var(--font-family-monospace);
 }
 
@@ -191,6 +192,7 @@ sup {
 address,
 time {
   font-style: normal;
+  color: var(--color-text-muted);
 }
 mark {
   background-color: yellow;

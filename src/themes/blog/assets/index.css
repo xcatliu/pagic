@@ -1,0 +1,243 @@
+@import 'variables.css';
+@import 'reset.css';
+
+/* #region html and body */
+html.is_dark img,
+html.is_dark [style*='background-image:'] {
+  opacity: var(--opacity);
+  transition: opacity var(--transition-duration);
+}
+html.is_dark img:hover,
+html.is_dark [style*='background-image:']:hover {
+  opacity: 1;
+}
+/* #endregion */
+
+/* #region Common */
+.flex_center {
+  display: flex;
+  align-items: center;
+}
+[class^='czs-'] {
+  display: inline-block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 2rem;
+  height: 2rem;
+  background-size: 20px;
+}
+/* #endregion */
+
+/* #region Aside */
+aside {
+  position: absolute;
+  background-color: var(--color-background-aside);
+  border-radius: 1rem;
+  width: 15rem;
+  padding: 0 2rem 1rem;
+  margin: var(--height-header) 0 0 0;
+  top: 0;
+  left: calc(50% - 40rem);
+}
+aside h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+}
+aside h1 a {
+  color: var(--color-text);
+}
+aside h1 a:hover {
+  text-decoration: none;
+}
+aside .description {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+aside .social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1rem -0.5rem;
+  padding: 0;
+  list-style: none;
+}
+aside .menu {
+  font-size: 14px;
+  margin: 2rem -1rem 0;
+  padding: 0;
+  list-style: none;
+}
+aside .menu a {
+  line-height: 2rem;
+  padding: 0 1rem;
+  color: var(--color-text-muted);
+  border-radius: 0.5rem;
+}
+aside .menu a.active {
+  background-color: var(--color-background);
+}
+aside .menu a:hover {
+  color: var(--color-text);
+  text-decoration: none;
+  background-color: var(--color-background-faded);
+}
+aside .menu a [class^='czs-'] {
+  margin: 0 0.5rem 0 -0.5rem;
+}
+/* #endregion */
+
+/* #region toggle_dark */
+.toggle_dark {
+  cursor: pointer;
+}
+.toggle_dark [class^='czs-moon'] {
+  margin-left: -0.75rem;
+}
+.toggle_dark .czs-sun-l,
+.toggle_dark .czs-moon {
+  display: none;
+}
+.is_dark .toggle_dark .czs-sun-l,
+.is_dark .toggle_dark .czs-moon {
+  display: inline-block;
+}
+.is_dark .toggle_dark .czs-sun,
+.is_dark .toggle_dark .czs-moon-l {
+  display: none;
+}
+/* #endregion */
+
+/* #region Article */
+.main {
+  display: flow-root;
+  margin: var(--height-header) auto 0;
+  padding: 0 1rem;
+  width: 44rem;
+  word-wrap: break-word;
+}
+article.loading {
+  min-height: calc(100vh - var(--height-header));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.anchor {
+  opacity: 0;
+  color: var(--color-text-muted);
+  font-weight: normal;
+  margin-left: 0.5em;
+}
+.anchor:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+  opacity: 1;
+}
+/* #endregion */
+
+/* #region Tags */
+.main_tags {
+  padding: 0;
+  list-style: none;
+}
+.main_tags a {
+  color: var(--color-text);
+}
+.main_tags li {
+  display: inline-block;
+  margin: 0.5rem 1rem 0;
+}
+/* #endregion */
+
+/* #region Posts */
+.main_posts {
+  padding: 0;
+  list-style: none;
+}
+.main_posts h1 {
+  margin-top: 0;
+  font-size: 24px;
+}
+.main_posts h1 a {
+  color: var(--color-text);
+}
+.main_posts p {
+  display: -webkit-box;
+  margin-top: 0.5rem;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.main_posts_meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  margin-top: 0.5rem;
+}
+.main_posts_meta a {
+  color: var(--color-text-muted);
+}
+.main_posts_cover {
+  float: right;
+  width: 12rem;
+  height: 9rem;
+  background-size: cover;
+  background-position: center center;
+  margin-left: 0.5rem;
+}
+.main_posts li {
+  display: flow-root;
+  margin-top: 3rem;
+}
+.main_posts li:first-child {
+  margin-top: 2rem;
+}
+/* #endregion */
+
+/* #region Post */
+.main > h1:first-child,
+.main article > h1:first-child {
+  text-align: center;
+}
+.main_post_meta {
+  margin-bottom: 2rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  text-align: center;
+}
+/* #endregion */
+
+/* #region Archives */
+.main_archives {
+  padding: 0;
+  list-style: none;
+}
+.main_archives time {
+  font-size: 12px;
+  line-height: 1.5rem;
+  margin-right: 1rem;
+}
+.main_archives a {
+  color: var(--color-text);
+}
+.main_archives li {
+  margin-top: 0.5rem;
+}
+/* #endregion */
+
+/* #region Footer */
+footer {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  padding: 3rem 0;
+}
+/* #endregion */

@@ -14,7 +14,8 @@ export async function getGitLog(
   const gitLogResult: any = {};
 
   const gitLogAuthorProcess = Deno.run({
-    cmd: ['git', 'log', '--reverse', '--format=%an', '--', pagePath],
+    // https://stackoverflow.com/a/36561814/2777142
+    cmd: ['git', 'log', '--follow', '--format=%an', '--', pagePath],
     stdout: 'piped',
     stderr: 'piped'
   });
@@ -27,13 +28,14 @@ export async function getGitLog(
     gitLogResult.author = undefined;
     gitLogResult.contributors = [];
   } else {
-    let contributors = gitLogAuthor.split('\n');
+    let contributors = gitLogAuthor.split('\n').reverse();
     gitLogResult.author = contributors[0];
     gitLogResult.contributors = unique(contributors);
   }
 
   const gitLogDateProcess = Deno.run({
-    cmd: ['git', 'log', '--reverse', '--format=%ad', '--', pagePath],
+    // https://stackoverflow.com/a/36561814/2777142
+    cmd: ['git', 'log', '--follow', '--format=%ad', '--', pagePath],
     stdout: 'piped',
     stderr: 'piped'
   });
@@ -48,7 +50,7 @@ export async function getGitLog(
     gitLogResult.date = now;
     gitLogResult.updated = null;
   } else {
-    const dateList = gitLogDate.split('\n');
+    const dateList = gitLogDate.split('\n').reverse();
     if (dateList.length === 1) {
       gitLogResult.date = new Date(dateList[0]);
       gitLogResult.updated = null;
@@ -59,4 +61,19 @@ export async function getGitLog(
   }
 
   return gitLogResult;
+}
+
+export async function getGitBranch() {
+  const gitBranchProcess = Deno.run({
+    // https://stackoverflow.com/a/36561814/2777142
+    cmd: ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+    stdout: 'piped',
+    stderr: 'piped'
+  });
+  const gitBranchOutput = await gitBranchProcess.output(); // "piped" must be set
+  const gitBranch = new TextDecoder().decode(gitBranchOutput).trim();
+  gitBranchProcess.stderr.close();
+  gitBranchProcess.close();
+
+  return gitBranch;
 }

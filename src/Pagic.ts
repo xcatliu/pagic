@@ -12,7 +12,8 @@ import {
   getPagicConfigPath,
   importPlugin,
   importTheme,
-  serve
+  serve,
+  getGitBranch
 } from './utils/mod.ts';
 import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
 import type { GaProps } from './plugins/ga_component.tsx';
@@ -42,11 +43,13 @@ export interface PagicConfig {
     editOnGithub: boolean;
     backToTop: boolean;
   };
+  branch?: string;
 
   // plugins
   nav?: {
     text: string;
     link: string;
+    icon?: string;
     target?: '_blank' | string;
     popover?: React.ReactElement;
     align?: 'left' | 'right';
@@ -60,6 +63,13 @@ export interface PagicConfig {
   gitalk?: GitalkProps;
   blog?: {
     root: string;
+    social?: {
+      github: string;
+      email: string;
+      twitter: string;
+      v2ex: string;
+      zhihu: string;
+    };
   };
   i18n?: {
     languages: { code: string; name: string; root: string }[];
@@ -93,6 +103,10 @@ export interface PageProps {
   contributors?: string[];
   date?: Date | string;
   updated?: Date | string | null;
+  excerpt?: string;
+  cover?: string;
+  tags?: string[];
+  categories?: string[];
 
   // init
   config: PagicConfig;
@@ -113,13 +127,26 @@ export interface PageProps {
   gitalk?: React.ReactElement;
   blog?: {
     isPost: boolean;
-    isPosts: boolean;
     posts: {
       pagePath: string;
       title: string;
       link: string;
       date: Date | string;
       updated: Date | string;
+      author?: string;
+      contributors: string[];
+      tags?: string[];
+      categories?: string[];
+      excerpt?: string;
+      cover?: string;
+    }[];
+    tags: {
+      name: string;
+      count: number;
+    }[];
+    categories: {
+      name: string;
+      count: number;
     }[];
   };
   language?: { code: string; name: string; root: string };
@@ -207,7 +234,7 @@ export default class Pagic {
     await this.initPaths();
     await Deno.writeTextFile(
       './mod.ts',
-      `export default {\n  files: [\n    ${[...this.staticPaths, ...this.layoutPaths]
+      `export default {\n  files: [\n${[...this.staticPaths, ...this.layoutPaths]
         .map((filePath) => `    '${filePath}'`)
         .join(',\n')}\n  ]\n};\n`
     );
@@ -241,6 +268,10 @@ export default class Pagic {
       ...this.projectConfig,
       ...this.runtimeConfig
     };
+    if (typeof config.branch === 'undefined') {
+      const branch = await getGitBranch();
+      config.branch = branch;
+    }
     config.exclude = unique([
       ...(Pagic.defaultConfig.exclude ?? []),
       ...(this.projectConfig.exclude ?? []),
@@ -345,7 +376,7 @@ export default class Pagic {
         match: [Pagic.REGEXP_LAYOUT]
       })),
       ...themeFiles.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
-    ]);
+    ]).sort();
     this.staticPaths = unique([
       ...(await walk(this.config.srcDir, {
         ...pick(this.config, ['include', 'exclude']),
@@ -354,7 +385,7 @@ export default class Pagic {
       ...themeFiles.filter(
         (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
       )
-    ]);
+    ]).sort();
   }
 
   private async runPlugins() {
