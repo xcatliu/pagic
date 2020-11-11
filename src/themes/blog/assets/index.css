@@ -145,6 +145,7 @@ aside .menu a [class^='czs-'] {
 }
 .main_posts li {
   display: flow-root;
+  overflow: hidden;
   margin-top: 3rem;
 }
 .main_posts li:first-child {
@@ -155,6 +156,7 @@ aside .menu a [class^='czs-'] {
 /* #region Main */
 .main {
   display: flow-root;
+  overflow: hidden;
   margin: var(--height-header) auto 0;
   padding: 0 1rem;
   width: 44rem;
@@ -301,9 +303,6 @@ footer {
   }
   .main_posts li {
     margin-top: 2rem;
-  }
-  .main_posts li:first-child {
-    margin-top: 1rem;
   }
   .main_posts h1 {
     font-size: 20px;
