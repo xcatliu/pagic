@@ -5,7 +5,7 @@ import Head from '../_head.tsx';
 import Header from '../_header.tsx';
 import Sidebar from '../_sidebar.tsx';
 import Main from '../_main.tsx';
-import Posts from './_posts.tsx';
+import Archives from './_archives.tsx';
 import Footer from '../_footer.tsx';
 import Tools from '../_tools.tsx';
 import { classnames } from '../_utils.tsx';
@@ -21,7 +21,7 @@ const Layout: PagicLayout = (props) => {
       <body>
         <Header {...props} isDark={isDark} setIsDark={setIsDark} />
         <Sidebar {...props} />
-        {props.blog?.isPost ? <Main {...props} /> : <Posts {...props} />}
+        {props.blog?.isPost ? <Main {...props} /> : <Archives {...props} />}
         <Footer {...props} />
         <Tools {...props} />
         {props.script}

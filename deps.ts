@@ -1,8 +1,8 @@
-export * as fs from 'https://deno.land/std@0.76.0/fs/mod.ts';
-export * as path from 'https://deno.land/std@0.76.0/path/mod.ts';
-export * as colors from 'https://deno.land/std@0.76.0/fmt/colors.ts';
-export * as server from 'https://deno.land/std@0.76.0/http/server.ts';
-export * as asserts from 'https://deno.land/std@0.76.0/testing/asserts.ts';
+export * as fs from 'https://deno.land/std@0.77.0/fs/mod.ts';
+export * as path from 'https://deno.land/std@0.77.0/path/mod.ts';
+export * as colors from 'https://deno.land/std@0.77.0/fmt/colors.ts';
+export * as server from 'https://deno.land/std@0.77.0/http/server.ts';
+export * as asserts from 'https://deno.land/std@0.77.0/testing/asserts.ts';
 
 // @deno-types="https://cdn.pagic.org/@types/react@16.9.50/index.d.ts"
 import * as React from 'https://cdn.pagic.org/react@16.13.1/esnext/react.development.js';

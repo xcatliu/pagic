@@ -7,7 +7,7 @@ const blog: PagicPlugin = {
     for (const pagePath of pagic.pagePaths) {
       const { outputPath, blog } = pagic.pagePropsMap[pagePath];
       if (typeof blog !== 'undefined') continue;
-      const configBlogPath = pagic.getConfig(pagePath).blog?.root ?? '/blog/';
+      const configBlogPath = pagic.getConfig(pagePath).blog?.root ?? '/posts/';
       if (!configBlogPath) continue;
 
       const posts = Object.values(pagic.pagePropsMap)

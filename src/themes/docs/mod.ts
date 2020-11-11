@@ -25,7 +25,7 @@ export default {
     '_sidebar.tsx',
     '_tools.tsx',
     '_utils.tsx',
-    'blog/_layout.tsx',
-    'blog/_posts.tsx'
+    'blog/_archives.tsx',
+    'blog/_layout.tsx'
   ]
 };

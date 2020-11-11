@@ -28,6 +28,7 @@ html.is_dark [style*='background-image:']:hover {
 }
 .list_style_none {
   list-style: none;
+  margin: 0;
   padding: 0;
   line-height: var(--line-height);
 }
@@ -206,7 +207,7 @@ article.loading {
 
 /* #region Tags */
 .main_tags {
-  margin: 0 -1rem;
+  margin: 0.5rem -1rem 0;
 }
 .main_tags a {
   color: var(--color-text);

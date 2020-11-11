@@ -10,7 +10,7 @@ const Sidebar: PagicLayout = ({ config, outputPath, sidebar }) => {
   }
   return (
     <aside className="sidebar">
-      <ol>
+      <ol className="list_style_none">
         {sidebar.map((sidebarItem, index) => (
           <FoldableItem key={index} config={config} outputPath={outputPath} sidebarItem={sidebarItem} />
         ))}
