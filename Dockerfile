@@ -17,7 +17,7 @@ COPY deps.ts .
 WORKDIR /out/pagic
 RUN echo "export default {};" > pagic.config.ts
 
-FROM hayd/alpine-deno:1.5.2 AS runner
+FROM hayd/alpine-deno:latest AS runner
 COPY --from=organizer /out /
 
 # Install
