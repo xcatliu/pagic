@@ -4,7 +4,7 @@ const Sidebar = ({ config, outputPath, sidebar }) => {
         return null;
     }
     return (React.createElement("aside", { className: "sidebar" },
-        React.createElement("ol", null, sidebar.map((sidebarItem, index) => (React.createElement(FoldableItem, { key: index, config: config, outputPath: outputPath, sidebarItem: sidebarItem }))))));
+        React.createElement("ol", { className: "list_style_none" }, sidebar.map((sidebarItem, index) => (React.createElement(FoldableItem, { key: index, config: config, outputPath: outputPath, sidebarItem: sidebarItem }))))));
 };
 const FoldableItem = ({ config, outputPath, sidebarItem: { title, link, children } }) => {
     const olRef = React.useRef(null);
