@@ -54,7 +54,7 @@
 </ul>
 <h2 id="file-related-configuration">File related configuration<a class="anchor" href="#file-related-configuration">§</a></h2>
 <p>For file related configuration, refer to <code>tsconfig.json</code>.</p>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>Config item</th>
@@ -95,7 +95,7 @@
 <td>The base path of the deployment site. If the website is deployed in a sub-path, such as <code>https://xcatliu.github.io/pagic/</code>, then <code>root</code> should be set to <code>'/pagic/'</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="exclude"><code>exclude</code><a class="anchor" href="#exclude">§</a></h3>
 <p>The default value for <code>exclude</code> is long:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token punctuation">[</span>
@@ -196,7 +196,7 @@
 <li>Official plugin: plugin implemented by Pagic, optional, such as: <code>sidebar</code>, <code>ga</code>, etc.</li>
 <li>Third-party plugins: plugins implemented by third parties, optional. Following Deno's design, the entrance is a url, such as: <code>https://github.com/xcatliu/pagic_plugin_example/blob/master/mod.ts</code></li>
 </ol>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>Config item</th>
@@ -213,7 +213,7 @@
 <td>The plugin list, the value of the built-in plugin and the official plugin are the plugin name, and the value of the third-party plugin is its entrance url</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>The order in which the plugins are executed is in the order of their configuration, unless the plugin is implemented with an insert attribute:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   name<span class="token operator">:</span> <span class="token string">'customPlugin'</span><span class="token punctuation">,</span>
@@ -241,7 +241,7 @@
 </ul>
 <h2 id="themes">Themes<a class="anchor" href="#themes">§</a></h2>
 <p>Theme is one of the core functions in Pagic, there are two official themes and lots of third-party themes.</p>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>Config item</th>
@@ -258,7 +258,7 @@
 <td>The value of the official theme is the theme name, and the value of the third-party plugin is its entrance url</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>The operating mechanism of the theme is easy to understand: when you run <code>pagic build</code>, all files in the theme will be &quot;copied&quot; to <code>srcDir</code>, and then run <code>build</code> in the normal mode.</p>
 <p>Of course, this &quot;copy&quot; does not actually copy the file. And when conflicting files are encountered, the user's files shall prevail.</p>
 <p>Why does the theme need an entry file?</p>
@@ -270,7 +270,7 @@
 <p>Among them, <code>files</code> means files that need to be &quot;copied&quot; to <code>srcDir</code>.</p>
 <h2 id="website-configuration">Website configuration<a class="anchor" href="#website-configuration">§</a></h2>
 <p>Here are some convential configurations, which are usually implemented by plugins or themes.</p>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>Config item</th>
@@ -341,9 +341,9 @@
 <td>Some extra features</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="development-environment-config">Development environment config<a class="anchor" href="#development-environment-config">§</a></h2>
-<table>
+<div class="table_wrapper"><table>
 <thead>
 <tr>
 <th>Config item</th>
@@ -372,4 +372,4 @@
 <td>Specify the port of the local service.</td>
 </tr>
 </tbody>
-</table></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#design-principles">Design principles</a></li><li><a href="#naming-convention">Naming convention</a><ol><li><a href="#file-name-and-directory-name">File name and directory name</a></li><li><a href="#variables-and-parameters">Variables and parameters</a></li><li><a href="#config-file-name">Config file name</a></li></ol></li><li><a href="#file-related-configuration">File related configuration</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#scenario-1-pure-website-separate-directory-to-store-source-files">Scenario 1: Pure website, separate directory to store source files</a></li><li><a href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files</a></li><li><a href="#scene-3-project--website">Scene 3: Project + Website</a></li><li><a href="#scene-4-only-show-readmemd">Scene 4: Only show README.md</a></li></ol></li><li><a href="#plugin">Plugin</a></li><li><a href="#themes">Themes</a></li><li><a href="#website-configuration">Website configuration</a></li><li><a href="#development-environment-config">Development environment config</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</table></div></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#design-principles">Design principles</a></li><li><a href="#naming-convention">Naming convention</a><ol><li><a href="#file-name-and-directory-name">File name and directory name</a></li><li><a href="#variables-and-parameters">Variables and parameters</a></li><li><a href="#config-file-name">Config file name</a></li></ol></li><li><a href="#file-related-configuration">File related configuration</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#scenario-1-pure-website-separate-directory-to-store-source-files">Scenario 1: Pure website, separate directory to store source files</a></li><li><a href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files</a></li><li><a href="#scene-3-project--website">Scene 3: Project + Website</a></li><li><a href="#scene-4-only-show-readmemd">Scene 4: Only show README.md</a></li></ol></li><li><a href="#plugin">Plugin</a></li><li><a href="#themes">Themes</a></li><li><a href="#website-configuration">Website configuration</a></li><li><a href="#development-environment-config">Development environment config</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
