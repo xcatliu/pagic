@@ -8,7 +8,7 @@ const Tags: PagicLayout = (props) => {
   return (
     <section className="main">
       {contentTitle ?? (title && <h1>{title}</h1>)}
-      <ul className="main_tags">
+      <ul className="main_tags list_style_none">
         {blog?.tags.map(({ name, count }) => (
           <li key={name}>
             <a

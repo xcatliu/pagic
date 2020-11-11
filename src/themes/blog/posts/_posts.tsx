@@ -10,7 +10,7 @@ const Posts: PagicLayout = (props) => {
     <section className="main">
       <article>
         {contentTitle ?? (title && <h1>{title}</h1>)}
-        <ul className="main_posts">
+        <ul className="main_posts list_style_none">
           {blog?.posts.map(({ title, link, date, author, categories, excerpt, cover }) => (
             <li key={link}>
               {cover && (

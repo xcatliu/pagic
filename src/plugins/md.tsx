@@ -88,7 +88,10 @@ const md: PagicPlugin = {
        * https://github.com/valeriangalliat/markdown-it-title
        */
       const env: any = {};
-      const contentHTML = mdRenderer.render(content, env).trim();
+      const contentHTML = mdRenderer
+        .render(content, env)
+        .replace(/<table[\s\S]*?<\/table>/g, '<div class="table_wrapper">$&</div>')
+        .trim();
       const contentTitleHTML = contentHTML.match(/^<h1[ >].*?<\/h1>/)?.[0];
       const contentBodyHTML = contentHTML.replace(/^<h1[ >].*?<\/h1>/, '').trim();
       const title = env.title;

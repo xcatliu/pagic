@@ -11,6 +11,8 @@
   --color-background-aside: #fafafa;
   --color-background-code: #f2f2f2;
 
+  --box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+
   /* Layout */
   --height-header: 3rem;
 
@@ -53,4 +55,6 @@ html.is_dark {
   --color-background-faded: #111;
   --color-background-aside: #1a1a1a;
   --color-background-code: #333;
+
+  --box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
 }

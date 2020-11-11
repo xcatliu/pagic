@@ -14,7 +14,9 @@ const Archives: PagicLayout = (props) => {
         {blog?.posts.map(({ title, link, date }) => (
           <li key={link}>
             <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
-            <a href={`${config.root}${link}`}>{title}</a>
+            <div>
+              <a href={`${config.root}${link}`}>{title}</a>
+            </div>
           </li>
         ))}
       </ul>
