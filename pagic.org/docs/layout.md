@@ -1,6 +1,6 @@
 # `_layout.tsx`
 
-> The content starting from this chapter is for users who need deep customization. If you simply use Pagic, you can skip directly to the [Deployment](./deployment.md) chapter.
+> The content starting from this chapter is for users who need deep customization. If you simply use Pagic, you can skip directly to the [Blog](./blog.md) chapter.
 
 `_layout.tsx` is one of Pagic's core concepts.
 
@@ -119,31 +119,35 @@ Note that in the above example, we used the `title` and `content` in `props`, so
 
 Please refer to the following table:
 
-| Properties     | Type                                       | Dependent Plugins                                                                                                              | Description                                                      |
-| -------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| `title`        | `string`                                   | `md`, `tsx`                                                                                                                    | The title of the page, usually put in `<head><title>`            |
-| `content`      | `string`                                   | `md`, `tsx`, `layout`                                                                                                          | The content of the page, usually put in `<body>`                 |
+| Properties     | Type                                       | Description                                                                                                                    |
+| -------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `title`        | `string`                                   | The title of the page, usually put in `<head><title>`                                                                          |
+| `content`      | `string`                                   | The content of the page, usually put in `<body>`                                                                               |
 | `contentTitle` | `React.ReactElement`                       | The title of `content`, can be used with `contentBody` to insert content between title and body                                |
 | `contentBody`  | `React.ReactElement`                       | The body of `content`, can be used with `contentTitle` to insert content between title and body                                |
-| `toc`          | `ReactElement`                             | `md`                                                                                                                           | Table of content                                                 |
+| `toc`          | `ReactElement`                             | Table of content                                                                                                               |
 | `author`       | `string`                                   | The first committer of the file                                                                                                |
 | `contributors` | `string[]`                                 | All submitters of the file (including the first submitter), sorted by the time of the first submission (first submitted first) |
 | `date`         | `Date`                                     | The date when the file was first submitted                                                                                     |
 | `updated`      | `Date`                                     | The date when the file was last submitted                                                                                      |
-| `config`       | `PagicConfig`                              | `init`                                                                                                                         | Pagic _runtime_<sup><a href="#sup-1">[1]</a></sup> configuration |
-| `pagePath`     | `string`                                   | `init`                                                                                                                         | Page path, such as `docs/README.md`                              |
-| `layoutPath`   | `string`                                   | `init`                                                                                                                         | The template path of the page, such as `docs/_layout.tsx`        |
-| `outputPath`   | `string`                                   | `init`                                                                                                                         | The output path of the page, such as `docs/index.html`           |
+| `excerpt`      | `string`                                   | The excerpt of article, default to the first 210 characters of the content                                                     |
+| `cover`        | `string`                                   | The cover of article (first image of content)                                                                                  |
+| `tags`         | `string[]`                                 | The tags of the article                                                                                                        |
+| `categories`   | `string[]`                                 | The categories of the article                                                                                                  |
+| `config`       | `PagicConfig`                              | Pagic _runtime_<sup><a href="#sup-1">[1]</a></sup> configuration                                                               |
+| `pagePath`     | `string`                                   | Page path, such as `docs/README.md`                                                                                            |
+| `layoutPath`   | `string`                                   | The template path of the page, such as `docs/_layout.tsx`                                                                      |
+| `outputPath`   | `string`                                   | The output path of the page, such as `docs/index.html`                                                                         |
 | `head`         | `ReactElement`                             | The content that needs to be inserted into `<head>`                                                                            |
-| `script`       | `ReactElement`                             | `script`                                                                                                                       | `ReactElement` generated by the `script` plugin                  |
-| `loading`      | `boolean`                                  | `script`                                                                                                                       | Whether the page loading                                         |
-| `sidebar`      | `ReactElement`                             | `sidebar`                                                                                                                      | `ReactElement` generated by the `sidebar` plugin                 |
-| `prev`         | `PagePropsSidebar[0]`                      | `prev_next`                                                                                                                    | Details of the previous page                                     |
-| `next`         | `PagePropsSidebar[0]`                      | `prev_next`                                                                                                                    | Details of the next page                                         |
-| `gitalk`       | `ReactElement`                             | `gitalk`                                                                                                                       | `ReactElement` generated by the `gitalk` plugin                  |
+| `script`       | `ReactElement`                             | `ReactElement` generated by the `script` plugin                                                                                |
+| `loading`      | `boolean`                                  | Whether the page loading                                                                                                       |
+| `sidebar`      | `ReactElement`                             | `ReactElement` generated by the `sidebar` plugin                                                                               |
+| `prev`         | `PagePropsSidebar[0]`                      | Details of the previous page                                                                                                   |
+| `next`         | `PagePropsSidebar[0]`                      | Details of the next page                                                                                                       |
+| `gitalk`       | `ReactElement`                             | `ReactElement` generated by the `gitalk` plugin                                                                                |
 | `blog`         | Checkout [Blog](./blog.md)                 | Blog information of the current page                                                                                           |
 | `language`     | Checkout [Internationalization](./i18n.md) | Language of the current page                                                                                                   |
-| Others         | `any`                                      | Third-party plugins                                                                                                            | Third-party plugins may also expand `props`                      |
+| Others         | `any`                                      | Third-party plugins may also expand `props`                                                                                    |
 
 ## Static resources
 

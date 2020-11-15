@@ -8,7 +8,7 @@ const Tools: PagicLayout = ({ config, pagePath }) => {
   }
   return (
     <div className="tools flex_center hide_on_mobile">
-      {config.tools.editOnGithub && (
+      {config.tools.editOnGitHub && (
         <a
           className="czs-pen button"
           href={`${config.github}/edit/${config.branch ?? 'master'}/${config.srcDir}/${pagePath}`}

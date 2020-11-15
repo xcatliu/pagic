@@ -243,7 +243,7 @@ The support status of official themes is listed below. If you are using a third-
 ### `title`
 
 - Type: `string`
-- Default: `undefined` (The default value of the page content option is always `undefined`)
+- Default: `undefined` (If there are no special instructions, the default value is always `undefined`)
 - Supported themes: all
 - Dependent plugins: none
 
@@ -327,18 +327,66 @@ export default {
 };
 ```
 
+The `blog` theme also supports `nav` configuration, an example is as follows:
+
+```tsx
+export default {
+  nav: [
+    {
+      text: 'Home',
+      link: '/',
+      icon: 'czs-home-l'
+    },
+    {
+      text: 'Categories',
+      link: '/categories/',
+      icon: 'czs-category-l'
+    },
+    {
+      text: 'Tags',
+      link: '/tags/',
+      icon: 'czs-tag-l'
+    },
+    {
+      text: 'About',
+      link: '/about/',
+      icon: 'czs-about-l'
+    },
+    {
+      text: 'Archives',
+      link: '/archives/',
+      icon: 'czs-box-l'
+    },
+    {
+      text: 'Friends',
+      link: '/links/',
+      icon: 'czs-link-l'
+    }
+  ]
+};
+```
+
 ### `github`
 
 - Type: `string`
 - Supported themes: all
 - Dependent plugins: none
 
-Configure your github account, usually a link will be displayed in the upper right corner.
+Configure the GitHub link of the project, usually will display a link in the upper right corner, and will also be used for the link of the `editOnGitHub` button.
+
+### `branch`
+
+- Type: `string`
+- Default: `master`
+- Supported themes: `docs`, `blog`
+- Dependent plugins: none
+
+Configure the GitHub branch of the project, for the link to the editOnGitHub button. The default is `master`.
 
 ### `sidebar`
 
 - Type: complex, please see below
-- Supported themes: `docs`, `blog`
+- Supported themes: `docs`
 - Dependent plugins: `sidebar`
 
 Sidebar configuration, an example is as follows:
@@ -389,7 +437,7 @@ In the above example:
 ### `tocAd`
 
 - Type: `React.ReactElement`
-- Supported themes: `docs`, `blog`
+- Supported themes: `docs`
 - Dependent plugins: none
 
 Ads displayed at the top of the table of content, an example is as follows:
@@ -422,15 +470,15 @@ export default {
 ### `tools`
 
 - Type: `{ [key:string]:any }`
-- Supported themes: `docs`, `blog`
+- Supported themes: `docs`
 - Dependent plugins: none
 
-Some small tools, such as `editOnGithub`, `backToTop`, etc. an examples is as follows:
+Some small tools, such as `editOnGitHub`, `backToTop`, etc. an examples is as follows:
 
 ```ts
 export default {
   tools: {
-    editOnGithub: true,
+    editOnGitHub: true,
     backToTop: true
   }
 };
@@ -455,7 +503,7 @@ export default {
 ### `gitalk`
 
 - Type: complex, please see below
-- Supported themes: `docs`, `blog`
+- Supported themes: `docs`
 - Dependent plugins: `gitalk`
 
 [Gitalk](https://github.com/gitalk/gitalk) can add comments to the page, an example is as follows:
@@ -475,7 +523,7 @@ export default {
 
 ### `blog`
 
-- Type: `{ root:string; }`
+- Type: complex, please see below
 - Supported themes: `docs`, `blog`
 - Dependent plugins: `blog`
 
@@ -484,12 +532,19 @@ Blog configuration, an examples is as follows:
 ```ts
 export default {
   blog: {
-    root: '/blog/'
+    root: '/posts/',
+    social: {
+      github: 'xcatliu/blog',
+      email: 'xcatliu@gmail.com',
+      twitter: 'xcatliu',
+      v2ex: 'xcatliu',
+      zhihu: 'xcatliu'
+    }
   }
 };
 ```
 
-In the above example, `root` means the root directory where blog posts are stored, and its default value is `/blog/`, which means all pages under the `${srcDir}/blog/` directory (except `README.md`) will be recognized as blog posts. Note that its value should always start and end with a slash.
+In the above example, `root` means the root directory where blog posts are stored, and its default value is `/posts/`, which means all pages under the `${srcDir}/posts/` directory (except `README.md`) will be recognized as blog posts. Note that its value should always start and end with a slash.
 
 ### `i18n`
 

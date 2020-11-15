@@ -244,7 +244,7 @@ export default {
 ### `title`
 
 - 类型：`string`
-- 默认值：`undefined`（页面内容的配置的默认值均为 `undefined`，以下不再赘述）
+- 默认值：`undefined`（若没有特殊说明，默认值均为 `undefined`，以下不再赘述）
 - 支持的主题：全部
 - 依赖的插件：无
 
@@ -328,18 +328,66 @@ export default {
 };
 ```
 
+博客主题也支持 `nav` 配置，示例如下：
+
+```tsx
+export default {
+  nav: [
+    {
+      text: '首页',
+      link: '/',
+      icon: 'czs-home-l'
+    },
+    {
+      text: '分类',
+      link: '/categories/',
+      icon: 'czs-category-l'
+    },
+    {
+      text: '标签',
+      link: '/tags/',
+      icon: 'czs-tag-l'
+    },
+    {
+      text: '关于',
+      link: '/about/',
+      icon: 'czs-about-l'
+    },
+    {
+      text: '归档',
+      link: '/archives/',
+      icon: 'czs-box-l'
+    },
+    {
+      text: '友情链接',
+      link: '/links/',
+      icon: 'czs-link-l'
+    }
+  ]
+};
+```
+
 ### `github`
 
 - 类型：`string`
 - 支持的主题：全部
 - 依赖的插件：无
 
-配置你的 github 账号，一般会展示一个链接在右上角。
+配置项目的 GitHub 链接，一般会展示一个链接在右上角，也会用于 `editOnGitHub` 按钮的链接。
+
+### `branch`
+
+- 类型：`string`
+- 默认值：`master`
+- 支持的主题：`docs`, `blog`
+- 依赖的插件：无
+
+配置项目的 GitHub 分支，用于 editOnGitHub 按钮的链接，默认为 `master`。
 
 ### `sidebar`
 
 - 类型：较复杂，见示例
-- 支持的主题：`docs`, `blog`
+- 支持的主题：`docs`
 - 依赖的插件：`sidebar`
 
 侧边栏配置，示例如下：
@@ -390,7 +438,7 @@ export default {
 ### `tocAd`
 
 - 类型：`React.ReactElement`
-- 支持的主题：`docs`, `blog`
+- 支持的主题：`docs`
 - 依赖的插件：无
 
 展示在目录上方的广告，示例如下：
@@ -423,15 +471,15 @@ export default {
 ### `tools`
 
 - 类型：`{ [key:string]:any }`
-- 支持的主题：`docs`, `blog`
+- 支持的主题：`docs`
 - 依赖的插件：无
 
-一些小工具，比如 `editOnGithub`, `backToTop` 等，示例如下：
+一些小工具，比如 `editOnGitHub`, `backToTop` 等，示例如下：
 
 ```ts
 export default {
   tools: {
-    editOnGithub: true,
+    editOnGitHub: true,
     backToTop: true
   }
 };
@@ -456,7 +504,7 @@ export default {
 ### `gitalk`
 
 - 类型：较复杂，见示例
-- 支持的主题：`docs`, `blog`
+- 支持的主题：`docs`
 - 依赖的插件：`gitalk`
 
 [Gitalk](https://github.com/gitalk/gitalk) 可以给页面添加评论功能，示例如下：
@@ -476,7 +524,7 @@ export default {
 
 ### `blog`
 
-- 类型：`{ root:string; }`
+- 类型：较复杂，见示例
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：`blog`
 
@@ -485,12 +533,19 @@ export default {
 ```ts
 export default {
   blog: {
-    root: '/blog/'
+    root: '/posts/',
+    social: {
+      github: 'xcatliu/blog',
+      email: 'xcatliu@gmail.com',
+      twitter: 'xcatliu',
+      v2ex: 'xcatliu',
+      zhihu: 'xcatliu'
+    }
   }
 };
 ```
 
-在上面的例子中，`root` 表示存储博客文章的根目录，它的默认值是 `/blog/`，表示所有 `${srcDir}/blog/` 目录下的页面（除了 `README.md` 之外）都会被识别为博客文章（即 posts）。注意，它的值应当总是以斜杠开始，并以斜杠结束。
+在上面的例子中，`root` 表示存储博客文章的根目录，它的默认值是 `/posts/`，表示所有 `${srcDir}/posts/` 目录下的页面（除了 `README.md` 之外）都会被识别为博客文章。注意，它的值应当总是以斜杠开始，并以斜杠结束。
 
 ### `i18n`
 

@@ -40,7 +40,7 @@ export interface PagicConfig {
   github?: string;
   tocAd?: React.ReactElement;
   tools?: {
-    editOnGithub: boolean;
+    editOnGitHub: boolean;
     backToTop: boolean;
   };
   branch?: string;

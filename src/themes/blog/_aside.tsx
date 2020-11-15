@@ -120,10 +120,7 @@ const Aside: PagicLayout<{
                   document.documentElement.classList.remove('show_aside');
                 }}
               >
-                <span
-                  className={`czs-${icon}-l`}
-                  style={{ backgroundImage: `url("${config.root}assets/czs-${icon}-l.svg")` }}
-                />
+                <span className={icon} style={{ backgroundImage: `url("${config.root}assets/${icon}.svg")` }} />
                 {text}
               </a>
             </li>

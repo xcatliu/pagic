@@ -1,6 +1,6 @@
 # `_layout.tsx`
 
-> 从这一章开始的内容是提供给需要深度定制的用户的，如果你只是简单使用 Pagic，那么可以直接跳到[部署](./deployment.md)章节。
+> 从这一章开始的内容是提供给需要深度定制的用户的，如果你只是简单使用 Pagic，那么可以直接跳到[博客](./blog.md)章节。
 
 `_layout.tsx` 是 Pagic 的核心理念之一。
 
@@ -130,6 +130,10 @@ export default Layout;
 | `contributors` | `string[]`                | 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面） |
 | `date`         | `Date`                    | 该文件第一次提交时的日期                                                           |
 | `updated`      | `Date`                    | 该文件最后一次提交的日期                                                           |
+| `excerpt`      | `string`                  | 文章的摘要，默认为文章的前 210 个字符                                              |
+| `cover`        | `string`                  | 文章的头图（第一张图片）                                                           |
+| `tags`         | `string[]`                | 文章的标签                                                                         |
+| `categories`   | `string[]`                | 文章的分类                                                                         |
 | `config`       | `PagicConfig`             | Pagic _运行时_<sup><a href="#sup-1">[1]</a></sup>的配置                            |
 | `pagePath`     | `string`                  | 页面路径，如 `docs/README.md`                                                      |
 | `layoutPath`   | `string`                  | 页面的模版路径，如 `docs/_layout.tsx`                                              |
