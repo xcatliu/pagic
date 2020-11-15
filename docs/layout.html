@@ -15,7 +15,7 @@
   </script>
 </head><body><header><h1 class="hide_on_mobile"><a href="/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/docs/introduction.html">Docs</a></li><li class="hide_on_mobile"><a href="/themes/">Themes</a></li><li class="hide_on_mobile"><a href="/plugins/">Plugins</a></li><li class="hide_on_mobile"><a href="/blog/">Blog</a></li><li class="hide_on_mobile"><a href="/about/">About</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option selected="" value="en">English</option><option value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/docs/introduction.html" class="nav_link">Introduction</a></li><li class=""><a href="/docs/usage.html" class="nav_link">Usage</a></li><li class=""><a href="/docs/config.html" class="nav_link">Config</a></li><li class=""><a href="/docs/content.html" class="nav_link">Content</a></li><li class=""><a href="/docs/layout.html" class="nav_link active">_layout.tsx</a></li><li class=""><a href="/docs/themes.html" class="nav_link">Themes</a></li><li class=""><a href="/docs/plugins.html" class="nav_link">Plugins</a></li><li class=""><a href="/docs/blog.html" class="nav_link">Blog</a></li><li class=""><a href="/docs/i18n.html" class="nav_link">Internationalization</a></li><li class=""><a href="/docs/deployment.html" class="nav_link">Deployment</a></li><li class=""><a href="/docs/demos.html" class="nav_link">Demos</a></li><li class=""><a href="/docs/limitations.html" class="nav_link">Limitations</a></li></ol></aside><section class="main"><div class="main_article"><article><h1><code>_layout.tsx</code></h1>
 <blockquote>
-<p>The content starting from this chapter is for users who need deep customization. If you simply use Pagic, you can skip directly to the <a href="./deployment.html">Deployment</a> chapter.</p>
+<p>The content starting from this chapter is for users who need deep customization. If you simply use Pagic, you can skip directly to the <a href="./blog.html">Blog</a> chapter.</p>
 </blockquote>
 <p><code>_layout.tsx</code> is one of Pagic's core concepts.</p>
 <h2 id="what-is-_layouttsx">What is <code>_layout.tsx</code><a class="anchor" href="#what-is-_layouttsx">§</a></h2>
@@ -100,7 +100,6 @@
 <tr>
 <th>Properties</th>
 <th>Type</th>
-<th>Dependent Plugins</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -108,139 +107,136 @@
 <tr>
 <td><code>title</code></td>
 <td><code>string</code></td>
-<td><code>md</code>, <code>tsx</code></td>
 <td>The title of the page, usually put in <code>&lt;head&gt;&lt;title&gt;</code></td>
 </tr>
 <tr>
 <td><code>content</code></td>
 <td><code>string</code></td>
-<td><code>md</code>, <code>tsx</code>, <code>layout</code></td>
 <td>The content of the page, usually put in <code>&lt;body&gt;</code></td>
 </tr>
 <tr>
 <td><code>contentTitle</code></td>
 <td><code>React.ReactElement</code></td>
 <td>The title of <code>content</code>, can be used with <code>contentBody</code> to insert content between title and body</td>
-<td></td>
 </tr>
 <tr>
 <td><code>contentBody</code></td>
 <td><code>React.ReactElement</code></td>
 <td>The body of <code>content</code>, can be used with <code>contentTitle</code> to insert content between title and body</td>
-<td></td>
 </tr>
 <tr>
 <td><code>toc</code></td>
 <td><code>ReactElement</code></td>
-<td><code>md</code></td>
 <td>Table of content</td>
 </tr>
 <tr>
 <td><code>author</code></td>
 <td><code>string</code></td>
 <td>The first committer of the file</td>
-<td></td>
 </tr>
 <tr>
 <td><code>contributors</code></td>
 <td><code>string[]</code></td>
 <td>All submitters of the file (including the first submitter), sorted by the time of the first submission (first submitted first)</td>
-<td></td>
 </tr>
 <tr>
 <td><code>date</code></td>
 <td><code>Date</code></td>
 <td>The date when the file was first submitted</td>
-<td></td>
 </tr>
 <tr>
 <td><code>updated</code></td>
 <td><code>Date</code></td>
 <td>The date when the file was last submitted</td>
-<td></td>
+</tr>
+<tr>
+<td><code>excerpt</code></td>
+<td><code>string</code></td>
+<td>The excerpt of article, default to the first 210 characters of the content</td>
+</tr>
+<tr>
+<td><code>cover</code></td>
+<td><code>string</code></td>
+<td>The cover of article (first image of content)</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>string[]</code></td>
+<td>The tags of the article</td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td><code>string[]</code></td>
+<td>The categories of the article</td>
 </tr>
 <tr>
 <td><code>config</code></td>
 <td><code>PagicConfig</code></td>
-<td><code>init</code></td>
 <td>Pagic <em>runtime</em><sup><a href="#sup-1">[1]</a></sup> configuration</td>
 </tr>
 <tr>
 <td><code>pagePath</code></td>
 <td><code>string</code></td>
-<td><code>init</code></td>
 <td>Page path, such as <code>docs/README.md</code></td>
 </tr>
 <tr>
 <td><code>layoutPath</code></td>
 <td><code>string</code></td>
-<td><code>init</code></td>
 <td>The template path of the page, such as <code>docs/_layout.tsx</code></td>
 </tr>
 <tr>
 <td><code>outputPath</code></td>
 <td><code>string</code></td>
-<td><code>init</code></td>
 <td>The output path of the page, such as <code>docs/index.html</code></td>
 </tr>
 <tr>
 <td><code>head</code></td>
 <td><code>ReactElement</code></td>
 <td>The content that needs to be inserted into <code>&lt;head&gt;</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>script</code></td>
 <td><code>ReactElement</code></td>
-<td><code>script</code></td>
 <td><code>ReactElement</code> generated by the <code>script</code> plugin</td>
 </tr>
 <tr>
 <td><code>loading</code></td>
 <td><code>boolean</code></td>
-<td><code>script</code></td>
 <td>Whether the page loading</td>
 </tr>
 <tr>
 <td><code>sidebar</code></td>
 <td><code>ReactElement</code></td>
-<td><code>sidebar</code></td>
 <td><code>ReactElement</code> generated by the <code>sidebar</code> plugin</td>
 </tr>
 <tr>
 <td><code>prev</code></td>
 <td><code>PagePropsSidebar[0]</code></td>
-<td><code>prev_next</code></td>
 <td>Details of the previous page</td>
 </tr>
 <tr>
 <td><code>next</code></td>
 <td><code>PagePropsSidebar[0]</code></td>
-<td><code>prev_next</code></td>
 <td>Details of the next page</td>
 </tr>
 <tr>
 <td><code>gitalk</code></td>
 <td><code>ReactElement</code></td>
-<td><code>gitalk</code></td>
 <td><code>ReactElement</code> generated by the <code>gitalk</code> plugin</td>
 </tr>
 <tr>
 <td><code>blog</code></td>
 <td>Checkout <a href="./blog.html">Blog</a></td>
 <td>Blog information of the current page</td>
-<td></td>
 </tr>
 <tr>
 <td><code>language</code></td>
 <td>Checkout <a href="./i18n.html">Internationalization</a></td>
 <td>Language of the current page</td>
-<td></td>
 </tr>
 <tr>
 <td>Others</td>
 <td><code>any</code></td>
-<td>Third-party plugins</td>
 <td>Third-party plugins may also expand <code>props</code></td>
 </tr>
 </tbody>

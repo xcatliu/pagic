@@ -184,7 +184,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <h3 id="title"><code>title</code><a class="anchor" href="#title">§</a></h3>
 <ul>
 <li>Type: <code>string</code></li>
-<li>Default: <code>undefined</code> (The default value of the page content option is always <code>undefined</code>)</li>
+<li>Default: <code>undefined</code> (If there are no special instructions, the default value is always <code>undefined</code>)</li>
 <li>Supported themes: all</li>
 <li>Dependent plugins: none</li>
 </ul>
@@ -253,17 +253,61 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<p>The <code>blog</code> theme also supports <code>nav</code> configuration, an example is as follows:</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  nav<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'Home'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-home-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'Categories'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/categories/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-category-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'Tags'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/tags/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-tag-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'About'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/about/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-about-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'Archives'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/archives/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-box-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'Friends'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/links/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-link-l'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <h3 id="github"><code>github</code><a class="anchor" href="#github">§</a></h3>
 <ul>
 <li>Type: <code>string</code></li>
 <li>Supported themes: all</li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Configure your github account, usually a link will be displayed in the upper right corner.</p>
+<p>Configure the GitHub link of the project, usually will display a link in the upper right corner, and will also be used for the link of the <code>editOnGitHub</code> button.</p>
+<h3 id="branch"><code>branch</code><a class="anchor" href="#branch">§</a></h3>
+<ul>
+<li>Type: <code>string</code></li>
+<li>Default: <code>master</code></li>
+<li>Supported themes: <code>docs</code>, <code>blog</code></li>
+<li>Dependent plugins: none</li>
+</ul>
+<p>Configure the GitHub branch of the project, for the link to the editOnGitHub button. The default is <code>master</code>.</p>
 <h3 id="sidebar"><code>sidebar</code><a class="anchor" href="#sidebar">§</a></h3>
 <ul>
 <li>Type: complex, please see below</li>
-<li>Supported themes: <code>docs</code>, <code>blog</code></li>
+<li>Supported themes: <code>docs</code></li>
 <li>Dependent plugins: <code>sidebar</code></li>
 </ul>
 <p>Sidebar configuration, an example is as follows:</p>
@@ -307,7 +351,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <h3 id="tocad"><code>tocAd</code><a class="anchor" href="#tocad">§</a></h3>
 <ul>
 <li>Type: <code>React.ReactElement</code></li>
-<li>Supported themes: <code>docs</code>, <code>blog</code></li>
+<li>Supported themes: <code>docs</code></li>
 <li>Dependent plugins: none</li>
 </ul>
 <p>Ads displayed at the top of the table of content, an example is as follows:</p>
@@ -337,13 +381,13 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <h3 id="tools"><code>tools</code><a class="anchor" href="#tools">§</a></h3>
 <ul>
 <li>Type: <code>{ [key:string]:any }</code></li>
-<li>Supported themes: <code>docs</code>, <code>blog</code></li>
+<li>Supported themes: <code>docs</code></li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Some small tools, such as <code>editOnGithub</code>, <code>backToTop</code>, etc. an examples is as follows:</p>
+<p>Some small tools, such as <code>editOnGitHub</code>, <code>backToTop</code>, etc. an examples is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   tools<span class="token operator">:</span> <span class="token punctuation">{</span>
-    editOnGithub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    editOnGitHub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
     backToTop<span class="token operator">:</span> <span class="token boolean">true</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -364,7 +408,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <h3 id="gitalk"><code>gitalk</code><a class="anchor" href="#gitalk">§</a></h3>
 <ul>
 <li>Type: complex, please see below</li>
-<li>Supported themes: <code>docs</code>, <code>blog</code></li>
+<li>Supported themes: <code>docs</code></li>
 <li>Dependent plugins: <code>gitalk</code></li>
 </ul>
 <p><a href="https://github.com/gitalk/gitalk">Gitalk</a> can add comments to the page, an example is as follows:</p>
@@ -381,18 +425,25 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 </code></pre>
 <h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>
 <ul>
-<li>Type: <code>{ root:string; }</code></li>
+<li>Type: complex, please see below</li>
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: <code>blog</code></li>
 </ul>
 <p>Blog configuration, an examples is as follows:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   blog<span class="token operator">:</span> <span class="token punctuation">{</span>
-    root<span class="token operator">:</span> <span class="token string">'/blog/'</span>
+    root<span class="token operator">:</span> <span class="token string">'/posts/'</span><span class="token punctuation">,</span>
+    social<span class="token operator">:</span> <span class="token punctuation">{</span>
+      github<span class="token operator">:</span> <span class="token string">'xcatliu/blog'</span><span class="token punctuation">,</span>
+      email<span class="token operator">:</span> <span class="token string">'<a class="token email-link" href="mailto:xcatliu@gmail.com">xcatliu@gmail.com</a>'</span><span class="token punctuation">,</span>
+      twitter<span class="token operator">:</span> <span class="token string">'xcatliu'</span><span class="token punctuation">,</span>
+      v2ex<span class="token operator">:</span> <span class="token string">'xcatliu'</span><span class="token punctuation">,</span>
+      zhihu<span class="token operator">:</span> <span class="token string">'xcatliu'</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>In the above example, <code>root</code> means the root directory where blog posts are stored, and its default value is <code>/blog/</code>, which means all pages under the <code>${srcDir}/blog/</code> directory (except <code>README.md</code>) will be recognized as blog posts. Note that its value should always start and end with a slash.</p>
+<p>In the above example, <code>root</code> means the root directory where blog posts are stored, and its default value is <code>/posts/</code>, which means all pages under the <code>${srcDir}/posts/</code> directory (except <code>README.md</code>) will be recognized as blog posts. Note that its value should always start and end with a slash.</p>
 <h3 id="i18n"><code>i18n</code><a class="anchor" href="#i18n">§</a></h3>
 <ul>
 <li>Type: complex, please see below</li>
@@ -473,4 +524,4 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <li>Type: <code>number</code></li>
 <li>Default: <code>8000</code></li>
 </ul>
-<p>Specify the port of the local service.</p></article><div class="prev_next"><a class="prev button" href="/docs/usage.html">«  <!-- -->Usage</a><a class="next button" href="/docs/content.html">Content<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#input-and-output">Input and output</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#themes-and-plugins">Themes and plugins</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#page-content">Page content</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#md">md</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#blog">blog</a></li><li><a href="#i18n">i18n</a><ol></ol></li></ol></li><li><a href="#cli-options">Cli options</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>Specify the port of the local service.</p></article><div class="prev_next"><a class="prev button" href="/docs/usage.html">«  <!-- -->Usage</a><a class="next button" href="/docs/content.html">Content<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#input-and-output">Input and output</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#themes-and-plugins">Themes and plugins</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#page-content">Page content</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#branch">branch</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#md">md</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#blog">blog</a></li><li><a href="#i18n">i18n</a><ol></ol></li></ol></li><li><a href="#cli-options">Cli options</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

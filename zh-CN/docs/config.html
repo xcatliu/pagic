@@ -184,7 +184,7 @@
 <h3 id="title"><code>title</code><a class="anchor" href="#title">§</a></h3>
 <ul>
 <li>类型：<code>string</code></li>
-<li>默认值：<code>undefined</code>（页面内容的配置的默认值均为 <code>undefined</code>，以下不再赘述）</li>
+<li>默认值：<code>undefined</code>（若没有特殊说明，默认值均为 <code>undefined</code>，以下不再赘述）</li>
 <li>支持的主题：全部</li>
 <li>依赖的插件：无</li>
 </ul>
@@ -253,17 +253,61 @@
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<p>博客主题也支持 <code>nav</code> 配置，示例如下：</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  nav<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'首页'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-home-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'分类'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/categories/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-category-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'标签'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/tags/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-tag-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'关于'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/about/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-about-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'归档'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/archives/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-box-l'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      text<span class="token operator">:</span> <span class="token string">'友情链接'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/links/'</span><span class="token punctuation">,</span>
+      icon<span class="token operator">:</span> <span class="token string">'czs-link-l'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <h3 id="github"><code>github</code><a class="anchor" href="#github">§</a></h3>
 <ul>
 <li>类型：<code>string</code></li>
 <li>支持的主题：全部</li>
 <li>依赖的插件：无</li>
 </ul>
-<p>配置你的 github 账号，一般会展示一个链接在右上角。</p>
+<p>配置项目的 GitHub 链接，一般会展示一个链接在右上角，也会用于 <code>editOnGitHub</code> 按钮的链接。</p>
+<h3 id="branch"><code>branch</code><a class="anchor" href="#branch">§</a></h3>
+<ul>
+<li>类型：<code>string</code></li>
+<li>默认值：<code>master</code></li>
+<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>依赖的插件：无</li>
+</ul>
+<p>配置项目的 GitHub 分支，用于 editOnGitHub 按钮的链接，默认为 <code>master</code>。</p>
 <h3 id="sidebar"><code>sidebar</code><a class="anchor" href="#sidebar">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>
-<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>支持的主题：<code>docs</code></li>
 <li>依赖的插件：<code>sidebar</code></li>
 </ul>
 <p>侧边栏配置，示例如下：</p>
@@ -307,7 +351,7 @@
 <h3 id="tocad"><code>tocAd</code><a class="anchor" href="#tocad">§</a></h3>
 <ul>
 <li>类型：<code>React.ReactElement</code></li>
-<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>支持的主题：<code>docs</code></li>
 <li>依赖的插件：无</li>
 </ul>
 <p>展示在目录上方的广告，示例如下：</p>
@@ -337,13 +381,13 @@
 <h3 id="tools"><code>tools</code><a class="anchor" href="#tools">§</a></h3>
 <ul>
 <li>类型：<code>{ [key:string]:any }</code></li>
-<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>支持的主题：<code>docs</code></li>
 <li>依赖的插件：无</li>
 </ul>
-<p>一些小工具，比如 <code>editOnGithub</code>, <code>backToTop</code> 等，示例如下：</p>
+<p>一些小工具，比如 <code>editOnGitHub</code>, <code>backToTop</code> 等，示例如下：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   tools<span class="token operator">:</span> <span class="token punctuation">{</span>
-    editOnGithub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    editOnGitHub<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
     backToTop<span class="token operator">:</span> <span class="token boolean">true</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -364,7 +408,7 @@
 <h3 id="gitalk"><code>gitalk</code><a class="anchor" href="#gitalk">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>
-<li>支持的主题：<code>docs</code>, <code>blog</code></li>
+<li>支持的主题：<code>docs</code></li>
 <li>依赖的插件：<code>gitalk</code></li>
 </ul>
 <p><a href="https://github.com/gitalk/gitalk">Gitalk</a> 可以给页面添加评论功能，示例如下：</p>
@@ -381,18 +425,25 @@
 </code></pre>
 <h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>
 <ul>
-<li>类型：<code>{ root:string; }</code></li>
+<li>类型：较复杂，见示例</li>
 <li>支持的主题：<code>docs</code>, <code>blog</code></li>
 <li>依赖的插件：<code>blog</code></li>
 </ul>
 <p>博客相关的配置，示例如下：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   blog<span class="token operator">:</span> <span class="token punctuation">{</span>
-    root<span class="token operator">:</span> <span class="token string">'/blog/'</span>
+    root<span class="token operator">:</span> <span class="token string">'/posts/'</span><span class="token punctuation">,</span>
+    social<span class="token operator">:</span> <span class="token punctuation">{</span>
+      github<span class="token operator">:</span> <span class="token string">'xcatliu/blog'</span><span class="token punctuation">,</span>
+      email<span class="token operator">:</span> <span class="token string">'<a class="token email-link" href="mailto:xcatliu@gmail.com">xcatliu@gmail.com</a>'</span><span class="token punctuation">,</span>
+      twitter<span class="token operator">:</span> <span class="token string">'xcatliu'</span><span class="token punctuation">,</span>
+      v2ex<span class="token operator">:</span> <span class="token string">'xcatliu'</span><span class="token punctuation">,</span>
+      zhihu<span class="token operator">:</span> <span class="token string">'xcatliu'</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>在上面的例子中，<code>root</code> 表示存储博客文章的根目录，它的默认值是 <code>/blog/</code>，表示所有 <code>${srcDir}/blog/</code> 目录下的页面（除了 <code>README.md</code> 之外）都会被识别为博客文章（即 posts）。注意，它的值应当总是以斜杠开始，并以斜杠结束。</p>
+<p>在上面的例子中，<code>root</code> 表示存储博客文章的根目录，它的默认值是 <code>/posts/</code>，表示所有 <code>${srcDir}/posts/</code> 目录下的页面（除了 <code>README.md</code> 之外）都会被识别为博客文章。注意，它的值应当总是以斜杠开始，并以斜杠结束。</p>
 <h3 id="i18n"><code>i18n</code><a class="anchor" href="#i18n">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>
@@ -473,4 +524,4 @@
 <li>类型：<code>number</code></li>
 <li>默认值：<code>8000</code></li>
 </ul>
-<p>指定本地服务的端口号。</p></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/usage.html">«  <!-- -->基本用法</a><a class="next button" href="/zh-CN/docs/content.html">页面内容<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">输入和输出</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">页面内容</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#md">md</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#blog">blog</a></li><li><a href="#i18n">i18n</a><ol></ol></li></ol></li><li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>指定本地服务的端口号。</p></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/usage.html">«  <!-- -->基本用法</a><a class="next button" href="/zh-CN/docs/content.html">页面内容<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA">输入和输出</a><ol><li><a href="#srcdir">srcDir</a></li><li><a href="#outdir">outDir</a></li><li><a href="#include">include</a></li><li><a href="#exclude">exclude</a></li><li><a href="#root">root</a></li></ol></li><li><a href="#%E4%B8%BB%E9%A2%98%E5%92%8C%E6%8F%92%E4%BB%B6">主题和插件</a><ol><li><a href="#theme">theme</a></li><li><a href="#plugins">plugins</a></li></ol></li><li><a href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">页面内容</a><ol><li><a href="#title">title</a></li><li><a href="#description">description</a></li><li><a href="#head">head</a></li><li><a href="#nav">nav</a></li><li><a href="#github">github</a></li><li><a href="#branch">branch</a></li><li><a href="#sidebar">sidebar</a></li><li><a href="#md">md</a></li><li><a href="#tocad">tocAd</a></li><li><a href="#tools">tools</a></li><li><a href="#ga">ga</a></li><li><a href="#gitalk">gitalk</a></li><li><a href="#blog">blog</a></li><li><a href="#i18n">i18n</a><ol></ol></li></ol></li><li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a><ol><li><a href="#watch">watch</a></li><li><a href="#serve">serve</a></li><li><a href="#port">port</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
