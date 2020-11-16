@@ -96,7 +96,7 @@ pagic build --watch --serve
 
 ## Contributors
 
-[![Contributors](https://opencollective.com/pagic/contributors.svg?width=890)](https://github.com/xcatliu/pagic/graphs/contributors)
+[![Contributors](https://opencollective.com/pagic/contributors.svg?width=890&button=false)](https://github.com/xcatliu/pagic/graphs/contributors)
 
 ## Backers
 
