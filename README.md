@@ -96,11 +96,11 @@ pagic build --watch --serve
 
 ## Contributors
 
-[![Contributors](https://opencollective.com/pagic/contributors.svg?width=890&button=false)](https://github.com/xcatliu/pagic/graphs/contributors)
+[![Contributors](https://opencollective.com/pagic/contributors.svg?avatarHeight=44&width=838&button=false)](https://github.com/xcatliu/pagic/graphs/contributors)
 
 ## Backers
 
-[![Backers](https://opencollective.com/pagic/tiers/backers.svg?avatarHeight=36&width=600)](https://opencollective.com/pagic)
+[![Backers](https://opencollective.com/pagic/tiers/backers.svg?avatarHeight=114&width=838)](https://opencollective.com/pagic)
 
 ## Special thanks
 
