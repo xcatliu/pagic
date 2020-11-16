@@ -52,7 +52,7 @@ export default {
     ]
   },
   ga: {
-    id: 'G-JPPPP5EF38'
+    id: 'UA-45256157-16'
   },
   blog: {
     root: '/blog/'
