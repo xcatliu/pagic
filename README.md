@@ -94,17 +94,17 @@ pagic build --watch --serve
 - Checkout the [theme list](https://pagic.org/themes/) and the [plugin list](https://pagic.org/plugins/)
 - Read the [blog](https://pagic.org/blog/) of Pagic
 
-## Contributors
+## Special thanks
 
-[![Contributors](https://opencollective.com/pagic/contributors.svg?avatarHeight=44&width=838&button=false)](https://github.com/xcatliu/pagic/graphs/contributors)
+- [StrawBerry Icon](http://chuangzaoshi.com/icon/): A free and open iconic font library for developer and creator
 
 ## Backers
 
 [![Backers](https://opencollective.com/pagic/tiers/backers.svg?avatarHeight=114&width=838)](https://opencollective.com/pagic)
 
-## Special thanks
+## Contributors
 
-- [StrawBerry Icon](http://chuangzaoshi.com/icon/): A free and open iconic font library for developer and creator
+[![Contributors](https://opencollective.com/pagic/contributors.svg?avatarHeight=44&width=838&button=false)](https://github.com/xcatliu/pagic/graphs/contributors)
 
 ## LICENSE
 
