@@ -19,7 +19,7 @@ export default {
             __html: '<h1>国际化</h1>'
         } }),
     'head': React.createElement(React.Fragment, null,
-        React.createElement(Ga, { id: "G-JPPPP5EF38" }),
+        React.createElement(Ga, { id: "UA-45256157-16" }),
         React.createElement(React.Fragment, { key: ".1" },
             React.createElement(React.Fragment, { key: ".0" },
                 React.createElement("script", { src: "/i18n.js", type: "module" })),

@@ -27,7 +27,7 @@ export default {
                 'dist'
             ],
             ga: {
-                id: 'G-JPPPP5EF38'
+                id: 'UA-45256157-16'
             },
             github: 'https://github.com/xcatliu/pagic',
             i18n: {
@@ -182,7 +182,7 @@ export default {
             root: '/'
         }, layoutPath: "_layout.tsx", outputPath: "hello.html", pagePath: "hello.tsx", script: null, title: "" }),
     'head': React.createElement(React.Fragment, null,
-        React.createElement(Ga, { id: "G-JPPPP5EF38" }),
+        React.createElement(Ga, { id: "UA-45256157-16" }),
         React.createElement(React.Fragment, { key: ".1" },
             React.createElement("script", { src: "/i18n.js", type: "module" }))),
     'script': React.createElement(React.Fragment, null,
