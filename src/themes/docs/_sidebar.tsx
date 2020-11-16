@@ -101,7 +101,7 @@ const FoldableItem: React.FC<{
         )}
       </a>
       {children && (
-        <ol ref={olRef}>
+        <ol className="list_style_none" ref={olRef}>
           {children.map((sidebarItem, index) => (
             <FoldableItem key={index} config={config} outputPath={outputPath} sidebarItem={sidebarItem} />
           ))}

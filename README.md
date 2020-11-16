@@ -94,6 +94,18 @@ pagic build --watch --serve
 - Checkout the [theme list](https://pagic.org/themes/) and the [plugin list](https://pagic.org/plugins/)
 - Read the [blog](https://pagic.org/blog/) of Pagic
 
+## Contributors
+
+[![Contributors](https://opencollective.com/pagic/contributors.svg?width=890)](https://github.com/xcatliu/pagic/graphs/contributors)
+
+## Backers
+
+[![Backers](https://opencollective.com/pagic/tiers/backers.svg?avatarHeight=36&width=600)](https://opencollective.com/pagic)
+
+## Special thanks
+
+- [StrawBerry Icon](http://chuangzaoshi.com/icon/): A free and open iconic font library for developer and creator
+
 ## LICENSE
 
 [MIT](./LICENSE)
