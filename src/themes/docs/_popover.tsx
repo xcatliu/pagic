@@ -12,7 +12,7 @@ interface PopoverProps {
   onMouseLeave?: React.MouseEventHandler;
 }
 
-let hoverMap: Record<string, boolean>;
+let hoverMap: Record<string, boolean> = {};
 
 export const Popover: React.FC<PopoverProps> = ({
   content,
