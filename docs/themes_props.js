@@ -3,11 +3,11 @@ import Ga from '/_ga.js';
 var _a, _b;
 export default {
     'prev': {
-        "title": "_layout.tsx",
+        "text": "_layout.tsx",
         "link": "docs/layout.html"
     },
     'next': {
-        "title": "Plugins",
+        "text": "Plugins",
         "link": "docs/plugins.html"
     },
     config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['en'] },
@@ -69,62 +69,62 @@ export default {
     },
     'sidebar': [
         {
-            "title": "Introduction",
+            "text": "Introduction",
             "link": "docs/introduction.html",
             "pagePath": "docs/introduction.md"
         },
         {
-            "title": "Usage",
+            "text": "Usage",
             "link": "docs/usage.html",
             "pagePath": "docs/usage.md"
         },
         {
-            "title": "Config",
+            "text": "Config",
             "link": "docs/config.html",
             "pagePath": "docs/config.md"
         },
         {
-            "title": "Content",
+            "text": "Content",
             "link": "docs/content.html",
             "pagePath": "docs/content.md"
         },
         {
-            "title": "_layout.tsx",
+            "text": "_layout.tsx",
             "link": "docs/layout.html",
             "pagePath": "docs/layout.md"
         },
         {
-            "title": "Themes",
+            "text": "Themes",
             "link": "docs/themes.html",
             "pagePath": "docs/themes.md"
         },
         {
-            "title": "Plugins",
+            "text": "Plugins",
             "link": "docs/plugins.html",
             "pagePath": "docs/plugins.md"
         },
         {
-            "title": "Blog",
+            "text": "Blog",
             "link": "docs/blog.html",
             "pagePath": "docs/blog.md"
         },
         {
-            "title": "Internationalization",
+            "text": "Internationalization",
             "link": "docs/i18n.html",
             "pagePath": "docs/i18n.md"
         },
         {
-            "title": "Deployment",
+            "text": "Deployment",
             "link": "docs/deployment.html",
             "pagePath": "docs/deployment.md"
         },
         {
-            "title": "Demos",
+            "text": "Demos",
             "link": "docs/demos.html",
             "pagePath": "docs/demos.md"
         },
         {
-            "title": "Limitations",
+            "text": "Limitations",
             "link": "docs/limitations.html",
             "pagePath": "docs/limitations.md"
         }
