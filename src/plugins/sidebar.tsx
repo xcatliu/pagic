@@ -6,7 +6,7 @@ export type PagicConfigSidebar = Record<string, OnePagicConfigSidebar>;
 
 export type OnePagicConfigSidebar = (
   | {
-      title?: string;
+      text?: string;
       link?: string;
       children?: OnePagicConfigSidebar;
     }
@@ -14,7 +14,7 @@ export type OnePagicConfigSidebar = (
 )[];
 
 export type PagePropsSidebar = {
-  title: string;
+  text: string;
   link?: string;
   pagePath?: string;
   children?: PagePropsSidebar;
@@ -53,15 +53,15 @@ function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic):
   return sidebarConfig.map((sidebarConfigItem) => {
     if (typeof sidebarConfigItem === 'string') {
       return {
-        title: pagic.pagePropsMap[sidebarConfigItem].title,
+        text: pagic.pagePropsMap[sidebarConfigItem].title,
         link: pagic.pagePropsMap[sidebarConfigItem].outputPath,
         pagePath: pagic.pagePropsMap[sidebarConfigItem].pagePath
       };
     }
     // Deep clone
     let item = JSON.parse(JSON.stringify(sidebarConfigItem)) as PagePropsSidebar[0];
-    if (typeof item.title === 'undefined' && typeof item.link !== 'undefined') {
-      item.title = pagic.pagePropsMap[item.link].title;
+    if (typeof item.text === 'undefined' && typeof item.link !== 'undefined') {
+      item.text = pagic.pagePropsMap[item.link].title;
     }
     if (typeof item.link !== 'undefined') {
       item.pagePath = item.link;

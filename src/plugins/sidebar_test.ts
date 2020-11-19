@@ -51,12 +51,12 @@ Deno.test('[sidebar]', async () => {
   await sidebar.fn(pagic);
   asserts.assertEquals(pagic.pagePropsMap['README.md'].sidebar, undefined);
   const docsSidebar = [
-    { link: 'docs/introduction.html', title: 'Introduction', pagePath: 'docs/introduction.md' },
-    { link: 'docs/usage.html', title: 'Usage', pagePath: 'docs/usage.md' }
+    { link: 'docs/introduction.html', text: 'Introduction', pagePath: 'docs/introduction.md' },
+    { link: 'docs/usage.html', text: 'Usage', pagePath: 'docs/usage.md' }
   ];
   const apiSidebar = [
-    { link: 'api/foo.html', title: 'Foo', pagePath: 'api/foo.md' },
-    { link: 'api/bar.html', title: '', pagePath: 'api/bar.tsx' }
+    { link: 'api/foo.html', text: 'Foo', pagePath: 'api/foo.md' },
+    { link: 'api/bar.html', text: '', pagePath: 'api/bar.tsx' }
   ];
   asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].sidebar, docsSidebar);
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].sidebar, docsSidebar);
@@ -69,7 +69,7 @@ Deno.test('[sidebar] object config', async () => {
   pagic.config.sidebar = {
     '/docs/': [
       {
-        title: 'Intro',
+        text: 'Intro',
         link: 'docs/introduction.md'
       },
       {
@@ -77,7 +77,7 @@ Deno.test('[sidebar] object config', async () => {
         children: ['docs/usage/foo.md']
       },
       {
-        title: 'No link',
+        text: 'No link',
         children: ['docs/bar.md']
       }
     ]
@@ -115,16 +115,16 @@ Deno.test('[sidebar] object config', async () => {
 
   await sidebar.fn(pagic);
   const docsSidebar = [
-    { link: 'docs/introduction.html', title: 'Intro', pagePath: 'docs/introduction.md' },
+    { link: 'docs/introduction.html', text: 'Intro', pagePath: 'docs/introduction.md' },
     {
       link: 'docs/usage.html',
-      title: 'Usage',
+      text: 'Usage',
       pagePath: 'docs/usage.md',
-      children: [{ link: 'docs/usage/foo.html', title: 'Foo', pagePath: 'docs/usage/foo.md' }]
+      children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }]
     },
     {
-      title: 'No link',
-      children: [{ title: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }]
+      text: 'No link',
+      children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }]
     }
   ];
   asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].sidebar, docsSidebar);

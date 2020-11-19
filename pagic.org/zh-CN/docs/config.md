@@ -403,8 +403,12 @@ export default {
         children: ['about/xcatliu.md']
       },
       {
-        title: 'Who is using Pagic?',
+        text: 'Who is using Pagic?',
         link: 'about/usage.md'
+      },
+      {
+        text: 'Foldable item without link',
+        children: ['about/join_us.md']
       }
     ],
     '/': ['docs/introduction.md', 'about/README.md']

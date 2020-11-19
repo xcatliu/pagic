@@ -141,7 +141,7 @@ export default Layout;
 | `head`         | `ReactElement`            | 需要插入到 `<head>` 标签中的内容                                                   |
 | `script`       | `ReactElement`            | 由 `script` 插件生成的 `ReactElement`                                              |
 | `loading`      | `boolean`                 | 页面是否在加载中                                                                   |
-| `sidebar`      | `ReactElement`            | 由 `sidebar` 插件生成的 `ReactElement`                                             |
+| `sidebar`      | `PagePropsSidebar`        | 经 `sidebar` 插件解析后的对象                                                      |
 | `prev`         | `PagePropsSidebar[0]`     | 上一页的详细信息                                                                   |
 | `next`         | `PagePropsSidebar[0]`     | 下一页的详细信息                                                                   |
 | `gitalk`       | `ReactElement`            | 由 `gitalk` 插件生成的 `ReactElement`                                              |

@@ -23,7 +23,7 @@ const FoldableItem: React.FC<{
   config: PageProps['config'];
   outputPath: PageProps['outputPath'];
   sidebarItem: PagePropsSidebar[0];
-}> = ({ config, outputPath, sidebarItem: { title, link, children } }) => {
+}> = ({ config, outputPath, sidebarItem: { text, link, children } }) => {
   const olRef = React.useRef<any>(null);
   const [fold, setFold] = React.useState(false);
   const [olHeight, setOlHeight] = React.useState(0);
@@ -84,7 +84,7 @@ const FoldableItem: React.FC<{
           }
         }}
       >
-        {title}
+        {text}
         {children && (
           <>
             <span

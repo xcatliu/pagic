@@ -8,16 +8,16 @@ Deno.test('[prev_next]', async () => {
 
   pagic.pagePaths = ['README.md', 'docs/introduction.md', 'docs/usage.md', 'docs/usage/foo.md', 'docs/bar.md'];
   const docsSidebar = [
-    { link: 'docs/introduction.html', title: 'Intro', pagePath: 'docs/introduction.md' },
+    { link: 'docs/introduction.html', text: 'Intro', pagePath: 'docs/introduction.md' },
     {
       link: 'docs/usage.html',
-      title: 'Usage',
+      text: 'Usage',
       pagePath: 'docs/usage.md',
-      children: [{ link: 'docs/usage/foo.html', title: 'Foo', pagePath: 'docs/usage/foo.md' }]
+      children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }]
     },
     {
-      title: 'No link',
-      children: [{ title: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }]
+      text: 'No link',
+      children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }]
     }
   ];
   const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
@@ -62,16 +62,16 @@ Deno.test('[prev_next]', async () => {
 
   await prev_next.fn(pagic);
   asserts.assertEquals(pagic.pagePropsMap['README.md'].prev, undefined);
-  asserts.assertEquals(pagic.pagePropsMap['README.md'].next, { title: 'Introduction', link: 'docs/introduction.html' });
-  asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].prev, { title: '', link: 'index.html' });
-  asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].next, { title: 'Usage', link: 'docs/usage.html' });
+  asserts.assertEquals(pagic.pagePropsMap['README.md'].next, { text: 'Introduction', link: 'docs/introduction.html' });
+  asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].prev, { text: '', link: 'index.html' });
+  asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].next, { text: 'Usage', link: 'docs/usage.html' });
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].prev, {
-    title: 'Intro',
+    text: 'Intro',
     link: 'docs/introduction.html'
   });
-  asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].next, { title: 'Foo', link: 'docs/usage/foo.html' });
-  asserts.assertEquals(pagic.pagePropsMap['docs/usage/foo.md'].prev, { title: 'Usage', link: 'docs/usage.html' });
-  asserts.assertEquals(pagic.pagePropsMap['docs/usage/foo.md'].next, { title: 'Bar', link: 'docs/bar.html' });
-  asserts.assertEquals(pagic.pagePropsMap['docs/bar.md'].prev, { title: 'Foo', link: 'docs/usage/foo.html' });
+  asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].next, { text: 'Foo', link: 'docs/usage/foo.html' });
+  asserts.assertEquals(pagic.pagePropsMap['docs/usage/foo.md'].prev, { text: 'Usage', link: 'docs/usage.html' });
+  asserts.assertEquals(pagic.pagePropsMap['docs/usage/foo.md'].next, { text: 'Bar', link: 'docs/bar.html' });
+  asserts.assertEquals(pagic.pagePropsMap['docs/bar.md'].prev, { text: 'Foo', link: 'docs/usage/foo.html' });
   asserts.assertEquals(pagic.pagePropsMap['docs/bar.md'].next, undefined);
 });
