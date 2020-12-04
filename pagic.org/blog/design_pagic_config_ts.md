@@ -255,18 +255,18 @@ Among them, `files` means files that need to be "copied" to `srcDir`.
 
 Here are some convential configurations, which are usually implemented by plugins or themes.
 
-| Config item   | Type                 | Default     | Description                                                                                                                                                            |
-| ------------- | -------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `title`       | `string`             | `undefined` | The title of the website, usually placed after the title of the page, such as: `Config · Pagic`, if there is no page title on the page, only the website title `Pagic` |
-| `description` | `string`             | `undefined` | Website Description, usually displayed in `<head><meta name="description">`, and may also be displayed on the page                                                     |
-| `head`        | `React.ReactElement` | `undefined` | Additional content injected into `<head>`, can be written in jsx. Note that you need to change the configuration file to `pagic.config.tsx`                            |
-| `sidebar`     |                      | `undefined` | Sidebar                                                                                                                                                                |
-| `nav`         |                      | `undefined` | Navigation on the top                                                                                                                                                  |
-| `github`      | `string`             | `undefined` | The GitHub address of the website, usually displayed in the upper right corner of the page                                                                             |
-| `ga`          |                      | `undefined` | Google Analytics configuration                                                                                                                                         |
-| `gitalk`      |                      | `undefined` | Gitalk configuration                                                                                                                                                   |
-| `tocAd`       | `React.ReactNode`    | `undefined` | Ads displayed above toc                                                                                                                                                |
-| `tools`       |                      | `undefined` | Some extra features                                                                                                                                                    |
+| Config item   | Type           | Default     | Description                                                                                                                                                            |
+| ------------- | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`       | `undefined` | The title of the website, usually placed after the title of the page, such as: `Config · Pagic`, if there is no page title on the page, only the website title `Pagic` |
+| `description` | `string`       | `undefined` | Website Description, usually displayed in `<head><meta name="description">`, and may also be displayed on the page                                                     |
+| `head`        | `ReactElement` | `undefined` | Additional content injected into `<head>`, can be written in jsx. Note that you need to change the configuration file to `pagic.config.tsx`                            |
+| `sidebar`     |                | `undefined` | Sidebar                                                                                                                                                                |
+| `nav`         |                | `undefined` | Navigation on the top                                                                                                                                                  |
+| `github`      | `string`       | `undefined` | The GitHub address of the website, usually displayed in the upper right corner of the page                                                                             |
+| `ga`          |                | `undefined` | Google Analytics configuration                                                                                                                                         |
+| `gitalk`      |                | `undefined` | Gitalk configuration                                                                                                                                                   |
+| `tocAd`       | `ReactNode`    | `undefined` | Ads displayed above toc                                                                                                                                                |
+| `tools`       |                | `undefined` | Some extra features                                                                                                                                                    |
 
 ## Development environment config
 

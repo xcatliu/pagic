@@ -123,8 +123,8 @@ Please refer to the following table:
 | -------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `title`        | `string`                                   | The title of the page, usually put in `<head><title>`                                                                          |
 | `content`      | `string`                                   | The content of the page, usually put in `<body>`                                                                               |
-| `contentTitle` | `React.ReactElement`                       | The title of `content`, can be used with `contentBody` to insert content between title and body                                |
-| `contentBody`  | `React.ReactElement`                       | The body of `content`, can be used with `contentTitle` to insert content between title and body                                |
+| `contentTitle` | `ReactElement`                             | The title of `content`, can be used with `contentBody` to insert content between title and body                                |
+| `contentBody`  | `ReactElement`                             | The body of `content`, can be used with `contentTitle` to insert content between title and body                                |
 | `toc`          | `ReactElement`                             | Table of content                                                                                                               |
 | `author`       | `string`                                   | The first committer of the file                                                                                                |
 | `contributors` | `string[]`                                 | All submitters of the file (including the first submitter), sorted by the time of the first submission (first submitted first) |

@@ -32,7 +32,7 @@ The theme determines how the page is displayed, and the plugin determines the fe
 
 After selecting the theme, we can add plugins to extend the features of the webpage, but only if the theme supports this plugin.
 
-Take the `sidebar` plugin as an example. The `sidebar` plugin will display a configured sidebar on the left side of the page, but not all themes support this plugin. For example, the `default` theme is a very basic theme. It supports the most basic functions, so the `sidebar` plugin is not supported. However, both the `docs` theme and the `blog` theme support the `sidebar` plugin.
+Take the `sidebar` plugin as an example. The `sidebar` plugin will display a configured sidebar on the left side of the page, but not all themes support this plugin. For example, the `default` theme is a very basic theme. It supports the most basic functions, so the `sidebar` plugin is not supported.
 
 Generally, you can view the list of plugins supported by the theme's documentation.
 
@@ -75,7 +75,7 @@ export default {
 
 Then:
 
-- The `sidebar` plugin needs to parse it and convert it to `React.ReactElement`
+- The `sidebar` plugin needs to parse it and convert it to `ReactElement`
 - `docs` theme needs to support rendering `sidebar`, and provide functions such as folding, SPA jump, etc.
 
 It can be seen that it is inappropriate to attribute the configuration of `sidebar` to the configuration of the theme, and it is also inappropriate to attribute the configuration of the plugin. There needs to be one place to manage this configuration.
@@ -140,7 +140,7 @@ site/
 
 At this time, when executing `pagic build`, `assets/index.css` will be copied to `dist/assets/index.css`, and `README.md` will be rendered with `_layout.tsx` as a template, and generate `dist/index.html`:
 
-```{4,7}
+```{2-5}
 site/
 |── dist    # Output directory
 |   |── assets
@@ -157,23 +157,23 @@ When Pagic builds, each page file (`md/tsx`) will follow the rules described in 
 
 A typical application is to write a sub-template in a theme, and then require the directory structure of the project using this theme to conform to this convention.
 
-For example, the theme can create a `blog/_layout.tsx` file:
+For example, the theme can create a `posts/_layout.tsx` file:
 
 ```{4,5}
 pagic_theme_custom/
 |── assets
 |   └── index.css
-|── blog
+|── posts
 |   └── _layout.tsx
 └── _layout.tsx
 ```
 
-In this way, the pages under the user's `blog` directory will be rendered with `blog/_layout.tsx` as a template:
+In this way, the pages under the user's `posts` directory will be rendered with `posts/_layout.tsx` as a template:
 
 ```{2,3}
 site/
-|── blog
-|   └── hello.md # This page will be rendered with blog/_layout.tsx in the theme as a template
+|── posts
+|   └── hello.md # This page will be rendered with posts/_layout.tsx in the theme as a template
 |── pagic.config.ts
 └── README.tsx
 ```

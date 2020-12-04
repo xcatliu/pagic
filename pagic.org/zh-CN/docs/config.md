@@ -101,7 +101,7 @@ site/
 
 在上面的例子中，`src`, `dist`, `test` 均为不相关的目录，Pagic 只关心 `include` 指定的 `README.md` 文件和 `docs` 目录。
 
-> `include` 中允许配置 `glob` 格式的字符串，如 `docs/**/*.md` 就只会匹配到 `docs` 目录下的所有 `md` 文件。
+> `include` 中允许配置 [glob 格式][]的字符串，如 `docs/**/*.md` 就只会匹配到 `docs` 目录下的所有 `md` 文件。
 
 ### `exclude`
 
@@ -164,7 +164,7 @@ export default {
 };
 ```
 
-> 与 `include` 类似，`exclude` 也允许配置 `glob` 格式的字符串。
+> 与 `include` 类似，`exclude` 也允许配置 [glob 格式][] 格式的字符串。
 
 ### `root`
 
@@ -260,7 +260,7 @@ export default {
 
 ### `head`
 
-- 类型：`React.ReactElement`
+- 类型：`ReactElement`
 - 支持的主题：全部
 - 依赖的插件：无
 
@@ -367,13 +367,15 @@ export default {
 };
 ```
 
+效果可以在[这个页面](https://blog.xcatliu.com/)的侧边栏查看。
+
 ### `github`
 
 - 类型：`string`
 - 支持的主题：全部
 - 依赖的插件：无
 
-配置项目的 GitHub 链接，一般会展示一个链接在右上角，也会用于 `editOnGitHub` 按钮的链接。
+配置项目的 GitHub 链接，一般会展示一个链接在右上角，也会用于 [editOnGitHub 按钮](#tools)的链接。
 
 ### `branch`
 
@@ -382,7 +384,7 @@ export default {
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：无
 
-配置项目的 GitHub 分支，用于 editOnGitHub 按钮的链接，默认为 `master`。
+配置项目的 GitHub 分支，用于 [editOnGitHub 按钮](#tools)的链接，默认为 `master`。
 
 ### `sidebar`
 
@@ -441,7 +443,7 @@ export default {
 
 ### `tocAd`
 
-- 类型：`React.ReactElement`
+- 类型：`ReactElement`
 - 支持的主题：`docs`
 - 依赖的插件：无
 
@@ -474,7 +476,7 @@ export default {
 
 ### `tools`
 
-- 类型：`{ [key:string]:any }`
+- 类型：`Record<string, any>`
 - 支持的主题：`docs`
 - 依赖的插件：无
 
@@ -615,7 +617,7 @@ export default {
 
 #### `i18n.overrides`
 
-`i18n.overrides` 是一个特殊的配置项，它可以允许特定语言下覆盖 `pagic.config.ts` 中的字段，它的类型是 `{ [key:string]:PagicConfig }`，其中键必须是 `i18n.language` 中的 `code` 字段，值的类型是整个 `pagic.config.ts` 的类型。当访问该语言的页面时，读取的 `pagic.config` 会是合并后的结果。
+`i18n.overrides` 是一个特殊的配置项，它可以允许特定语言下覆盖 `pagic.config.ts` 中的字段，它的类型是 `Record<string, PagicConfig>`，其中键必须是 `i18n.language` 中的 `code` 字段，值的类型是整个 `pagic.config.ts` 的类型。当访问该语言的页面时，读取的 `pagic.config` 会是合并后的结果。
 
 #### `i18n.resources`
 
@@ -645,3 +647,5 @@ export default {
 - 默认值：`8000`
 
 指定本地服务的端口号。
+
+[glob 格式]: https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts

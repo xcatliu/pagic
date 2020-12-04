@@ -160,15 +160,15 @@ export default prependTitle;
 
 除了这两个属性外，`pagic` 还有很多其他的属性，下面列出常用的 `pagic` 属性：
 
-| 属性           | 类型                      | 描述                                                                        |
-| -------------- | ------------------------- | --------------------------------------------------------------------------- |
-| `config`       | `PagicConfig`             | Pagic _运行时_<sup><a href="#sup-2">[2]</a></sup>的配置                     |
-| `pagePaths`    | `string[]`                | _暂存的_<sup><a href="#sup-1">[1]</a></sup>所有扫描出的页面路径             |
-| `layoutPaths`  | `string[]`                | 所有扫描出的模版（包括主题）                                                |
-| `staticPaths`  | `string[]`                | _暂存的_<sup><a href="#sup-1">[1]</a></sup>所有扫描出的静态资源（包括主题） |
-| `pagePropsMap` | `{ [key:string]:any }`    | 所有页面的 `props`                                                          |
-| `writeFiles`   | `{ [key:string]:string }` | 将会在 `out` 插件中被写入到 `dist` 目录中                                   |
-| `rebuilding`   | `boolean`                 | `true` 表示重新构建，`false` 表示增量构建                                   |
+| 属性           | 类型                     | 描述                                                                        |
+| -------------- | ------------------------ | --------------------------------------------------------------------------- |
+| `config`       | `PagicConfig`            | Pagic _运行时_<sup><a href="#sup-2">[2]</a></sup>的配置                     |
+| `pagePaths`    | `string[]`               | _暂存的_<sup><a href="#sup-1">[1]</a></sup>所有扫描出的页面路径             |
+| `layoutPaths`  | `string[]`               | 所有扫描出的模版（包括主题）                                                |
+| `staticPaths`  | `string[]`               | _暂存的_<sup><a href="#sup-1">[1]</a></sup>所有扫描出的静态资源（包括主题） |
+| `pagePropsMap` | `Record<string, any>`    | 所有页面的 `props`                                                          |
+| `writeFiles`   | `Record<string, string>` | 将会在 `out` 插件中被写入到 `dist` 目录中                                   |
+| `rebuilding`   | `boolean`                | `true` 表示重新构建，`false` 表示增量构建                                   |
 
 ### 参考官方插件
 

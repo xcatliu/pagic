@@ -86,7 +86,7 @@ Set `layoutPath` to specify the template file used on this page:
 
 ```md {2}
 ---
-layoutPath: blog/_layout.tsx
+layoutPath: posts/_layout.tsx
 ---
 
 # Content

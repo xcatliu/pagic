@@ -122,9 +122,9 @@ export default Layout;
 | 属性           | 类型                      | 描述                                                                               |
 | -------------- | ------------------------- | ---------------------------------------------------------------------------------- |
 | `title`        | `string`                  | 页面的标题，一般会放到 `<head><title>` 中                                          |
-| `content`      | `React.ReactElement`      | 页面的内容，一般会放到 `<body>` 中                                                 |
-| `contentTitle` | `React.ReactElement`      | `content` 中的标题，和 `contentBody` 配合使用可以在标题和正文之间插入内容          |
-| `contentBody`  | `React.ReactElement`      | `content` 中的正文，和 `contentTitle` 配合使用可以在标题和正文之间插入内容         |
+| `content`      | `ReactElement`            | 页面的内容，一般会放到 `<body>` 中                                                 |
+| `contentTitle` | `ReactElement`            | `content` 中的标题，和 `contentBody` 配合使用可以在标题和正文之间插入内容          |
+| `contentBody`  | `ReactElement`            | `content` 中的正文，和 `contentTitle` 配合使用可以在标题和正文之间插入内容         |
 | `toc`          | `ReactElement`            | 页面的目录（Table of Content）                                                     |
 | `author`       | `string`                  | 该文件的第一个提交者                                                               |
 | `contributors` | `string[]`                | 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面） |

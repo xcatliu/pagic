@@ -48,7 +48,7 @@ Pagic 支持了以下特性：
 
 因为这样的链接不仅在生成的页面中支持点击跳转，在 GitHub 的 Markdown 预览中支持点击跳转，而且在 VSCode（或其他编辑器）中也支持 `cmd/ctrl + click` 跳转。
 
-不妨在[本页面的 GitHub 版](https://github.com/xcatliu/pagic/blob/master/zh-CN/pagic.org/docs/content.md#链接替换)试试吧。
+不妨在[本页面的 GitHub 版](https://github.com/xcatliu/pagic/blob/master/pagic.org/zh-CN/docs/content.md#链接替换)试试吧。
 
 需要注意的是，链接中的 `README.md` 不仅后缀会被替换为 `.html`，路径也会被替换为 `index`：
 
@@ -86,7 +86,7 @@ outputPath: foo/bar.html
 
 ```md {2}
 ---
-layoutPath: blog/_layout.tsx
+layoutPath: posts/_layout.tsx
 ---
 
 # 页面内容

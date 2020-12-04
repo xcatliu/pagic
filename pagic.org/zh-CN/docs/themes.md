@@ -32,7 +32,7 @@ export default {
 
 选择了主题后，我们可以添加插件来扩展网页的特性，但前提是主题支持此插件。
 
-以 `sidebar` 插件为例，`sidebar` 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 `default` 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 `sidebar` 插件。不过 `docs` 主题和 `blog` 主题均支持 `sidebar` 插件。
+以 `sidebar` 插件为例，`sidebar` 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 `default` 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 `sidebar` 插件。
 
 一般可以在主题的文档中查看其支持的插件列表。
 
@@ -75,7 +75,7 @@ export default {
 
 那么：
 
-- `sidebar` 插件需要解析它，并将其转化为 `React.ReactElement`
+- `sidebar` 插件需要解析它，并将其转化为 `ReactElement`
 - `docs` 主题需要支持渲染 `sidebar`，并提供折叠、SPA 跳转等功能
 
 可见将 `sidebar` 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的，需要有一个地方统一管理这个配置。
@@ -140,7 +140,7 @@ site/
 
 此时执行 `pagic build` 时，`assets/index.css` 会被复制到 `dist/assets/index.css` 中，`README.md` 会以 `_layout.tsx` 为模版来渲染，生成 `dist/index.html`：
 
-```{4,7}
+```{2-5}
 site/
 |── dist    # 构建结果目录
 |   |── assets
@@ -157,23 +157,23 @@ Pagic 构建时每个页面文件（`md/tsx`）均会遵循 [\_layout.tsx](./lay
 
 一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。
 
-比如主题可以创建一个 `blog/_layout.tsx` 文件：
+比如主题可以创建一个 `posts/_layout.tsx` 文件：
 
 ```{4,5}
 pagic_theme_custom/
 |── assets
 |   └── index.css
-|── blog
+|── posts
 |   └── _layout.tsx
 └── _layout.tsx
 ```
 
-这样用户的 `blog` 目录下的页面就会以 `blog/_layout.tsx` 作为模版来渲染了：
+这样用户的 `posts` 目录下的页面就会以 `posts/_layout.tsx` 作为模版来渲染了：
 
 ```{2,3}
 site/
-|── blog
-|   └── hello.md    # 此页面会以主题中的 blog/_layout.tsx 作为模版来渲染
+|── posts
+|   └── hello.md    # 此页面会以主题中的 posts/_layout.tsx 作为模版来渲染
 |── pagic.config.ts
 └── README.tsx
 ```

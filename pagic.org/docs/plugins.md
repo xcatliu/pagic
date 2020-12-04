@@ -160,15 +160,15 @@ We loop through `pagic.pagePaths` through `for of`, and re-assign the `props` of
 
 In addition to these two attributes, `pagic` has many other attributes. The commonly used `pagic` attributes are listed below:
 
-| Properties     | Type                      | Description                                                                                    |
-| -------------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
-| `config`       | `PagicConfig`             | Pagic _runtime_<sup><a href="#sup-2">[2]</a></sup> configuration                               |
-| `pagePaths`    | `string[]`                | _Temporary_<sup><a href="#sup-1">[1]</a></sup> all scanned page paths                          |
-| `layoutPaths`  | `string[]`                | All scanned templates (including themes)                                                       |
-| `staticPaths`  | `string[]`                | _Temporary_<sup><a href="#sup-1">[1]</a></sup> all scanned static resources (including themes) |
-| `pagePropsMap` | `{ [key:string]:any }`    | `props` for all pages                                                                          |
-| `writeFiles`   | `{ [key:string]:string }` | Will be written to the `dist` directory in the `out` plugin                                    |
-| `rebuilding`   | `boolean`                 | `true` means rebuilding, `false` means incremental building                                    |
+| Properties     | Type                     | Description                                                                                    |
+| -------------- | ------------------------ | ---------------------------------------------------------------------------------------------- |
+| `config`       | `PagicConfig`            | Pagic _runtime_<sup><a href="#sup-2">[2]</a></sup> configuration                               |
+| `pagePaths`    | `string[]`               | _Temporary_<sup><a href="#sup-1">[1]</a></sup> all scanned page paths                          |
+| `layoutPaths`  | `string[]`               | All scanned templates (including themes)                                                       |
+| `staticPaths`  | `string[]`               | _Temporary_<sup><a href="#sup-1">[1]</a></sup> all scanned static resources (including themes) |
+| `pagePropsMap` | `Record<string, any>`    | `props` for all pages                                                                          |
+| `writeFiles`   | `Record<string, string>` | Will be written to the `dist` directory in the `out` plugin                                    |
+| `rebuilding`   | `boolean`                | `true` means rebuilding, `false` means incremental building                                    |
 
 Note that
 

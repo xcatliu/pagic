@@ -101,7 +101,7 @@ site/
 
 In the above example, `src`, `dist`, and `test` are irrelevant directories. Pagic only cares about the `README.md` file and `docs` directory specified by `include`.
 
-> `include` allows to configure a string in the format of `glob`, such as `docs/**/*.md` will only match all `md` files in the `docs` directory.
+> `include` allows to configure a string [in glob format], such as `docs/**/*.md` will only match all `md` files in the `docs` directory.
 
 ### `exclude`
 
@@ -164,7 +164,7 @@ export default {
 };
 ```
 
-> Similar to `include`, `exclude` also allows configuration of strings in `glob` format.
+> Similar to `include`, `exclude` also allows configuration of strings [in glob format].
 
 ### `root`
 
@@ -259,7 +259,7 @@ The description of the website, it will be rendered into the HTML of the current
 
 ### `head`
 
-- Type: `React.ReactElement`
+- Type: `ReactElement`
 - Supported themes: all
 - Dependent plugins: none
 
@@ -366,13 +366,15 @@ export default {
 };
 ```
 
+The example can be viewed in the sidebar of [this page](https://blog.xcatliu.com/).
+
 ### `github`
 
 - Type: `string`
 - Supported themes: all
 - Dependent plugins: none
 
-Configure the GitHub link of the project, usually will display a link in the upper right corner, and will also be used for the link of the `editOnGitHub` button.
+Configure the GitHub link of the project, usually will display a link in the upper right corner, and will also be used for the link of the [editOnGitHub button](#tools).
 
 ### `branch`
 
@@ -381,7 +383,7 @@ Configure the GitHub link of the project, usually will display a link in the upp
 - Supported themes: `docs`, `blog`
 - Dependent plugins: none
 
-Configure the GitHub branch of the project, for the link to the editOnGitHub button. The default is `master`.
+Configure the GitHub branch of the project, for the link to the [editOnGitHub button](#tools). The default is `master`.
 
 ### `sidebar`
 
@@ -440,7 +442,7 @@ In the above example:
 
 ### `tocAd`
 
-- Type: `React.ReactElement`
+- Type: `ReactElement`
 - Supported themes: `docs`
 - Dependent plugins: none
 
@@ -473,7 +475,7 @@ export default {
 
 ### `tools`
 
-- Type: `{ [key:string]:any }`
+- Type: `Record<string, any>`
 - Supported themes: `docs`
 - Dependent plugins: none
 
@@ -614,7 +616,7 @@ Note that the first item of `i18n.language` is the default language of the websi
 
 #### `i18n.overrides`
 
-`i18n.overrides` is a special configuration item, which allows to override the fields in `pagic.config.ts` in a specific language. Its type is `{ [key:string]:PagicConfig }`, where the key must be one of the `code` field in `i18n.language`, the value type is the type of the entire `pagic.config.ts`. When visiting a page in this language, `pagic.config` will be the result of the merge.
+`i18n.overrides` is a special configuration item, which allows to override the fields in `pagic.config.ts` in a specific language. Its type is `Record<string, PagicConfig>`, where the key must be one of the `code` field in `i18n.language`, the value type is the type of the entire `pagic.config.ts`. When visiting a page in this language, `pagic.config` will be the result of the merge.
 
 #### `i18n.resources`
 
@@ -644,3 +646,5 @@ Start local service, preview static website.
 - Default: `8000`
 
 Specify the port of the local service.
+
+[in glob format]: https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts

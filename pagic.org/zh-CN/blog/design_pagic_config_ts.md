@@ -255,18 +255,18 @@ export default {
 
 这里列出一些约定好的配置，它们通常由插件或主题来实现。
 
-| 配置项        | 类型                 | 默认值      | 描述                                                                                                                                         |
-| ------------- | -------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `title`       | `string`             | `undefined` | 网站标题，通常会放到页面的标题后面，如：`函数的类型 · TypeScript 入门教程`，若该页面不存在页面标题，则只会展示网站标题 `TypeScript 入门教程` |
-| `description` | `string`             | `undefined` | 网站描述，通常会放到 `<head><meta name="description">` 中展示，也有可能展示在页面中                                                          |
-| `head`        | `React.ReactElement` | `undefined` | 额外被注入到 `<head>` 中的内容，可以写 jsx。注意此时需要将配置文件 `pagic.config.tsx`                                                        |
-| `sidebar`     |                      | `undefined` | 侧边栏                                                                                                                                       |
-| `nav`         |                      | `undefined` | 顶部导航                                                                                                                                     |
-| `github`      | `string`             | `undefined` | 网站的 GitHub 地址，通常会展示在网页的右上角                                                                                                 |
-| `ga`          |                      | `undefined` | Google Analytics 配置                                                                                                                        |
-| `gitalk`      |                      | `undefined` | Gitalk 配置                                                                                                                                  |
-| `tocAd`       | `React.ReactNode`    | `undefined` | 展示在 toc 上方的广告                                                                                                                        |
-| `tools`       |                      | `undefined` | 一些额外的功能                                                                                                                               |
+| 配置项        | 类型           | 默认值      | 描述                                                                                                                                         |
+| ------------- | -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`       | `undefined` | 网站标题，通常会放到页面的标题后面，如：`函数的类型 · TypeScript 入门教程`，若该页面不存在页面标题，则只会展示网站标题 `TypeScript 入门教程` |
+| `description` | `string`       | `undefined` | 网站描述，通常会放到 `<head><meta name="description">` 中展示，也有可能展示在页面中                                                          |
+| `head`        | `ReactElement` | `undefined` | 额外被注入到 `<head>` 中的内容，可以写 jsx。注意此时需要将配置文件 `pagic.config.tsx`                                                        |
+| `sidebar`     |                | `undefined` | 侧边栏                                                                                                                                       |
+| `nav`         |                | `undefined` | 顶部导航                                                                                                                                     |
+| `github`      | `string`       | `undefined` | 网站的 GitHub 地址，通常会展示在网页的右上角                                                                                                 |
+| `ga`          |                | `undefined` | Google Analytics 配置                                                                                                                        |
+| `gitalk`      |                | `undefined` | Gitalk 配置                                                                                                                                  |
+| `tocAd`       | `ReactElement` | `undefined` | 展示在 toc 上方的广告                                                                                                                        |
+| `tools`       |                | `undefined` | 一些额外的功能                                                                                                                               |
 
 ## 开发环境配置
 
