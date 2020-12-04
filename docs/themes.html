@@ -32,7 +32,7 @@
 <h3 id="theme-supported-plugins">Theme supported plugins<a class="anchor" href="#theme-supported-plugins">§</a></h3>
 <p>The theme determines how the page is displayed, and the plugin determines the features supported by the page.</p>
 <p>After selecting the theme, we can add plugins to extend the features of the webpage, but only if the theme supports this plugin.</p>
-<p>Take the <code>sidebar</code> plugin as an example. The <code>sidebar</code> plugin will display a configured sidebar on the left side of the page, but not all themes support this plugin. For example, the <code>default</code> theme is a very basic theme. It supports the most basic functions, so the <code>sidebar</code> plugin is not supported. However, both the <code>docs</code> theme and the <code>blog</code> theme support the <code>sidebar</code> plugin.</p>
+<p>Take the <code>sidebar</code> plugin as an example. The <code>sidebar</code> plugin will display a configured sidebar on the left side of the page, but not all themes support this plugin. For example, the <code>default</code> theme is a very basic theme. It supports the most basic functions, so the <code>sidebar</code> plugin is not supported.</p>
 <p>Generally, you can view the list of plugins supported by the theme's documentation.</p>
 <h3 id="theme-configuration">Theme configuration<a class="anchor" href="#theme-configuration">§</a></h3>
 <p>Theme-related options can be configured in <code>pagic.config.ts</code>, common options include <code>title</code>, <code>description</code>, <code>head</code>, etc. For their meaning and usage, please refer to the <a href="./config.html#page-content">Config</a> chapter.</p>
@@ -63,7 +63,7 @@
 </code></pre>
 <p>Then:</p>
 <ul>
-<li>The <code>sidebar</code> plugin needs to parse it and convert it to <code>React.ReactElement</code></li>
+<li>The <code>sidebar</code> plugin needs to parse it and convert it to <code>ReactElement</code></li>
 <li><code>docs</code> theme needs to support rendering <code>sidebar</code>, and provide functions such as folding, SPA jump, etc.</li>
 </ul>
 <p>It can be seen that it is inappropriate to attribute the configuration of <code>sidebar</code> to the configuration of the theme, and it is also inappropriate to attribute the configuration of the plugin. There needs to be one place to manage this configuration.</p>
@@ -97,23 +97,21 @@
 └── README<span class="token punctuation">.</span>tsx
 </code></pre><p>At this time, when executing <code>pagic build</code>, <code>assets/index.css</code> will be copied to <code>dist/assets/index.css</code>, and <code>README.md</code> will be rendered with <code>_layout.tsx</code> as a template, and generate <code>dist/index.html</code>:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── dist    # Output directory
-|   |── assets
-<span class="highlighted-line">|   |   └── index<span class="token punctuation">.</span>css</span>|   └── index<span class="token punctuation">.</span>html
-|── assets
-<span class="highlighted-line">|   └── index<span class="token punctuation">.</span>css</span>|── _layout<span class="token punctuation">.</span>tsx
+<span class="highlighted-line">|── dist    # Output directory</span><span class="highlighted-line">|   |── assets</span><span class="highlighted-line">|   |   └── index<span class="token punctuation">.</span>css</span><span class="highlighted-line">|   └── index<span class="token punctuation">.</span>html</span>|── assets
+|   └── index<span class="token punctuation">.</span>css
+|── _layout<span class="token punctuation">.</span>tsx
 |── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre><p>When Pagic builds, each page file (<code>md/tsx</code>) will follow the rules described in the <a href="./layout.html">_layout.tsx</a> chapter to find its corresponding template file.</p>
 <p>A typical application is to write a sub-template in a theme, and then require the directory structure of the project using this theme to conform to this convention.</p>
-<p>For example, the theme can create a <code>blog/_layout.tsx</code> file:</p>
+<p>For example, the theme can create a <code>posts/_layout.tsx</code> file:</p>
 <pre class="language-autoit"><code class="language-autoit">pagic_theme_custom<span class="token operator">/</span>
 |── assets
 |   └── index<span class="token punctuation">.</span>css
-<span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── _layout<span class="token punctuation">.</span>tsx</span>└── _layout<span class="token punctuation">.</span>tsx
-</code></pre><p>In this way, the pages under the user's <code>blog</code> directory will be rendered with <code>blog/_layout.tsx</code> as a template:</p>
+<span class="highlighted-line">|── posts</span><span class="highlighted-line">|   └── _layout<span class="token punctuation">.</span>tsx</span>└── _layout<span class="token punctuation">.</span>tsx
+</code></pre><p>In this way, the pages under the user's <code>posts</code> directory will be rendered with <code>posts/_layout.tsx</code> as a template:</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-<span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── hello<span class="token punctuation">.</span>md # This page will be rendered <span class="token keyword">with</span> blog<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx <span class="token keyword">in</span> the theme as a template</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+<span class="highlighted-line">|── posts</span><span class="highlighted-line">|   └── hello<span class="token punctuation">.</span>md # This page will be rendered <span class="token keyword">with</span> posts<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx <span class="token keyword">in</span> the theme as a template</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre><p>It should be noted that the files in the theme will not be &quot;copied&quot; to the user's project directory. We can regard this &quot;copy&quot; as a virtual execution.</p>
 <p>In addition, if there is a file path in the user's project that is the same as that in the theme, the file in the user's project shall prevail, that is, the file that allows the user to overwrite the theme.</p>

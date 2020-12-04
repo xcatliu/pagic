@@ -38,7 +38,7 @@
 <p>真实的构建结果：<a href="./config.html">配置文件</a>，不妨点击看看跳转效果。</p>
 <p>为什么要这么设计呢？</p>
 <p>因为这样的链接不仅在生成的页面中支持点击跳转，在 GitHub 的 Markdown 预览中支持点击跳转，而且在 VSCode（或其他编辑器）中也支持 <code>cmd/ctrl + click</code> 跳转。</p>
-<p>不妨在<a href="https://github.com/xcatliu/pagic/blob/master/zh-CN/pagic.org/docs/content.md#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">本页面的 GitHub 版</a>试试吧。</p>
+<p>不妨在<a href="https://github.com/xcatliu/pagic/blob/master/pagic.org/zh-CN/docs/content.md#%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2">本页面的 GitHub 版</a>试试吧。</p>
 <p>需要注意的是，链接中的 <code>README.md</code> 不仅后缀会被替换为 <code>.html</code>，路径也会被替换为 <code>index</code>：</p>
 <pre class="language-md"><code class="language-md"><span class="token url">[<span class="token content">首页</span>](/README.md)</span>
 </code></pre>
@@ -58,7 +58,7 @@
 ...
 </code></pre><p>设置 <code>layoutPath</code> 可以指定本页面使用的模版文件：</p>
 <pre class="language-md"><code class="language-md"><span class="token hr punctuation">---</span>
-<span class="highlighted-line"><span class="token title important">layoutPath: blog/_layout.tsx</span></span><span><span class="token punctuation">---</span></span>
+<span class="highlighted-line"><span class="token title important">layoutPath: posts/_layout.tsx</span></span><span><span class="token punctuation">---</span></span>
 
 <span class="token title important"><span class="token punctuation">#</span> 页面内容</span>
 

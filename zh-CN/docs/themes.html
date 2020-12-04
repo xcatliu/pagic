@@ -32,7 +32,7 @@
 <h3 id="%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">主题支持的插件<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E6%94%AF%E6%8C%81%E7%9A%84%E6%8F%92%E4%BB%B6">§</a></h3>
 <p>主题决定了页面如何展示，插件决定了页面支持的特性。</p>
 <p>选择了主题后，我们可以添加插件来扩展网页的特性，但前提是主题支持此插件。</p>
-<p>以 <code>sidebar</code> 插件为例，<code>sidebar</code> 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 <code>default</code> 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 <code>sidebar</code> 插件。不过 <code>docs</code> 主题和 <code>blog</code> 主题均支持 <code>sidebar</code> 插件。</p>
+<p>以 <code>sidebar</code> 插件为例，<code>sidebar</code> 插件会在页面左侧展示一个配置好的侧边栏，但是并不是所有主题都支持此插件，比如说 <code>default</code> 主题是一个非常基础的主题，只支持最基本的功能，所以不支持 <code>sidebar</code> 插件。</p>
 <p>一般可以在主题的文档中查看其支持的插件列表。</p>
 <h3 id="%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">主题的配置<a class="anchor" href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">§</a></h3>
 <p>在 <code>pagic.config.ts</code> 中可以配置主题相关的选项，常见的选项包括 <code>title</code>, <code>description</code>, <code>head</code> 等。它们的含义和用法可以参考<a href="./config.html#%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9">配置文件</a>章节。</p>
@@ -63,7 +63,7 @@
 </code></pre>
 <p>那么：</p>
 <ul>
-<li><code>sidebar</code> 插件需要解析它，并将其转化为 <code>React.ReactElement</code></li>
+<li><code>sidebar</code> 插件需要解析它，并将其转化为 <code>ReactElement</code></li>
 <li><code>docs</code> 主题需要支持渲染 <code>sidebar</code>，并提供折叠、SPA 跳转等功能</li>
 </ul>
 <p>可见将 <code>sidebar</code> 的配置归属于主题的配置是不合适的，归属于插件的配置也是不合适的，需要有一个地方统一管理这个配置。</p>
@@ -97,23 +97,21 @@
 └── README<span class="token punctuation">.</span>tsx
 </code></pre><p>此时执行 <code>pagic build</code> 时，<code>assets/index.css</code> 会被复制到 <code>dist/assets/index.css</code> 中，<code>README.md</code> 会以 <code>_layout.tsx</code> 为模版来渲染，生成 <code>dist/index.html</code>：</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-|── dist    # 构建结果目录
-|   |── assets
-<span class="highlighted-line">|   |   └── index<span class="token punctuation">.</span>css</span>|   └── index<span class="token punctuation">.</span>html
-|── assets
-<span class="highlighted-line">|   └── index<span class="token punctuation">.</span>css</span>|── _layout<span class="token punctuation">.</span>tsx
+<span class="highlighted-line">|── dist    # 构建结果目录</span><span class="highlighted-line">|   |── assets</span><span class="highlighted-line">|   |   └── index<span class="token punctuation">.</span>css</span><span class="highlighted-line">|   └── index<span class="token punctuation">.</span>html</span>|── assets
+|   └── index<span class="token punctuation">.</span>css
+|── _layout<span class="token punctuation">.</span>tsx
 |── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre><p>Pagic 构建时每个页面文件（<code>md/tsx</code>）均会遵循 <a href="./layout.html">_layout.tsx</a> 章节中描述的规则来查找它对应的模版文件。</p>
 <p>一个典型的应用是在主题中编写一个子模版，然后要求使用此主题的项目的目录结构符合此约定。</p>
-<p>比如主题可以创建一个 <code>blog/_layout.tsx</code> 文件：</p>
+<p>比如主题可以创建一个 <code>posts/_layout.tsx</code> 文件：</p>
 <pre class="language-autoit"><code class="language-autoit">pagic_theme_custom<span class="token operator">/</span>
 |── assets
 |   └── index<span class="token punctuation">.</span>css
-<span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── _layout<span class="token punctuation">.</span>tsx</span>└── _layout<span class="token punctuation">.</span>tsx
-</code></pre><p>这样用户的 <code>blog</code> 目录下的页面就会以 <code>blog/_layout.tsx</code> 作为模版来渲染了：</p>
+<span class="highlighted-line">|── posts</span><span class="highlighted-line">|   └── _layout<span class="token punctuation">.</span>tsx</span>└── _layout<span class="token punctuation">.</span>tsx
+</code></pre><p>这样用户的 <code>posts</code> 目录下的页面就会以 <code>posts/_layout.tsx</code> 作为模版来渲染了：</p>
 <pre class="language-autoit"><code class="language-autoit">site<span class="token operator">/</span>
-<span class="highlighted-line">|── blog</span><span class="highlighted-line">|   └── hello<span class="token punctuation">.</span>md    # 此页面会以主题中的 blog<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx 作为模版来渲染</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
+<span class="highlighted-line">|── posts</span><span class="highlighted-line">|   └── hello<span class="token punctuation">.</span>md    # 此页面会以主题中的 posts<span class="token operator">/</span>_layout<span class="token punctuation">.</span>tsx 作为模版来渲染</span>|── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 └── README<span class="token punctuation">.</span>tsx
 </code></pre><p>需要注意的是，主题中的文件并不会真的「复制」到用户的项目目录中，我们把这个「复制」看作是一种虚拟的执行即可。</p>
 <p>另外，如果用户的项目中有文件路径和主题中的一样，那么以用户的项目中的文件为准——即允许用户覆盖主题的文件。</p>

@@ -77,7 +77,7 @@
 ├── pagic<span class="token punctuation">.</span>config<span class="token punctuation">.</span>ts
 <span class="highlighted-line">├── README<span class="token punctuation">.</span>md</span><span class="highlighted-line">└── docs    # Source directory</span><span class="highlighted-line">    └── README<span class="token punctuation">.</span>md</span></code></pre><p>In the above example, <code>src</code>, <code>dist</code>, and <code>test</code> are irrelevant directories. Pagic only cares about the <code>README.md</code> file and <code>docs</code> directory specified by <code>include</code>.</p>
 <blockquote>
-<p><code>include</code> allows to configure a string in the format of <code>glob</code>, such as <code>docs/**/*.md</code> will only match all <code>md</code> files in the <code>docs</code> directory.</p>
+<p><code>include</code> allows to configure a string <a href="https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts">in glob format</a>, such as <code>docs/**/*.md</code> will only match all <code>md</code> files in the <code>docs</code> directory.</p>
 </blockquote>
 <h3 id="exclude"><code>exclude</code><a class="anchor" href="#exclude">§</a></h3>
 <ul>
@@ -131,7 +131,7 @@
 <span class="highlighted-line">    <span class="token string">'test'</span></span>  <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre><blockquote>
-<p>Similar to <code>include</code>, <code>exclude</code> also allows configuration of strings in <code>glob</code> format.</p>
+<p>Similar to <code>include</code>, <code>exclude</code> also allows configuration of strings <a href="https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts">in glob format</a>.</p>
 </blockquote>
 <h3 id="root"><code>root</code><a class="anchor" href="#root">§</a></h3>
 <ul>
@@ -198,7 +198,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <p>The description of the website, it will be rendered into the HTML of the current page with the <code>&lt;meta&gt;</code> tag.</p>
 <h3 id="head"><code>head</code><a class="anchor" href="#head">§</a></h3>
 <ul>
-<li>Type: <code>React.ReactElement</code></li>
+<li>Type: <code>ReactElement</code></li>
 <li>Supported themes: all</li>
 <li>Dependent plugins: none</li>
 </ul>
@@ -289,13 +289,14 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
+<p>The example can be viewed in the sidebar of <a href="https://blog.xcatliu.com/">this page</a>.</p>
 <h3 id="github"><code>github</code><a class="anchor" href="#github">§</a></h3>
 <ul>
 <li>Type: <code>string</code></li>
 <li>Supported themes: all</li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Configure the GitHub link of the project, usually will display a link in the upper right corner, and will also be used for the link of the <code>editOnGitHub</code> button.</p>
+<p>Configure the GitHub link of the project, usually will display a link in the upper right corner, and will also be used for the link of the <a href="#tools">editOnGitHub button</a>.</p>
 <h3 id="branch"><code>branch</code><a class="anchor" href="#branch">§</a></h3>
 <ul>
 <li>Type: <code>string</code></li>
@@ -303,7 +304,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <li>Supported themes: <code>docs</code>, <code>blog</code></li>
 <li>Dependent plugins: none</li>
 </ul>
-<p>Configure the GitHub branch of the project, for the link to the editOnGitHub button. The default is <code>master</code>.</p>
+<p>Configure the GitHub branch of the project, for the link to the <a href="#tools">editOnGitHub button</a>. The default is <code>master</code>.</p>
 <h3 id="sidebar"><code>sidebar</code><a class="anchor" href="#sidebar">§</a></h3>
 <ul>
 <li>Type: complex, please see below</li>
@@ -354,7 +355,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 </ul>
 <h3 id="tocad"><code>tocAd</code><a class="anchor" href="#tocad">§</a></h3>
 <ul>
-<li>Type: <code>React.ReactElement</code></li>
+<li>Type: <code>ReactElement</code></li>
 <li>Supported themes: <code>docs</code></li>
 <li>Dependent plugins: none</li>
 </ul>
@@ -384,7 +385,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 </code></pre>
 <h3 id="tools"><code>tools</code><a class="anchor" href="#tools">§</a></h3>
 <ul>
-<li>Type: <code>{ [key:string]:any }</code></li>
+<li>Type: <code>Record&lt;string, any&gt;</code></li>
 <li>Supported themes: <code>docs</code></li>
 <li>Dependent plugins: none</li>
 </ul>
@@ -506,7 +507,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 </ul>
 <p>Note that the first item of <code>i18n.language</code> is the default language of the website, and its <code>root</code> must be <code>/</code>.</p>
 <h4 id="i18noverrides"><code>i18n.overrides</code><a class="anchor" href="#i18noverrides">§</a></h4>
-<p><code>i18n.overrides</code> is a special configuration item, which allows to override the fields in <code>pagic.config.ts</code> in a specific language. Its type is <code>{ [key:string]:PagicConfig }</code>, where the key must be one of the <code>code</code> field in <code>i18n.language</code>, the value type is the type of the entire <code>pagic.config.ts</code>. When visiting a page in this language, <code>pagic.config</code> will be the result of the merge.</p>
+<p><code>i18n.overrides</code> is a special configuration item, which allows to override the fields in <code>pagic.config.ts</code> in a specific language. Its type is <code>Record&lt;string, PagicConfig&gt;</code>, where the key must be one of the <code>code</code> field in <code>i18n.language</code>, the value type is the type of the entire <code>pagic.config.ts</code>. When visiting a page in this language, <code>pagic.config</code> will be the result of the merge.</p>
 <h4 id="i18nresources"><code>i18n.resources</code><a class="anchor" href="#i18nresources">§</a></h4>
 <p><code>i18n.resources</code> describes the translation of each language, <code>t('Get Started')</code> and <code>&lt;Trans&gt;Render &lt;code&gt;md/tsx&lt;/code&gt; to static HTML page&lt;/ Trans&gt;</code> in <code>tsx</code> file will use the translation resources configured here. For the specific syntax of <code>t()</code> and <code>&lt;Trans&gt;</code>, please refer to <a href="https://react.i18next.com/getting-started#simple-content">react-i18next</a>.</p>
 <h2 id="cli-options">Cli options<a class="anchor" href="#cli-options">§</a></h2>
