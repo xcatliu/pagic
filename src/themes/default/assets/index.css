@@ -84,3 +84,12 @@ footer {
   }
 }
 /* #endregion */
+
+/* #region Print */
+@media print {
+  .github-corner,
+  footer {
+    display: none;
+  }
+}
+/* #endregion */
