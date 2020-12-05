@@ -18,22 +18,22 @@ Deno.test('[i18n]', async () => {
   pagic.config.i18n = {
     languages: [
       { code: 'en', name: 'English', root: '/' },
-      { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' }
+      { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' },
     ],
     overrides: {
       'zh-CN': {
         blog: {
-          root: '/zh-CN/blog/'
-        }
-      }
+          root: '/zh-CN/blog/',
+        },
+      },
     },
     resources: {
       'zh-CN': {
         translation: {
-          'A static site generator powered by Deno + React': 'Deno + React 驱动的静态网站生成器'
-        }
-      }
-    }
+          'A static site generator powered by Deno + React': 'Deno + React 驱动的静态网站生成器',
+        },
+      },
+    },
   };
   pagic.pagePaths = ['README.md', 'zh-CN/README.md'];
   pagic.pagePropsMap = {
@@ -45,7 +45,7 @@ Deno.test('[i18n]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null
+      script: null,
     },
     'zh-CN/README.md': {
       config: pagic.config,
@@ -55,8 +55,8 @@ Deno.test('[i18n]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null
-    }
+      script: null,
+    },
   };
 
   await i18n.fn(pagic);
@@ -64,17 +64,17 @@ Deno.test('[i18n]', async () => {
   asserts.assertEquals(pagic.pagePropsMap['README.md'].config.blog, { root: '/blog/' });
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagic.pagePropsMap['README.md'].head!),
-    '<script type="module" src="/i18n.js" data-reactroot=""></script>'
+    '<script type="module" src="/i18n.js" data-reactroot=""></script>',
   );
   asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].language, {
     code: 'zh-CN',
     name: '简体中文',
-    root: '/zh-CN/'
+    root: '/zh-CN/',
   });
   asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].config.blog, { root: '/zh-CN/blog/' });
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagic.pagePropsMap['zh-CN/README.md'].head!),
-    '<script type="module" src="/i18n.js" data-reactroot=""></script>'
+    '<script type="module" src="/i18n.js" data-reactroot=""></script>',
   );
 
   asserts.assert(await fs.exists('test/fixtures/test_i18n_dir/i18n.js'));

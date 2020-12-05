@@ -14,7 +14,7 @@ const Tags: PagicLayout = (props) => {
             <a
               href={`${config.root}tags/${name}/`}
               style={{
-                fontSize: 16 + Math.floor(Math.log(count) / Math.log(1.2))
+                fontSize: 16 + Math.floor(Math.log(count) / Math.log(1.2)),
               }}
             >
               {name} ({count})

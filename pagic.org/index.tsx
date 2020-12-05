@@ -76,7 +76,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
           marginTop: '3.5rem',
           textAlign: 'center',
           fontSize: '64px',
-          color: 'hsl(210, 70%, 50%)'
+          color: 'hsl(210, 70%, 50%)',
         }}
       >
         <img
@@ -86,7 +86,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
             width: 128,
             verticalAlign: 'bottom',
             margin: -16,
-            opacity: 1
+            opacity: 1,
           }}
         />
         agic
@@ -96,7 +96,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
           fontSize: '28px',
           marginTop: '2rem',
           textAlign: 'center',
-          color: 'var(--color-text-muted)'
+          color: 'var(--color-text-muted)',
         }}
       >
         {t('A static site generator powered by Deno + React')}
@@ -105,7 +105,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
         style={{
           display: 'flex',
           justifyContent: 'center',
-          marginTop: '2rem'
+          marginTop: '2rem',
         }}
       >
         <a className="btn btn-primary" href={`${config.root}${language?.root.slice(1) ?? ''}docs/introduction.html`}>
@@ -151,7 +151,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
     <h2>{t('Get up and running in seconds')}</h2>
     <pre
       style={{
-        fontSize: '1rem'
+        fontSize: '1rem',
       }}
     >
       <code
@@ -163,7 +163,7 @@ deno install --unstable --allow-read --allow-write --allow-net --allow-run --nam
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 
 # ${t('Run pagic')}
-pagic build --watch --serve`
+pagic build --watch --serve`,
         }}
       />
     </pre>

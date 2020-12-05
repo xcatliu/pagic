@@ -76,7 +76,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
           marginTop: '3.5rem',
           textAlign: 'center',
           fontSize: '64px',
-          color: 'hsl(210, 70%, 50%)'
+          color: 'hsl(210, 70%, 50%)',
         }}
       >
         <img
@@ -85,7 +85,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
             width: 128,
             verticalAlign: 'bottom',
             margin: -16,
-            opacity: 1
+            opacity: 1,
           }}
         />
         agic
@@ -95,7 +95,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
           fontSize: '28px',
           marginTop: '2rem',
           textAlign: 'center',
-          color: 'var(--color-text-muted)'
+          color: 'var(--color-text-muted)',
         }}
       >
         Deno + React 驱动的静态网站生成器
@@ -104,7 +104,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
         style={{
           display: 'flex',
           justifyContent: 'center',
-          marginTop: '2rem'
+          marginTop: '2rem',
         }}
       >
         <a className="btn btn-primary" href={`${config.root}${language?.root ?? ''}docs/introduction.html`}>
@@ -148,7 +148,7 @@ const IndexPage: PagicLayout = ({ config, language }) => (
     <h2>只需几行命令，快来体验吧</h2>
     <pre
       style={{
-        fontSize: '1rem'
+        fontSize: '1rem',
       }}
     >
       <code
@@ -160,7 +160,7 @@ deno install --unstable --allow-read --allow-write --allow-net --allow-run --nam
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 
 # 运行 pagic
-pagic build --watch --serve`
+pagic build --watch --serve`,
         }}
       />
     </pre>

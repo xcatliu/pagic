@@ -40,13 +40,13 @@ const sidebar: PagicPlugin = {
         if (`/${pageProps.outputPath}`.startsWith(prefix)) {
           pagic.pagePropsMap[pagePath] = {
             ...pageProps,
-            sidebar: pagePropsSidebar
+            sidebar: pagePropsSidebar,
           };
           break;
         }
       }
     }
-  }
+  },
 };
 
 function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic): PagePropsSidebar {
@@ -55,7 +55,7 @@ function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic):
       return {
         text: pagic.pagePropsMap[sidebarConfigItem].title,
         link: pagic.pagePropsMap[sidebarConfigItem].outputPath,
-        pagePath: pagic.pagePropsMap[sidebarConfigItem].pagePath
+        pagePath: pagic.pagePropsMap[sidebarConfigItem].pagePath,
       };
     }
     // Deep clone

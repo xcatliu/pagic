@@ -1,5 +1,30 @@
 import type { PagicPlugin } from '../Pagic.ts';
 
+export interface PagePropsBlog {
+  isPost: boolean;
+  posts: {
+    pagePath: string;
+    title: string;
+    link: string;
+    date: Date | string;
+    updated: Date | string;
+    author?: string;
+    contributors: string[];
+    categories?: string[];
+    tags?: string[];
+    excerpt?: string;
+    cover?: string;
+  }[];
+  categories: {
+    name: string;
+    count: number;
+  }[];
+  tags: {
+    name: string;
+    count: number;
+  }[];
+}
+
 const blog: PagicPlugin = {
   name: 'blog',
   insert: 'after:tsx',
@@ -16,7 +41,7 @@ const blog: PagicPlugin = {
             `/${pagePath}`.startsWith(configBlogPath) &&
             !`/${outputPath}`.endsWith('/index.html') &&
             typeof date !== 'undefined' &&
-            typeof updated !== 'undefined'
+            typeof updated !== 'undefined',
         )
         .map(
           ({ pagePath, title, outputPath, date, updated, author, contributors, categories, tags, excerpt, cover }) => ({
@@ -30,34 +55,10 @@ const blog: PagicPlugin = {
             categories,
             tags,
             excerpt,
-            cover
-          })
+            cover,
+          }),
         )
         .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
-
-      const tags = posts
-        .reduce<
-          {
-            name: string;
-            count: number;
-          }[]
-        >((prev, { pagePath }) => {
-          const pageTags = pagic.pagePropsMap[pagePath].tags ?? [];
-          pageTags.forEach((tagName) => {
-            const tag = prev.find(({ name }) => name === tagName);
-            if (typeof tag !== 'undefined') {
-              tag.count += 1;
-            } else {
-              prev.push({
-                name: tagName,
-                count: 1
-              });
-            }
-          });
-          return prev;
-        }, [])
-        .sort((a, b) => (a.name.toLowerCase() > b.name.toLocaleLowerCase() ? 1 : -1))
-        .sort((a, b) => b.count - a.count);
 
       const categories = posts
         .reduce<
@@ -74,7 +75,7 @@ const blog: PagicPlugin = {
             } else {
               prev.push({
                 name: categoryName,
-                count: 1
+                count: 1,
               });
             }
           });
@@ -83,29 +84,29 @@ const blog: PagicPlugin = {
         .sort((a, b) => (a.name.toLowerCase() > b.name.toLocaleLowerCase() ? 1 : -1))
         .sort((a, b) => b.count - a.count);
 
-      tags.forEach(({ name }) => {
-        const pagePath = `tags/${name}/`;
-        if (pagic.pagePaths.includes(pagePath)) {
-          return;
-        }
-        pagic.pagePaths.push(pagePath);
-        pagic.pagePropsMap[pagePath] = {
-          config: pagic.config,
-          pagePath,
-          layoutPath: 'archives/_layout.tsx',
-          outputPath: `${pagePath}index.html`,
-          head: null,
-          script: null,
-          title: name,
-          content: null,
-          blog: {
-            isPost: false,
-            posts: posts.filter(({ pagePath }) => pagic.pagePropsMap[pagePath].tags?.includes(name)),
-            tags,
-            categories
-          }
-        };
-      });
+      const tags = posts
+        .reduce<
+          {
+            name: string;
+            count: number;
+          }[]
+        >((prev, { pagePath }) => {
+          const pageTags = pagic.pagePropsMap[pagePath].tags ?? [];
+          pageTags.forEach((tagName) => {
+            const tag = prev.find(({ name }) => name === tagName);
+            if (typeof tag !== 'undefined') {
+              tag.count += 1;
+            } else {
+              prev.push({
+                name: tagName,
+                count: 1,
+              });
+            }
+          });
+          return prev;
+        }, [])
+        .sort((a, b) => (a.name.toLowerCase() > b.name.toLocaleLowerCase() ? 1 : -1))
+        .sort((a, b) => b.count - a.count);
 
       categories.forEach(({ name }) => {
         const pagePath = `categories/${name}/`;
@@ -125,20 +126,44 @@ const blog: PagicPlugin = {
           blog: {
             isPost: false,
             posts: posts.filter(({ pagePath }) => pagic.pagePropsMap[pagePath].categories?.includes(name)),
+            categories,
             tags,
-            categories
-          }
+          },
+        };
+      });
+
+      tags.forEach(({ name }) => {
+        const pagePath = `tags/${name}/`;
+        if (pagic.pagePaths.includes(pagePath)) {
+          return;
+        }
+        pagic.pagePaths.push(pagePath);
+        pagic.pagePropsMap[pagePath] = {
+          config: pagic.config,
+          pagePath,
+          layoutPath: 'archives/_layout.tsx',
+          outputPath: `${pagePath}index.html`,
+          head: null,
+          script: null,
+          title: name,
+          content: null,
+          blog: {
+            isPost: false,
+            posts: posts.filter(({ pagePath }) => pagic.pagePropsMap[pagePath].tags?.includes(name)),
+            categories,
+            tags,
+          },
         };
       });
 
       pagic.pagePropsMap[pagePath].blog = {
         isPost: `/${pagePath}`.startsWith(configBlogPath) && !`/${outputPath}`.endsWith('/index.html'),
         posts,
+        categories,
         tags,
-        categories
       };
     }
-  }
+  },
 };
 
 export default blog;

@@ -15,8 +15,8 @@ export function compile(input: string) {
         module: 'ESNext',
         jsx: 'React',
         removeComments: false,
-        newLine: 'lf'
-      }
+        newLine: 'lf',
+      },
     })
     .outputText.replace(/(^import\s+.*['"/][^_][^/]*)\.tsx(['"];?$\n)/gm, '$1_content.js$2')
     .replace(/(^import\s+.*)\.tsx?(['"];?$\n)/gm, '$1.js$2')

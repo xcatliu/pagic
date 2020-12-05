@@ -25,7 +25,7 @@ ReactDOM.render(<div>{t('foo')}</div>, document.getElementById('foo'));
   const output = compile(input);
   asserts.assertEquals(
     output,
-    `ReactDOM.render(React.createElement("div", null, t('foo')), document.getElementById('foo'));\n`
+    `ReactDOM.render(React.createElement("div", null, t('foo')), document.getElementById('foo'));\n`,
   );
 });
 Deno.test('[compile] should keep other imports', () => {
@@ -41,20 +41,20 @@ ReactDOM.render(<div>{t('foo')}</div>, document.getElementById('foo'));
     `import { Pagic } from 'https://deno.land/x/pagic/mod.js';
 console.log(Pagic);
 ReactDOM.render(React.createElement("div", null, t('foo')), document.getElementById('foo'));
-`
+`,
   );
 });
 Deno.test('[compileFile] should read input file and compile it', async () => {
   const output = await compileFile(path.resolve(Deno.cwd(), 'test/fixtures/react_dom_render_foo.tsx'));
   asserts.assertEquals(
     output,
-    `// @ts-ignore\nReactDOM.render(React.createElement("div", null), document.getElementById('foo'));\n`
+    `// @ts-ignore\nReactDOM.render(React.createElement("div", null), document.getElementById('foo'));\n`,
   );
 });
 Deno.test('[compilePagicFile] should compile the input pagic file', async () => {
   const output = await compilePagicFile('test/fixtures/react_dom_render_foo.tsx');
   asserts.assertEquals(
     output,
-    `// @ts-ignore\nReactDOM.render(React.createElement("div", null), document.getElementById('foo'));\n`
+    `// @ts-ignore\nReactDOM.render(React.createElement("div", null), document.getElementById('foo'));\n`,
   );
 });

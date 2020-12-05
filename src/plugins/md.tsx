@@ -22,7 +22,7 @@ const slugify = (hash: string) =>
       // Special symbol
       .replace(/[　`~!@#$%^&*()=+\[{\]}\\|;:'",<.>/?·～！¥…（）—【「】」、；：‘“’”，《。》？]/g, '')
       // 全角符号
-      .replace(/[\uff00-\uffff]/g, '')
+      .replace(/[\uff00-\uffff]/g, ''),
   );
 
 const md: PagicPlugin = {
@@ -45,10 +45,10 @@ const md: PagicPlugin = {
         return `<pre class="language-${lang}"><code class="language-${lang}">${Prism.highlight(
           str,
           grammar,
-          lang
+          lang,
         )}</code></pre>`;
       },
-      replaceLink
+      replaceLink,
     })
       .use(markdownItTitle)
       .use(markdownItAnchor, {
@@ -57,7 +57,7 @@ const md: PagicPlugin = {
         permalink: true,
         permalinkSpace: false,
         permalinkClass: 'anchor',
-        permalinkSymbol: '§'
+        permalinkSymbol: '§',
       })
       .use(markdownitTocDoneRight, {
         containerClass: 'toc',
@@ -65,7 +65,7 @@ const md: PagicPlugin = {
         slugify,
         callback: (html: string) => {
           tocHTML = html;
-        }
+        },
       })
       .use(markdownitReplaceLink)
       .use(markdownitHighlightLines)
@@ -110,11 +110,11 @@ const md: PagicPlugin = {
             h4: { options: { uppercase: false } },
             h5: { options: { uppercase: false } },
             h6: { options: { uppercase: false } },
-            table: { options: { uppercaseHeaderCells: false } }
-          }
+            table: { options: { uppercaseHeaderCells: false } },
+          },
         }).replace(/\s+/g, ' '),
         210,
-        '...'
+        '...',
       );
       const { author, contributors, date, updated } = await getGitLog(`${pagic.config.srcDir}/${pagePath}`);
       if (!contentHasKaTeX && /class="katex"/.test(contentHTML)) {
@@ -138,7 +138,7 @@ const md: PagicPlugin = {
         updated,
         excerpt,
         cover,
-        ...frontMatterProps
+        ...frontMatterProps,
       };
 
       tocHTML = '';
@@ -159,11 +159,11 @@ const md: PagicPlugin = {
                 crossOrigin="anonymous"
               />
             </>
-          )
+          ),
         };
       }
     }
-  }
+  },
 };
 
 export default md;

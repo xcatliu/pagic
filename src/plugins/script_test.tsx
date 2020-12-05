@@ -33,27 +33,27 @@ Deno.test('[script]', async () => {
           </>
         </>
       ),
-      script: null
-    }
+      script: null,
+    },
   };
 
   await script.fn(pagic);
   asserts.assertEquals(
     pagic.writeFiles['_layout.js'],
-    'const Layout = ({ title, content }) => (React.createElement("html", null,\n    React.createElement("head", null,\n        React.createElement("title", null, title)),\n    React.createElement("body", null, content)));\nexport default Layout;\n'
+    'const Layout = ({ title, content }) => (React.createElement("html", null,\n    React.createElement("head", null,\n        React.createElement("title", null, title)),\n    React.createElement("body", null, content)));\nexport default Layout;\n',
   );
   asserts.assertEquals(
     pagic.writeFiles['hello_content.js'],
-    `const Hello = () => React.createElement("h1", null, "Hello world");\nexport default Hello;\nexport const frontMatter = {\n    outputPath: 'foo/bar.html'\n};\n`
+    `const Hello = () => React.createElement("h1", null, "Hello world");\nexport default Hello;\nexport const frontMatter = {\n    outputPath: 'foo/bar.html',\n};\n`,
   );
   asserts.assertEquals(
     pagic.writeFiles['hello_props.js'],
-    `import projectConfig from '/pagic.config.js';\nimport Hello from './hello_content.js';\nimport Ga from '/_ga.js';\nexport default {\n    config: { "root": "/", ...projectConfig },\n    'pagePath': "hello.tsx",\n    'layoutPath': "_layout.tsx",\n    'outputPath': "hello.html",\n    'title': "",\n    'content': React.createElement(Hello, null),\n    'head': React.createElement(React.Fragment, null,\n        React.createElement(Ga, { id: "G-JPPPP5EF38" }),\n        React.createElement(React.Fragment, { key: ".1" },\n            React.createElement("link", { href: "/favicon.png", rel: "icon", type: "image/png" }),\n            React.createElement("script", { src: "/assets/custom.js" }))),\n    'script': React.createElement(React.Fragment, null,\n        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),\n        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),\n        React.createElement("script", { src: "/index.js", type: "module" }))\n};\n`
+    `import projectConfig from '/pagic.config.js';\nimport Hello from './hello_content.js';\nimport Ga from '/_ga.js';\nexport default {\n    config: { "root": "/", ...projectConfig },\n    'pagePath': "hello.tsx",\n    'layoutPath': "_layout.tsx",\n    'outputPath': "hello.html",\n    'title': "",\n    'content': React.createElement(Hello, null),\n    'head': React.createElement(React.Fragment, null,\n        React.createElement(Ga, { id: "G-JPPPP5EF38" }),\n        React.createElement(React.Fragment, { key: ".1" },\n            React.createElement("link", { href: "/favicon.png", rel: "icon", type: "image/png" }),\n            React.createElement("script", { src: "/assets/custom.js" }))),\n    'script': React.createElement(React.Fragment, null,\n        React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),\n        React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),\n        React.createElement("script", { src: "/index.js", type: "module" }))\n};\n`,
   );
   asserts.assertEquals(typeof pagic.writeFiles['pagic.config.js'], 'string');
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagic.pagePropsMap['hello.tsx'].script!),
-    '<script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" data-reactroot=""></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" data-reactroot=""></script><script type="module" src="/index.js" data-reactroot=""></script>'
+    '<script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" data-reactroot=""></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" data-reactroot=""></script><script type="module" src="/index.js" data-reactroot=""></script>',
   );
 
   asserts.assert(await fs.exists('test/fixtures/test_script_dir/index.js'));

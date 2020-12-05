@@ -17,7 +17,7 @@ The source directory to execute the Pagic build process, the default is the curr
 
 ```ts
 export default {
-  srcDir: '.'
+  srcDir: '.',
 };
 ```
 
@@ -33,7 +33,7 @@ Usually when writing a document for an existing project, you can write the docum
 
 ```ts {2}
 export default {
-  srcDir: 'docs'
+  srcDir: 'docs',
 };
 ```
 
@@ -56,7 +56,7 @@ The output directory constructed by Pagic can be used with `srcDir` to customize
 ```ts {3}
 export default {
   srcDir: 'docs',
-  outDir: 'public'
+  outDir: 'public',
 };
 ```
 
@@ -80,7 +80,7 @@ site/
 export default {
   srcDir: '.',
   outDir: 'public',
-  include: ['README.md', 'docs']
+  include: ['README.md', 'docs'],
 };
 ```
 
@@ -121,7 +121,7 @@ In the above example, `src`, `dist`, and `test` are irrelevant directories. Pagi
     // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
     '**/config.gypi',
     '**/CVS',
-    '**/npm-debug.log'
+    '**/npm-debug.log',
 
     // ${config.outDir} will be added later
   ];
@@ -135,7 +135,7 @@ When we configure the `exclude` field in `pagic.config.ts`, it will not overwrit
 
 ```ts {2}
 export default {
-  exclude: ['test']
+  exclude: ['test'],
 };
 ```
 
@@ -159,8 +159,8 @@ export default {
 
     // ${config.outDir} will be added later
 
-    'test'
-  ]
+    'test',
+  ],
 };
 ```
 
@@ -206,7 +206,7 @@ Take [`pagic.org` config file](https://github.com/xcatliu/pagic/blob/master/pagi
 
 ```ts
 export default {
-  plugins: ['sidebar', 'prev_next', 'ga']
+  plugins: ['sidebar', 'prev_next', 'ga'],
 };
 ```
 
@@ -214,7 +214,7 @@ The inserted `plugins` are:
 
 ```ts
 export default {
-  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out']
+  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out'],
 };
 ```
 
@@ -222,7 +222,7 @@ In addition, you can delete the default plugins by setting items beginning with 
 
 ```ts
 export default {
-  plugins: ['-script']
+  plugins: ['-script'],
 };
 ```
 
@@ -271,7 +271,7 @@ For example, add a custom favicon:
 import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {
-  head: <link rel="icon" type="image/png" href="/favicon.png" />
+  head: <link rel="icon" type="image/png" href="/favicon.png" />,
 };
 ```
 
@@ -286,7 +286,7 @@ export default {
       <link rel="icon" type="image/png" href="/favicon.png" />
       <script src="/assets/custom.js" />
     </>
-  )
+  ),
 };
 ```
 
@@ -296,7 +296,7 @@ export default {
 - Supported themes: `docs`, `blog`
 - Dependent plugins: none
 
-Navigation configuration, an examples is as follows:
+Navigation configuration, an example is as follows:
 
 ```tsx
 import { React } from 'https://deno.land/x/pagic/mod.ts';
@@ -305,7 +305,7 @@ export default {
   nav: [
     {
       text: 'Docs',
-      link: '/docs/'
+      link: '/docs/',
     },
     {
       text: 'Buy me a coffee',
@@ -316,57 +316,16 @@ export default {
           <img src="/assets/wechat.jpg" width="256" style={{ marginRight: '1rem', verticalAlign: 'top' }} />
           <img src="/assets/alipay.jpg" width="256" style={{ verticalAlign: 'top' }} />
         </>
-      )
+      ),
     },
     {
       text: 'About',
       link: '/about/',
-      align: 'right'
-    }
-  ]
+      align: 'right',
+    },
+  ],
 };
 ```
-
-The `blog` theme also supports `nav` configuration, an example is as follows:
-
-```tsx
-export default {
-  nav: [
-    {
-      text: 'Home',
-      link: '/',
-      icon: 'czs-home-l'
-    },
-    {
-      text: 'Categories',
-      link: '/categories/',
-      icon: 'czs-category-l'
-    },
-    {
-      text: 'Tags',
-      link: '/tags/',
-      icon: 'czs-tag-l'
-    },
-    {
-      text: 'About',
-      link: '/about/',
-      icon: 'czs-about-l'
-    },
-    {
-      text: 'Archives',
-      link: '/archives/',
-      icon: 'czs-box-l'
-    },
-    {
-      text: 'Friends',
-      link: '/links/',
-      icon: 'czs-link-l'
-    }
-  ]
-};
-```
-
-The example can be viewed in the sidebar of [this page](https://blog.xcatliu.com/).
 
 ### `github`
 
@@ -401,19 +360,19 @@ export default {
       'about/README.md',
       {
         link: 'about/team.md',
-        children: ['about/xcatliu.md']
+        children: ['about/xcatliu.md'],
       },
       {
         text: 'Who is using Pagic?',
-        link: 'about/usage.md'
+        link: 'about/usage.md',
       },
       {
         text: 'Foldable item without link',
-        children: ['about/join_us.md']
-      }
+        children: ['about/join_us.md'],
+      },
     ],
-    '/': ['docs/introduction.md', 'about/README.md']
-  }
+    '/': ['docs/introduction.md', 'about/README.md'],
+  },
 };
 ```
 
@@ -466,10 +425,10 @@ export default {
 ></ins>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
-</script>`
+</script>`,
       }}
     />
-  )
+  ),
 };
 ```
 
@@ -479,14 +438,14 @@ export default {
 - Supported themes: `docs`
 - Dependent plugins: none
 
-Some small tools, such as `editOnGitHub`, `backToTop`, etc. an examples is as follows:
+Some small tools, such as `editOnGitHub`, `backToTop`, etc. an example is as follows:
 
 ```ts
 export default {
   tools: {
     editOnGitHub: true,
-    backToTop: true
-  }
+    backToTop: true,
+  },
 };
 ```
 
@@ -496,13 +455,13 @@ export default {
 - Supported themes: all
 - Dependent plugins: `ga`
 
-[Google analytics](https://analytics.google.com/) configuration, an examples is as follows:
+[Google analytics](https://analytics.google.com/) configuration, an example is as follows:
 
 ```ts
 export default {
   ga: {
-    id: 'UA-45256157-14'
-  }
+    id: 'UA-45256157-14',
+  },
 };
 ```
 
@@ -522,105 +481,18 @@ export default {
     repo: 'typescript-tutorial',
     owner: 'xcatliu',
     admin: ['xcatliu'],
-    pagerDirection: 'first'
-  }
+    pagerDirection: 'first',
+  },
 };
 ```
 
 ### `blog`
 
-- Type: complex, please see below
-- Supported themes: `docs`, `blog`
-- Dependent plugins: `blog`
-
-Blog configuration, an examples is as follows:
-
-```ts
-export default {
-  blog: {
-    root: '/posts/',
-    social: {
-      github: 'xcatliu/blog',
-      email: 'xcatliu@gmail.com',
-      twitter: 'xcatliu',
-      v2ex: 'xcatliu',
-      zhihu: 'xcatliu'
-    }
-  }
-};
-```
-
-In the above example, `root` means the root directory where blog posts are stored, and its default value is `/posts/`, which means all pages under the `${srcDir}/posts/` directory (except `README.md`) will be recognized as blog posts. Note that its value should always start and end with a slash.
+The configuration of `blog` is complex, please checkout [Blog](./blog.md).
 
 ### `i18n`
 
-- Type: complex, please see below
-- Supported topics: `docs`
-- Dependent plugin: `i18n`
-
-Internationalized configuration, an examples is as follows:
-
-```ts
-export default {
-  i18n: {
-    languages: [
-      { code: 'en', name: 'English', root: '/' },
-      { code: 'zh-CN', name: 'Simplified Chinese', root: '/zh-CN/' }
-    ],
-    overrides: {
-      'zh-CN': {
-        sidebar: {
-          '/zh-CN/docs/': [
-            'zh-CN/docs/introduction.md',
-            'zh-CN/docs/usage.md',
-            'zh-CN/docs/config.md',
-            'zh-CN/docs/content.md',
-            'zh-CN/docs/layout.md',
-            'zh-CN/docs/themes.md',
-            'zh-CN/docs/plugins.md',
-            'zh-CN/docs/blog.md',
-            'zh-CN/docs/i18n.md',
-            'zh-CN/docs/deployment.md',
-            'zh-CN/docs/demos.md',
-            'zh-CN/docs/limitations.md'
-          ]
-        },
-        blog: {
-          root: '/zh-CN/blog/'
-        }
-      }
-    },
-    resources: {
-      'zh-CN': {
-        translation: {
-          'A static site generator powered by Deno + React': 'Deno + React driven static website generator',
-          'Get Started': 'Get Started',
-          Demos: 'Sample website',
-          'Render <1>md/tsx</1> to static HTML page': 'Support rendering <1>md/tsx</1> files into static HTML page'
-        }
-      }
-    }
-  }
-};
-```
-
-#### `i18n.language`
-
-`i18n.language` represents an array of language lists supported by your website. Each item in the array must match `{ code:string, name:string, root:string }`, where:
-
-- `code` is the _ISO Language Code_, you can refer to [this website](http://www.lingoes.net/en/translator/langcode.htm)
-- `name` is the option displayed in the language switch component
-- `root` is the root directory where the language is located, and its value should always start and end with a slash
-
-Note that the first item of `i18n.language` is the default language of the website, and its `root` must be `/`.
-
-#### `i18n.overrides`
-
-`i18n.overrides` is a special configuration item, which allows to override the fields in `pagic.config.ts` in a specific language. Its type is `Record<string, PagicConfig>`, where the key must be one of the `code` field in `i18n.language`, the value type is the type of the entire `pagic.config.ts`. When visiting a page in this language, `pagic.config` will be the result of the merge.
-
-#### `i18n.resources`
-
-`i18n.resources` describes the translation of each language, `t('Get Started')` and `<Trans>Render <code>md/tsx</code> to static HTML page</ Trans>` in `tsx` file will use the translation resources configured here. For the specific syntax of `t()` and `<Trans>`, please refer to [react-i18next](https://react.i18next.com/getting-started#simple-content).
+The configuration of `i18n` is complex, please checkout [Internationalization](./i18n.md).
 
 ## Cli options
 

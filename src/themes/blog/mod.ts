@@ -35,6 +35,6 @@ export default {
     'categories/_layout.tsx',
     'posts/_layout.tsx',
     'posts/_posts.tsx',
-    'tags/_layout.tsx'
-  ]
+    'tags/_layout.tsx',
+  ],
 };

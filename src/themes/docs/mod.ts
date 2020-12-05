@@ -26,6 +26,6 @@ export default {
     '_tools.tsx',
     '_utils.tsx',
     'blog/_archives.tsx',
-    'blog/_layout.tsx'
-  ]
+    'blog/_layout.tsx',
+  ],
 };

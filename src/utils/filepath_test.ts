@@ -8,7 +8,7 @@ import {
   getOutputPath,
   replaceLink,
   findNearestLayoutPath,
-  walk
+  walk,
 } from './filepath.ts';
 import Pagic from '../Pagic.ts';
 
@@ -49,7 +49,7 @@ Deno.test('[replaceLink]', () => {
   asserts.assertEquals(replaceLink('https://github.com/xcatliu#hello'), 'https://github.com/xcatliu#hello');
   asserts.assertEquals(
     replaceLink('https://github.com/xcatliu?foo=bar#hello'),
-    'https://github.com/xcatliu?foo=bar#hello'
+    'https://github.com/xcatliu?foo=bar#hello',
   );
   asserts.assertEquals(replaceLink('README.md'), 'index.html');
   asserts.assertEquals(replaceLink('/README.md'), '/index.html');
@@ -92,75 +92,75 @@ Deno.test('[walk]', async () => {
     'bar.md',
     'foo',
     'foo.md',
-    'foo.tsx'
+    'foo.tsx',
   ]);
   asserts.assertEquals(
     sort(
       await walk('test/fixtures/walk', {
-        match: [Pagic.REGEXP_PAGE]
-      })
+        match: [Pagic.REGEXP_PAGE],
+      }),
     ),
-    ['.foo/foo.md', 'a/bar.tsx', 'a/c/foo.md', 'b/foo.md', 'bar.md', 'foo.md', 'foo.tsx']
+    ['.foo/foo.md', 'a/bar.tsx', 'a/c/foo.md', 'b/foo.md', 'bar.md', 'foo.md', 'foo.tsx'],
   );
   asserts.assertEquals(
     sort(
       await walk('test/fixtures/walk', {
-        match: [Pagic.REGEXP_LAYOUT]
-      })
+        match: [Pagic.REGEXP_LAYOUT],
+      }),
     ),
-    ['_header.tsx', '_layout.tsx', 'a/_bar.tsx', 'a/_layout.tsx', 'a/c/_foo.tsx', 'b/_foo.tsx']
+    ['_header.tsx', '_layout.tsx', 'a/_bar.tsx', 'a/_layout.tsx', 'a/c/_foo.tsx', 'b/_foo.tsx'],
   );
   asserts.assertEquals(
     sort(
       await walk('test/fixtures/walk', {
-        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT]
-      })
+        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT],
+      }),
     ),
-    ['.bar', 'a/bar', 'a/c/foo', 'b/foo', 'bar', 'foo']
+    ['.bar', 'a/bar', 'a/c/foo', 'b/foo', 'bar', 'foo'],
   );
   asserts.assertEquals(
     sort(
       await walk('test/fixtures/walk', {
-        skip: [path.globToRegExp('**/.*'), Pagic.REGEXP_LAYOUT]
-      })
+        skip: [path.globToRegExp('**/.*'), Pagic.REGEXP_LAYOUT],
+      }),
     ),
-    ['a/bar', 'a/bar.tsx', 'a/c/foo', 'a/c/foo.md', 'b/foo', 'b/foo.md', 'bar', 'bar.md', 'foo', 'foo.md', 'foo.tsx']
+    ['a/bar', 'a/bar.tsx', 'a/c/foo', 'a/c/foo.md', 'b/foo', 'b/foo.md', 'bar', 'bar.md', 'foo', 'foo.md', 'foo.tsx'],
   );
   asserts.assertEquals(
     sort(
       await walk('test/fixtures/walk', {
         match: [/[\/\\]foo/],
-        skip: [/\.md$/, /\.tsx$/]
-      })
+        skip: [/\.md$/, /\.tsx$/],
+      }),
     ),
-    ['a/c/foo', 'b/foo', 'foo']
-  );
-  asserts.assertEquals(
-    sort(
-      await walk('test/fixtures/walk', {
-        match: [Pagic.REGEXP_PAGE],
-        include: ['a']
-      })
-    ),
-    ['a/bar.tsx', 'a/c/foo.md']
-  );
-  asserts.assertEquals(
-    sort(
-      await walk('test/fixtures/walk', {
-        match: [Pagic.REGEXP_PAGE],
-        exclude: ['b']
-      })
-    ),
-    ['.foo/foo.md', 'a/bar.tsx', 'a/c/foo.md', 'bar.md', 'foo.md', 'foo.tsx']
+    ['a/c/foo', 'b/foo', 'foo'],
   );
   asserts.assertEquals(
     sort(
       await walk('test/fixtures/walk', {
         match: [Pagic.REGEXP_PAGE],
         include: ['a'],
-        exclude: ['c']
-      })
+      }),
     ),
-    ['a/bar.tsx', 'a/c/foo.md']
+    ['a/bar.tsx', 'a/c/foo.md'],
+  );
+  asserts.assertEquals(
+    sort(
+      await walk('test/fixtures/walk', {
+        match: [Pagic.REGEXP_PAGE],
+        exclude: ['b'],
+      }),
+    ),
+    ['.foo/foo.md', 'a/bar.tsx', 'a/c/foo.md', 'bar.md', 'foo.md', 'foo.tsx'],
+  );
+  asserts.assertEquals(
+    sort(
+      await walk('test/fixtures/walk', {
+        match: [Pagic.REGEXP_PAGE],
+        include: ['a'],
+        exclude: ['c'],
+      }),
+    ),
+    ['a/bar.tsx', 'a/c/foo.md'],
   );
 });

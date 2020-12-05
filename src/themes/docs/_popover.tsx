@@ -20,13 +20,13 @@ export const Popover: React.FC<PopoverProps> = ({
   className,
   style,
   children,
-  onClick
+  onClick,
 }) => {
   const [hover, setHover] = React.useState(false);
   const popoverRootId = 'popover-root-' + React.useMemo(() => Math.random().toString().slice(2), []);
   const [topLeft, setTopLeft] = React.useState({
     top: 0,
-    left: 0
+    left: 0,
   });
 
   // https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
@@ -38,11 +38,11 @@ export const Popover: React.FC<PopoverProps> = ({
           top: (window as any).pageYOffset + (placement.startsWith('top') ? top : bottom),
           left:
             (window as any).pageXOffset +
-            (placement.endsWith('start') ? left : placement.endsWith('end') ? right : (left + right) / 2)
+            (placement.endsWith('start') ? left : placement.endsWith('end') ? right : (left + right) / 2),
         });
       }
     },
-    [hover]
+    [hover],
   );
 
   const onMouseEnter = React.useCallback(() => {
@@ -66,7 +66,7 @@ export const Popover: React.FC<PopoverProps> = ({
     ref: measuredRef,
     onMouseEnter,
     onMouseLeave,
-    onClick
+    onClick,
   };
 
   if (React.isValidElement(children)) {
@@ -86,7 +86,7 @@ export const Popover: React.FC<PopoverProps> = ({
             display: hover ? 'block' : 'none',
             top: topLeft.top,
             left: topLeft.left,
-            ...style
+            ...style,
           }}
           className={className}
           onMouseEnter={onMouseEnter}
@@ -122,14 +122,14 @@ const PopoverProtal: React.FC<
         transform: `translate(${placement.endsWith('start') ? '0' : placement.endsWith('end') ? '-100%' : '-50%'}, ${
           placement.startsWith('top') ? '-100%' : '0%'
         })`,
-        ...style
+        ...style,
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       {content}
     </div>,
-    popoverRoot
+    popoverRoot,
   );
 };
 

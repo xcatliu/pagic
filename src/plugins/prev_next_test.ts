@@ -13,12 +13,12 @@ Deno.test('[prev_next]', async () => {
       link: 'docs/usage.html',
       text: 'Usage',
       pagePath: 'docs/usage.md',
-      children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }]
+      children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }],
     },
     {
       text: 'No link',
-      children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }]
-    }
+      children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }],
+    },
   ];
   const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
   pagic.pagePropsMap = {
@@ -27,7 +27,7 @@ Deno.test('[prev_next]', async () => {
       pagePath: 'README.md',
       outputPath: 'index.html',
       title: '',
-      next: 'docs/introduction.md' as any
+      next: 'docs/introduction.md' as any,
     },
     'docs/introduction.md': {
       ...commonProps,
@@ -35,29 +35,29 @@ Deno.test('[prev_next]', async () => {
       outputPath: 'docs/introduction.html',
       title: 'Introduction',
       sidebar: docsSidebar,
-      prev: 'README.md' as any
+      prev: 'README.md' as any,
     },
     'docs/usage.md': {
       ...commonProps,
       pagePath: 'docs/usage.md',
       outputPath: 'docs/usage.html',
       title: 'Usage',
-      sidebar: docsSidebar
+      sidebar: docsSidebar,
     },
     'docs/usage/foo.md': {
       ...commonProps,
       pagePath: 'docs/usage/foo.md',
       outputPath: 'docs/usage/foo.html',
       title: 'Foo',
-      sidebar: docsSidebar
+      sidebar: docsSidebar,
     },
     'docs/bar.md': {
       ...commonProps,
       pagePath: 'docs/bar.md',
       outputPath: 'docs/bar.html',
       title: 'Bar',
-      sidebar: docsSidebar
-    }
+      sidebar: docsSidebar,
+    },
   };
 
   await prev_next.fn(pagic);
@@ -67,7 +67,7 @@ Deno.test('[prev_next]', async () => {
   asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].next, { text: 'Usage', link: 'docs/usage.html' });
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].prev, {
     text: 'Intro',
-    link: 'docs/introduction.html'
+    link: 'docs/introduction.html',
   });
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].next, { text: 'Foo', link: 'docs/usage/foo.html' });
   asserts.assertEquals(pagic.pagePropsMap['docs/usage/foo.md'].prev, { text: 'Usage', link: 'docs/usage.html' });

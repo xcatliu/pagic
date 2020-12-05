@@ -12,17 +12,17 @@ const layout: PagicPlugin = {
       const fullLayoutPath = path.resolve(pagic.config.srcDir, pageProps.layoutPath);
       if (await fs.exists(fullLayoutPath)) {
         Layout = await importDefault(fullLayoutPath, {
-          reload: pagic.rebuilding
+          reload: pagic.rebuilding,
         });
       } else {
         Layout = await importTheme(pagic.config.theme, pageProps.layoutPath);
       }
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
-        content: <Layout {...pageProps} />
+        content: <Layout {...pageProps} />,
       };
     }
-  }
+  },
 };
 
 export default layout;

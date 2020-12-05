@@ -83,7 +83,7 @@ export function findNearestLayoutPath(pagePath: string, layoutPaths: string[]) {
 /** A util to replace fs.walk method, return relativeToSrcPath instead of fullPath */
 export async function walk(
   srcDir: string,
-  walkOptions: fs.WalkOptions & Pick<PagicConfig, 'include' | 'exclude'> = {}
+  walkOptions: fs.WalkOptions & Pick<PagicConfig, 'include' | 'exclude'> = {},
 ): Promise<string[]> {
   let { match, skip, include, exclude } = walkOptions;
   const includeMatch = include?.reduce<RegExp[]>((prev, glob) => {
@@ -102,7 +102,7 @@ export async function walk(
     includeDirs: false,
     ...walkOptions,
     match: include ? includeMatch : match,
-    skip: [...(skip ?? []), ...(excludeSkip ?? [])]
+    skip: [...(skip ?? []), ...(excludeSkip ?? [])],
   });
 
   if (include && match) {

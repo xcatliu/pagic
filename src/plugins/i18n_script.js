@@ -7,13 +7,13 @@ import pagicConfig from './pagic.config.js';
   await i18next.init(
     {
       interpolation: {
-        escapeValue: false // not needed for react as it escapes by default
+        escapeValue: false, // not needed for react as it escapes by default
       },
       // https://stackoverflow.com/a/44799437/2777142
       keySeparator: false,
-      ...pagicConfig.i18n
+      ...pagicConfig.i18n,
     },
-    () => {}
+    () => {},
   );
 })();
 
@@ -26,6 +26,6 @@ window.Trans = (props) => {
   i18next.changeLanguage(window.pageProps.language.code, () => {});
   return window.React.createElement(Trans, {
     i18n: i18next,
-    ...props
+    ...props,
   });
 };

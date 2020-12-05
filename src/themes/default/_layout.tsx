@@ -24,7 +24,7 @@ const Layout: PagicLayout = ({ config, title, outputPath, content, head, script 
           className="github-corner"
           aria-label="View source on GitHub"
           dangerouslySetInnerHTML={{
-            __html: githubCorner
+            __html: githubCorner,
           }}
         />
       )}

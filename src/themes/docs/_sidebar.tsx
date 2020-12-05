@@ -61,7 +61,7 @@ const FoldableItem: React.FC<{
         href={link ? `${config.root}${link}` : '#'}
         className={classnames('nav_link', {
           active: isActive,
-          no_link: !link
+          no_link: !link,
         })}
         onClick={(e) => {
           if (link) {

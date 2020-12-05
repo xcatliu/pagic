@@ -5,6 +5,6 @@ export default {
     'assets/reset.css',
     'assets/variables.css',
     '_layout.tsx',
-    'favicon.ico'
-  ]
+    'favicon.ico',
+  ],
 };

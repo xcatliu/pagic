@@ -11,27 +11,27 @@ const prev_next: PagicPlugin = {
       if (typeof pageProps.prev === 'string') {
         pageProps.prev = {
           text: pagic.pagePropsMap[pageProps.prev].title,
-          link: pagic.pagePropsMap[pageProps.prev].outputPath
+          link: pagic.pagePropsMap[pageProps.prev].outputPath,
         };
       }
       if (typeof pageProps.next === 'string') {
         pageProps.next = {
           text: pagic.pagePropsMap[pageProps.next].title,
-          link: pagic.pagePropsMap[pageProps.next].outputPath
+          link: pagic.pagePropsMap[pageProps.next].outputPath,
         };
       }
       if (!pageProps.sidebar) continue;
       pagic.pagePropsMap[pagePath] = {
         ...getPrevAndNext(pageProps.sidebar, pagePath),
-        ...pageProps
+        ...pageProps,
       };
     }
-  }
+  },
 };
 
 function getPrevAndNext(
   pagePropsSidebar: PagePropsSidebar,
-  pagePath: string
+  pagePath: string,
 ): {
   prev?: { text: string; link: string };
   next?: { text: string; link: string };
@@ -62,7 +62,7 @@ function getPrevAndNext(
   });
   return {
     prev: pick(prev, ['text', 'link']),
-    next: pick(next, ['text', 'link'])
+    next: pick(next, ['text', 'link']),
   };
 }
 

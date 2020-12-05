@@ -32,7 +32,7 @@
 
 ```ts
 export default {
-  plugins: ['-script']
+  plugins: ['-script'],
 };
 ```
 
@@ -63,7 +63,7 @@ export default {
 
 ```ts
 export default {
-  plugins: ['sidebar', 'prev_next', 'ga']
+  plugins: ['sidebar', 'prev_next', 'ga'],
 };
 ```
 
@@ -71,7 +71,7 @@ export default {
 
 ```ts
 export default {
-  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out']
+  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out'],
 };
 ```
 
@@ -91,7 +91,7 @@ export default {
 
 ```ts
 export default {
-  plugins: ['https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts']
+  plugins: ['https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts'],
 };
 ```
 
@@ -142,10 +142,10 @@ const prependTitle: PagicPlugin = {
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
-        title: `Prefix ${pageProps.title}`
+        title: `Prefix ${pageProps.title}`,
       };
     }
-  }
+  },
 };
 
 export default prependTitle;

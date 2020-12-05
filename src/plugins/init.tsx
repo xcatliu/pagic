@@ -16,10 +16,10 @@ const init: PagicPlugin = {
         title: '',
         content: null,
         head: pagic.config.head ?? null,
-        script: null
+        script: null,
       };
     }
-  }
+  },
 };
 
 export default init;

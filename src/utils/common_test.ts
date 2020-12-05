@@ -46,17 +46,17 @@ Deno.test('[sortByInsert] insert before:b', () => {
       { name: 'b' },
       {
         name: 'c',
-        insert: 'before:b'
-      }
+        insert: 'before:b',
+      },
     ]),
     [
       { name: 'a' },
       {
         name: 'c',
-        insert: 'before:b'
+        insert: 'before:b',
       },
-      { name: 'b' }
-    ]
+      { name: 'b' },
+    ],
   );
 });
 Deno.test('[sortByInsert] insert to an inserted item', () => {
@@ -66,25 +66,25 @@ Deno.test('[sortByInsert] insert to an inserted item', () => {
       { name: 'b' },
       {
         name: 'c',
-        insert: 'after:d'
+        insert: 'after:d',
       },
       {
         name: 'd',
-        insert: 'before:b'
-      }
+        insert: 'before:b',
+      },
     ]),
     [
       { name: 'a' },
       {
         name: 'd',
-        insert: 'before:b'
+        insert: 'before:b',
       },
       {
         name: 'c',
-        insert: 'after:d'
+        insert: 'after:d',
       },
-      { name: 'b' }
-    ]
+      { name: 'b' },
+    ],
   );
 });
 Deno.test('[sortByInsert] insert undefined', () => {
@@ -94,17 +94,17 @@ Deno.test('[sortByInsert] insert undefined', () => {
       { name: 'b' },
       {
         name: 'c',
-        insert: 'before:d'
-      }
+        insert: 'before:d',
+      },
     ]),
     [
       { name: 'a' },
       { name: 'b' },
       {
         name: 'c',
-        insert: 'before:d'
-      }
-    ]
+        insert: 'before:d',
+      },
+    ],
   );
 });
 Deno.test('[getPagicConfigPath]', async () => {

@@ -11,7 +11,7 @@ Deno.test('[sidebar]', async () => {
 
   pagic.config.sidebar = {
     '/docs/': ['docs/introduction.md', 'docs/usage.md'],
-    '/api/': ['api/foo.md', 'api/bar.tsx']
+    '/api/': ['api/foo.md', 'api/bar.tsx'],
   };
   pagic.pagePaths = ['README.md', 'docs/introduction.md', 'docs/usage.md', 'api/foo.md', 'api/bar.tsx'];
   const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
@@ -20,43 +20,43 @@ Deno.test('[sidebar]', async () => {
       ...commonProps,
       pagePath: 'README.md',
       outputPath: 'index.html',
-      title: ''
+      title: '',
     },
     'docs/introduction.md': {
       ...commonProps,
       pagePath: 'docs/introduction.md',
       outputPath: 'docs/introduction.html',
-      title: 'Introduction'
+      title: 'Introduction',
     },
     'docs/usage.md': {
       ...commonProps,
       pagePath: 'docs/usage.md',
       outputPath: 'docs/usage.html',
-      title: 'Usage'
+      title: 'Usage',
     },
     'api/foo.md': {
       ...commonProps,
       pagePath: 'api/foo.md',
       outputPath: 'api/foo.html',
-      title: 'Foo'
+      title: 'Foo',
     },
     'api/bar.tsx': {
       ...commonProps,
       pagePath: 'api/bar.tsx',
       outputPath: 'api/bar.html',
-      title: ''
-    }
+      title: '',
+    },
   };
 
   await sidebar.fn(pagic);
   asserts.assertEquals(pagic.pagePropsMap['README.md'].sidebar, undefined);
   const docsSidebar = [
     { link: 'docs/introduction.html', text: 'Introduction', pagePath: 'docs/introduction.md' },
-    { link: 'docs/usage.html', text: 'Usage', pagePath: 'docs/usage.md' }
+    { link: 'docs/usage.html', text: 'Usage', pagePath: 'docs/usage.md' },
   ];
   const apiSidebar = [
     { link: 'api/foo.html', text: 'Foo', pagePath: 'api/foo.md' },
-    { link: 'api/bar.html', text: '', pagePath: 'api/bar.tsx' }
+    { link: 'api/bar.html', text: '', pagePath: 'api/bar.tsx' },
   ];
   asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].sidebar, docsSidebar);
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].sidebar, docsSidebar);
@@ -70,17 +70,17 @@ Deno.test('[sidebar] object config', async () => {
     '/docs/': [
       {
         text: 'Intro',
-        link: 'docs/introduction.md'
+        link: 'docs/introduction.md',
       },
       {
         link: 'docs/usage.md',
-        children: ['docs/usage/foo.md']
+        children: ['docs/usage/foo.md'],
       },
       {
         text: 'No link',
-        children: ['docs/bar.md']
-      }
-    ]
+        children: ['docs/bar.md'],
+      },
+    ],
   };
   pagic.pagePaths = ['docs/introduction.md', 'docs/usage.md', 'docs/usage/foo.md', 'docs/bar.md'];
   const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
@@ -90,27 +90,27 @@ Deno.test('[sidebar] object config', async () => {
       config: pagic.config,
       pagePath: 'docs/introduction.md',
       outputPath: 'docs/introduction.html',
-      title: 'Introduction'
+      title: 'Introduction',
     },
     'docs/usage.md': {
       ...commonProps,
       config: pagic.config,
       pagePath: 'docs/usage.md',
       outputPath: 'docs/usage.html',
-      title: 'Usage'
+      title: 'Usage',
     },
     'docs/usage/foo.md': {
       ...commonProps,
       pagePath: 'docs/usage/foo.md',
       outputPath: 'docs/usage/foo.html',
-      title: 'Foo'
+      title: 'Foo',
     },
     'docs/bar.md': {
       ...commonProps,
       pagePath: 'docs/bar.md',
       outputPath: 'docs/bar.html',
-      title: 'Bar'
-    }
+      title: 'Bar',
+    },
   };
 
   await sidebar.fn(pagic);
@@ -120,12 +120,12 @@ Deno.test('[sidebar] object config', async () => {
       link: 'docs/usage.html',
       text: 'Usage',
       pagePath: 'docs/usage.md',
-      children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }]
+      children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }],
     },
     {
       text: 'No link',
-      children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }]
-    }
+      children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }],
+    },
   ];
   asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].sidebar, docsSidebar);
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].sidebar, docsSidebar);

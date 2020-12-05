@@ -13,9 +13,10 @@ import {
   importPlugin,
   importTheme,
   serve,
-  getGitBranch
+  getGitBranch,
 } from './utils/mod.ts';
 import type { PagePropsSidebar, PagicConfigSidebar } from './plugins/sidebar.tsx';
+import type { PagePropsBlog } from './plugins/blog.tsx';
 import type { GaProps } from './plugins/ga_component.tsx';
 import type { GitalkProps } from './plugins/gitalk_component.tsx';
 
@@ -125,30 +126,7 @@ export interface PageProps {
   next?: PagePropsSidebar[0];
   ga?: React.ReactElement;
   gitalk?: React.ReactElement;
-  blog?: {
-    isPost: boolean;
-    posts: {
-      pagePath: string;
-      title: string;
-      link: string;
-      date: Date | string;
-      updated: Date | string;
-      author?: string;
-      contributors: string[];
-      tags?: string[];
-      categories?: string[];
-      excerpt?: string;
-      cover?: string;
-    }[];
-    tags: {
-      name: string;
-      count: number;
-    }[];
-    categories: {
-      name: string;
-      count: number;
-    }[];
-  };
+  blog?: PagePropsBlog;
   language?: { code: string; name: string; root: string };
 
   [key: string]: any;
@@ -173,7 +151,7 @@ export default class Pagic {
       // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
       '**/config.gypi',
       '**/CVS',
-      '**/npm-debug.log'
+      '**/npm-debug.log',
 
       // ${config.outDir} will be added later
     ],
@@ -182,7 +160,7 @@ export default class Pagic {
     plugins: ['clean', 'init', 'md', 'tsx', 'script', 'layout', 'out'],
     watch: false,
     serve: false,
-    port: 8000
+    port: 8000,
   };
   // foo.md
   public static REGEXP_PAGE = /[\/\\][^_][^\/\\]*\.(md|tsx)$/;
@@ -228,7 +206,7 @@ export default class Pagic {
   public async generateThemeMod() {
     this.config = {
       ...Pagic.defaultConfig,
-      exclude: [...Pagic.defaultConfig.exclude!, 'mod.ts']
+      exclude: [...Pagic.defaultConfig.exclude!, 'mod.ts'],
     };
 
     await this.initPaths();
@@ -236,7 +214,7 @@ export default class Pagic {
       './mod.ts',
       `export default {\n  files: [\n${[...this.staticPaths, ...this.layoutPaths]
         .map((filePath) => `    '${filePath}'`)
-        .join(',\n')}\n  ]\n};\n`
+        .join(',\n')}\n  ]\n};\n`,
     );
   }
 
@@ -261,12 +239,12 @@ export default class Pagic {
   private async initConfig() {
     this.pagicConfigPath = await getPagicConfigPath();
     this.projectConfig = await importDefault(this.pagicConfigPath, {
-      reload: true
+      reload: true,
     });
     let config = {
       ...Pagic.defaultConfig,
       ...this.projectConfig,
-      ...this.runtimeConfig
+      ...this.runtimeConfig,
     };
     if (typeof config.branch === 'undefined') {
       const branch = await getGitBranch();
@@ -276,12 +254,12 @@ export default class Pagic {
       ...(Pagic.defaultConfig.exclude ?? []),
       ...(this.projectConfig.exclude ?? []),
       ...(this.runtimeConfig.exclude ?? []),
-      config.outDir
+      config.outDir,
     ]);
     config.plugins = unique([
       ...Pagic.defaultConfig.plugins,
       ...(this.projectConfig.plugins ?? []),
-      ...(this.runtimeConfig.plugins ?? [])
+      ...(this.runtimeConfig.plugins ?? []),
     ]);
     this.config = config;
   }
@@ -290,12 +268,12 @@ export default class Pagic {
     serve({
       serveDir: this.config.outDir,
       root: this.config.root,
-      port: this.config.port
+      port: this.config.port,
     });
     logger.success(
       'Serve',
       colors.underline(this.config.outDir),
-      `on http://127.0.0.1:${this.config.port}${this.config.root}`
+      `on http://127.0.0.1:${this.config.port}${this.config.root}`,
     );
   }
 
@@ -314,12 +292,12 @@ export default class Pagic {
       let eventPaths = event.paths.map((eventPath) => path.relative(this.config.srcDir, eventPath));
       this.config.include?.forEach((glob) => {
         eventPaths = eventPaths.filter(
-          (eventPath) => path.globToRegExp(glob).test(eventPath) || path.globToRegExp(`${glob}/**`).test(eventPath)
+          (eventPath) => path.globToRegExp(glob).test(eventPath) || path.globToRegExp(`${glob}/**`).test(eventPath),
         );
       });
       this.config.exclude?.forEach((glob) => {
         eventPaths = eventPaths.filter(
-          (eventPath) => !path.globToRegExp(glob).test(eventPath) && !path.globToRegExp(`${glob}/**`).test(eventPath)
+          (eventPath) => !path.globToRegExp(glob).test(eventPath) && !path.globToRegExp(`${glob}/**`).test(eventPath),
         );
       });
       this.handleFileChange(eventPaths);
@@ -368,23 +346,23 @@ export default class Pagic {
 
     this.pagePaths = await walk(this.config.srcDir, {
       ...pick(this.config, ['include', 'exclude']),
-      match: [Pagic.REGEXP_PAGE]
+      match: [Pagic.REGEXP_PAGE],
     });
     this.layoutPaths = unique([
       ...(await walk(this.config.srcDir, {
         ...pick(this.config, ['include', 'exclude']),
-        match: [Pagic.REGEXP_LAYOUT]
+        match: [Pagic.REGEXP_LAYOUT],
       })),
-      ...themeFiles.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`))
+      ...themeFiles.filter((filename) => Pagic.REGEXP_LAYOUT.test(`/${filename}`)),
     ]).sort();
     this.staticPaths = unique([
       ...(await walk(this.config.srcDir, {
         ...pick(this.config, ['include', 'exclude']),
-        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT]
+        skip: [Pagic.REGEXP_PAGE, Pagic.REGEXP_LAYOUT],
       })),
       ...themeFiles.filter(
-        (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`)
-      )
+        (filename) => !Pagic.REGEXP_PAGE.test(`/${filename}`) && !Pagic.REGEXP_LAYOUT.test(`/${filename}`),
+      ),
     ]).sort();
   }
 

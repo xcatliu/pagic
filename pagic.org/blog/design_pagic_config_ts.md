@@ -83,7 +83,7 @@ The default value for `exclude` is long:
   // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
   '**/config.gypi',
   '**/CVS',
-  '**/npm-debug.log'
+  '**/npm-debug.log',
 
   // ${config.outDir} will be added later
 ];
@@ -124,7 +124,7 @@ At this time, the configuration of `pagic.config.ts` is very simple:
 ```ts
 export default {
   srcDir: 'src',
-  outDir: 'dist'
+  outDir: 'dist',
 };
 ```
 
@@ -154,7 +154,7 @@ At this time, the configuration of `pagic.config.ts` is also very simple:
 ```ts
 export default {
   srcDir: '.',
-  outDir: 'dist'
+  outDir: 'dist',
 };
 ```
 
@@ -164,7 +164,7 @@ Note that if there are files that need to be excluded, you can use `exclude` to 
 export default {
   srcDir: '.',
   outDir: 'dist',
-  exclude: ['examples']
+  exclude: ['examples'],
 };
 ```
 
@@ -183,7 +183,7 @@ Some projects are very simple. You only need a `README.md` and no other pages ar
 export default {
   srcDir: '.',
   outDir: 'dist',
-  include: ['README.md']
+  include: ['README.md'],
 };
 ```
 
@@ -208,7 +208,7 @@ export default {
   // The design of fn refers to Deno https://deno.land/manual/testing#writing-tests
   fn: (pagic) => {
     // balabala
-  }
+  },
 };
 ```
 
@@ -245,7 +245,7 @@ Because in Deno’s design, module are based on urls. Imagine a URL represents a
 
 ```ts
 export default {
-  files: ['assets/index.css', 'assets/reset.css', 'assets/variables.css', '_layout.tsx', 'favicon.ico']
+  files: ['assets/index.css', 'assets/reset.css', 'assets/variables.css', '_layout.tsx', 'favicon.ico'],
 };
 ```
 

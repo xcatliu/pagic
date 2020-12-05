@@ -17,24 +17,24 @@ export default {
   nav: [
     {
       text: '文档',
-      link: '/docs/introduction.html'
+      link: '/docs/introduction.html',
     },
     {
       text: '主题',
-      link: '/themes/'
+      link: '/themes/',
     },
     {
       text: '插件',
-      link: '/plugins/'
+      link: '/plugins/',
     },
     {
       text: '博客',
-      link: '/blog/'
+      link: '/blog/',
     },
     {
       text: '关于',
-      link: '/about/'
-    }
+      link: '/about/',
+    },
   ],
   sidebar: {
     '/docs/': [
@@ -47,10 +47,10 @@ export default {
       'docs/plugins.md',
       'docs/deployment.md',
       'docs/demos.md',
-      'docs/limitations.md'
-    ]
+      'docs/limitations.md',
+    ],
   },
   blog: {
-    root: '/blog/'
-  }
+    root: '/blog/',
+  },
 };

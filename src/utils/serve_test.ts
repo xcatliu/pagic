@@ -5,7 +5,7 @@ import { serve } from './serve.ts';
 Deno.test('[serve]', async () => {
   const server = serve({
     serveDir: 'test/fixtures',
-    port: 8000
+    port: 8000,
   });
   const no_toc = await fetch('http://127.0.0.1:8000/no_toc.md');
   asserts.assertEquals(await no_toc.text(), 'foo\n');
@@ -19,7 +19,7 @@ Deno.test('[serve] root option', async () => {
   const server = serve({
     serveDir: 'test/fixtures',
     root: '/foo/',
-    port: 8000
+    port: 8000,
   });
   const no_toc = await fetch('http://127.0.0.1:8000/foo/no_toc.md');
   asserts.assertEquals(await no_toc.text(), 'foo\n');

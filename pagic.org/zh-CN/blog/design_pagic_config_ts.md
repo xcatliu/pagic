@@ -83,7 +83,7 @@ date: 2020-07-12
   // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
   '**/config.gypi',
   '**/CVS',
-  '**/npm-debug.log'
+  '**/npm-debug.log',
 
   // ${config.outDir} will be added later
 ];
@@ -124,7 +124,7 @@ website/
 ```ts
 export default {
   srcDir: 'src',
-  outDir: 'dist'
+  outDir: 'dist',
 };
 ```
 
@@ -154,7 +154,7 @@ book/
 ```ts
 export default {
   srcDir: '.',
-  outDir: 'dist'
+  outDir: 'dist',
 };
 ```
 
@@ -164,7 +164,7 @@ export default {
 export default {
   srcDir: '.',
   outDir: 'dist',
-  exclude: ['examples']
+  exclude: ['examples'],
 };
 ```
 
@@ -183,7 +183,7 @@ export default {
 export default {
   srcDir: '.',
   outDir: 'dist',
-  include: ['README.md']
+  include: ['README.md'],
 };
 ```
 
@@ -208,7 +208,7 @@ export default {
   // fn 的设计参考了 Deno https://deno.land/manual/testing#writing-tests
   fn: (pagic) => {
     // balabala
-  }
+  },
 };
 ```
 
@@ -245,7 +245,7 @@ export default {
 
 ```ts
 export default {
-  files: ['assets/index.css', 'assets/reset.css', 'assets/variables.css', '_layout.tsx', 'favicon.ico']
+  files: ['assets/index.css', 'assets/reset.css', 'assets/variables.css', '_layout.tsx', 'favicon.ico'],
 };
 ```
 

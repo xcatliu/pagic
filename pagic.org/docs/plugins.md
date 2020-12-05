@@ -32,7 +32,7 @@ By configuring items beginning with `-`, you can delete the default plugins, suc
 
 ```ts
 export default {
-  plugins: ['-script']
+  plugins: ['-script'],
 };
 ```
 
@@ -42,7 +42,7 @@ But for very simple websites, such as one-page-website, this configuration is ve
 
 If you delete the default plugin and then add a third-party plugin, we can even completely change Pagic's build process. For example, we can delete the `md` plugin, and then add a third-party plugin that parses markdown to replace the process of parsing markdown files.
 
-### Official plugin
+### Official plugins
 
 In addition to built-in plugins, we also provide some commonly used official plugins, including:
 
@@ -63,7 +63,7 @@ Take [`pagic.org` config file](https://github.com/xcatliu/pagic/blob/master/pagi
 
 ```ts
 export default {
-  plugins: ['sidebar', 'prev_next', 'ga']
+  plugins: ['sidebar', 'prev_next', 'ga'],
 };
 ```
 
@@ -71,7 +71,7 @@ The inserted `plugins` are:
 
 ```ts
 export default {
-  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out']
+  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out'],
 };
 ```
 
@@ -91,7 +91,7 @@ When using third-party plugins, the items in the array should be an entry file U
 
 ```ts
 export default {
-  plugins: ['https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts']
+  plugins: ['https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts'],
 };
 ```
 
@@ -142,10 +142,10 @@ const prependTitle: PagicPlugin = {
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
-        title: `Prefix ${pageProps.title}`
+        title: `Prefix ${pageProps.title}`,
       };
     }
-  }
+  },
 };
 
 export default prependTitle;

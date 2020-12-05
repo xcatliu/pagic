@@ -17,7 +17,7 @@ Pagic 的配置文件名称为 `pagic.config.ts` 或 `pagic.config.tsx`（如果
 
 ```ts
 export default {
-  srcDir: '.'
+  srcDir: '.',
 };
 ```
 
@@ -33,7 +33,7 @@ site/
 
 ```ts {2}
 export default {
-  srcDir: 'docs'
+  srcDir: 'docs',
 };
 ```
 
@@ -56,7 +56,7 @@ Pagic 构建的结果目录，配合 `srcDir` 可以同时自定义输入和输�
 ```ts {3}
 export default {
   srcDir: 'docs',
-  outDir: 'public'
+  outDir: 'public',
 };
 ```
 
@@ -80,7 +80,7 @@ site/
 export default {
   srcDir: '.',
   outDir: 'public',
-  include: ['README.md', 'docs']
+  include: ['README.md', 'docs'],
 };
 ```
 
@@ -121,7 +121,7 @@ site/
     // https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package
     '**/config.gypi',
     '**/CVS',
-    '**/npm-debug.log'
+    '**/npm-debug.log',
 
     // ${config.outDir} will be added later
   ];
@@ -135,7 +135,7 @@ site/
 
 ```ts {2}
 export default {
-  exclude: ['test']
+  exclude: ['test'],
 };
 ```
 
@@ -159,8 +159,8 @@ export default {
 
     // ${config.outDir} will be added later
 
-    'test'
-  ]
+    'test',
+  ],
 };
 ```
 
@@ -207,7 +207,7 @@ https://raw.githubusercontent.com/xcatliu/pagic_plugin_custom/master/mod.ts
 
 ```ts
 export default {
-  plugins: ['sidebar', 'prev_next', 'ga']
+  plugins: ['sidebar', 'prev_next', 'ga'],
 };
 ```
 
@@ -215,7 +215,7 @@ export default {
 
 ```ts
 export default {
-  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out']
+  plugins: ['clean', 'init', 'md', 'tsx', 'sidebar', 'prev_next', 'ga', 'script', 'layout', 'out'],
 };
 ```
 
@@ -223,7 +223,7 @@ export default {
 
 ```ts
 export default {
-  plugins: ['-script']
+  plugins: ['-script'],
 };
 ```
 
@@ -272,7 +272,7 @@ export default {
 import { React } from 'https://deno.land/x/pagic/mod.ts';
 
 export default {
-  head: <link rel="icon" type="image/png" href="/favicon.png" />
+  head: <link rel="icon" type="image/png" href="/favicon.png" />,
 };
 ```
 
@@ -287,7 +287,7 @@ export default {
       <link rel="icon" type="image/png" href="/favicon.png" />
       <script src="/assets/custom.js" />
     </>
-  )
+  ),
 };
 ```
 
@@ -306,7 +306,7 @@ export default {
   nav: [
     {
       text: '文档',
-      link: '/docs/'
+      link: '/docs/',
     },
     {
       text: '赞助作者',
@@ -317,57 +317,16 @@ export default {
           <img src="/assets/wechat.jpg" width="256" style={{ marginRight: '1rem', verticalAlign: 'top' }} />
           <img src="/assets/alipay.jpg" width="256" style={{ verticalAlign: 'top' }} />
         </>
-      )
+      ),
     },
     {
       text: '关于',
       link: '/about/',
-      align: 'right'
-    }
-  ]
+      align: 'right',
+    },
+  ],
 };
 ```
-
-博客主题也支持 `nav` 配置，示例如下：
-
-```tsx
-export default {
-  nav: [
-    {
-      text: '首页',
-      link: '/',
-      icon: 'czs-home-l'
-    },
-    {
-      text: '分类',
-      link: '/categories/',
-      icon: 'czs-category-l'
-    },
-    {
-      text: '标签',
-      link: '/tags/',
-      icon: 'czs-tag-l'
-    },
-    {
-      text: '关于',
-      link: '/about/',
-      icon: 'czs-about-l'
-    },
-    {
-      text: '归档',
-      link: '/archives/',
-      icon: 'czs-box-l'
-    },
-    {
-      text: '友情链接',
-      link: '/links/',
-      icon: 'czs-link-l'
-    }
-  ]
-};
-```
-
-效果可以在[这个页面](https://blog.xcatliu.com/)的侧边栏查看。
 
 ### `github`
 
@@ -402,19 +361,19 @@ export default {
       'about/README.md',
       {
         link: 'about/team.md',
-        children: ['about/xcatliu.md']
+        children: ['about/xcatliu.md'],
       },
       {
         text: 'Who is using Pagic?',
-        link: 'about/usage.md'
+        link: 'about/usage.md',
       },
       {
         text: 'Foldable item without link',
-        children: ['about/join_us.md']
-      }
+        children: ['about/join_us.md'],
+      },
     ],
-    '/': ['docs/introduction.md', 'about/README.md']
-  }
+    '/': ['docs/introduction.md', 'about/README.md'],
+  },
 };
 ```
 
@@ -467,10 +426,10 @@ export default {
 ></ins>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
-</script>`
+</script>`,
       }}
     />
-  )
+  ),
 };
 ```
 
@@ -486,8 +445,8 @@ export default {
 export default {
   tools: {
     editOnGitHub: true,
-    backToTop: true
-  }
+    backToTop: true,
+  },
 };
 ```
 
@@ -502,8 +461,8 @@ export default {
 ```ts
 export default {
   ga: {
-    id: 'UA-45256157-14'
-  }
+    id: 'UA-45256157-14',
+  },
 };
 ```
 
@@ -523,105 +482,18 @@ export default {
     repo: 'typescript-tutorial',
     owner: 'xcatliu',
     admin: ['xcatliu'],
-    pagerDirection: 'first'
-  }
+    pagerDirection: 'first',
+  },
 };
 ```
 
 ### `blog`
 
-- 类型：较复杂，见示例
-- 支持的主题：`docs`, `blog`
-- 依赖的插件：`blog`
-
-博客相关的配置，示例如下：
-
-```ts
-export default {
-  blog: {
-    root: '/posts/',
-    social: {
-      github: 'xcatliu/blog',
-      email: 'xcatliu@gmail.com',
-      twitter: 'xcatliu',
-      v2ex: 'xcatliu',
-      zhihu: 'xcatliu'
-    }
-  }
-};
-```
-
-在上面的例子中，`root` 表示存储博客文章的根目录，它的默认值是 `/posts/`，表示所有 `${srcDir}/posts/` 目录下的页面（除了 `README.md` 之外）都会被识别为博客文章。注意，它的值应当总是以斜杠开始，并以斜杠结束。
+博客的配置较复杂，请参考[博客](./blog.md)章节。
 
 ### `i18n`
 
-- 类型：较复杂，见示例
-- 支持的主题：`docs`
-- 依赖的插件：`i18n`
-
-国际化的配置，示例如下：
-
-```ts
-export default {
-  i18n: {
-    languages: [
-      { code: 'en', name: 'English', root: '/' },
-      { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' }
-    ],
-    overrides: {
-      'zh-CN': {
-        sidebar: {
-          '/zh-CN/docs/': [
-            'zh-CN/docs/introduction.md',
-            'zh-CN/docs/usage.md',
-            'zh-CN/docs/config.md',
-            'zh-CN/docs/content.md',
-            'zh-CN/docs/layout.md',
-            'zh-CN/docs/themes.md',
-            'zh-CN/docs/plugins.md',
-            'zh-CN/docs/blog.md',
-            'zh-CN/docs/i18n.md',
-            'zh-CN/docs/deployment.md',
-            'zh-CN/docs/demos.md',
-            'zh-CN/docs/limitations.md'
-          ]
-        },
-        blog: {
-          root: '/zh-CN/blog/'
-        }
-      }
-    },
-    resources: {
-      'zh-CN': {
-        translation: {
-          'A static site generator powered by Deno + React': 'Deno + React 驱动的静态网站生成器',
-          'Get Started': '开始使用',
-          Demos: '示例网站',
-          'Render <1>md/tsx</1> to static HTML page': '支持将 <1>md/tsx</1> 文件渲染成静态页面'
-        }
-      }
-    }
-  }
-};
-```
-
-#### `i18n.language`
-
-`i18n.language` 表示你的网站支持的语言列表数组，数组的每一项都需要符合 `{ code:string, name:string, root:string }` 的格式，其中：
-
-- `code` 是该语言的 _ISO Language Code_，可以参考[这个网站](http://www.lingoes.net/en/translator/langcode.htm)来设置
-- `name` 是该语言展示在语言切换组件中的选项
-- `root` 是该语言所在的根目录，它的值应当总是以斜杠开始，并以斜杠结束
-
-注意，`i18n.language` 的第一项是网站的默认语言，它的 `root` 必须是 `/`。
-
-#### `i18n.overrides`
-
-`i18n.overrides` 是一个特殊的配置项，它可以允许特定语言下覆盖 `pagic.config.ts` 中的字段，它的类型是 `Record<string, PagicConfig>`，其中键必须是 `i18n.language` 中的 `code` 字段，值的类型是整个 `pagic.config.ts` 的类型。当访问该语言的页面时，读取的 `pagic.config` 会是合并后的结果。
-
-#### `i18n.resources`
-
-`i18n.resources` 描述了各语言的翻译，`tsx` 文件中使用的 `t('Get Started')` 或 `<Trans>Render <code>md/tsx</code> to static HTML page</Trans>` 将会使用这里配置的翻译资源。`t()` 和 `<Trans>` 的具体语法请参考 [react-i18next](https://react.i18next.com/getting-started#simple-content)。
+国际化的配置较复杂，请参考[国际化](./i18n.md)章节。
 
 ## 命令行选项
 

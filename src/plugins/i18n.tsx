@@ -24,12 +24,12 @@ const i18n: PagicPlugin = {
 
       const config = {
         ...pagic.config,
-        ...pagic.config.i18n.overrides?.[language.code]
+        ...pagic.config.i18n.overrides?.[language.code],
       };
 
       const layoutPath = findNearestLayoutPath(
         `/${pagePath}`.replace(new RegExp(`^${language.root}`), ''),
-        pagic.layoutPaths
+        pagic.layoutPaths,
       );
 
       pagic.pagePropsMap[pagePath] = {
@@ -42,7 +42,7 @@ const i18n: PagicPlugin = {
             {pageProps.head}
             <script type="module" src={`${pagic.config.root}i18n.js`} />
           </>
-        )
+        ),
       };
     }
 
@@ -50,19 +50,19 @@ const i18n: PagicPlugin = {
       await i18next.init(
         {
           interpolation: {
-            escapeValue: false // not needed for react as it escapes by default
+            escapeValue: false, // not needed for react as it escapes by default
           },
           // https://stackoverflow.com/a/44799437/2777142
           keySeparator: false,
-          ...pagic.config.i18n
+          ...pagic.config.i18n,
         },
-        () => {}
+        () => {},
       );
 
       const i18nScriptDest = path.resolve(pagic.config.outDir, 'i18n.js');
       await copyPagicFile('src/plugins/i18n_script.js', i18nScriptDest);
     }
-  }
+  },
 };
 
 export const t = (input: string) => {

@@ -17,7 +17,7 @@ const Posts: PagicLayout = (props) => {
                 <div
                   className="main_posts_cover"
                   style={{
-                    backgroundImage: `url("${cover}")`
+                    backgroundImage: `url("${cover}")`,
                   }}
                 />
               )}

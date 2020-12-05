@@ -64,7 +64,7 @@ export const logger = {
   },
   success: (first: string, ...args: string[]) => {
     console.log(colors.green('[Pagic]'), colors.green(first), ...args);
-  }
+  },
 };
 // #endregion
 

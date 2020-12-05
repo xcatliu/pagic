@@ -20,7 +20,7 @@ const MEDIA_TYPES: Record<string, string> = {
   '.css': 'text/css',
   '.wasm': 'application/wasm',
   '.mjs': 'application/javascript',
-  '.svg': 'image/svg+xml'
+  '.svg': 'image/svg+xml',
 };
 /** Returns the content-type based on the extension of a path. */
 function contentType(path: string): string | undefined {
@@ -41,7 +41,7 @@ async function serveFile(req: server.ServerRequest, filePath: string): Promise<s
   return {
     status: 200,
     body: file,
-    headers
+    headers,
   };
 }
 
@@ -49,12 +49,12 @@ function serveFallback(req: server.ServerRequest, e: Error): Promise<server.Resp
   if (e instanceof Deno.errors.NotFound) {
     return Promise.resolve({
       status: 404,
-      body: encoder.encode('Not found')
+      body: encoder.encode('Not found'),
     });
   } else {
     return Promise.resolve({
       status: 500,
-      body: encoder.encode('Internal server error')
+      body: encoder.encode('Internal server error'),
     });
   }
 }
@@ -67,7 +67,7 @@ interface ServeOptions {
 const defaultServeOptions: Required<ServeOptions> = {
   serveDir: 'dist',
   root: '/',
-  port: 8000
+  port: 8000,
 };
 
 /** Serve dir as static server */
@@ -109,7 +109,7 @@ export function serve(options?: ServeOptions) {
 // https://github.com/denoland/deno/issues/5060
 export function listenAndServe(
   addr: string | server.HTTPOptions,
-  handler: (req: server.ServerRequest) => void
+  handler: (req: server.ServerRequest) => void,
 ): server.Server {
   const serverInstance = server.serve(addr);
 

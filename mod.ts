@@ -15,9 +15,9 @@ import { Confirm } from 'https://deno.land/x/cliffy@v0.15.0/prompt/confirm.ts';
 if (import.meta.main) {
   const build = new Command()
     .description('Build a static website')
-    .option('--watch [watch:boolean]', 'Watch file changes to rebuild', { default: false })
-    .option('--serve [serve:boolean]', 'Start local service, preview static website', { default: false })
-    .option('--port <port:number>', 'Specify the local port of the service', { default: 8000 })
+    .option('--watch [watch:boolean]', 'Watch file changes to rebuild')
+    .option('--serve [serve:boolean]', 'Start local service, preview static website')
+    .option('--port <port:number>', 'Specify the local port of the service')
     .action((options: any) => {
       const pagic = new Pagic(options);
       pagic.build();
@@ -29,8 +29,8 @@ if (import.meta.main) {
       options: [
         { name: 'site', value: 'site' },
         { name: 'theme', value: 'theme' },
-        { name: 'plugin', value: 'plugin' }
-      ]
+        { name: 'plugin', value: 'plugin' },
+      ],
     });
 
     const pagic = new Pagic();

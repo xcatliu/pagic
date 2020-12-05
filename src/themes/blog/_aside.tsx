@@ -12,24 +12,24 @@ const SOCIAL_MAP: Record<
 > = {
   github: {
     icon: 'czs-github-logo',
-    linkPrefix: 'https://github.com/'
+    linkPrefix: 'https://github.com/',
   },
   email: {
     icon: 'czs-message-l',
-    linkPrefix: 'mailto:'
+    linkPrefix: 'mailto:',
   },
   twitter: {
     icon: 'czs-twitter',
-    linkPrefix: 'https://twitter.com/'
+    linkPrefix: 'https://twitter.com/',
   },
   v2ex: {
     icon: 'czs-v2ex',
-    linkPrefix: 'https://v2ex.com/member/'
+    linkPrefix: 'https://v2ex.com/member/',
   },
   zhihu: {
     icon: 'czs-zhihu',
-    linkPrefix: 'https://www.zhihu.com/people/'
-  }
+    linkPrefix: 'https://www.zhihu.com/people/',
+  },
 };
 
 const Aside: PagicLayout<{
@@ -111,7 +111,8 @@ const Aside: PagicLayout<{
             <li key={link}>
               <a
                 className={classnames('flex_center', {
-                  active: outputPath === 'index.html' ? link === '/' : link !== '/' && `/${outputPath}`.startsWith(link)
+                  active:
+                    outputPath === 'index.html' ? link === '/' : link !== '/' && `/${outputPath}`.startsWith(link),
                 })}
                 href={link}
                 target={target}

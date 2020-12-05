@@ -4,7 +4,7 @@ const now = new Date();
 
 /** Get and parse messages from git log */
 export async function getGitLog(
-  pagePath: string
+  pagePath: string,
 ): Promise<{
   date: Date;
   updated: Date | null;
@@ -17,7 +17,7 @@ export async function getGitLog(
     // https://stackoverflow.com/a/36561814/2777142
     cmd: ['git', 'log', '--follow', '--format=%an', '--', pagePath],
     stdout: 'piped',
-    stderr: 'piped'
+    stderr: 'piped',
   });
   const gitLogAuthorOutput = await gitLogAuthorProcess.output(); // "piped" must be set
   const gitLogAuthor = new TextDecoder().decode(gitLogAuthorOutput).trim();
@@ -37,7 +37,7 @@ export async function getGitLog(
     // https://stackoverflow.com/a/36561814/2777142
     cmd: ['git', 'log', '--follow', '--format=%ad', '--', pagePath],
     stdout: 'piped',
-    stderr: 'piped'
+    stderr: 'piped',
   });
   const gitLogDateOutput = await gitLogDateProcess.output(); // "piped" must be set
   const gitLogDate = new TextDecoder().decode(gitLogDateOutput).trim();
@@ -68,7 +68,7 @@ export async function getGitBranch() {
     // https://stackoverflow.com/a/36561814/2777142
     cmd: ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
     stdout: 'piped',
-    stderr: 'piped'
+    stderr: 'piped',
   });
   const gitBranchOutput = await gitBranchProcess.output(); // "piped" must be set
   const gitBranch = new TextDecoder().decode(gitBranchOutput).trim();

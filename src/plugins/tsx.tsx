@@ -10,7 +10,7 @@ const tsx: PagicPlugin = {
       let pageProps = pagic.pagePropsMap[pagePath];
       const fullPagePath = path.resolve(pagic.config.srcDir, pagePath);
       const { default: ContentComponent, frontMatter } = await import_(fullPagePath, {
-        reload: true
+        reload: true,
       });
 
       Object.assign(pageProps, frontMatter);
@@ -18,7 +18,7 @@ const tsx: PagicPlugin = {
 
       pagic.pagePropsMap[pagePath] = pageProps;
     }
-  }
+  },
 };
 
 export default tsx;

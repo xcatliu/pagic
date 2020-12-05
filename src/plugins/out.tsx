@@ -49,7 +49,7 @@ const out: PagicPlugin = {
       const fullFilePath = path.resolve(pagic.config.outDir, filePath);
       await ensureDirAndWriteTextFile(fullFilePath, content);
     }
-  }
+  },
 };
 
 export default out;

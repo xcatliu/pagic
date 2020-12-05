@@ -7,7 +7,7 @@ import {
   compilePagicFile,
   replaceExt,
   pascalToUnderline,
-  pick
+  pick,
 } from '../utils/mod.ts';
 import type { PagicPlugin } from '../Pagic.ts';
 // eslint-disable-next-line no-duplicate-imports
@@ -43,7 +43,7 @@ const script: PagicPlugin = {
                 importComponentList.projectConfig = `${pagic.config.root}pagic.config.js`;
                 return `config: { ${JSON.stringify(pick(Pagic.defaultConfig, ['root'])).slice(
                   1,
-                  -1
+                  -1,
                 )}, ...projectConfig${
                   pageProps.language?.code ? `, ...projectConfig.i18n?.overrides?.['${pageProps.language?.code}']` : ''
                 } }`;
@@ -103,7 +103,7 @@ const script: PagicPlugin = {
       const scriptIndexDest = path.resolve(pagic.config.outDir, 'index.js');
       await copyPagicFile('src/plugins/script_index.js', scriptIndexDest);
     }
-  }
+  },
 };
 
 export default script;

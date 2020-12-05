@@ -119,35 +119,35 @@ export default Layout;
 
 请参考下面的表格：
 
-| 属性           | 类型                      | 描述                                                                               |
-| -------------- | ------------------------- | ---------------------------------------------------------------------------------- |
-| `title`        | `string`                  | 页面的标题，一般会放到 `<head><title>` 中                                          |
-| `content`      | `ReactElement`            | 页面的内容，一般会放到 `<body>` 中                                                 |
-| `contentTitle` | `ReactElement`            | `content` 中的标题，和 `contentBody` 配合使用可以在标题和正文之间插入内容          |
-| `contentBody`  | `ReactElement`            | `content` 中的正文，和 `contentTitle` 配合使用可以在标题和正文之间插入内容         |
-| `toc`          | `ReactElement`            | 页面的目录（Table of Content）                                                     |
-| `author`       | `string`                  | 该文件的第一个提交者                                                               |
-| `contributors` | `string[]`                | 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面） |
-| `date`         | `Date`                    | 该文件第一次提交时的日期                                                           |
-| `updated`      | `Date`                    | 该文件最后一次提交的日期                                                           |
-| `excerpt`      | `string`                  | 文章的摘要，默认为文章的前 210 个字符                                              |
-| `cover`        | `string`                  | 文章的头图（第一张图片）                                                           |
-| `tags`         | `string[]`                | 文章的标签                                                                         |
-| `categories`   | `string[]`                | 文章的分类                                                                         |
-| `config`       | `PagicConfig`             | Pagic _运行时_<sup><a href="#sup-1">[1]</a></sup>的配置                            |
-| `pagePath`     | `string`                  | 页面路径，如 `docs/README.md`                                                      |
-| `layoutPath`   | `string`                  | 页面的模版路径，如 `docs/_layout.tsx`                                              |
-| `outputPath`   | `string`                  | 页面的输出路径，如 `docs/index.html`                                               |
-| `head`         | `ReactElement`            | 需要插入到 `<head>` 标签中的内容                                                   |
-| `script`       | `ReactElement`            | 由 `script` 插件生成的 `ReactElement`                                              |
-| `loading`      | `boolean`                 | 页面是否在加载中                                                                   |
-| `sidebar`      | `PagePropsSidebar`        | 经 `sidebar` 插件解析后的对象                                                      |
-| `prev`         | `PagePropsSidebar[0]`     | 上一页的详细信息                                                                   |
-| `next`         | `PagePropsSidebar[0]`     | 下一页的详细信息                                                                   |
-| `gitalk`       | `ReactElement`            | 由 `gitalk` 插件生成的 `ReactElement`                                              |
-| `blog`         | 见[博客](./blog.md)章节   | 当前页面的博客信息                                                                 |
-| `language`     | 见[国际化](./i18n.md)章节 | 当前页面的语言                                                                     |
-| 其他           | `any`                     | 第三方插件也可能扩充 `props`                                                       |
+| 属性           | 类型                            | 描述                                                                               |
+| -------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
+| `title`        | `string`                        | 页面的标题，一般会放到 `<head><title>` 中                                          |
+| `content`      | `ReactElement`                  | 页面的内容，一般会放到 `<body>` 中                                                 |
+| `contentTitle` | `ReactElement`                  | `content` 中的标题，和 `contentBody` 配合使用可以在标题和正文之间插入内容          |
+| `contentBody`  | `ReactElement`                  | `content` 中的正文，和 `contentTitle` 配合使用可以在标题和正文之间插入内容         |
+| `toc`          | `ReactElement`                  | 页面的目录（Table of Content）                                                     |
+| `author`       | `string`                        | 该文件的第一个提交者                                                               |
+| `contributors` | `string[]`                      | 该文件的所有提交者（包括第一个提交者），以第一次提交的时间排序（先提交的排在前面） |
+| `date`         | `Date`                          | 该文件第一次提交时的日期                                                           |
+| `updated`      | `Date`                          | 该文件最后一次提交的日期                                                           |
+| `excerpt`      | `string`                        | 文章的摘要，默认为文章的前 210 个字符                                              |
+| `cover`        | `string`                        | 文章的头图（第一张图片）                                                           |
+| `tags`         | `string[]`                      | 文章的标签                                                                         |
+| `categories`   | `string[]`                      | 文章的分类                                                                         |
+| `config`       | `PagicConfig`                   | Pagic _运行时_<sup><a href="#sup-1">[1]</a></sup>的配置                            |
+| `pagePath`     | `string`                        | 页面路径，如 `docs/README.md`                                                      |
+| `layoutPath`   | `string`                        | 页面的模版路径，如 `docs/_layout.tsx`                                              |
+| `outputPath`   | `string`                        | 页面的输出路径，如 `docs/index.html`                                               |
+| `head`         | `ReactElement`                  | 需要插入到 `<head>` 标签中的内容                                                   |
+| `script`       | `ReactElement`                  | 由 `script` 插件生成的 `ReactElement`                                              |
+| `loading`      | `boolean`                       | 页面是否在加载中                                                                   |
+| `sidebar`      | `PagePropsSidebar`              | 经 `sidebar` 插件解析后的对象                                                      |
+| `prev`         | `PagePropsSidebar[0]`           | 上一页的详细信息                                                                   |
+| `next`         | `PagePropsSidebar[0]`           | 下一页的详细信息                                                                   |
+| `gitalk`       | `ReactElement`                  | 由 `gitalk` 插件生成的 `ReactElement`                                              |
+| `blog`         | 见[博客](./blog.md#props)章节   | 当前页面的博客信息                                                                 |
+| `language`     | 见[国际化](./i18n.md#props)章节 | 当前页面的语言                                                                     |
+| 其他           | `any`                           | 第三方插件也可能扩充 `props`                                                       |
 
 ## 静态资源
 

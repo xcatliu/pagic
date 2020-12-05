@@ -13,7 +13,7 @@ const clean: PagicPlugin = {
     } else {
       logger.success('Clean', 'skipped');
     }
-  }
+  },
 };
 
 export default clean;

@@ -22,8 +22,8 @@ Deno.test('[out] content is null', async () => {
       title: '',
       content: null,
       head: null,
-      script: null
-    }
+      script: null,
+    },
   };
   asserts.assertThrowsAsync(() => out.fn(pagic), Error, 'content is null');
 });
@@ -50,15 +50,15 @@ Deno.test('[out] helmet', async () => {
         </html>
       ),
       head: null,
-      script: null
-    }
+      script: null,
+    },
   };
 
   await out.fn(pagic);
   const destContent = await Deno.readTextFile('test/fixtures/test_out_dir/helmet.html');
   asserts.assertEquals(
     destContent,
-    '<!doctype html><html data-reactroot=""><head>\n<meta data-react-helmet="true" charset="utf-8"/>\n<title data-react-helmet="true"></title>\n</head></html>'
+    '<!doctype html><html data-reactroot=""><head>\n<meta data-react-helmet="true" charset="utf-8"/>\n<title data-react-helmet="true"></title>\n</head></html>',
   );
 });
 
@@ -77,7 +77,7 @@ Deno.test('[out] writeFiles', async () => {
   const pagic = new Pagic();
   pagic.config.outDir = 'test/fixtures/test_out_dir';
   pagic.writeFiles = {
-    'write_file.js': "console.log('write_file');\n"
+    'write_file.js': "console.log('write_file');\n",
   };
 
   await out.fn(pagic);

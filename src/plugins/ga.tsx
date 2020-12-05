@@ -21,14 +21,14 @@ const ga: PagicPlugin = {
             <Ga {...pagic.config.ga} />
             {pageProps.head}
           </>
-        )
+        ),
       };
     }
 
     if (pagic.rebuilding) {
       pagic.writeFiles['_ga.js'] = await compilePagicFile('src/plugins/ga_component.tsx');
     }
-  }
+  },
 };
 
 export default ga;

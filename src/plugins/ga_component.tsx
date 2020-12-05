@@ -26,7 +26,7 @@ const Ga = ({ id }: GaProps) => {
             window.GoogleAnalyticsObject="ga";(window.ga=window.ga||function(){(window.ga.q=window.ga.q||[]).push(arguments);}),(window.ga.l=1*new Date());
 
             ga('create', '${id}', 'auto');
-            ga('send', 'pageview');`
+            ga('send', 'pageview');`,
         }}
       />
     </>

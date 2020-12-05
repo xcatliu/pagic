@@ -16,12 +16,12 @@ Deno.test('[layout]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null
-    }
+      script: null,
+    },
   };
   await layout.fn(pagic);
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagic.pagePropsMap['README.md'].content!),
-    '<html data-reactroot=""><head><title></title></head><body></body></html>'
+    '<html data-reactroot=""><head><title></title></head><body></body></html>',
   );
 });

@@ -20,8 +20,8 @@ Deno.test('[ga]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null
-    }
+      script: null,
+    },
   };
 
   await ga.fn(pagic);

@@ -12,7 +12,7 @@ Pagic 拥有官方的 default, docs, blog 等主题，在 `pagic.config.ts` 中�
 
 ```ts
 export default {
-  theme: 'default'
+  theme: 'default',
 };
 ```
 
@@ -22,7 +22,7 @@ export default {
 
 ```ts
 export default {
-  theme: 'https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts'
+  theme: 'https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts',
 };
 ```
 
@@ -67,9 +67,9 @@ export default {
       'docs/i18n.md',
       'docs/deployment.md',
       'docs/demos.md',
-      'docs/limitations.md'
-    ]
-  }
+      'docs/limitations.md',
+    ],
+  },
 };
 ```
 
@@ -188,7 +188,7 @@ site/
 
 ```ts
 export default {
-  theme: 'https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts'
+  theme: 'https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts',
 };
 ```
 
@@ -202,8 +202,8 @@ export default {
     'assets/reset.css',
     'assets/variables.css',
     '_layout.tsx',
-    'favicon.ico'
-  ]
+    'favicon.ico',
+  ],
 };
 ```
 

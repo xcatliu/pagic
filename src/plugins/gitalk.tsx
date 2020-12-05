@@ -16,14 +16,14 @@ const gitalk: PagicPlugin = {
 
       pagic.pagePropsMap[pagePath] = {
         ...pageProps,
-        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />
+        gitalk: <Gitalk {...pagic.config.gitalk} id={pageProps.outputPath} title={pageProps.title} />,
       };
     }
 
     if (pagic.rebuilding) {
       pagic.writeFiles['_gitalk.js'] = await compilePagicFile('src/plugins/gitalk_component.tsx');
     }
-  }
+  },
 };
 
 export default gitalk;

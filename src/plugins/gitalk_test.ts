@@ -15,7 +15,7 @@ Deno.test('[gitalk]', async () => {
     repo: 'typescript-tutorial',
     owner: 'xcatliu',
     admin: ['xcatliu'],
-    pagerDirection: 'first'
+    pagerDirection: 'first',
   };
   pagic.pagePaths = ['README.md'];
   pagic.pagePropsMap = {
@@ -27,15 +27,15 @@ Deno.test('[gitalk]', async () => {
       title: '',
       content: null,
       head: null,
-      script: null
-    }
+      script: null,
+    },
   };
 
   await gitalk.fn(pagic);
   asserts.assertEquals(pagic.pagePropsMap['README.md'].gitalk?.props, {
     ...pagic.config.gitalk,
     id: 'index.html',
-    title: ''
+    title: '',
   });
   asserts.assert(pagic.writeFiles['_gitalk.js'].startsWith('const Gitalk = (props) => {'));
 });
