@@ -4,7 +4,7 @@ import type { PagicLayout } from '../../Pagic.ts';
 
 const Footer: PagicLayout = () => (
   <footer>
-    Powered by{' '}
+    Powered by&nbsp;
     <a href="https://github.com/xcatliu/pagic" target="_blank">
       Pagic
     </a>

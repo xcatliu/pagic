@@ -30,7 +30,7 @@ const Layout: PagicLayout = ({ config, title, outputPath, content, head, script 
       )}
       {content}
       <footer>
-        Powered by{' '}
+        Powered by&nbsp;
         <a href="https://github.com/xcatliu/pagic" target="_blank">
           Pagic
         </a>
