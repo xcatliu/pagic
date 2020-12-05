@@ -110,7 +110,7 @@
   <span class="token comment">// <a class="token url-link" href="https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package">https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package</a></span>
   <span class="token string">'**/config.gypi'</span><span class="token punctuation">,</span>
   <span class="token string">'**/CVS'</span><span class="token punctuation">,</span>
-  <span class="token string">'**/npm-debug.log'</span>
+  <span class="token string">'**/npm-debug.log'</span><span class="token punctuation">,</span>
 
   <span class="token comment">// ${config.outDir} will be added later</span>
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -142,7 +142,7 @@
 <p>At this time, the configuration of <code>pagic.config.ts</code> is very simple:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'src'</span><span class="token punctuation">,</span>
-  outDir<span class="token operator">:</span> <span class="token string">'dist'</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files<a class="anchor" href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">§</a></h3>
@@ -165,14 +165,14 @@
 <p>At this time, the configuration of <code>pagic.config.ts</code> is also very simple:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
-  outDir<span class="token operator">:</span> <span class="token string">'dist'</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Note that if there are files that need to be excluded, you can use <code>exclude</code> to exclude them, for example:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
   outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
-  exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'examples'</span><span class="token punctuation">]</span>
+  exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'examples'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="scene-3-project--website">Scene 3: Project + Website<a class="anchor" href="#scene-3-project--website">§</a></h3>
@@ -186,7 +186,7 @@
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
   outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
-  include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'README.md'</span><span class="token punctuation">]</span>
+  include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'README.md'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="plugin">Plugin<a class="anchor" href="#plugin">§</a></h2>
@@ -221,7 +221,7 @@
   <span class="token comment">// The design of fn refers to Deno <a class="token url-link" href="https://deno.land/manual/testing#writing-tests">https://deno.land/manual/testing#writing-tests</a></span>
   <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token comment">// balabala</span>
-  <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p><code>name</code> is the unique identifier of the plugin, and it will be used to sort the plugins in <code>insert</code>.</p>
@@ -264,7 +264,7 @@
 <p>Why does the theme need an entry file?</p>
 <p>Because in Deno’s design, module are based on urls. Imagine a URL represents a theme. We can’t use <code>fs.readdir</code> to find all files in this theme directory like node, so there must be an entry file to indicate which files are included in this topic:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'assets/index.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span> <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span> <span class="token string">'favicon.ico'</span><span class="token punctuation">]</span>
+  files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'assets/index.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span> <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span> <span class="token string">'favicon.ico'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Among them, <code>files</code> means files that need to be &quot;copied&quot; to <code>srcDir</code>.</p>
@@ -372,4 +372,4 @@
 <td>Specify the port of the local service.</td>
 </tr>
 </tbody>
-</table></div></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#design-principles">Design principles</a></li><li><a href="#naming-convention">Naming convention</a><ol><li><a href="#file-name-and-directory-name">File name and directory name</a></li><li><a href="#variables-and-parameters">Variables and parameters</a></li><li><a href="#config-file-name">Config file name</a></li></ol></li><li><a href="#file-related-configuration">File related configuration</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#scenario-1-pure-website-separate-directory-to-store-source-files">Scenario 1: Pure website, separate directory to store source files</a></li><li><a href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files</a></li><li><a href="#scene-3-project--website">Scene 3: Project + Website</a></li><li><a href="#scene-4-only-show-readmemd">Scene 4: Only show README.md</a></li></ol></li><li><a href="#plugin">Plugin</a></li><li><a href="#themes">Themes</a></li><li><a href="#website-configuration">Website configuration</a></li><li><a href="#development-environment-config">Development environment config</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</table></div></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#design-principles">Design principles</a></li><li><a href="#naming-convention">Naming convention</a><ol><li><a href="#file-name-and-directory-name">File name and directory name</a></li><li><a href="#variables-and-parameters">Variables and parameters</a></li><li><a href="#config-file-name">Config file name</a></li></ol></li><li><a href="#file-related-configuration">File related configuration</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#scenario-1-pure-website-separate-directory-to-store-source-files">Scenario 1: Pure website, separate directory to store source files</a></li><li><a href="#scenario-2-pure-website-the-root-directory-stores-the-source-files">Scenario 2: Pure website, the root directory stores the source files</a></li><li><a href="#scene-3-project--website">Scene 3: Project + Website</a></li><li><a href="#scene-4-only-show-readmemd">Scene 4: Only show README.md</a></li></ol></li><li><a href="#plugin">Plugin</a></li><li><a href="#themes">Themes</a></li><li><a href="#website-configuration">Website configuration</a></li><li><a href="#development-environment-config">Development environment config</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

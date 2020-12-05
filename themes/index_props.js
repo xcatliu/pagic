@@ -8,7 +8,7 @@ export default {
     'outputPath': "themes/index.html",
     'title': "Themes",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>Themes</h1>'
+            __html: '<h1>Themes</h1>\n<h2 id="official-themes">Official themes<a class="anchor" href="#official-themes">§</a></h2>\n<h3 id="default"><code>default</code><a class="anchor" href="#default">§</a></h3>\n<p>The default theme, demos:</p>\n<ul>\n<li><a href="https://xcatliu.com/">https://xcatliu.com/</a> (<a href="https://github.com/xcatliu/xcatliu/">GitHub</a>)</li>\n</ul>\n<h3 id="docs"><code>docs</code><a class="anchor" href="#docs">§</a></h3>\n<p>The theme used to write documents or e-book, demos:</p>\n<ul>\n<li>This site itself (<a href="https://github.com/xcatliu/pagic/">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n</ul>\n<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>\n<p>Official blog theme, demos:</p>\n<ul>\n<li><a href="https://blog.xcatliu.com/">Xcatliu\'s Blog</a> (<a href="https://github.com/xcatliu/blog">GitHub</a>)</li>\n</ul>\n<h2 id="third-party-themes">Third-party themes<a class="anchor" href="#third-party-themes">§</a></h2>\n<p>Stay tuned.</p>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-45256157-16" }),
@@ -27,16 +27,18 @@ export default {
     },
     'contentTitle': React.createElement("h1", { key: "0" }, "Themes"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: ''
+            __html: '<h2 id="official-themes">Official themes<a class="anchor" href="#official-themes">§</a></h2>\n<h3 id="default"><code>default</code><a class="anchor" href="#default">§</a></h3>\n<p>The default theme, demos:</p>\n<ul>\n<li><a href="https://xcatliu.com/">https://xcatliu.com/</a> (<a href="https://github.com/xcatliu/xcatliu/">GitHub</a>)</li>\n</ul>\n<h3 id="docs"><code>docs</code><a class="anchor" href="#docs">§</a></h3>\n<p>The theme used to write documents or e-book, demos:</p>\n<ul>\n<li>This site itself (<a href="https://github.com/xcatliu/pagic/">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n</ul>\n<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>\n<p>Official blog theme, demos:</p>\n<ul>\n<li><a href="https://blog.xcatliu.com/">Xcatliu\'s Blog</a> (<a href="https://github.com/xcatliu/blog">GitHub</a>)</li>\n</ul>\n<h2 id="third-party-themes">Third-party themes<a class="anchor" href="#third-party-themes">§</a></h2>\n<p>Stay tuned.</p>'
         } }),
-    'toc': null,
+    'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
+            __html: '<nav class="toc"><ol><li><a href="#official-themes">Official themes</a><ol><li><a href="#default">default</a></li><li><a href="#docs">docs</a></li><li><a href="#blog">blog</a></li></ol></li><li><a href="#third-party-themes">Third-party themes</a></li></ol></nav>'
+        } }),
     'author': "xcatliu",
     'contributors': [
         "xcatliu"
     ],
     'date': "2020-07-19T14:12:09.000Z",
-    'updated': "2020-10-12T13:36:11.000Z",
-    'excerpt': "",
+    'updated': "2020-12-05T13:42:50.000Z",
+    'excerpt': "Official themes default The default theme, demos: - https://xcatliu.com/ (GitHub) docs The theme used to write documents or e-book, demos: - This site itself (GitHub) - TypeScript 入门教程 (GitHub) blog Officia...",
     'cover': undefined,
     'blog': {
         "isPost": false,
@@ -46,7 +48,7 @@ export default {
                 "title": "Design pagic.config.ts",
                 "link": "blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": "2020-12-04T11:36:44.000Z",
+                "updated": "2020-12-05T13:42:50.000Z",
                 "author": "xcatliu",
                 "contributors": [
                     "xcatliu"
@@ -54,7 +56,7 @@ export default {
                 "excerpt": "As a senior blogger, I am passionate about to develop blog systems and have written many blog themes. Finally, I couldn't be satisfied with writing themes, and I started writing a blog system. Or in a more gene..."
             }
         ],
-        "tags": [],
-        "categories": []
+        "categories": [],
+        "tags": []
     }
 };

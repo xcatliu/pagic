@@ -72,25 +72,25 @@ const IndexPage = ({ config, language }) => {
                     marginTop: '3.5rem',
                     textAlign: 'center',
                     fontSize: '64px',
-                    color: 'hsl(210, 70%, 50%)'
+                    color: 'hsl(210, 70%, 50%)',
                 } },
                 React.createElement("img", { alt: "P", src: "/assets/pagic_logo.png", style: {
                         width: 128,
                         verticalAlign: 'bottom',
                         margin: -16,
-                        opacity: 1
+                        opacity: 1,
                     } }),
                 "agic"),
             React.createElement("p", { style: {
                     fontSize: '28px',
                     marginTop: '2rem',
                     textAlign: 'center',
-                    color: 'var(--color-text-muted)'
+                    color: 'var(--color-text-muted)',
                 } }, t('A static site generator powered by Deno + React')),
             React.createElement("div", { style: {
                     display: 'flex',
                     justifyContent: 'center',
-                    marginTop: '2rem'
+                    marginTop: '2rem',
                 } },
                 React.createElement("a", { className: "btn btn-primary", href: `${config.root}${(_a = language === null || language === void 0 ? void 0 : language.root.slice(1)) !== null && _a !== void 0 ? _a : ''}docs/introduction.html` }, t('Get Started')),
                 React.createElement("a", { className: "btn", href: `${config.root}${(_b = language === null || language === void 0 ? void 0 : language.root.slice(1)) !== null && _b !== void 0 ? _b : ''}docs/demos.html` }, t('Demos')))),
@@ -122,7 +122,7 @@ const IndexPage = ({ config, language }) => {
                     React.createElement("li", null, t('Import third-party themes or plugins through URL'))))),
         React.createElement("h2", null, t('Get up and running in seconds')),
         React.createElement("pre", { style: {
-                fontSize: '1rem'
+                fontSize: '1rem',
             } },
             React.createElement("code", { dangerouslySetInnerHTML: {
                     __html: `# ${t('Install pagic')}
@@ -132,7 +132,7 @@ deno install --unstable --allow-read --allow-write --allow-net --allow-run --nam
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
 
 # ${t('Run pagic')}
-pagic build --watch --serve`
+pagic build --watch --serve`,
                 } }))));
 };
 export default IndexPage;

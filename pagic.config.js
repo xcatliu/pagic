@@ -15,24 +15,24 @@ export default {
     nav: [
         {
             text: 'Docs',
-            link: '/docs/introduction.html'
+            link: '/docs/introduction.html',
         },
         {
             text: 'Themes',
-            link: '/themes/'
+            link: '/themes/',
         },
         {
             text: 'Plugins',
-            link: '/plugins/'
+            link: '/plugins/',
         },
         {
             text: 'Blog',
-            link: '/blog/'
+            link: '/blog/',
         },
         {
             text: 'About',
-            link: '/about/'
-        }
+            link: '/about/',
+        },
     ],
     sidebar: {
         '/docs/': [
@@ -47,43 +47,43 @@ export default {
             'docs/i18n.md',
             'docs/deployment.md',
             'docs/demos.md',
-            'docs/limitations.md'
-        ]
+            'docs/limitations.md',
+        ],
     },
     ga: {
-        id: 'UA-45256157-16'
+        id: 'UA-45256157-16',
     },
     blog: {
-        root: '/blog/'
+        root: '/blog/',
     },
     i18n: {
         languages: [
             { code: 'en', name: 'English', root: '/' },
-            { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' }
+            { code: 'zh-CN', name: '简体中文', root: '/zh-CN/' },
         ],
         overrides: {
             'zh-CN': {
                 nav: [
                     {
                         text: '文档',
-                        link: '/zh-CN/docs/introduction.html'
+                        link: '/zh-CN/docs/introduction.html',
                     },
                     {
                         text: '主题',
-                        link: '/zh-CN/themes/'
+                        link: '/zh-CN/themes/',
                     },
                     {
                         text: '插件',
-                        link: '/zh-CN/plugins/'
+                        link: '/zh-CN/plugins/',
                     },
                     {
                         text: '博客',
-                        link: '/zh-CN/blog/'
+                        link: '/zh-CN/blog/',
                     },
                     {
                         text: '关于',
-                        link: '/zh-CN/about/'
-                    }
+                        link: '/zh-CN/about/',
+                    },
                 ],
                 sidebar: {
                     '/zh-CN/docs/': [
@@ -98,13 +98,13 @@ export default {
                         'zh-CN/docs/i18n.md',
                         'zh-CN/docs/deployment.md',
                         'zh-CN/docs/demos.md',
-                        'zh-CN/docs/limitations.md'
-                    ]
+                        'zh-CN/docs/limitations.md',
+                    ],
                 },
                 blog: {
-                    root: '/zh-CN/blog/'
-                }
-            }
+                    root: '/zh-CN/blog/',
+                },
+            },
         },
         resources: {
             'zh-CN': {
@@ -127,9 +127,9 @@ export default {
                     'Get up and running in seconds': '只需几行命令，快来体验吧',
                     'Install pagic': '安装 pagic',
                     'Create pagic.config.ts and README.md': '创建 pagic.config.ts 和 README.md',
-                    'Run pagic': '运行 pagic'
-                }
-            }
-        }
-    }
+                    'Run pagic': '运行 pagic',
+                },
+            },
+        },
+    },
 };

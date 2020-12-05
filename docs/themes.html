@@ -20,13 +20,13 @@
 <h3 id="official-theme">Official theme<a class="anchor" href="#official-theme">§</a></h3>
 <p>Pagic has official themes default/docs/blog, which can be used by configuring <code>theme</code> in <code>pagic.config.ts</code>. The <code>default</code> theme will be used by default:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  theme<span class="token operator">:</span> <span class="token string">'default'</span>
+  theme<span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="third-party-theme">Third party theme<a class="anchor" href="#third-party-theme">§</a></h3>
 <p>When using a third-party theme, the value of <code>theme</code> should be a complete URL:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span>
+  theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="theme-supported-plugins">Theme supported plugins<a class="anchor" href="#theme-supported-plugins">§</a></h3>
@@ -56,9 +56,9 @@
       <span class="token string">'docs/i18n.md'</span><span class="token punctuation">,</span>
       <span class="token string">'docs/deployment.md'</span><span class="token punctuation">,</span>
       <span class="token string">'docs/demos.md'</span><span class="token punctuation">,</span>
-      <span class="token string">'docs/limitations.md'</span>
-    <span class="token punctuation">]</span>
-  <span class="token punctuation">}</span>
+      <span class="token string">'docs/limitations.md'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Then:</p>
@@ -118,7 +118,7 @@
 <h3 id="entry-file">Entry file<a class="anchor" href="#entry-file">§</a></h3>
 <p>As mentioned before, when using a third-party theme, the value of <code>theme</code> should be an entry file URL:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span>
+  theme<span class="token operator">:</span> <span class="token string">'<a class="token url-link" href="https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts">https://raw.githubusercontent.com/xcatliu/pagic_theme_custom/master/mod.ts</a>'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>A typical <code>mod.ts</code> entry file is listed below:</p>
@@ -129,8 +129,8 @@
     <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span>
     <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span>
     <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span>
-    <span class="token string">'favicon.ico'</span>
-  <span class="token punctuation">]</span>
+    <span class="token string">'favicon.ico'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This entry file contains the following information:</p>
@@ -144,4 +144,4 @@
 <p>The core file in the theme is <code>_layout.tsx</code>, and the most important thing to write <code>_layout.tsx</code> is to use its <code>props</code>.</p>
 <p>The previous chapter has introduced <code>props</code>, if you need to know all the <code>props</code>, you can directly view <a href="./layout.html#props">_layout.tsx props</a>.</p>
 <h3 id="reference-official-theme">Reference official theme<a class="anchor" href="#reference-official-theme">§</a></h3>
-<p>The best reference for developing a theme is the official theme. You can directly <a href="https://github.com/xcatliu/pagic/tree/master/src/themes">view the source code of the official theme</a>.</p></article><div class="prev_next"><a class="prev button" href="/docs/layout.html">«  <!-- -->_layout.tsx</a><a class="next button" href="/docs/plugins.html">Plugins<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#how-to-use">How to use</a><ol><li><a href="#official-theme">Official theme</a></li><li><a href="#third-party-theme">Third party theme</a></li><li><a href="#theme-supported-plugins">Theme supported plugins</a></li><li><a href="#theme-configuration">Theme configuration</a><ol></ol></li></ol></li><li><a href="#how-to-develop-a-theme">How to develop a theme</a><ol><li><a href="#theme-operating-mechanism">Theme operating mechanism</a></li><li><a href="#entry-file">Entry file</a><ol></ol></li><li><a href="#props">props</a></li><li><a href="#reference-official-theme">Reference official theme</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>The best reference for developing a theme is the official theme. You can directly <a href="https://github.com/xcatliu/pagic/tree/master/src/themes">view the source code of the official theme</a>.</p></article><div class="prev_next"><a class="prev button" href="/docs/layout.html">«  <!-- -->_layout.tsx</a><a class="next button" href="/docs/plugins.html">Plugins<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#how-to-use">How to use</a><ol><li><a href="#official-theme">Official theme</a></li><li><a href="#third-party-theme">Third party theme</a></li><li><a href="#theme-supported-plugins">Theme supported plugins</a></li><li><a href="#theme-configuration">Theme configuration</a><ol></ol></li></ol></li><li><a href="#how-to-develop-a-theme">How to develop a theme</a><ol><li><a href="#theme-operating-mechanism">Theme operating mechanism</a></li><li><a href="#entry-file">Entry file</a><ol></ol></li><li><a href="#props">props</a></li><li><a href="#reference-official-theme">Reference official theme</a></li></ol></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

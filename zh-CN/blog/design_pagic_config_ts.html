@@ -110,7 +110,7 @@
   <span class="token comment">// <a class="token url-link" href="https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package">https://docs.npmjs.com/using-npm/developers.html#keeping-files-out-of-your-package</a></span>
   <span class="token string">'**/config.gypi'</span><span class="token punctuation">,</span>
   <span class="token string">'**/CVS'</span><span class="token punctuation">,</span>
-  <span class="token string">'**/npm-debug.log'</span>
+  <span class="token string">'**/npm-debug.log'</span><span class="token punctuation">,</span>
 
   <span class="token comment">// ${config.outDir} will be added later</span>
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -142,7 +142,7 @@
 <p>此时 <code>pagic.config.ts</code> 的配置很简单：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'src'</span><span class="token punctuation">,</span>
-  outDir<span class="token operator">:</span> <span class="token string">'dist'</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="%E5%9C%BA%E6%99%AF%E4%BA%8C%E7%BA%AF%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%AD%98%E6%94%BE%E6%BA%90%E6%96%87%E4%BB%B6">场景二：纯网站，根目录存放源文件<a class="anchor" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%E7%BA%AF%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%AD%98%E6%94%BE%E6%BA%90%E6%96%87%E4%BB%B6">§</a></h3>
@@ -165,14 +165,14 @@
 <p>此时 <code>pagic.config.ts</code> 的配置也很简单：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
-  outDir<span class="token operator">:</span> <span class="token string">'dist'</span>
+  outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>注意如果有需要排除的文件，可以使用 <code>exclude</code> 排除掉，比如：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
   outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
-  exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'examples'</span><span class="token punctuation">]</span>
+  exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'examples'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="%E5%9C%BA%E6%99%AF%E4%B8%89%E9%A1%B9%E7%9B%AE--%E7%BD%91%E7%AB%99">场景三：项目 + 网站<a class="anchor" href="#%E5%9C%BA%E6%99%AF%E4%B8%89%E9%A1%B9%E7%9B%AE--%E7%BD%91%E7%AB%99">§</a></h3>
@@ -186,7 +186,7 @@
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   srcDir<span class="token operator">:</span> <span class="token string">'.'</span><span class="token punctuation">,</span>
   outDir<span class="token operator">:</span> <span class="token string">'dist'</span><span class="token punctuation">,</span>
-  include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'README.md'</span><span class="token punctuation">]</span>
+  include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'README.md'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="%E6%8F%92%E4%BB%B6">插件<a class="anchor" href="#%E6%8F%92%E4%BB%B6">§</a></h2>
@@ -221,7 +221,7 @@
   <span class="token comment">// fn 的设计参考了 Deno <a class="token url-link" href="https://deno.land/manual/testing#writing-tests">https://deno.land/manual/testing#writing-tests</a></span>
   <span class="token function-variable function">fn</span><span class="token operator">:</span> <span class="token punctuation">(</span>pagic<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token comment">// balabala</span>
-  <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p><code>name</code> 是插件的唯一标识，会被用于 <code>insert</code> 中的插件排序。</p>
@@ -264,7 +264,7 @@
 <p>为什么主题需要一个入口文件呢？</p>
 <p>因为 Deno 的设计中，模块调用是以 url 为基础的，想象一个网址表示一个主题，我们没有办法像 node 一样用 <code>fs.readdir</code> 来找到此主题目录下的所有文件，所以必须有一个入口文件来表示此主题包含了哪些文件：</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'assets/index.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span> <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span> <span class="token string">'favicon.ico'</span><span class="token punctuation">]</span>
+  files<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'assets/index.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/reset.css'</span><span class="token punctuation">,</span> <span class="token string">'assets/variables.css'</span><span class="token punctuation">,</span> <span class="token string">'_layout.tsx'</span><span class="token punctuation">,</span> <span class="token string">'favicon.ico'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>其中 <code>files</code> 表示需要被「复制」到 <code>srcDir</code> 下的文件。</p>
@@ -372,4 +372,4 @@
 <td>静态服务端口号</td>
 </tr>
 </tbody>
-</table></div></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99">设计原则</a></li><li><a href="#%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A">命名约定</a><ol><li><a href="#%E6%96%87%E4%BB%B6%E5%90%8D%E7%9B%AE%E5%BD%95%E5%90%8D">文件名、目录名</a></li><li><a href="#%E5%8F%98%E9%87%8F%E5%90%8D%E5%8F%82%E6%95%B0%E5%90%8D">变量名、参数名</a></li><li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0">配置文件名称</a></li></ol></li><li><a href="#%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E9%85%8D%E7%BD%AE">文件相关的配置</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E4%B8%80%E7%BA%AF%E7%BD%91%E7%AB%99%E7%8B%AC%E7%AB%8B%E7%9A%84%E7%9B%AE%E5%BD%95%E5%AD%98%E6%94%BE%E6%BA%90%E6%96%87%E4%BB%B6">场景一：纯网站，独立的目录存放源文件</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%E7%BA%AF%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%AD%98%E6%94%BE%E6%BA%90%E6%96%87%E4%BB%B6">场景二：纯网站，根目录存放源文件</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E4%B8%89%E9%A1%B9%E7%9B%AE--%E7%BD%91%E7%AB%99">场景三：项目 + 网站</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E5%9B%9B%E4%BB%85%E5%B1%95%E7%A4%BA-readmemd">场景四：仅展示 README.md</a></li></ol></li><li><a href="#%E6%8F%92%E4%BB%B6">插件</a></li><li><a href="#%E4%B8%BB%E9%A2%98">主题</a></li><li><a href="#%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE">网站配置</a></li><li><a href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">开发环境配置</a></li></ol></nav></aside></div></div></section><footer>Powered by<!-- --> <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</table></div></article></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99">设计原则</a></li><li><a href="#%E5%91%BD%E5%90%8D%E7%BA%A6%E5%AE%9A">命名约定</a><ol><li><a href="#%E6%96%87%E4%BB%B6%E5%90%8D%E7%9B%AE%E5%BD%95%E5%90%8D">文件名、目录名</a></li><li><a href="#%E5%8F%98%E9%87%8F%E5%90%8D%E5%8F%82%E6%95%B0%E5%90%8D">变量名、参数名</a></li><li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0">配置文件名称</a></li></ol></li><li><a href="#%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E9%85%8D%E7%BD%AE">文件相关的配置</a><ol><li><a href="#exclude">exclude</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E4%B8%80%E7%BA%AF%E7%BD%91%E7%AB%99%E7%8B%AC%E7%AB%8B%E7%9A%84%E7%9B%AE%E5%BD%95%E5%AD%98%E6%94%BE%E6%BA%90%E6%96%87%E4%BB%B6">场景一：纯网站，独立的目录存放源文件</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%E7%BA%AF%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%AD%98%E6%94%BE%E6%BA%90%E6%96%87%E4%BB%B6">场景二：纯网站，根目录存放源文件</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E4%B8%89%E9%A1%B9%E7%9B%AE--%E7%BD%91%E7%AB%99">场景三：项目 + 网站</a></li><li><a href="#%E5%9C%BA%E6%99%AF%E5%9B%9B%E4%BB%85%E5%B1%95%E7%A4%BA-readmemd">场景四：仅展示 README.md</a></li></ol></li><li><a href="#%E6%8F%92%E4%BB%B6">插件</a></li><li><a href="#%E4%B8%BB%E9%A2%98">主题</a></li><li><a href="#%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE">网站配置</a></li><li><a href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">开发环境配置</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

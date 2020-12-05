@@ -53,7 +53,7 @@ export default {
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": "2020-12-04T11:36:44.000Z",
+                "updated": "2020-12-05T13:42:50.000Z",
                 "author": "xcatliu",
                 "contributors": [
                     "xcatliu"
@@ -61,8 +61,8 @@ export default {
                 "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
         ],
-        "tags": [],
-        "categories": []
+        "categories": [],
+        "tags": []
     },
     'sidebar': [
         {

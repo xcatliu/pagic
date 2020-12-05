@@ -8,7 +8,7 @@ export default {
     'outputPath': "zh-CN/about/index.html",
     'title': "关于",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>关于</h1>'
+            __html: '<h1>关于</h1>\n<p>Pagic 是我众多开源项目中耗费最多时间精力的项目，一个看起来不经意的设计上的细节，可能是经过了很多次的尝试和取舍，才成为现在的样子。</p>\n<p>希望你会喜欢。</p>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-45256157-16" }),
@@ -27,7 +27,7 @@ export default {
     },
     'contentTitle': React.createElement("h1", { key: "0" }, "\u5173\u4E8E"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: ''
+            __html: '<p>Pagic 是我众多开源项目中耗费最多时间精力的项目，一个看起来不经意的设计上的细节，可能是经过了很多次的尝试和取舍，才成为现在的样子。</p>\n<p>希望你会喜欢。</p>'
         } }),
     'toc': null,
     'author': "xcatliu",
@@ -35,8 +35,8 @@ export default {
         "xcatliu"
     ],
     'date': "2020-07-19T14:12:09.000Z",
-    'updated': "2020-10-12T13:36:11.000Z",
-    'excerpt': "",
+    'updated': "2020-12-05T13:42:50.000Z",
+    'excerpt': "Pagic 是我众多开源项目中耗费最多时间精力的项目，一个看起来不经意的设计上的细节，可能是经过了很多次的尝试和取舍，才成为现在的样子。 希望你会喜欢。",
     'cover': undefined,
     'blog': {
         "isPost": false,
@@ -46,7 +46,7 @@ export default {
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": "2020-12-04T11:36:44.000Z",
+                "updated": "2020-12-05T13:42:50.000Z",
                 "author": "xcatliu",
                 "contributors": [
                     "xcatliu"
@@ -54,7 +54,7 @@ export default {
                 "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
         ],
-        "tags": [],
-        "categories": []
+        "categories": [],
+        "tags": []
     }
 };

@@ -8,7 +8,7 @@ export default {
     'outputPath': "zh-CN/themes/index.html",
     'title': "主题",
     'content': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: '<h1>主题</h1>'
+            __html: '<h1>主题</h1>\n<h2 id="%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题<a class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h2>\n<h3 id="default"><code>default</code><a class="anchor" href="#default">§</a></h3>\n<p>默认主题，示例网站：</p>\n<ul>\n<li><a href="https://xcatliu.com/">https://xcatliu.com/</a> (<a href="https://github.com/xcatliu/xcatliu/">GitHub</a>)</li>\n</ul>\n<h3 id="docs"><code>docs</code><a class="anchor" href="#docs">§</a></h3>\n<p>专门用来写文档或电子书的主题，示例网站：</p>\n<ul>\n<li>本网站 (<a href="https://github.com/xcatliu/pagic/">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n</ul>\n<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>\n<p>官方博客主题，示例网站：</p>\n<ul>\n<li><a href="https://blog.xcatliu.com/">流浪小猫的博客</a> (<a href="https://github.com/xcatliu/blog">GitHub</a>)</li>\n</ul>\n<h2 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h2>\n<p>敬请期待</p>'
         } }),
     'head': React.createElement(React.Fragment, null,
         React.createElement(Ga, { id: "UA-45256157-16" }),
@@ -27,16 +27,18 @@ export default {
     },
     'contentTitle': React.createElement("h1", { key: "0" }, "\u4E3B\u9898"),
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
-            __html: ''
+            __html: '<h2 id="%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题<a class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h2>\n<h3 id="default"><code>default</code><a class="anchor" href="#default">§</a></h3>\n<p>默认主题，示例网站：</p>\n<ul>\n<li><a href="https://xcatliu.com/">https://xcatliu.com/</a> (<a href="https://github.com/xcatliu/xcatliu/">GitHub</a>)</li>\n</ul>\n<h3 id="docs"><code>docs</code><a class="anchor" href="#docs">§</a></h3>\n<p>专门用来写文档或电子书的主题，示例网站：</p>\n<ul>\n<li>本网站 (<a href="https://github.com/xcatliu/pagic/">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n</ul>\n<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>\n<p>官方博客主题，示例网站：</p>\n<ul>\n<li><a href="https://blog.xcatliu.com/">流浪小猫的博客</a> (<a href="https://github.com/xcatliu/blog">GitHub</a>)</li>\n</ul>\n<h2 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h2>\n<p>敬请期待</p>'
         } }),
-    'toc': null,
+    'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
+            __html: '<nav class="toc"><ol><li><a href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题</a><ol><li><a href="#default">default</a></li><li><a href="#docs">docs</a></li><li><a href="#blog">blog</a></li></ol></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题</a></li></ol></nav>'
+        } }),
     'author': "xcatliu",
     'contributors': [
         "xcatliu"
     ],
     'date': "2020-07-19T14:12:09.000Z",
-    'updated': "2020-10-12T13:36:11.000Z",
-    'excerpt': "",
+    'updated': "2020-12-05T13:42:50.000Z",
+    'excerpt': "官方主题 default 默认主题，示例网站： - https://xcatliu.com/ (GitHub) docs 专门用来写文档或电子书的主题，示例网站： - 本网站 (GitHub) - TypeScript 入门教程 (GitHub) blog 官方博客主题，示例网站： - 流浪小猫的博客...",
     'cover': undefined,
     'blog': {
         "isPost": false,
@@ -46,7 +48,7 @@ export default {
                 "title": "设计 pagic.config.ts",
                 "link": "zh-CN/blog/design_pagic_config_ts.html",
                 "date": "2020-07-12T00:00:00.000Z",
-                "updated": "2020-12-04T11:36:44.000Z",
+                "updated": "2020-12-05T13:42:50.000Z",
                 "author": "xcatliu",
                 "contributors": [
                     "xcatliu"
@@ -54,7 +56,7 @@ export default {
                 "excerpt": "作为一名资深博客爱好者，我热衷于折腾各种博客系统，写过多个博客主题。 终于，写主题也无法得到满足，我开始写博客系统了。 或者说是更广义的，静态网站生成器。 如今 Pagic 已经完成了一个雏形，我也邀请了一些朋友试用，经..."
             }
         ],
-        "tags": [],
-        "categories": []
+        "categories": [],
+        "tags": []
     }
 };
