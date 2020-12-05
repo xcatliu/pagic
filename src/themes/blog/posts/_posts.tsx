@@ -22,7 +22,7 @@ const Posts: PagicLayout = (props) => {
                 />
               )}
               <h1>
-                <a href={link}>{title}</a>
+                <a href={`${config.root}${link}`}>{title}</a>
               </h1>
               {excerpt && <p>{excerpt}</p>}
               <div className="main_posts_meta">
