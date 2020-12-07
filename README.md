@@ -17,6 +17,9 @@
   <a href="https://pagic.org">
     <img src="https://img.shields.io/badge/Pagic-v1.0.0-beta.1-orange.svg" alt="pagic" />
   </a>
+  <a href="https://discord.com/channels/785366263823335424">
+    <img src="https://img.shields.io/discord/785366263823335424" alt="discord" />
+  </a>
   <a href="https://github.com/xcatliu/pagic/actions">
     <img src="https://github.com/xcatliu/pagic/workflows/ci/badge.svg" alt="ci" />
   </a>
