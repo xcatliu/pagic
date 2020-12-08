@@ -96,6 +96,7 @@ pagic build --watch --serve
 - [Configure](https://pagic.org/docs/config.html) your site
 - Checkout the [theme list](https://pagic.org/themes/) and the [plugin list](https://pagic.org/plugins/)
 - Read the [blog](https://pagic.org/blog/) of Pagic
+- Join our [discord channel](https://discord.com/channels/785366263823335424)
 
 ## Special thanks
 
