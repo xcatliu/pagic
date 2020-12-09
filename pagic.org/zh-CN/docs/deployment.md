@@ -29,9 +29,6 @@ jobs:
 
       - name: Build gh-pages
         run: |
-          curl -fsSL https://deno.land/x/install/install.sh | sh
-          export DENO_INSTALL="/home/runner/.deno"
-          export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
           deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.0.0-beta.1/mod.ts
           pagic build
