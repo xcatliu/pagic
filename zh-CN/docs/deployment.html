@@ -38,9 +38,6 @@
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build gh<span class="token punctuation">-</span>pages
         <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string"></span>
-          curl -fsSL https://deno.land/x/install/install.sh | sh
-          export DENO_INSTALL="/home/runner/.deno"
-          export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
           deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.0.0-beta.1/mod.ts
           <span>pagic build</span>
@@ -50,7 +47,8 @@
         <span class="token key atrule">with</span><span class="token punctuation">:</span>
           <span class="token key atrule">github_token</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.GITHUB_TOKEN <span class="token punctuation">}</span><span class="token punctuation">}</span>
           <span class="token key atrule">publish_dir</span><span class="token punctuation">:</span> ./dist
-<span class="highlighted-line">          <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com</span></code></pre><p>注意替换掉最后一行的 <code>ts.xcatliu.com</code> 为你自己的域名。</p>
+          <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com
+</code></pre><p>注意替换掉最后一行的 <code>ts.xcatliu.com</code> 为你自己的域名。</p>
 <p>如果没有自己的域名的话，也可以使用 GitHub 提供的免费域名 <code>xxx.github.io</code>，此时只要将最后一行删除即可。注意此时需要修改 <code>pagic.config.ts</code> 中的 <code>root</code> 配置来支持子路径，详细可参考<a href="./config.html#root">配置文件</a>章节。</p>
 <h2 id="cloudbase">CloudBase<a class="anchor" href="#cloudbase">§</a></h2>
 <p><a href="https://www.cloudbase.net/">云开发 CloudBase</a> 是腾讯云提供的云原生一体化开发环境和工具平台，现<a href="https://cloud.tencent.com/developer/news/680176">已支持一键部署 Pagic 应用</a>，还拥有免费的默认域名、CDN 加速等功能。</p>
