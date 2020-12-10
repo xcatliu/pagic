@@ -8,9 +8,9 @@ import Pagic from './src/Pagic.ts';
 export default Pagic;
 export * from './src/Pagic.ts';
 
-import { Command } from 'https://deno.land/x/cliffy@v0.15.0/command/mod.ts';
-import { Select } from 'https://deno.land/x/cliffy@v0.15.0/prompt/select.ts';
-import { Confirm } from 'https://deno.land/x/cliffy@v0.15.0/prompt/confirm.ts';
+import { Command } from 'https://deno.land/x/cliffy@v0.16.0/command/mod.ts';
+import { Select } from 'https://deno.land/x/cliffy@v0.16.0/prompt/select.ts';
+import { Confirm } from 'https://deno.land/x/cliffy@v0.16.0/prompt/confirm.ts';
 
 if (import.meta.main) {
   const build = new Command()
