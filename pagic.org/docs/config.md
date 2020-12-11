@@ -338,11 +338,11 @@ Configure the GitHub link of the project, usually will display a link in the upp
 ### `branch`
 
 - Type: `string`
-- Default: `master`
+- Default: the git branch at build time
 - Supported themes: `docs`, `blog`
 - Dependent plugins: none
 
-Configure the GitHub branch of the project, for the link to the [editOnGitHub button](#tools). The default is `master`.
+Configure the GitHub branch of the project for the link of [editOnGitHub button](#tools). If there is no configuration, the git branch at build time will be used. If the git branch cannot be obtained, use `main`.
 
 ### `sidebar`
 

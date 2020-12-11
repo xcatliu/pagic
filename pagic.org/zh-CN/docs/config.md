@@ -339,11 +339,11 @@ export default {
 ### `branch`
 
 - 类型：`string`
-- 默认值：`master`
+- 默认值：构建时的 git 分支
 - 支持的主题：`docs`, `blog`
 - 依赖的插件：无
 
-配置项目的 GitHub 分支，用于 [editOnGitHub 按钮](#tools)的链接，默认为 `master`。
+配置项目的 GitHub 分支，用于 [editOnGitHub 按钮](#tools)的链接，若没有配置的话，会使用构建时的 git 分支，若没能获取到 git 分支，则使用 `main`。
 
 ### `sidebar`
 

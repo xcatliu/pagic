@@ -46,7 +46,7 @@ const script: PagicPlugin = {
                   -1,
                 )}, ...projectConfig${
                   pageProps.language?.code ? `, ...projectConfig.i18n?.overrides?.['${pageProps.language?.code}']` : ''
-                } }`;
+                }, branch: '${value.branch}' }`;
               } else if (key === 'content') {
                 if (value === null) {
                   return `'${key}': null`;

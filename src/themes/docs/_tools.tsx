@@ -11,7 +11,7 @@ const Tools: PagicLayout = ({ config, pagePath }) => {
       {config.tools.editOnGitHub && (
         <a
           className="czs-pen button"
-          href={`${config.github}/edit/${config.branch ?? 'master'}/${config.srcDir}/${pagePath}`}
+          href={`${config.github}/edit/${config.branch ?? 'main'}/${config.srcDir}/${pagePath}`}
           target="_blank"
           style={{ backgroundImage: `url("${config.root}assets/czs-pen.svg")` }}
         />
