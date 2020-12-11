@@ -44,3 +44,39 @@ jobs:
 Be sure to replace `ts.xcatliu.com` in the last line with your own domain.
 
 If you don't have your own domain, you can also use the free domain `xxx.github.io` provided by GitHub, just delete the last line. Note that you may need to modify the `root` configuration in `pagic.config.ts` to support sub-paths. For details, please refer to the [Config](./config.md#root) chapter.
+
+## Vercel
+
+Create a `deploy-vercel.sh` file in the project root directory:
+
+```shell 
+#!/bin/sh
+
+# Install deno
+curl -fsSL https://deno.land/x/install/install.sh | sh
+
+# Install pagic
+/vercel/.deno/bin/deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
+
+# Pagic build
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-run https://deno.land/x/pagic/mod.ts build
+```
+
+Configure script command in `package.json`:
+
+```diff
+"scripts": {
++  "deploy:vercel": "sh deploy-vercel.sh"
+},
+```
+
+Next, Complete the following steps on the vercel website:
+
+1. [Home](https://vercel.com/dashboard) -- Overview -- [Import Project](https://vercel.com/import/git)
+2. Enter the URL of a git repository, Import git repository, click continue
+3. Configure project information
+
+   - Enter project name, framework preset defaults to Other
+   - Build and Output Settings, Build Command: `npm run deploy:vercel` Output Directory: `dist` (You can also fill in your own configuration)
+
+4. Click Deploy，Wait for deployment to complete to visit 🎊

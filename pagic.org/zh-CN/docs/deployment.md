@@ -71,3 +71,39 @@ jobs:
 
 [腾讯云 cloudbase 控制台]: https://console.cloud.tencent.com/tcb
 [使用 cloudbase 部署的 pagic 官网]: https://pagic-6grnrtmbb2b18dee-1256604818.tcloudbaseapp.com/
+
+## Vercel
+
+在项目根目录创建 `deploy-vercel.sh` 文件：
+
+```shell 
+#!/bin/sh
+
+# Install deno
+curl -fsSL https://deno.land/x/install/install.sh | sh
+
+# Install pagic
+/vercel/.deno/bin/deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
+
+# Pagic build
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-run https://deno.land/x/pagic/mod.ts build
+```
+
+在 `package.json` 配置脚本命令：
+
+```diff
+"scripts": {
++  "deploy:vercel": "sh deploy-vercel.sh"
+},
+```
+
+接下来，在 [Vercel](https://vercel.com/) 网站完成以下步骤：
+
+1. 在[首页](https://vercel.com/dashboard)点击导入项目 (Import Project)
+2. [填写](https://vercel.com/import/git)仓库地址，从 Github [导入](https://vercel.com/import)要部署的仓库，点击继续
+3. 配置项目信息
+
+   - 填写项目名，框架预设默认 Other 即可
+   - 打包与输出配置，构建命令: `npm run deploy:vercel` 输出目录: `dist` (也可以根据自己的配置填写)
+
+4. 点击部署，等待部署完成即可访问 🎊
