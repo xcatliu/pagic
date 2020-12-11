@@ -6,7 +6,6 @@ export default {
   plugins: ['sidebar', 'prev_next', 'i18n', 'blog', 'ga'],
   title: 'Pagic',
   description: 'A static site generator powered by Deno + React',
-  github: 'https://github.com/xcatliu/pagic',
   // head: (
   //   <>
   //     <script src="https://cdn.pagic.org/vconsole@3.3.4/dist/vconsole.min.js" />
@@ -20,21 +19,22 @@ export default {
     },
     {
       text: 'Themes',
-      link: '/themes/',
+      link: '/themes/index.html',
     },
     {
       text: 'Plugins',
-      link: '/plugins/',
+      link: '/plugins/index.html',
     },
     {
       text: 'Blog',
-      link: '/blog/',
+      link: '/blog/index.html',
     },
     {
       text: 'About',
-      link: '/about/',
+      link: '/about/index.html',
     },
   ],
+  github: 'https://github.com/xcatliu/pagic',
   sidebar: {
     '/docs/': [
       'docs/introduction.md',
@@ -71,19 +71,19 @@ export default {
           },
           {
             text: '主题',
-            link: '/zh-CN/themes/',
+            link: '/zh-CN/themes/index.html',
           },
           {
             text: '插件',
-            link: '/zh-CN/plugins/',
+            link: '/zh-CN/plugins/index.html',
           },
           {
             text: '博客',
-            link: '/zh-CN/blog/',
+            link: '/zh-CN/blog/index.html',
           },
           {
             text: '关于',
-            link: '/zh-CN/about/',
+            link: '/zh-CN/about/index.html',
           },
         ],
         sidebar: {

@@ -55,32 +55,32 @@ export default {
   nav: [
     {
       text: 'Homepage',
-      link: '/',
+      link: '/index.html',
       icon: 'czs-home-l',
     },
     {
       text: 'Categories',
-      link: '/categories/',
+      link: '/categories/index.html',
       icon: 'czs-category-l',
     },
     {
       text: 'Tags',
-      link: '/tags/',
+      link: '/tags/index.html',
       icon: 'czs-tag-l',
     },
     {
       text: 'About',
-      link: '/about/',
+      link: '/about/index.html',
       icon: 'czs-about-l',
     },
     {
       text: 'Archives',
-      link: '/archives/',
+      link: '/archives/index.html',
       icon: 'czs-box-l',
     },
     {
       text: 'Friends',
-      link: '/links/',
+      link: '/links/index.html',
       icon: 'czs-link-l',
     },
   ],

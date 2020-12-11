@@ -305,7 +305,7 @@ export default {
   nav: [
     {
       text: 'Docs',
-      link: '/docs/',
+      link: '/docs/index.html',
     },
     {
       text: 'Buy me a coffee',
@@ -320,7 +320,7 @@ export default {
     },
     {
       text: 'About',
-      link: '/about/',
+      link: '/about/index.html',
       align: 'right',
     },
   ],

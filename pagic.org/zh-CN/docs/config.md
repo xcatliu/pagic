@@ -306,7 +306,7 @@ export default {
   nav: [
     {
       text: '文档',
-      link: '/docs/',
+      link: '/docs/index.html',
     },
     {
       text: '赞助作者',
@@ -321,7 +321,7 @@ export default {
     },
     {
       text: '关于',
-      link: '/about/',
+      link: '/about/index.html',
       align: 'right',
     },
   ],

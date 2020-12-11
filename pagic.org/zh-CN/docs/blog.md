@@ -55,32 +55,32 @@ export default {
   nav: [
     {
       text: '首页',
-      link: '/',
+      link: '/index.html',
       icon: 'czs-home-l',
     },
     {
       text: '分类',
-      link: '/categories/',
+      link: '/categories/index.html',
       icon: 'czs-category-l',
     },
     {
       text: '标签',
-      link: '/tags/',
+      link: '/tags/index.html',
       icon: 'czs-tag-l',
     },
     {
       text: '关于',
-      link: '/about/',
+      link: '/about/index.html',
       icon: 'czs-about-l',
     },
     {
       text: '归档',
-      link: '/archives/',
+      link: '/archives/index.html',
       icon: 'czs-box-l',
     },
     {
       text: '友情链接',
-      link: '/links/',
+      link: '/links/index.html',
       icon: 'czs-link-l',
     },
   ],
