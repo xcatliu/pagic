@@ -28,7 +28,7 @@ deno install --unstable --allow-read --allow-write --allow-net --allow-run --nam
 若需要安装指定版本的 Pagic，则可以在安装的 URL 中加入版本号：
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.0.0-beta.2/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.0.0-beta.3/mod.ts
 ```
 
 > Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：
