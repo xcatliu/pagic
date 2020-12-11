@@ -525,5 +525,8 @@ footer {
   .main {
     margin: 0 auto !important;
   }
+  .main_article a[href]::after {
+    content: ' (' attr(href) ') ';
+  }
 }
 /* #endregion */
