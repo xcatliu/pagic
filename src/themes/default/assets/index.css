@@ -91,5 +91,8 @@ footer {
   footer {
     display: none;
   }
+  article a[href]::after {
+    content: ' (' attr(href) ') ';
+  }
 }
 /* #endregion */
