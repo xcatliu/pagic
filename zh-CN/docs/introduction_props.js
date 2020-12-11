@@ -7,7 +7,7 @@ export default {
         "text": "基本用法",
         "link": "zh-CN/docs/usage.html"
     },
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'], branch: 'master' },
     'pagePath': "zh-CN/docs/introduction.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "zh-CN/docs/introduction.html",

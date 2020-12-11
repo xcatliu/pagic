@@ -13,7 +13,7 @@
       document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
     }
   </script>
-</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/blog/">博客</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link active">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/blog.html" class="nav_link">博客</a></li><li class=""><a href="/zh-CN/docs/i18n.html" class="nav_link">国际化</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>配置文件</h1>
+</head><body><header><h1 class="hide_on_mobile"><a href="/zh-CN/">Pagic</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Pagic</a></h1></li><li class="hide_on_mobile"><a href="/zh-CN/docs/introduction.html">文档</a></li><li class="hide_on_mobile"><a href="/zh-CN/themes/index.html">主题</a></li><li class="hide_on_mobile"><a href="/zh-CN/plugins/index.html">插件</a></li><li class="hide_on_mobile"><a href="/zh-CN/blog/index.html">博客</a></li><li class="hide_on_mobile"><a href="/zh-CN/about/index.html">关于</a></li><li style="flex-grow:1"></li><li class="flex_center"><a class="czs-github-logo" href="https://github.com/xcatliu/pagic" target="_blank" style="background-image:url(&quot;/assets/czs-github-logo.svg&quot;)"></a></li><li class="flex_center"><select><option value="en">English</option><option selected="" value="zh-CN">简体中文</option></select></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/zh-CN/docs/introduction.html" class="nav_link">介绍</a></li><li class=""><a href="/zh-CN/docs/usage.html" class="nav_link">基本用法</a></li><li class=""><a href="/zh-CN/docs/config.html" class="nav_link active">配置文件</a></li><li class=""><a href="/zh-CN/docs/content.html" class="nav_link">页面内容</a></li><li class=""><a href="/zh-CN/docs/layout.html" class="nav_link">_layout.tsx</a></li><li class=""><a href="/zh-CN/docs/themes.html" class="nav_link">主题</a></li><li class=""><a href="/zh-CN/docs/plugins.html" class="nav_link">插件</a></li><li class=""><a href="/zh-CN/docs/blog.html" class="nav_link">博客</a></li><li class=""><a href="/zh-CN/docs/i18n.html" class="nav_link">国际化</a></li><li class=""><a href="/zh-CN/docs/deployment.html" class="nav_link">部署</a></li><li class=""><a href="/zh-CN/docs/demos.html" class="nav_link">示例网站</a></li><li class=""><a href="/zh-CN/docs/limitations.html" class="nav_link">局限性</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>配置文件</h1>
 <p>Pagic 提供了丰富的配置，大部分用户通过配置文件就可以构建出一个具有丰富功能的静态网站了。</p>
 <p>Pagic 的配置文件名称为 <code>pagic.config.ts</code> 或 <code>pagic.config.tsx</code>（如果你的配置文件中使用了 jsx 语法）。</p>
 <blockquote>
@@ -232,7 +232,7 @@
   nav<span class="token operator">:</span> <span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
       text<span class="token operator">:</span> <span class="token string">'文档'</span><span class="token punctuation">,</span>
-      link<span class="token operator">:</span> <span class="token string">'/docs/'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/docs/index.html'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
       text<span class="token operator">:</span> <span class="token string">'赞助作者'</span><span class="token punctuation">,</span>
@@ -247,7 +247,7 @@
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">{</span>
       text<span class="token operator">:</span> <span class="token string">'关于'</span><span class="token punctuation">,</span>
-      link<span class="token operator">:</span> <span class="token string">'/about/'</span><span class="token punctuation">,</span>
+      link<span class="token operator">:</span> <span class="token string">'/about/index.html'</span><span class="token punctuation">,</span>
       align<span class="token operator">:</span> <span class="token string">'right'</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -263,11 +263,11 @@
 <h3 id="branch"><code>branch</code><a class="anchor" href="#branch">§</a></h3>
 <ul>
 <li>类型：<code>string</code></li>
-<li>默认值：<code>master</code></li>
+<li>默认值：构建时的 git 分支</li>
 <li>支持的主题：<code>docs</code>, <code>blog</code></li>
 <li>依赖的插件：无</li>
 </ul>
-<p>配置项目的 GitHub 分支，用于 <a href="#tools">editOnGitHub 按钮</a>的链接，默认为 <code>master</code>。</p>
+<p>配置项目的 GitHub 分支，用于 <a href="#tools">editOnGitHub 按钮</a>的链接，若没有配置的话，会使用构建时的 git 分支，若没能获取到 git 分支，则使用 <code>main</code>。</p>
 <h3 id="sidebar"><code>sidebar</code><a class="anchor" href="#sidebar">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>

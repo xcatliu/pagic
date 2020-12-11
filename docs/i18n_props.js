@@ -10,7 +10,7 @@ export default {
         "text": "Deployment",
         "link": "docs/deployment.html"
     },
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['en'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['en'], branch: 'master' },
     'pagePath': "docs/i18n.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "docs/i18n.html",

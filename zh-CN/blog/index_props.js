@@ -2,7 +2,7 @@ import projectConfig from '/pagic.config.js';
 import Ga from '/_ga.js';
 var _a, _b;
 export default {
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'], branch: 'master' },
     'pagePath': "zh-CN/blog/README.md",
     'layoutPath': "blog/_layout.tsx",
     'outputPath': "zh-CN/blog/index.html",

@@ -7,7 +7,7 @@ export default {
         "link": "zh-CN/docs/demos.html"
     },
     'next': undefined,
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'], branch: 'master' },
     'pagePath': "zh-CN/docs/limitations.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "zh-CN/docs/limitations.html",

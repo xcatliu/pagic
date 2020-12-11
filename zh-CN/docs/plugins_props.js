@@ -10,7 +10,7 @@ export default {
         "text": "博客",
         "link": "zh-CN/docs/blog.html"
     },
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'], branch: 'master' },
     'pagePath': "zh-CN/docs/plugins.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "zh-CN/docs/plugins.html",

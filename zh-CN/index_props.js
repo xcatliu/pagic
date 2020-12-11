@@ -3,7 +3,7 @@ import IndexPage from './index_content.js';
 import Ga from '/_ga.js';
 var _a, _b;
 export default {
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'], branch: 'master' },
     'pagePath': "zh-CN/index.tsx",
     'layoutPath': "_layout.tsx",
     'outputPath': "zh-CN/index.html",
@@ -54,19 +54,19 @@ export default {
                                 text: '文档'
                             },
                             {
-                                link: '/zh-CN/themes/',
+                                link: '/zh-CN/themes/index.html',
                                 text: '主题'
                             },
                             {
-                                link: '/zh-CN/plugins/',
+                                link: '/zh-CN/plugins/index.html',
                                 text: '插件'
                             },
                             {
-                                link: '/zh-CN/blog/',
+                                link: '/zh-CN/blog/index.html',
                                 text: '博客'
                             },
                             {
-                                link: '/zh-CN/about/',
+                                link: '/zh-CN/about/index.html',
                                 text: '关于'
                             }
                         ],
@@ -121,19 +121,19 @@ export default {
                     text: '文档'
                 },
                 {
-                    link: '/zh-CN/themes/',
+                    link: '/zh-CN/themes/index.html',
                     text: '主题'
                 },
                 {
-                    link: '/zh-CN/plugins/',
+                    link: '/zh-CN/plugins/index.html',
                     text: '插件'
                 },
                 {
-                    link: '/zh-CN/blog/',
+                    link: '/zh-CN/blog/index.html',
                     text: '博客'
                 },
                 {
-                    link: '/zh-CN/about/',
+                    link: '/zh-CN/about/index.html',
                     text: '关于'
                 }
             ],

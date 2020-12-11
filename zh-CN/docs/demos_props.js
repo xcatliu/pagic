@@ -10,7 +10,7 @@ export default {
         "text": "局限性",
         "link": "zh-CN/docs/limitations.html"
     },
-    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'] },
+    config: { "root": "/", ...projectConfig, ...(_b = (_a = projectConfig.i18n) === null || _a === void 0 ? void 0 : _a.overrides) === null || _b === void 0 ? void 0 : _b['zh-CN'], branch: 'master' },
     'pagePath': "zh-CN/docs/demos.md",
     'layoutPath': "_layout.tsx",
     'outputPath': "zh-CN/docs/demos.html",
