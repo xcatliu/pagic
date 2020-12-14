@@ -10,7 +10,9 @@
 
 ### `docs`
 
-专门用来写文档或电子书的主题，示例网站：
+专门用来写文档或电子书的主题，你可以使用[此模版](https://github.com/xcatliu/pagic_template_docs)来创建一个用 docs 主题生成的网站。
+
+其他示例网站：
 
 - 本网站 ([GitHub](https://github.com/xcatliu/pagic/))
 - [TypeScript 入门教程](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))

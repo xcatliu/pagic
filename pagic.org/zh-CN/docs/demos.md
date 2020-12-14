@@ -1,5 +1,6 @@
 # 示例网站
 
+- Templates: [docs](https://github.com/xcatliu/pagic_template_docs)
 - [TypeScript 入门教程](https://ts.xcatliu.com/) ([GitHub](https://github.com/xcatliu/typescript-tutorial/))
 - [流浪小猫的博客](https://blog.xcatliu.com/) ([GitHub](https://github.com/xcatliu/blog))
 - [Deno X ranking](https://yoshixmk.github.io/deno-x-ranking/) ([GitHub](https://github.com/yoshixmk/deno-x-ranking))
