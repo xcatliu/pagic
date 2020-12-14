@@ -70,4 +70,41 @@
 <li><a href="https://cloud.tencent.com/document/product/876/41539">CloudBase - CLI 使用指南</a></li>
 <li><a href="https://console.cloud.tencent.com/tcb">腾讯云 CloudBase 控制台</a></li>
 <li><a href="https://pagic-6grnrtmbb2b18dee-1256604818.tcloudbaseapp.com/">使用 CloudBase 部署的 Pagic 官网</a></li>
-</ul></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/i18n.html">«  <!-- -->国际化</a><a class="next button" href="/zh-CN/docs/demos.html">示例网站<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#cloudbase">CloudBase</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</ul>
+<h2 id="vercel">Vercel<a class="anchor" href="#vercel">§</a></h2>
+<p>在项目根目录创建 <code>deploy-vercel.sh</code> 文件：</p>
+<pre class="language-shell"><code class="language-shell"><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token comment"># Install deno</span>
+<span class="token function">curl</span> -fsSL <a class="token url-link" href="https://deno.land/x/install/install.sh">https://deno.land/x/install/install.sh</a> <span class="token operator">|</span> <span class="token function">sh</span>
+
+<span class="token comment"># Install pagic</span>
+/vercel/.deno/bin/deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+
+<span class="token comment"># Pagic build</span>
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-run <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a> build
+</code></pre>
+<p>在 <code>package.json</code> 配置脚本命令：</p>
+<pre class="language-diff"><code class="language-diff">"scripts": {
+<span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>  "deploy:vercel": "sh deploy-vercel.sh"
+</span>},
+</code></pre>
+<p>接下来，在 <a href="https://vercel.com/">Vercel</a> 网站完成以下步骤：</p>
+<ol>
+<li>
+<p>在<a href="https://vercel.com/dashboard">首页</a>点击导入项目 (Import Project)</p>
+</li>
+<li>
+<p><a href="https://vercel.com/import/git">填写</a>仓库地址，从 Github <a href="https://vercel.com/import">导入</a>要部署的仓库，点击继续</p>
+</li>
+<li>
+<p>配置项目信息</p>
+<ul>
+<li>填写项目名，框架预设默认 Other 即可</li>
+<li>打包与输出配置，构建命令: <code>npm run deploy:vercel</code> 输出目录: <code>dist</code> (也可以根据自己的配置填写)</li>
+</ul>
+</li>
+<li>
+<p>点击部署，等待部署完成即可访问 🎊</p>
+</li>
+</ol></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/i18n.html">«  <!-- -->国际化</a><a class="next button" href="/zh-CN/docs/demos.html">示例网站<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#cloudbase">CloudBase</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

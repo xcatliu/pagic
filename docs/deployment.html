@@ -49,4 +49,41 @@
           <span class="token key atrule">publish_dir</span><span class="token punctuation">:</span> ./dist
           <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com
 </code></pre><p>Be sure to replace <code>ts.xcatliu.com</code> in the last line with your own domain.</p>
-<p>If you don't have your own domain, you can also use the free domain <code>xxx.github.io</code> provided by GitHub, just delete the last line. Note that you may need to modify the <code>root</code> configuration in <code>pagic.config.ts</code> to support sub-paths. For details, please refer to the <a href="./config.html#root">Config</a> chapter.</p></article><div class="prev_next"><a class="prev button" href="/docs/i18n.html">«  <!-- -->Internationalization</a><a class="next button" href="/docs/demos.html">Demos<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+<p>If you don't have your own domain, you can also use the free domain <code>xxx.github.io</code> provided by GitHub, just delete the last line. Note that you may need to modify the <code>root</code> configuration in <code>pagic.config.ts</code> to support sub-paths. For details, please refer to the <a href="./config.html#root">Config</a> chapter.</p>
+<h2 id="vercel">Vercel<a class="anchor" href="#vercel">§</a></h2>
+<p>Create a <code>deploy-vercel.sh</code> file in the project root directory:</p>
+<pre class="language-shell"><code class="language-shell"><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token comment"># Install deno</span>
+<span class="token function">curl</span> -fsSL <a class="token url-link" href="https://deno.land/x/install/install.sh">https://deno.land/x/install/install.sh</a> <span class="token operator">|</span> <span class="token function">sh</span>
+
+<span class="token comment"># Install pagic</span>
+/vercel/.deno/bin/deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+
+<span class="token comment"># Pagic build</span>
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-run <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a> build
+</code></pre>
+<p>Configure script command in <code>package.json</code>:</p>
+<pre class="language-diff"><code class="language-diff">"scripts": {
+<span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>  "deploy:vercel": "sh deploy-vercel.sh"
+</span>},
+</code></pre>
+<p>Next, Complete the following steps on the vercel website:</p>
+<ol>
+<li>
+<p><a href="https://vercel.com/dashboard">Home</a> -- Overview -- <a href="https://vercel.com/import/git">Import Project</a></p>
+</li>
+<li>
+<p>Enter the URL of a git repository, Import git repository, click continue</p>
+</li>
+<li>
+<p>Configure project information</p>
+<ul>
+<li>Enter project name, framework preset defaults to Other</li>
+<li>Build and Output Settings, Build Command: <code>npm run deploy:vercel</code> Output Directory: <code>dist</code> (You can also fill in your own configuration)</li>
+</ul>
+</li>
+<li>
+<p>Click Deploy，Wait for deployment to complete to visit 🎊</p>
+</li>
+</ol></article><div class="prev_next"><a class="prev button" href="/docs/i18n.html">«  <!-- -->Internationalization</a><a class="next button" href="/docs/demos.html">Demos<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
