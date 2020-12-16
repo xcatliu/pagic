@@ -131,3 +131,83 @@ Deno.test('[sidebar] object config', async () => {
   asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].sidebar, docsSidebar);
   asserts.assertEquals(pagic.pagePropsMap['docs/usage/foo.md'].sidebar, docsSidebar);
 });
+
+Deno.test('[sidebar] glob config', async () => {
+  const pagic = new Pagic();
+  await sidebar.fn(pagic);
+  // pagic.config.sidebar is undefined, nothing happened
+  asserts.assertEquals(pagic.pagePropsMap, {});
+
+  pagic.config.sidebar = {
+    '/docs/': ['docs/*.md'],
+    '/api/': ['api/foo.md', 'api/bar.tsx'],
+    '/deep/': ['deep/**/*.md', 'deep/**/[b]*.tsx'],
+  };
+  pagic.pagePaths = ['README.md', 'docs/introduction.md', 'docs/usage.md', 'api/foo.md', 'api/bar.tsx', 'deep/path/foo.md', 'deep/path/bar.tsx'];
+  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  pagic.pagePropsMap = {
+    'README.md': {
+      ...commonProps,
+      pagePath: 'README.md',
+      outputPath: 'index.html',
+      title: '',
+    },
+    'docs/introduction.md': {
+      ...commonProps,
+      pagePath: 'docs/introduction.md',
+      outputPath: 'docs/introduction.html',
+      title: 'Introduction',
+    },
+    'docs/usage.md': {
+      ...commonProps,
+      pagePath: 'docs/usage.md',
+      outputPath: 'docs/usage.html',
+      title: 'Usage',
+    },
+    'api/foo.md': {
+      ...commonProps,
+      pagePath: 'api/foo.md',
+      outputPath: 'api/foo.html',
+      title: 'Foo',
+    },
+    'api/bar.tsx': {
+      ...commonProps,
+      pagePath: 'api/bar.tsx',
+      outputPath: 'api/bar.html',
+      title: '',
+    },
+    'deep/path/foo.md': {
+      ...commonProps,
+      pagePath: 'deep/path/foo.md',
+      outputPath: 'deep/path/foo.html',
+      title: 'Foo',
+    },
+    'deep/path/bar.tsx': {
+      ...commonProps,
+      pagePath: 'deep/path/bar.tsx',
+      outputPath: 'deep/path/bar.html',
+      title: '',
+    },
+  };
+
+  await sidebar.fn(pagic);
+  asserts.assertEquals(pagic.pagePropsMap['README.md'].sidebar, undefined);
+  const docsSidebar = [
+    { link: 'docs/introduction.html', text: 'Introduction', pagePath: 'docs/introduction.md' },
+    { link: 'docs/usage.html', text: 'Usage', pagePath: 'docs/usage.md' },
+  ];
+  const apiSidebar = [
+    { link: 'api/foo.html', text: 'Foo', pagePath: 'api/foo.md' },
+    { link: 'api/bar.html', text: '', pagePath: 'api/bar.tsx' },
+  ];
+  const deepSidebar = [
+    { link: 'deep/path/foo.html', text: 'Foo', pagePath: 'deep/path/foo.md' },
+    { link: 'deep/path/bar.html', text: '', pagePath: 'deep/path/bar.tsx' },
+  ];
+  asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].sidebar, docsSidebar);
+  asserts.assertEquals(pagic.pagePropsMap['docs/usage.md'].sidebar, docsSidebar);
+  asserts.assertEquals(pagic.pagePropsMap['api/foo.md'].sidebar, apiSidebar);
+  asserts.assertEquals(pagic.pagePropsMap['api/bar.tsx'].sidebar, apiSidebar);
+  asserts.assertEquals(pagic.pagePropsMap['deep/path/foo.md'].sidebar, deepSidebar);
+  asserts.assertEquals(pagic.pagePropsMap['deep/path/bar.tsx'].sidebar, deepSidebar);
+});
