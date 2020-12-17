@@ -1,6 +1,7 @@
 import type { PagicPlugin } from '../Pagic.ts';
 // eslint-disable-next-line no-duplicate-imports
 import type Pagic from '../Pagic.ts';
+import { path } from '../../deps.ts';
 
 export type PagicConfigSidebar = Record<string, OnePagicConfigSidebar>;
 
@@ -52,11 +53,12 @@ const sidebar: PagicPlugin = {
 function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic): PagePropsSidebar {
   return sidebarConfig.map((sidebarConfigItem) => {
     if (typeof sidebarConfigItem === 'string') {
-      return {
-        text: pagic.pagePropsMap[sidebarConfigItem].title,
-        link: pagic.pagePropsMap[sidebarConfigItem].outputPath,
-        pagePath: pagic.pagePropsMap[sidebarConfigItem].pagePath,
-      };
+      const sidebarConfigGlob = path.globToRegExp(sidebarConfigItem);
+      return Object.entries(pagic.pagePropsMap).filter(([key]) => sidebarConfigGlob.test(key)).map(([key, value]) => ({
+        text: value.title,
+        link: value.outputPath,
+        pagePath: value.pagePath,
+      }));
     }
     // Deep clone
     let item = JSON.parse(JSON.stringify(sidebarConfigItem)) as PagePropsSidebar[0];
@@ -71,7 +73,7 @@ function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic):
       item.children = parseSidebarConfig(item.children, pagic);
     }
     return item;
-  });
+  }).flat();
 }
 
 export default sidebar;
