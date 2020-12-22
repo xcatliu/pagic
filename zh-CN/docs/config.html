@@ -204,14 +204,14 @@
 </ul>
 <p>额外的需要被注入到当前页面的 HTML <code>&lt;head&gt;</code> 中的标签。由于用到了 jsx 语法，需要将配置文件重命名为 <code>pagic.config.tsx</code>，并且引入 <code>React</code>。</p>
 <p>举个例子，增加一个自定义的 favicon：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.1.0/mod.ts">https://deno.land/x/pagic@v1.1.0/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   head<span class="token operator">:</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image/png<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/favicon.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>如果需要引入多个标签，则需要用 <code>&lt;&gt;</code> 标签包裹：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.1.0/mod.ts">https://deno.land/x/pagic@v1.1.0/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   head<span class="token operator">:</span> <span class="token punctuation">(</span>
@@ -226,7 +226,7 @@
 <li>依赖的插件：无</li>
 </ul>
 <p>导航栏配置，示例如下：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.1.0/mod.ts">https://deno.land/x/pagic@v1.1.0/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   nav<span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -323,7 +323,7 @@
 <li>依赖的插件：无</li>
 </ul>
 <p>展示在目录上方的广告，示例如下：</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.0.0/mod.ts">https://deno.land/x/pagic@v1.0.0/mod.ts</a>'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">React</span> <span class="token punctuation">}</span></span> <span class="token keyword">from</span> <span class="token string">'<a class="token url-link" href="https://deno.land/x/pagic@v1.1.0/mod.ts">https://deno.land/x/pagic@v1.1.0/mod.ts</a>'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   tocAd<span class="token operator">:</span> <span class="token punctuation">(</span>
