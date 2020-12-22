@@ -51,29 +51,36 @@ const sidebar: PagicPlugin = {
 };
 
 function parseSidebarConfig(sidebarConfig: OnePagicConfigSidebar, pagic: Pagic): PagePropsSidebar {
-  return sidebarConfig.map((sidebarConfigItem) => {
-    if (typeof sidebarConfigItem === 'string') {
-      const sidebarConfigGlob = path.globToRegExp(sidebarConfigItem);
-      return Object.entries(pagic.pagePropsMap).filter(([key]) => sidebarConfigGlob.test(key)).map(([key, value]) => ({
-        text: value.title,
-        link: value.outputPath,
-        pagePath: value.pagePath,
-      }));
-    }
-    // Deep clone
-    let item = JSON.parse(JSON.stringify(sidebarConfigItem)) as PagePropsSidebar[0];
-    if (typeof item.text === 'undefined' && typeof item.link !== 'undefined') {
-      item.text = pagic.pagePropsMap[item.link].title;
-    }
-    if (typeof item.link !== 'undefined') {
-      item.pagePath = item.link;
-      item.link = pagic.pagePropsMap[item.link].outputPath;
-    }
-    if (Array.isArray(item.children)) {
-      item.children = parseSidebarConfig(item.children, pagic);
-    }
-    return item;
-  }).flat();
+  return sidebarConfig
+    .map((sidebarConfigItem) => {
+      if (typeof sidebarConfigItem === 'string') {
+        const sidebarConfigGlob = path.globToRegExp(sidebarConfigItem);
+        return Object.entries(pagic.pagePropsMap)
+          .filter(([key]) => sidebarConfigGlob.test(key))
+          .map(([key, value]) => ({
+            text: value.title,
+            link: value.outputPath,
+            pagePath: value.pagePath,
+          }));
+      }
+      // Deep clone
+      let item = JSON.parse(JSON.stringify(sidebarConfigItem)) as PagePropsSidebar[0];
+
+      if (typeof item.link !== 'undefined') {
+        if (typeof pagic.pagePropsMap[item.link] === 'undefined') {
+          item.text = item.text ?? item.link;
+        } else {
+          item.pagePath = item.link;
+          item.text = item.text ?? pagic.pagePropsMap[item.link].title ?? item.link;
+          item.link = pagic.pagePropsMap[item.link].outputPath;
+        }
+      }
+      if (Array.isArray(item.children)) {
+        item.children = parseSidebarConfig(item.children, pagic);
+      }
+      return item;
+    })
+    .flat();
 }
 
 export default sidebar;

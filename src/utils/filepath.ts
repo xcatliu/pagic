@@ -56,7 +56,8 @@ export function getOutputPath(pagePath: string) {
  * output: https://github.com/xcatliu
  */
 export function replaceLink(link: string) {
-  if (/^https?:\/\//.test(link)) {
+  // https://en.wikipedia.org/wiki/List_of_URI_schemes
+  if (/^[a-zA-Z0-9\-\.]+:\/\//.test(link)) {
     return link;
   }
   if (/\/README\.md(\?|#|$)/.test(`/${link}`)) {

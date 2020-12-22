@@ -2,7 +2,7 @@ import { React } from '../../../deps.ts';
 
 import type { PagicLayout, PageProps } from '../../Pagic.ts';
 import type { PagePropsSidebar } from '../../plugins/sidebar.tsx';
-import { classnames } from './_utils.tsx';
+import { classnames, isRelativeLink } from './_utils.tsx';
 
 const Sidebar: PagicLayout = ({ config, outputPath, sidebar }) => {
   if (!sidebar) {
@@ -58,7 +58,7 @@ const FoldableItem: React.FC<{
   return (
     <li className={children ? (fold ? 'fold' : 'unfold') : ''}>
       <a
-        href={link ? `${config.root}${link}` : '#'}
+        href={link ? (isRelativeLink(link) ? `${config.root}${link}` : link) : '#'}
         className={classnames('nav_link', {
           active: isActive,
           no_link: !link,

@@ -45,7 +45,7 @@ function getPrevAndNext(
   depthFirstTraversal(pagePropsSidebar, (current) => {
     if (shouldBreak) return;
     if (found) {
-      if (typeof current.link !== 'undefined') {
+      if (typeof current.pagePath !== 'undefined') {
         next = current;
         shouldBreak = true;
       }
@@ -55,7 +55,7 @@ function getPrevAndNext(
       found = true;
       prev = last;
     } else {
-      if (typeof current.link !== 'undefined') {
+      if (typeof current.pagePath !== 'undefined') {
         last = current;
       }
     }

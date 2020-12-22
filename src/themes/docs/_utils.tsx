@@ -23,3 +23,14 @@ export const dateFormatter = {
     return `${YYYY}-${MM}-${DD}`;
   },
 };
+
+export function isRelativeLink(link: string) {
+  if (link.startsWith('/')) {
+    return false;
+  }
+  // https://en.wikipedia.org/wiki/List_of_URI_schemes
+  if (/^[a-zA-Z0-9\-\.]+:\/\//.test(link)) {
+    return false;
+  }
+  return true;
+}

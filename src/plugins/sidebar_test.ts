@@ -143,7 +143,15 @@ Deno.test('[sidebar] glob config', async () => {
     '/api/': ['api/foo.md', 'api/bar.tsx'],
     '/deep/': ['deep/**/*.md', 'deep/**/[b]*.tsx'],
   };
-  pagic.pagePaths = ['README.md', 'docs/introduction.md', 'docs/usage.md', 'api/foo.md', 'api/bar.tsx', 'deep/path/foo.md', 'deep/path/bar.tsx'];
+  pagic.pagePaths = [
+    'README.md',
+    'docs/introduction.md',
+    'docs/usage.md',
+    'api/foo.md',
+    'api/bar.tsx',
+    'deep/path/foo.md',
+    'deep/path/bar.tsx',
+  ];
   const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
   pagic.pagePropsMap = {
     'README.md': {
@@ -210,4 +218,56 @@ Deno.test('[sidebar] glob config', async () => {
   asserts.assertEquals(pagic.pagePropsMap['api/bar.tsx'].sidebar, apiSidebar);
   asserts.assertEquals(pagic.pagePropsMap['deep/path/foo.md'].sidebar, deepSidebar);
   asserts.assertEquals(pagic.pagePropsMap['deep/path/bar.tsx'].sidebar, deepSidebar);
+});
+
+Deno.test('[sidebar] absolute link', async () => {
+  const pagic = new Pagic();
+  pagic.config.sidebar = {
+    '/docs/': [
+      {
+        text: 'Intro',
+        link: 'docs/introduction.md',
+      },
+      {
+        link: 'assets/hello.doc',
+      },
+      {
+        text: 'Hello',
+        link: '/assets/hello.doc',
+      },
+      {
+        text: 'GitHub link',
+        link: 'https://github.com/xcatliu/pagic',
+      },
+    ],
+  };
+  pagic.pagePaths = ['docs/introduction.md'];
+  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  pagic.pagePropsMap = {
+    'docs/introduction.md': {
+      ...commonProps,
+      config: pagic.config,
+      pagePath: 'docs/introduction.md',
+      outputPath: 'docs/introduction.html',
+      title: 'Introduction',
+    },
+  };
+
+  await sidebar.fn(pagic);
+  const docsSidebar = [
+    { link: 'docs/introduction.html', text: 'Intro', pagePath: 'docs/introduction.md' },
+    {
+      link: 'assets/hello.doc',
+      text: 'assets/hello.doc',
+    },
+    {
+      link: '/assets/hello.doc',
+      text: 'Hello',
+    },
+    {
+      link: 'https://github.com/xcatliu/pagic',
+      text: 'GitHub link',
+    },
+  ];
+  asserts.assertEquals(pagic.pagePropsMap['docs/introduction.md'].sidebar, docsSidebar);
 });
