@@ -26,7 +26,7 @@ const Posts: PagicLayout = (props) => {
               </h1>
               {excerpt && <p>{excerpt}</p>}
               <div className="main_posts_meta">
-                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
+                <time dateTime={date.toString()}>{dateFormatter['yyyy-MM-dd'](date)}</time>
                 {author && <>&nbsp;·&nbsp;{author}</>}
                 {categories?.[0] && (
                   <>

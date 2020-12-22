@@ -15,11 +15,22 @@ export function classnames(...args: (string | Record<string, boolean> | undefine
 }
 
 export const dateFormatter = {
-  'YYYY-MM-DD': (date: Date | string) => {
+  'yyyy-MM-dd': (date: Date | string) => {
     const d = new Date(date);
-    const YYYY = d.getFullYear().toString();
+    const yyyy = d.getFullYear().toString();
     const MM = `0${d.getMonth() + 1}`.slice(-2);
-    const DD = `0${d.getDate() + 1}`.slice(-2);
-    return `${YYYY}-${MM}-${DD}`;
+    const dd = `0${d.getDate() + 1}`.slice(-2);
+    return `${yyyy}-${MM}-${dd}`;
   },
 };
+
+export function isRelativeLink(link: string) {
+  if (link.startsWith('/')) {
+    return false;
+  }
+  // https://en.wikipedia.org/wiki/List_of_URI_schemes
+  if (/^[a-zA-Z0-9\-\.]+:\/\//.test(link)) {
+    return false;
+  }
+  return true;
+}

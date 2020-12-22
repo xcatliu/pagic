@@ -14,7 +14,7 @@ const Archives: PagicLayout = (props) => {
           <ul className="main_archives">
             {blog?.posts.map(({ title, link, date }) => (
               <li key={link}>
-                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time>
+                <time dateTime={date.toString()}>{dateFormatter['yyyy-MM-dd'](date)}</time>
                 <div>
                   <a href={`${config.root}${link}`}>{title}</a>
                 </div>

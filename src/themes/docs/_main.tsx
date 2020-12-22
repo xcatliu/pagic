@@ -59,7 +59,7 @@ const Main: PagicLayout = (props) => {
             {contentTitle}
             {date && (
               <div className="main_post_meta">
-                <time dateTime={date.toString()}>{dateFormatter['YYYY-MM-DD'](date)}</time> · {author ?? 'unknown'}
+                <time dateTime={date.toString()}>{dateFormatter['yyyy-MM-dd'](date)}</time> · {author ?? 'unknown'}
               </div>
             )}
             {contentBody}
