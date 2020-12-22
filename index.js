@@ -68,7 +68,15 @@ async function rerender(
     propsPath += 'index.html';
   }
   propsPath = propsPath.replace(/\.html$/, '_props.js');
-  const props = (await import(propsPath)).default;
+  let props;
+  try {
+    props = (await import(propsPath)).default;
+  } catch (e) {
+    console.log(e);
+    console.log(`Failed to import module ${propsPath}, jump to ${href} immediately.`);
+    location.href = href;
+    return;
+  }
   window.pageProps = props;
 
   // Layout changed, reload page

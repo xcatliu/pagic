@@ -1,4 +1,4 @@
-import { classnames } from './_utils.js';
+import { classnames, isRelativeLink } from './_utils.js';
 const Sidebar = ({ config, outputPath, sidebar }) => {
     if (!sidebar) {
         return null;
@@ -38,7 +38,7 @@ const FoldableItem = ({ config, outputPath, sidebarItem: { text, link, children 
         foldOl(!fold);
     };
     return (React.createElement("li", { className: children ? (fold ? 'fold' : 'unfold') : '' },
-        React.createElement("a", { href: link ? `${config.root}${link}` : '#', className: classnames('nav_link', {
+        React.createElement("a", { href: link ? (isRelativeLink(link) ? `${config.root}${link}` : link) : '#', className: classnames('nav_link', {
                 active: isActive,
                 no_link: !link,
             }), onClick: (e) => {
