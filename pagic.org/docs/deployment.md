@@ -25,7 +25,7 @@ jobs:
       - name: Setup deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: v1.6.0
+          deno-version: v1.6.1
 
       - name: Build gh-pages
         run: |
