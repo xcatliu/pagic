@@ -44,6 +44,15 @@ async function rerender(
     return;
   }
 
+  let propsPath = pathname;
+  if (propsPath.endsWith('/')) {
+    propsPath += 'index.html';
+  }
+  if (!propsPath.endsWith('.html')) {
+    return;
+  }
+  propsPath = propsPath.replace(/\.html$/, '_props.js');
+
   preventDefault();
   if (loading === true) {
     return;
@@ -63,20 +72,7 @@ async function rerender(
     }, 100);
   }
 
-  let propsPath = pathname;
-  if (propsPath.endsWith('/')) {
-    propsPath += 'index.html';
-  }
-  propsPath = propsPath.replace(/\.html$/, '_props.js');
-  let props;
-  try {
-    props = (await import(propsPath)).default;
-  } catch (e) {
-    console.log(e);
-    console.log(`Failed to import module ${propsPath}, jump to ${href} immediately.`);
-    location.href = href;
-    return;
-  }
+  const props = (await import(propsPath)).default;
   window.pageProps = props;
 
   // Layout changed, reload page
