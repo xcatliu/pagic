@@ -8,8 +8,8 @@ const Head: PagicLayout<{
   isDark: boolean;
 }> = ({ config, title, head, outputPath, isDark }) => {
   const scriptSetIsDark = `
-    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (shouldSetIsDark) {
+    const _shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (_shouldSetIsDark) {
       document.documentElement.classList.add('is_dark');
       document.getElementById('prismTheme').href = "${config.root}assets/prism_tomorrow.css";
     }
