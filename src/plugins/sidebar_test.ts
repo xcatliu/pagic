@@ -74,6 +74,7 @@ Deno.test('[sidebar] object config', async () => {
       },
       {
         link: 'docs/usage.md',
+        expanded: false,
         children: ['docs/usage/foo.md'],
       },
       {
@@ -120,6 +121,7 @@ Deno.test('[sidebar] object config', async () => {
       link: 'docs/usage.html',
       text: 'Usage',
       pagePath: 'docs/usage.md',
+      expanded: false,
       children: [{ link: 'docs/usage/foo.html', text: 'Foo', pagePath: 'docs/usage/foo.md' }],
     },
     {
