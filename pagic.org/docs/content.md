@@ -191,7 +191,7 @@ site/
 Its content is:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.2.0/mod.ts';
 
 const Hello = () => <h1>Hello world</h1>;
 
@@ -227,7 +227,7 @@ Pagic will not only execute the logic in the `tsx` file when building the page, 
 For example, we can use `React.setState` to implement a counter page:
 
 ```tsx {4,9}
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.2.0/mod.ts';
 
 const Hello = () => {
   const [count, setCount] = React.useState(0);
@@ -263,7 +263,7 @@ site/
 In the above example, `hello.tsx` will be constructed as `dist/hello.html`, and `_count.tsx` will not be constructed as a page because it starts with `_`. In this way, we can split the `Count` component into the `_count.tsx` file, and then import it in `hello.tsx`:
 
 ```tsx {3,8}
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.2.0/mod.ts';
 
 import Count from './_count.tsx';
 
@@ -282,7 +282,7 @@ export default Hello;
 Similar to `md` files, `tsx` files also support frontMatter, which is achieved by exporting a `frontMatter` object:
 
 ```tsx {7-9}
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.2.0/mod.ts';
 
 const Hello = () => <h1>Hello world</h1>;
 
