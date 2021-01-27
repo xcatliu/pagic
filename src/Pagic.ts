@@ -58,6 +58,7 @@ export interface PagicConfig {
   sidebar?: PagicConfigSidebar;
   md?: {
     anchorLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
+    tocEnabled?: boolean;
     tocLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
   };
   ga?: GaProps;

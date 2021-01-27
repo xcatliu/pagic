@@ -40,13 +40,16 @@ html.is_dark [style*='background-image:']:hover {
 /* #region Aside */
 aside {
   position: absolute;
-  background-color: var(--color-background-aside);
-  border-radius: 1rem;
-  width: 15rem;
-  padding: 0 2rem 1rem;
-  margin: var(--height-header) 0 0 0;
+  width: var(--width-toc);
+  padding-top: var(--height-header);
   top: 0;
   left: calc(50% - 40rem);
+}
+.aside_card {
+  display: flow-root;
+  background-color: var(--color-background-aside);
+  border-radius: 1rem;
+  padding: 0 2rem 1rem;
 }
 aside h1 {
   text-align: center;
@@ -89,6 +92,34 @@ aside .menu a:hover {
 }
 aside .menu a [class^='czs-'] {
   margin: 0 0.5rem 0 -0.5rem;
+}
+.toc {
+  padding: 1rem 0 1rem 1rem;
+  font-size: 14px;
+  line-height: var(--line-height-small);
+  width: 15rem;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.toc_fixed {
+  position: fixed;
+  top: 0;
+}
+.toc ol {
+  margin: 0;
+  list-style: none;
+  padding-left: 1rem;
+}
+.toc a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.toc a:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+.toc a.active {
+  color: var(--color-primary);
 }
 /* #endregion */
 
@@ -281,10 +312,15 @@ footer {
   }
   .show_aside aside {
     display: block;
-    box-shadow: var(--box-shadow);
-    margin-top: 0;
+    padding-top: 0;
     top: 0.5rem;
     left: calc(50vw - 21.5rem);
+  }
+  .show_aside .aside_card {
+    box-shadow: var(--box-shadow);
+  }
+  .show_aside .toc {
+    display: none;
   }
 }
 

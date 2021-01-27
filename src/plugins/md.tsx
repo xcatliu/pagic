@@ -30,6 +30,7 @@ const md: PagicPlugin = {
   fn: async (pagic) => {
     /** tocHTML is set in the markdownitTocDoneRight callback, and is used later */
     let tocHTML = '';
+    const tocEnabled = pagic.config.md?.tocEnabled ?? true;
 
     const mdRenderer = new MarkdownIt({
       html: true,
@@ -59,7 +60,7 @@ const md: PagicPlugin = {
         permalinkClass: 'anchor',
         permalinkSymbol: '§',
       })
-      .use(markdownitTocDoneRight, {
+      .use(tocEnabled ? markdownitTocDoneRight : () => {}, {
         containerClass: 'toc',
         level: pagic.config.md?.tocLevel ?? [2, 3],
         slugify,
@@ -129,9 +130,9 @@ const md: PagicPlugin = {
         contentBody: <article dangerouslySetInnerHTML={{ __html: contentBodyHTML }} />,
         // Set to null if toc is empty
         toc:
-          tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
-            <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
-          ),
+          tocHTML === '' || tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>'
+            ? null
+            : reactHtmlParser(tocHTML)[0],
         author,
         contributors,
         date,

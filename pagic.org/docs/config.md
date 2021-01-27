@@ -390,6 +390,7 @@ The configuration of how to parse markdown files, an example is as follows:
 export default {
    md: {
      anchorLevel: [1, 2, 3, 4, 5, 6],
+     tocEnabled: true,
      tocLevel: [1, 2, 3, 4]
 };
 ```
@@ -397,6 +398,7 @@ export default {
 In the above example:
 
 - `AnchorLevel` is used to configure which levels of titles need to render an anchor link when markdown is converted to HTML. `[1, 2, 3, 4, 5, 6]` means that the anchor link must be displayed from `h1` to `h6`. Its default value is `[2, 3, 4, 5, 6]`.
+- `tocEnabled` is used to enable toc (table of content).
 - `tocLevel` is used to configure which levels of titles need to be included in toc (table of content). `[1, 2, 3, 4]` means that titles from `h1` to `h4` will be included in toc. Its default value is `[2, 3]`.
 
 ### `tocAd`

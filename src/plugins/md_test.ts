@@ -37,7 +37,7 @@ Deno.test('[md]', async () => {
   );
   asserts.assertEquals(
     ReactDOMServer.renderToString(pagePropsREADME.toc!),
-    '<aside data-reactroot=""><nav class="toc"><ol><li><a href="#header-2">Header 2</a><ol><li><a href="#header-3">Header 3</a><ol></ol></li></ol></li></ol></nav></aside>',
+    '<nav class="toc" data-reactroot=""><ol><li><a href="#header-2">Header 2</a><ol><li><a href="#header-3">Header 3</a><ol></ol></li></ol></li></ol></nav>',
   );
   asserts.assertEquals(pagePropsREADME.date, new Date('Sat Jul 11 20:13:54 2020 +0800'));
   asserts.assertEquals(pagePropsREADME.author, 'Tom');

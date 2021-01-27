@@ -391,6 +391,7 @@ export default {
 export default {
   md: {
     anchorLevel: [1, 2, 3, 4, 5, 6],
+    tocEnabled: true,
     tocLevel: [1, 2, 3, 4]
 };
 ```
@@ -398,7 +399,8 @@ export default {
 在上面的例子中：
 
 - `anchorLevel` 用来配置 Markdown 转成 HTML 时，各级标题是否需要渲染一个锚点链接。`[1, 2, 3, 4, 5, 6]` 表示 `h1` 到 `h6` 都得展示锚点链接。它的默认值是 `[2, 3, 4, 5, 6]`。
-- `tocLevel` 用来配置页面中的目录（Table of Content）需要包含的标题级别。`[1, 2, 3, 4]` 表示 `h1` 到 `h4` 的标题都会展示在目录中。它的默认值是 `[2, 3]`。
+- `tocEnabled` 用来配置是否展示页面中的目录（Table of Content）
+- `tocLevel` 用来配置页面中的目录需要包含的标题级别。`[1, 2, 3, 4]` 表示 `h1` 到 `h4` 的标题都会展示在目录中。它的默认值是 `[2, 3]`。
 
 ### `tocAd`
 
