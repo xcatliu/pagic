@@ -282,6 +282,7 @@
       <span class="token string">'about/README.md'</span><span class="token punctuation">,</span>
       <span class="token punctuation">{</span>
         link<span class="token operator">:</span> <span class="token string">'about/team.md'</span><span class="token punctuation">,</span>
+        expanded<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
         children<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'about/xcatliu.md'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token punctuation">{</span>
@@ -298,6 +299,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>在上面的例子中，以 <code>/docs/</code> 开头的页面会展示 docs 侧边栏，以 <code>/about/</code> 开头的页面会展示 about 侧边栏，其他页面会命中 <code>/</code>，展示默认的侧边栏。</p>
+<p>侧边栏默认会全部展开，除非配置了 <code>expanded: false</code>。</p>
 <h3 id="md"><code>md</code><a class="anchor" href="#md">§</a></h3>
 <ul>
 <li>类型：较复杂，见示例</li>

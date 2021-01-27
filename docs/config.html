@@ -282,6 +282,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
       <span class="token string">'about/README.md'</span><span class="token punctuation">,</span>
       <span class="token punctuation">{</span>
         link<span class="token operator">:</span> <span class="token string">'about/team.md'</span><span class="token punctuation">,</span>
+        expanded<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
         children<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'about/xcatliu.md'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">,</span>
       <span class="token punctuation">{</span>
@@ -298,6 +299,7 @@ When using the official theme, the value should be <code>'default' |'docs' |'blo
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>In the above example, the page starting with <code>/docs/</code> will display the docs sidebar, the page starting with <code>/about/</code> will display the about sidebar, and other pages will hit <code>/</code> to display the default sidebar.</p>
+<p>The sidebar will be fully expanded by default, unless <code>expanded: false</code> is configured.</p>
 <h3 id="md"><code>md</code><a class="anchor" href="#md">§</a></h3>
 <ul>
 <li>Type: complex, please see below</li>
