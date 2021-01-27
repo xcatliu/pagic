@@ -29,9 +29,19 @@ export default {
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '<h2 id="official-themes">Official themes<a class="anchor" href="#official-themes">§</a></h2>\n<h3 id="default"><code>default</code><a class="anchor" href="#default">§</a></h3>\n<p>The default theme, demos:</p>\n<ul>\n<li><a href="https://xcatliu.com/">https://xcatliu.com/</a> (<a href="https://github.com/xcatliu/xcatliu/">GitHub</a>)</li>\n</ul>\n<h3 id="docs"><code>docs</code><a class="anchor" href="#docs">§</a></h3>\n<p>The theme used to write documents or e-book, you can create a site with dosc theme by using <a href="https://github.com/xcatliu/pagic_template_docs">this template</a></p>\n<p>Other demos:</p>\n<ul>\n<li>This site itself (<a href="https://github.com/xcatliu/pagic/">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n</ul>\n<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>\n<p>Official blog theme, demos:</p>\n<ul>\n<li><a href="https://blog.xcatliu.com/">Xcatliu\'s Blog</a> (<a href="https://github.com/xcatliu/blog">GitHub</a>)</li>\n</ul>\n<h2 id="third-party-themes">Third-party themes<a class="anchor" href="#third-party-themes">§</a></h2>\n<p>Stay tuned.</p>'
         } }),
-    'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
-            __html: '<nav class="toc"><ol><li><a href="#official-themes">Official themes</a><ol><li><a href="#default">default</a></li><li><a href="#docs">docs</a></li><li><a href="#blog">blog</a></li></ol></li><li><a href="#third-party-themes">Third-party themes</a></li></ol></nav>'
-        } }),
+    'toc': React.createElement("nav", { key: "0", className: "toc" },
+        React.createElement("ol", null,
+            React.createElement("li", null,
+                React.createElement("a", { href: "#official-themes" }, "Official themes"),
+                React.createElement("ol", null,
+                    React.createElement("li", null,
+                        React.createElement("a", { href: "#default" }, "default")),
+                    React.createElement("li", null,
+                        React.createElement("a", { href: "#docs" }, "docs")),
+                    React.createElement("li", null,
+                        React.createElement("a", { href: "#blog" }, "blog")))),
+            React.createElement("li", null,
+                React.createElement("a", { href: "#third-party-themes" }, "Third-party themes")))),
     'author': "xcatliu",
     'contributors': [
         "xcatliu"

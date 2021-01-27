@@ -34,12 +34,12 @@
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup deno
         <span class="token key atrule">uses</span><span class="token punctuation">:</span> denolib/setup<span class="token punctuation">-</span>deno@v2
         <span class="token key atrule">with</span><span class="token punctuation">:</span>
-          <span class="token key atrule">deno-version</span><span class="token punctuation">:</span> v1.6.1
+          <span class="token key atrule">deno-version</span><span class="token punctuation">:</span> v1.7.0
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build gh<span class="token punctuation">-</span>pages
         <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string"></span>
           deno --version
-          deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.1.1/mod.ts
+          deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.2.0/mod.ts
           <span>pagic build</span>
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy gh<span class="token punctuation">-</span>pages
@@ -86,4 +86,4 @@
 <li>
 <p>Click Deploy，Wait for deployment to complete to visit 🎊</p>
 </li>
-</ol></article><div class="prev_next"><a class="prev button" href="/docs/i18n.html">«  <!-- -->Internationalization</a><a class="next button" href="/docs/demos.html">Demos<!-- -->  »</a></div></div><div class="main_toc_container nav_link_container"><div class="main_toc"><aside><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></aside></div></div></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</ol></article><div class="prev_next"><a class="prev button" href="/docs/i18n.html">«  <!-- -->Internationalization</a><a class="next button" href="/docs/demos.html">Demos<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

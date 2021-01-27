@@ -29,9 +29,19 @@ export default {
     'contentBody': React.createElement("article", { dangerouslySetInnerHTML: {
             __html: '<h2 id="%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题<a class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h2>\n<h3 id="default"><code>default</code><a class="anchor" href="#default">§</a></h3>\n<p>默认主题，示例网站：</p>\n<ul>\n<li><a href="https://xcatliu.com/">https://xcatliu.com/</a> (<a href="https://github.com/xcatliu/xcatliu/">GitHub</a>)</li>\n</ul>\n<h3 id="docs"><code>docs</code><a class="anchor" href="#docs">§</a></h3>\n<p>专门用来写文档或电子书的主题，你可以使用<a href="https://github.com/xcatliu/pagic_template_docs">此模版</a>来创建一个用 docs 主题生成的网站。</p>\n<p>其他示例网站：</p>\n<ul>\n<li>本网站 (<a href="https://github.com/xcatliu/pagic/">GitHub</a>)</li>\n<li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a> (<a href="https://github.com/xcatliu/typescript-tutorial/">GitHub</a>)</li>\n</ul>\n<h3 id="blog"><code>blog</code><a class="anchor" href="#blog">§</a></h3>\n<p>官方博客主题，示例网站：</p>\n<ul>\n<li><a href="https://blog.xcatliu.com/">流浪小猫的博客</a> (<a href="https://github.com/xcatliu/blog">GitHub</a>)</li>\n</ul>\n<h2 id="%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题<a class="anchor" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">§</a></h2>\n<p>敬请期待</p>'
         } }),
-    'toc': React.createElement("aside", { dangerouslySetInnerHTML: {
-            __html: '<nav class="toc"><ol><li><a href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98">官方主题</a><ol><li><a href="#default">default</a></li><li><a href="#docs">docs</a></li><li><a href="#blog">blog</a></li></ol></li><li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98">第三方主题</a></li></ol></nav>'
-        } }),
+    'toc': React.createElement("nav", { key: "0", className: "toc" },
+        React.createElement("ol", null,
+            React.createElement("li", null,
+                React.createElement("a", { href: "#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A2%98" }, "\u5B98\u65B9\u4E3B\u9898"),
+                React.createElement("ol", null,
+                    React.createElement("li", null,
+                        React.createElement("a", { href: "#default" }, "default")),
+                    React.createElement("li", null,
+                        React.createElement("a", { href: "#docs" }, "docs")),
+                    React.createElement("li", null,
+                        React.createElement("a", { href: "#blog" }, "blog")))),
+            React.createElement("li", null,
+                React.createElement("a", { href: "#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%B8%BB%E9%A2%98" }, "\u7B2C\u4E09\u65B9\u4E3B\u9898")))),
     'author': "xcatliu",
     'contributors': [
         "xcatliu"
