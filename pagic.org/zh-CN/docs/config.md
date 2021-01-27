@@ -361,6 +361,7 @@ export default {
       'about/README.md',
       {
         link: 'about/team.md',
+        expanded: false,
         children: ['about/xcatliu.md'],
       },
       {
@@ -378,6 +379,8 @@ export default {
 ```
 
 在上面的例子中，以 `/docs/` 开头的页面会展示 docs 侧边栏，以 `/about/` 开头的页面会展示 about 侧边栏，其他页面会命中 `/`，展示默认的侧边栏。
+
+侧边栏默认会全部展开，除非配置了 `expanded: false`。
 
 ### `md`
 

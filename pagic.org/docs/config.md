@@ -360,6 +360,7 @@ export default {
       'about/README.md',
       {
         link: 'about/team.md',
+        expanded: false,
         children: ['about/xcatliu.md'],
       },
       {
@@ -377,6 +378,8 @@ export default {
 ```
 
 In the above example, the page starting with `/docs/` will display the docs sidebar, the page starting with `/about/` will display the about sidebar, and other pages will hit `/` to display the default sidebar.
+
+The sidebar will be fully expanded by default, unless `expanded: false` is configured.
 
 ### `md`
 
