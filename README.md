@@ -55,6 +55,7 @@
 - [Deno 中文手册](https://manual.deno.js.cn/) ([GitHub](https://github.com/denocn/deno_manual))
 - [JavaScript 20 年](https://cn.history.js.org/) ([GitHub](https://github.com/doodlewind/jshistory-cn))
 - [ECMAScript+ 面试宝典](https://es-interview.js.org/) ([GitHub](https://github.com/hylerrix/es-interview))
+- [Blitz.js + React 全栈开发手册](https://blitzjs-tutorial.js.org/) ([GitHub](https://github.com/hylerrix/blitzjs-tutorial))
 - [自然醒的博客](https://blog.shenfq.com/)（[GitHub](https://github.com/Shenfq/blog)）
 - [Viktor's Docs](https://docs.itdongdong.com/)（[GitHub](https://github.com/ViktorWong/my-docs)）
 - [Add my site as a demo](https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&labels=demo&template=add-a-demo.md&title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com) 😝
