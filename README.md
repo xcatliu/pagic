@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/badge/Deno-1.8.2-brightgreen.svg?logo=deno" alt="deno" />
   </a>
   <a href="https://pagic.org">
-    <img src="https://img.shields.io/badge/Pagic-v1.2.0-orange.svg" alt="pagic" />
+    <img src="https://img.shields.io/badge/Pagic-v1.2.1-orange.svg" alt="pagic" />
   </a>
   <a href="https://discord.gg/vn3VvdUycW">
     <img src="https://img.shields.io/discord/785366263823335424" alt="discord" />

@@ -30,7 +30,7 @@ jobs:
       - name: Build gh-pages
         run: |
           deno --version
-          deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.2.0/mod.ts
+          deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.2.1/mod.ts
           pagic build
 
       - name: Deploy gh-pages
