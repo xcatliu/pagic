@@ -74,10 +74,10 @@ Deno.test('[findNearestLayoutPath]', () => {
 const sort = (arr: string[]) => arr.sort((a: string, b: string) => a.localeCompare(b));
 Deno.test('[walk]', async () => {
   asserts.assertEquals(sort(await walk('test/fixtures/walk')), [
-    '.bar',
-    '.foo/foo.md',
     '_header.tsx',
     '_layout.tsx',
+    '.bar',
+    '.foo/foo.md',
     'a/_bar.tsx',
     'a/_layout.tsx',
     'a/bar',
