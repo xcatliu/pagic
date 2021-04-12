@@ -71,14 +71,23 @@ Deno.test('[findNearestLayoutPath]', () => {
   asserts.assertEquals(findNearestLayoutPath('foo/bar/baz.md', ['foo/_layout.tsx', '_layout.tsx']), 'foo/_layout.tsx');
   asserts.assertEquals(findNearestLayoutPath('bar/baz.md', ['bar/_layout.tsx', '_layout.tsx']), 'bar/_layout.tsx');
 });
-const sort = (arr: string[]) => arr.sort((a: string, b: string) => a.localeCompare(b));
+const sort = (arr: string[]) =>
+  arr.sort((a: string, b: string) => {
+    const compareResult = a.localeCompare(b);
+    if (compareResult > 0) {
+      return 1;
+    } else if (compareResult === 0) {
+      return 0;
+    } else {
+      return -1;
+    }
+  });
 Deno.test('[walk]', async () => {
-  console.log('.'.localeCompare('_'));
   asserts.assertEquals(sort(await walk('test/fixtures/walk')), [
-    '.bar',
-    '.foo/foo.md',
     '_header.tsx',
     '_layout.tsx',
+    '.bar',
+    '.foo/foo.md',
     'a/_bar.tsx',
     'a/_layout.tsx',
     'a/bar',
