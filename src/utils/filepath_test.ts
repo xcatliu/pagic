@@ -73,7 +73,6 @@ Deno.test('[findNearestLayoutPath]', () => {
 });
 const sort = (arr: string[]) => arr.sort((a: string, b: string) => a.localeCompare(b));
 Deno.test('[walk]', async () => {
-  console.log('.'.localeCompare('_'));
   asserts.assertEquals(sort(await walk('test/fixtures/walk')), [
     '.bar',
     '.foo/foo.md',
