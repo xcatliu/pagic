@@ -75,10 +75,10 @@ const sort = (arr: string[]) => arr.sort((a: string, b: string) => a.localeCompa
 Deno.test('[walk]', async () => {
   console.log('.'.localeCompare('_'));
   asserts.assertEquals(sort(await walk('test/fixtures/walk')), [
-    '_header.tsx',
-    '_layout.tsx',
     '.bar',
     '.foo/foo.md',
+    '_header.tsx',
+    '_layout.tsx',
     'a/_bar.tsx',
     'a/_layout.tsx',
     'a/bar',
