@@ -269,7 +269,7 @@ export default {
 举个例子，增加一个自定义的 favicon：
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.2.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.3.0/mod.ts';
 
 export default {
   head: <link rel="icon" type="image/png" href="/favicon.png" />,
@@ -279,7 +279,7 @@ export default {
 如果需要引入多个标签，则需要用 `<>` 标签包裹：
 
 ```tsx {5,8}
-import { React } from 'https://deno.land/x/pagic@v1.2.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.3.0/mod.ts';
 
 export default {
   head: (
@@ -300,7 +300,7 @@ export default {
 导航栏配置，示例如下：
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.2.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.3.0/mod.ts';
 
 export default {
   nav: [
@@ -414,7 +414,7 @@ export default {
 展示在目录上方的广告，示例如下：
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.2.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.3.0/mod.ts';
 
 export default {
   tocAd: (
