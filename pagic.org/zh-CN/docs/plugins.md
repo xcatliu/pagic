@@ -131,7 +131,7 @@ interface PagicPlugin {
 比如，我们可以创建一个插件，它给所有页面的 `title` 加一个前缀：
 
 ```ts {6-15}
-import { PagicPlugin } from 'https://deno.land/x/pagic@v1.3.0/mod.ts';
+import { PagicPlugin } from 'https://deno.land/x/pagic@v1.3.1/mod.ts';
 
 const prependTitle: PagicPlugin = {
   name: 'prepend_title',
