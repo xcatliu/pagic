@@ -388,3 +388,7 @@ export default class Pagic {
     }
   }
 }
+
+export function defindPagicOptions(options:Partial<PagicConfig> ={}) {
+  return options
+}
