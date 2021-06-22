@@ -45,6 +45,17 @@ jobs:
 
 如果没有自己的域名的话，也可以使用 GitHub 提供的免费域名 `xxx.github.io`，此时只要将最后一行删除即可。注意此时需要修改 `pagic.config.ts` 中的 `root` 配置来支持子路径，详细可参考[配置文件](./config.md#root)章节。
 
+比如：你的项目名为 `my-site` ，你就需要将 `root` 设置为 `/my-site/`
+
+### 子目录
+
+如果你希望你的 `pagic` 运行于仓库的子目录中，你需要对 `ci.yml` 进行简单编辑：
+
+- 在 `Build gh-pages` 中的 `pagic build` 前面添加 `cd ./{sub-dir-name}`
+- 将 `publish_dir` 更换为 `./{sub-dir-name}/dist`（加上子目录的路径）
+
+`{sub-dir-name}` 就是你子目录的名称。
+
 ## CloudBase
 
 [云开发 CloudBase](https://www.cloudbase.net/) 是腾讯云提供的云原生一体化开发环境和工具平台，现[已支持一键部署 Pagic 应用](https://cloud.tencent.com/developer/news/680176)，还拥有免费的默认域名、CDN 加速等功能。
