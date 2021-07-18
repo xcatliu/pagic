@@ -17,6 +17,7 @@ Deno.test('[tsx]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'README.md': {
       config: pagic.config,
@@ -27,6 +28,7 @@ Deno.test('[tsx]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   await tsx.fn(pagic);

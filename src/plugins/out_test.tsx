@@ -23,6 +23,7 @@ Deno.test('[out] content is null', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   asserts.assertThrowsAsync(() => out.fn(pagic), Error, 'content is null');
@@ -51,6 +52,7 @@ Deno.test('[out] helmet', async () => {
       ),
       head: null,
       script: null,
+      footer: null,
     },
   };
 

@@ -20,7 +20,14 @@ Deno.test('[prev_next]', async () => {
       children: [{ text: 'Bar', link: 'docs/bar.html', pagePath: 'docs/bar.md' }],
     },
   ];
-  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  const commonProps = {
+    config: pagic.config,
+    layoutPath: '_layout.tsx',
+    content: null,
+    head: null,
+    script: null,
+    footer: null,
+  };
   pagic.pagePropsMap = {
     'README.md': {
       ...commonProps,

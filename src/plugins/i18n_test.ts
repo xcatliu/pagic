@@ -46,6 +46,7 @@ Deno.test('[i18n]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'zh-CN/README.md': {
       config: pagic.config,
@@ -56,6 +57,7 @@ Deno.test('[i18n]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
 

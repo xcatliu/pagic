@@ -18,6 +18,7 @@ Deno.test('[init]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'foo.tsx': {
       config: pagic.config,
@@ -28,6 +29,7 @@ Deno.test('[init]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'bar/baz.md': {
       config: pagic.config,
@@ -38,6 +40,7 @@ Deno.test('[init]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   });
 });

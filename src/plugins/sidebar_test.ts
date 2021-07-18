@@ -14,7 +14,14 @@ Deno.test('[sidebar]', async () => {
     '/api/': ['api/foo.md', 'api/bar.tsx'],
   };
   pagic.pagePaths = ['README.md', 'docs/introduction.md', 'docs/usage.md', 'api/foo.md', 'api/bar.tsx'];
-  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  const commonProps = {
+    config: pagic.config,
+    layoutPath: '_layout.tsx',
+    content: null,
+    head: null,
+    script: null,
+    footer: null,
+  };
   pagic.pagePropsMap = {
     'README.md': {
       ...commonProps,
@@ -84,7 +91,14 @@ Deno.test('[sidebar] object config', async () => {
     ],
   };
   pagic.pagePaths = ['docs/introduction.md', 'docs/usage.md', 'docs/usage/foo.md', 'docs/bar.md'];
-  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  const commonProps = {
+    config: pagic.config,
+    layoutPath: '_layout.tsx',
+    content: null,
+    head: null,
+    script: null,
+    footer: null,
+  };
   pagic.pagePropsMap = {
     'docs/introduction.md': {
       ...commonProps,
@@ -154,7 +168,14 @@ Deno.test('[sidebar] glob config', async () => {
     'deep/path/foo.md',
     'deep/path/bar.tsx',
   ];
-  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  const commonProps = {
+    config: pagic.config,
+    layoutPath: '_layout.tsx',
+    content: null,
+    head: null,
+    script: null,
+    footer: null,
+  };
   pagic.pagePropsMap = {
     'README.md': {
       ...commonProps,
@@ -244,7 +265,14 @@ Deno.test('[sidebar] absolute link', async () => {
     ],
   };
   pagic.pagePaths = ['docs/introduction.md'];
-  const commonProps = { config: pagic.config, layoutPath: '_layout.tsx', content: null, head: null, script: null };
+  const commonProps = {
+    config: pagic.config,
+    layoutPath: '_layout.tsx',
+    content: null,
+    head: null,
+    script: null,
+    footer: null,
+  };
   pagic.pagePropsMap = {
     'docs/introduction.md': {
       ...commonProps,

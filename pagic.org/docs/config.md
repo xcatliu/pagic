@@ -454,6 +454,29 @@ export default {
 };
 ```
 
+### `footer`
+
+- Type: `Record<string, any>`
+- Supported themes: all
+- Dependent plugins: none
+
+The footer of all pages, an example is as follows:
+
+```tsx
+import { React } from 'https://deno.land/x/pagic@v1.3.1/mod.ts';
+
+export default {
+  footer: (
+    <footer>
+      Powered by&nbsp;
+      <a href="https://github.com/xcatliu/pagic" target="_blank">
+        Pagic
+      </a>
+    </footer>
+  ),
+};
+```
+
 ### `ga`
 
 - Type: `{ id:string }`

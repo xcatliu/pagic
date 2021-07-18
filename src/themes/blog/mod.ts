@@ -24,7 +24,6 @@ export default {
     'assets/variables.css',
     'favicon.ico',
     '_aside.tsx',
-    '_footer.tsx',
     '_head.tsx',
     '_layout.tsx',
     '_layout_base.tsx',

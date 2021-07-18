@@ -455,6 +455,29 @@ export default {
 };
 ```
 
+### `footer`
+
+- 类型：`ReactElement`
+- 支持的主题：全部
+- 依赖的插件：无
+
+页面底部，会展示在所有页面里，示例如下：
+
+```tsx
+import { React } from 'https://deno.land/x/pagic@v1.3.1/mod.ts';
+
+export default {
+  footer: (
+    <footer>
+      Powered by&nbsp;
+      <a href="https://github.com/xcatliu/pagic" target="_blank">
+        Pagic
+      </a>
+    </footer>
+  ),
+};
+```
+
 ### `ga`
 
 - 类型：`{ id:string }`

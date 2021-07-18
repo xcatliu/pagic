@@ -1,6 +1,4 @@
-import type { React } from '../deps.ts';
-// eslint-disable-next-line no-duplicate-imports
-import { fs, path, colors } from '../deps.ts';
+import { React, fs, path, colors } from '../deps.ts';
 
 import {
   pick,
@@ -45,6 +43,7 @@ export interface PagicConfig {
     backToTop: boolean;
   };
   branch?: string;
+  footer?: React.ReactElement;
 
   // plugins
   nav?: {
@@ -117,6 +116,7 @@ export interface PageProps {
   outputPath: string;
   head: React.ReactElement | null;
   script: React.ReactElement | null;
+  footer: React.ReactElement | null;
 
   // script
   loading?: boolean;
@@ -162,6 +162,19 @@ export default class Pagic {
     watch: false,
     serve: false,
     port: 8000,
+    footer: React.createElement(
+      'footer',
+      {},
+      'Powered by&nbsp;',
+      React.createElement(
+        'a',
+        {
+          href: 'https://github.com/xcatliu/pagic',
+          target: '_blank',
+        },
+        ['Pagic'],
+      ),
+    ),
   };
   // foo.md
   public static REGEXP_PAGE = /[\/\\][^_][^\/\\]*\.(md|tsx)$/;

@@ -68,7 +68,11 @@ const script: PagicPlugin = {
                     const modulePath = `${pagic.config.root}${pascalToUnderline(componentName)}.js`;
                     importComponentList[componentName] = modulePath;
                   }
-                  element.props?.children?.forEach(traverseElement);
+                  if (Array.isArray(element.props?.children)) {
+                    element.props.children.forEach(traverseElement);
+                  } else {
+                    traverseElement(element.props?.children);
+                  }
                 }
                 return `'${key}': ${reactElementToJSXString(value)}`;
               } else {

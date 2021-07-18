@@ -17,6 +17,7 @@ Deno.test('[md]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   await md.fn(pagic);
@@ -58,6 +59,7 @@ Deno.test('[md] no_toc', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'no_toc2.md': {
       config: pagic.config,
@@ -68,6 +70,7 @@ Deno.test('[md] no_toc', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   await md.fn(pagic);
@@ -118,6 +121,7 @@ Deno.test('[md] LaTeX', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   await md.fn(pagic);

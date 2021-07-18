@@ -17,6 +17,7 @@ Deno.test('[layout]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   await layout.fn(pagic);

@@ -21,6 +21,7 @@ Deno.test('[ga]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
 
