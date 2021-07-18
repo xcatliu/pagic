@@ -78,7 +78,7 @@ export function sortByInsert<
     name: string;
     insert?: string;
     index?: number;
-  }
+  },
 >(arr: T[]) {
   let restItems: T[] = [];
   arr.forEach((item, index) => {

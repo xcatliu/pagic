@@ -26,7 +26,7 @@ const Head: PagicLayout<{
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={pageTitle} />
         {config.description && <meta property="og:description" content={config.description} />}
-        {<meta property="og:type" content={isNotIndexPage ? 'article' : 'website'} />}
+        <meta property="og:type" content={isNotIndexPage ? 'article' : 'website'} />
         <meta name="twitter:card" content="summary" />
         {config.blog?.social?.twitter && <meta name="twitter:site" content={`@${config.blog.social.twitter}`} />}
         <link rel="stylesheet" href={`${config.root}assets/index.css`} />

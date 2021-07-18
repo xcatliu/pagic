@@ -56,8 +56,6 @@ If you want your `pagic` run in the project sub directory, you should edit the `
 
 `{sub-dir-name}` is your sub-directory name.
 
-
-
 ## Vercel
 
 Create a `deploy-vercel.sh` file in the project root directory:
