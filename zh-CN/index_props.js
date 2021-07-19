@@ -26,6 +26,9 @@ export default {
                 '**/npm-debug.log',
                 'dist'
             ],
+            footer: React.createElement("footer", null,
+                "Powered by\u00A0",
+                React.createElement("a", { href: "https://github.com/xcatliu/pagic", target: "_blank" }, "Pagic")),
             ga: {
                 id: 'UA-45256157-16'
             },
@@ -175,7 +178,9 @@ export default {
             theme: 'docs',
             title: 'Pagic',
             watch: false
-        }, content: null, head: React.createElement(React.Fragment, null,
+        }, content: null, footer: React.createElement("footer", null,
+            "Powered by\u00A0",
+            React.createElement("a", { href: "https://github.com/xcatliu/pagic", target: "_blank" }, "Pagic")), head: React.createElement(React.Fragment, null,
             React.createElement("script", { src: "/i18n.js", type: "module" })), language: {
             code: 'zh-CN',
             name: '简体中文',
@@ -189,6 +194,9 @@ export default {
         React.createElement("script", { src: "https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js" }),
         React.createElement("script", { src: "https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js" }),
         React.createElement("script", { src: "/index.js", type: "module" })),
+    'footer': React.createElement("footer", null,
+        "Powered by\u00A0",
+        React.createElement("a", { href: "https://github.com/xcatliu/pagic", target: "_blank" }, "Pagic")),
     'language': {
         "code": "zh-CN",
         "name": "简体中文",
