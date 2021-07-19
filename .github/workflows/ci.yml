@@ -18,7 +18,7 @@ jobs:
       - name: Setup deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: v1.9.2
+          deno-version: v1.11.5
 
       - name: Run tests
         run: deno test --unstable --allow-read --allow-write --allow-net --allow-run src
