@@ -49,7 +49,15 @@
           <span class="token key atrule">publish_dir</span><span class="token punctuation">:</span> ./dist
           <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com
 </code></pre><p>Be sure to replace <code>ts.xcatliu.com</code> in the last line with your own domain.</p>
-<p>If you don't have your own domain, you can also use the free domain <code>xxx.github.io</code> provided by GitHub, just delete the last line. Note that you may need to modify the <code>root</code> configuration in <code>pagic.config.ts</code> to support sub-paths. For details, please refer to the <a href="./config.html#root">Config</a> chapter.</p>
+<p>If you don't have your own domain, you can also use the free domain <code>xxx.github.io</code> provided by GitHub, just delete the last line. Note that you may need to modify the <code>root</code> configuration in <code>pagic.config.ts</code> to support sub-paths.</p>
+<p>For example: if your github project name is: <code>my-site</code> , then you should change <code>root</code> to <code>/my-site/</code>.</p>
+<h3 id="sub-directory">Sub Directory<a class="anchor" href="#sub-directory">§</a></h3>
+<p>If you want your <code>pagic</code> run in the project sub directory, you should edit the <code>ci.yml</code> configure:</p>
+<ul>
+<li>Add <code>cd ./{sub-dir-name}</code> before <code>pagic build</code> in <strong>Build gh-pages</strong>.</li>
+<li>Change <code>publish_dir</code> to <code>./{sub-dir-name}/dist</code></li>
+</ul>
+<p><code>{sub-dir-name}</code> is your sub-directory name.</p>
 <h2 id="vercel">Vercel<a class="anchor" href="#vercel">§</a></h2>
 <p>Create a <code>deploy-vercel.sh</code> file in the project root directory:</p>
 <pre class="language-shell"><code class="language-shell"><span class="token shebang important">#!/bin/sh</span>
@@ -86,4 +94,4 @@
 <li>
 <p>Click Deploy，Wait for deployment to complete to visit 🎊</p>
 </li>
-</ol></article><div class="prev_next"><a class="prev button" href="/docs/i18n.html">«  <!-- -->Internationalization</a><a class="next button" href="/docs/demos.html">Demos<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</ol></article><div class="prev_next"><a class="prev button" href="/docs/i18n.html">«  <!-- -->Internationalization</a><a class="next button" href="/docs/demos.html">Demos<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a><ol><li><a href="#sub-directory">Sub Directory</a></li></ol></li><li><a href="#vercel">Vercel</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

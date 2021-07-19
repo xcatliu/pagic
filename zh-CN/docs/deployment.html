@@ -50,6 +50,14 @@
           <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com
 </code></pre><p>注意替换掉最后一行的 <code>ts.xcatliu.com</code> 为你自己的域名。</p>
 <p>如果没有自己的域名的话，也可以使用 GitHub 提供的免费域名 <code>xxx.github.io</code>，此时只要将最后一行删除即可。注意此时需要修改 <code>pagic.config.ts</code> 中的 <code>root</code> 配置来支持子路径，详细可参考<a href="./config.html#root">配置文件</a>章节。</p>
+<p>比如：你的项目名为 <code>my-site</code> ，你就需要将 <code>root</code> 设置为 <code>/my-site/</code></p>
+<h3 id="%E5%AD%90%E7%9B%AE%E5%BD%95">子目录<a class="anchor" href="#%E5%AD%90%E7%9B%AE%E5%BD%95">§</a></h3>
+<p>如果你希望你的 <code>pagic</code> 运行于仓库的子目录中，你需要对 <code>ci.yml</code> 进行简单编辑：</p>
+<ul>
+<li>在 <code>Build gh-pages</code> 中的 <code>pagic build</code> 前面添加 <code>cd ./{sub-dir-name}</code></li>
+<li>将 <code>publish_dir</code> 更换为 <code>./{sub-dir-name}/dist</code>（加上子目录的路径）</li>
+</ul>
+<p><code>{sub-dir-name}</code> 就是你子目录的名称。</p>
 <h2 id="cloudbase">CloudBase<a class="anchor" href="#cloudbase">§</a></h2>
 <p><a href="https://www.cloudbase.net/">云开发 CloudBase</a> 是腾讯云提供的云原生一体化开发环境和工具平台，现<a href="https://cloud.tencent.com/developer/news/680176">已支持一键部署 Pagic 应用</a>，还拥有免费的默认域名、CDN 加速等功能。</p>
 <p>你可以通过以下步骤来使用：</p>
@@ -107,4 +115,4 @@
 <li>
 <p>点击部署，等待部署完成即可访问 🎊</p>
 </li>
-</ol></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/i18n.html">«  <!-- -->国际化</a><a class="next button" href="/zh-CN/docs/demos.html">示例网站<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a></li><li><a href="#cloudbase">CloudBase</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
+</ol></article><div class="prev_next"><a class="prev button" href="/zh-CN/docs/i18n.html">«  <!-- -->国际化</a><a class="next button" href="/zh-CN/docs/demos.html">示例网站<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#github-pages">GitHub Pages</a><ol><li><a href="#%E5%AD%90%E7%9B%AE%E5%BD%95">子目录</a></li></ol></li><li><a href="#cloudbase">CloudBase</a></li><li><a href="#vercel">Vercel</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
