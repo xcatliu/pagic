@@ -88,7 +88,9 @@ const md: PagicPlugin = {
        * Use markdown-it-title to get the title of the page
        * https://github.com/valeriangalliat/markdown-it-title
        */
-      const env: any = {};
+      const env: any = {
+        katexMacros: Object.assign({}, pagic.config.md?.katexMacros)
+      };
       const contentHTML = mdRenderer
         .render(content, env)
         .replace(/<table[\s\S]*?<\/table>/g, '<div class="table_wrapper">$&</div>')

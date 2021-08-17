@@ -59,6 +59,7 @@ export interface PagicConfig {
     anchorLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
     tocEnabled?: boolean;
     tocLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
+    katexMacros?: Record<string, string>;
   };
   ga?: GaProps;
   gitalk?: GitalkProps;
