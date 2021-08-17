@@ -5,6 +5,7 @@ import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.
 import markdownitReplaceLink from '../vendors/markdown-it-replace-link/index.js';
 import markdownitHighlightLines from '../vendors/markdown-it-highlight-lines/index.js';
 import markdownItKatex from '../vendors/markdown-it-katex/index.js';
+import markdownItDefList from '../vendors/markdown-it-deflist/index.js';
 
 import Prism from '../vendors/prism/mod.ts';
 import { replaceLink, getGitLog, substring } from '../utils/mod.ts';
@@ -70,7 +71,8 @@ const md: PagicPlugin = {
       })
       .use(markdownitReplaceLink)
       .use(markdownitHighlightLines)
-      .use(markdownItKatex);
+      .use(markdownItKatex)
+      .use(markdownItDefList);
 
     // If one of the content has KaTeX, then set contentHasKaTeX to true
     let contentHasKaTeX = false;
