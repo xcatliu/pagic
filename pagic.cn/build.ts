@@ -11,3 +11,5 @@ fs.copySync(path.resolve(dirname, 'index_cn.tsx'), path.resolve(dirname, 'index.
 fs.copySync(path.resolve(dirname, '../pagic.org/assets'), path.resolve(dirname, 'assets'), {
   overwrite: true,
 });
+
+Deno.exit(0);

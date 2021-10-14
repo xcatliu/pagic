@@ -6,7 +6,7 @@ Deno.test('[import_]', async () => {
   const output = await import_(path.resolve(Deno.cwd(), 'test/fixtures/test_export.ts'));
   asserts.assertEquals(output.foo, 1);
 });
-Deno.test('[importDefaul]', async () => {
+Deno.test('[importDefault]', async () => {
   const output = await importDefault(path.resolve(Deno.cwd(), 'test/fixtures/test_export.ts'));
   asserts.assertEquals(output, 'Hello');
 });
