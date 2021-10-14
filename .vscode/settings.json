@@ -13,5 +13,9 @@
   },
   // 使用项目的 ts 版本
   "typescript.tsdk": "node_modules/typescript/lib",
-  "deno.enable": true
+  "deno.enable": true,
+  "deno.suggest.imports.hosts": {
+    "https://esm.sh": false,
+    "https://cdn.pagic.org": false
+  }
 }

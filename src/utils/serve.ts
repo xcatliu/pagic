@@ -1,62 +1,58 @@
-// Forked from https://deno.land/std@0.72.0/http/file_server.ts
+// Forked from https://deno.land/std@0.111.0/http/file_server.ts
+import { fileServer, httpStatus, server, path } from '../../deps.ts';
 
-import { path, server } from '../../deps.ts';
-const { extname, posix } = path;
+function normalizeURL(url: string): string {
+  let normalizedUrl = url;
 
-const encoder = new TextEncoder();
+  try {
+    // allowed per https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
+    const absoluteURI = new URL(normalizedUrl);
+    normalizedUrl = absoluteURI.pathname;
+  } catch (e) {
+    // wasn't an absoluteURI
+    if (!(e instanceof TypeError)) {
+      throw e;
+    }
+  }
 
-const MEDIA_TYPES: Record<string, string> = {
-  '.md': 'text/markdown',
-  '.html': 'text/html',
-  '.htm': 'text/html',
-  '.json': 'application/json',
-  '.map': 'application/json',
-  '.txt': 'text/plain',
-  '.ts': 'text/typescript',
-  '.tsx': 'text/tsx',
-  '.js': 'application/javascript',
-  '.jsx': 'text/jsx',
-  '.gz': 'application/gzip',
-  '.css': 'text/css',
-  '.wasm': 'application/wasm',
-  '.mjs': 'application/javascript',
-  '.svg': 'image/svg+xml',
-};
-/** Returns the content-type based on the extension of a path. */
-function contentType(path: string): string | undefined {
-  return MEDIA_TYPES[extname(path)];
+  try {
+    normalizedUrl = decodeURI(normalizedUrl);
+  } catch (e) {
+    if (!(e instanceof URIError)) {
+      throw e;
+    }
+  }
+
+  if (normalizedUrl[0] !== '/') {
+    throw new URIError('The request URI is malformed.');
+  }
+
+  normalizedUrl = path.posix.normalize(normalizedUrl);
+  const startOfParams = normalizedUrl.indexOf('?');
+
+  return startOfParams > -1 ? normalizedUrl.slice(0, startOfParams) : normalizedUrl;
 }
 
-async function serveFile(req: server.ServerRequest, filePath: string): Promise<server.Response> {
-  const [file, fileInfo] = await Promise.all([Deno.open(filePath), Deno.stat(filePath)]);
-  const headers = new Headers();
-  headers.set('content-length', fileInfo.size.toString());
-  const contentTypeValue = contentType(filePath);
-  if (contentTypeValue) {
-    headers.set('content-type', contentTypeValue);
+function serveFallback(_req: Request, e: Error): Promise<Response> {
+  if (e instanceof URIError) {
+    return Promise.resolve(
+      new Response(httpStatus.STATUS_TEXT.get(httpStatus.Status.BadRequest), {
+        status: httpStatus.Status.BadRequest,
+      }),
+    );
+  } else if (e instanceof Deno.errors.NotFound) {
+    return Promise.resolve(
+      new Response(httpStatus.STATUS_TEXT.get(httpStatus.Status.NotFound), {
+        status: httpStatus.Status.NotFound,
+      }),
+    );
   }
-  req.done.then(() => {
-    file.close();
-  });
-  return {
-    status: 200,
-    body: file,
-    headers,
-  };
-}
 
-function serveFallback(req: server.ServerRequest, e: Error): Promise<server.Response> {
-  if (e instanceof Deno.errors.NotFound) {
-    return Promise.resolve({
-      status: 404,
-      body: encoder.encode('Not found'),
-    });
-  } else {
-    return Promise.resolve({
-      status: 500,
-      body: encoder.encode('Internal server error'),
-    });
-  }
+  return Promise.resolve(
+    new Response(httpStatus.STATUS_TEXT.get(httpStatus.Status.InternalServerError), {
+      status: httpStatus.Status.InternalServerError,
+    }),
+  );
 }
 
 interface ServeOptions {
@@ -70,54 +66,46 @@ const defaultServeOptions: Required<ServeOptions> = {
   port: 8000,
 };
 
-/** Serve dir as static server */
 export function serve(options?: ServeOptions) {
   const { serveDir, root, port } = { ...defaultServeOptions, ...options };
+  const target = path.posix.resolve(serveDir);
 
-  const handler = async (req: server.ServerRequest) => {
-    let normalizedUrl = posix.normalize(req.url);
+  const handler = async (req: Request): Promise<Response> => {
+    let response: Response;
+
     try {
-      normalizedUrl = decodeURIComponent(normalizedUrl);
-    } catch (e) {
-      if (!(e instanceof URIError)) {
-        throw e;
+      const normalizedUrl = normalizeURL(req.url);
+      let fsPath = path.posix.join(target, normalizedUrl.replace(root, '/'));
+
+      if (fsPath.indexOf(target) !== 0) {
+        fsPath = target;
       }
-    }
-    let fsPath = posix.join(serveDir, normalizedUrl.replace(root, '/'));
 
-    let response: server.Response | undefined;
-    try {
       const fileInfo = await Deno.stat(fsPath);
+
       if (fileInfo.isDirectory) {
-        fsPath = posix.join(fsPath, 'index.html');
+        fsPath = path.posix.join(fsPath, 'index.html');
       }
-      response = await serveFile(req, fsPath);
+      response = await fileServer.serveFile(req, fsPath);
     } catch (e) {
-      response = await serveFallback(req, e);
-    } finally {
-      try {
-        await req.respond(response!);
-      } catch (e) {
-        console.error(e.message);
-      }
+      const err = e instanceof Error ? e : new Error('[non-error thrown]');
+      console.error(err.message);
+      response = await serveFallback(req, err);
     }
+
+    return response!;
   };
 
   return listenAndServe(`127.0.0.1:${port}`, handler);
 }
 
-// https://github.com/denoland/deno/issues/5060
-export function listenAndServe(
-  addr: string | server.HTTPOptions,
-  handler: (req: server.ServerRequest) => void,
-): server.Server {
-  const serverInstance = server.serve(addr);
+function listenAndServe(addr: string, handler: server.Handler, options?: server.ServeInit): server.Server {
+  const serverInstance = new server.Server({ addr, handler });
 
-  const handleRequests = async () => {
-    for await (const request of serverInstance) {
-      handler(request);
-    }
-  };
-  handleRequests();
+  if (options?.signal) {
+    options.signal.onabort = () => serverInstance.close();
+  }
+
+  serverInstance.listenAndServe();
   return serverInstance;
 }

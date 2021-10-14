@@ -12,7 +12,7 @@
     "eslint:fix": "eslint --ext .ts,.tsx,.js,.jsx --fix .",
     "prettier": "prettier -l \"./**/*\"",
     "prettier:fix": "prettier --write -l \"./**/*\"",
-    "update": "npm install --save-dev @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-config-alloy@latest eslint-plugin-react@latest prettier@latest typescript@latest",
+    "update": "npm install --save-dev @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@7 eslint-config-alloy@latest eslint-plugin-react@latest prettier@latest typescript@latest",
     "preversion": "run-s test",
     "version": "run-s sed:README sed:pagic.org sed:pagic.cn sed:cloudbaserc.json && git add -A",
     "postversion": "git push --follow-tags",
@@ -24,13 +24,13 @@
   "author": "xcatliu <xcatliu@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.28.3",
-    "@typescript-eslint/parser": "^4.28.3",
-    "eslint": "^7.31.0",
-    "eslint-config-alloy": "^4.1.0",
-    "eslint-plugin-react": "^7.24.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-alloy": "^4.4.0",
+    "eslint-plugin-react": "^7.26.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.2",
-    "typescript": "^4.3.5"
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
   }
 }

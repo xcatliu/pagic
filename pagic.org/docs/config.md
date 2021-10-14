@@ -547,4 +547,4 @@ Start local service, preview static website.
 
 Specify the port of the local service.
 
-[in glob format]: https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts
+[in glob format]: https://doc.deno.land/https/deno.land/std@0.111.0/path/glob.ts

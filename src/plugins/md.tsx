@@ -91,7 +91,7 @@ const md: PagicPlugin = {
        * https://github.com/valeriangalliat/markdown-it-title
        */
       const env: any = {
-        katexMacros: Object.assign({}, pagic.config.md?.katexMacros)
+        katexMacros: { ...pagic.config.md?.katexMacros },
       };
       const contentHTML = mdRenderer
         .render(content, env)

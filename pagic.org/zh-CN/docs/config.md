@@ -548,4 +548,4 @@ export default {
 
 指定本地服务的端口号。
 
-[glob 格式]: https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts
+[glob 格式]: https://doc.deno.land/https/deno.land/std@0.111.0/path/glob.ts
