@@ -131,7 +131,7 @@ The `fn` function is the core logic of the plugin. Since its parameter `pagic` i
 For example, we can create a plugin that adds a prefix to the `title` of all pages:
 
 ```ts {6-15}
-import { PagicPlugin } from 'https://deno.land/x/pagic@v1.5.0/mod.ts';
+import { PagicPlugin } from 'https://deno.land/x/pagic@v1.5.1/mod.ts';
 
 const prependTitle: PagicPlugin = {
   name: 'prepend_title',
