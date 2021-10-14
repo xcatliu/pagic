@@ -58,6 +58,7 @@
 - [Blitz.js + React 全栈开发手册](https://blitzjs-tutorial.js.org/) ([GitHub](https://github.com/hylerrix/blitzjs-tutorial))
 - [自然醒的博客](https://blog.shenfq.com/)（[GitHub](https://github.com/Shenfq/blog)）
 - [Viktor's Docs](https://docs.itdongdong.com/)（[GitHub](https://github.com/ViktorWong/my-docs)）
+- [0xzhang 的博客](https://blog.0xzhang.com/)（[GitHub](https://github.com/0xzhang)）
 - [Add my site as a demo](https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&labels=demo&template=add-a-demo.md&title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com) 😝
 
 ## Get started
