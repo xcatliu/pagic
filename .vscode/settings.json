@@ -16,6 +16,7 @@
   "deno.enable": true,
   "deno.suggest.imports.hosts": {
     "https://esm.sh": false,
-    "https://cdn.pagic.org": false
+    "https://cdn.pagic.org": false,
+    "https://deno.land": false
   }
 }

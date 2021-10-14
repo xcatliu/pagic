@@ -5,10 +5,12 @@ export * as server from 'https://deno.land/std@0.111.0/http/server.ts';
 export * as fileServer from 'https://deno.land/std@0.111.0/http/file_server.ts';
 export * as httpStatus from 'https://deno.land/std@0.111.0/http/http_status.ts';
 export * as asserts from 'https://deno.land/std@0.111.0/testing/asserts.ts';
+// EventEmitter
+export * from 'https://deno.land/x/event@2.0.0/mod.ts';
 
-import * as React from 'https://esm.sh/react';
-import * as ReactDOM from 'https://esm.sh/react-dom';
-import * as ReactDOMServer from 'https://esm.sh/react-dom/server';
+import * as React from 'https://esm.sh/react@17.0.2';
+import * as ReactDOM from 'https://esm.sh/react-dom@17.0.2';
+import * as ReactDOMServer from 'https://esm.sh/react-dom@17.0.2/server';
 
 (window as any).React = React;
 (window as any).ReactDOM = ReactDOM;

@@ -1,4 +1,4 @@
-import { React, fs, path, colors } from '../deps.ts';
+import { React, fs, path, colors, EventEmitter } from '../deps.ts';
 
 import {
   pick,
@@ -135,7 +135,7 @@ export interface PageProps {
 }
 // #endregion
 
-export default class Pagic {
+export default class Pagic extends EventEmitter<{ buildFinish: [] }> {
   // #region properties
   public static defaultConfig: PagicConfig = {
     srcDir: '.',
@@ -205,6 +205,7 @@ export default class Pagic {
   // #endregion
 
   public constructor(config: Partial<PagicConfig> = {}) {
+    super();
     this.runtimeConfig = config;
   }
 
@@ -216,6 +217,8 @@ export default class Pagic {
     if (this.config.watch) {
       this.watch();
     }
+
+    this.emit('buildFinish');
   }
 
   public async generateThemeMod() {
