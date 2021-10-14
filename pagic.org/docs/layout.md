@@ -20,7 +20,7 @@ site/
 The content of `_layout.tsx` is as follows:
 
 ```tsx
-import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.4.0/mod.ts';
+import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.5.0/mod.ts';
 
 const Layout: PagicLayout = ({ title, content }) => (
   <html>
@@ -93,7 +93,7 @@ site/
 In the above example, `hello.tsx` will be constructed as `dist/hello.html`, and `_sidebar.tsx` will not be constructed as a page because it starts with `_`. In this way, you can split the `Sidebar` component into the `_sidebar.tsx` file, and then import it in `_layout.tsx`:
 
 ```tsx {3,12}
-import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.4.0/mod.ts';
+import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.5.0/mod.ts';
 
 import Sidebar from './_sidebar.tsx';
 
