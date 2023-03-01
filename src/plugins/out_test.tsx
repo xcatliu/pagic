@@ -60,7 +60,7 @@ Deno.test('[out] helmet', async () => {
   const destContent = await Deno.readTextFile('test/fixtures/test_out_dir/helmet.html');
   asserts.assertEquals(
     destContent,
-    '<!doctype html><html data-reactroot=""><head>\n<meta data-react-helmet="true" charset="utf-8"/>\n<title data-react-helmet="true"></title>\n</head></html>',
+    '<!doctype html><html><head>\n<meta data-react-helmet="true" charset="utf-8"/>\n<title data-react-helmet="true"></title>\n</head></html>',
   );
 });
 

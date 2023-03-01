@@ -16,7 +16,7 @@ const out: PagicPlugin = {
       }
       const fullFilePath = path.resolve(pagic.config.outDir, outputPath);
       (window as any).pageProps = pageProps;
-      let htmlString = ReactDOMServer.renderToString(content);
+      let htmlString = ReactDOMServer.renderToStaticMarkup(content);
       const helmet = Helmet.renderStatic();
       const helmetString = ['meta', 'title', 'base', 'style', 'link', 'noscript', 'script']
         .map((key) => helmet[key].toString())

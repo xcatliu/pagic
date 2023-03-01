@@ -135,7 +135,7 @@ export interface PageProps {
 }
 // #endregion
 
-export default class Pagic extends EventEmitter<{ buildFinish: [] }> {
+export default class Pagic extends EventEmitter {
   // #region properties
   public static defaultConfig: PagicConfig = {
     srcDir: '.',

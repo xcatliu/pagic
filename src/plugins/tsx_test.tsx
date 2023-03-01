@@ -35,8 +35,8 @@ Deno.test('[tsx]', async () => {
 
   const pageProps_hello = pagic.pagePropsMap['hello.tsx'];
   asserts.assertEquals(
-    ReactDOMServer.renderToString(pageProps_hello.content!),
-    '<h1 data-reactroot="">Hello world</h1>',
+    ReactDOMServer.renderToStaticMarkup(pageProps_hello.content!),
+    '<h1>Hello world</h1>',
   );
   asserts.assertEquals(pageProps_hello.outputPath, 'foo/bar.html');
 });

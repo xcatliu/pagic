@@ -22,19 +22,19 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 执行以下命令来安装最新版本的 Pagic：
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
 若需要安装指定版本的 Pagic，则可以在安装的 URL 中加入版本号：
 
 ```bash
-deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.5.1/mod.ts
+deno install --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.5.1/mod.ts
 ```
 
 > Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：
 >
 > ```bash
-> deno install --unstable --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
+> deno install --allow-read=/home/xcatliu/site --allow-write=/home/xcatliu/site --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 > ```
 
 ### 通过 Docker 安装

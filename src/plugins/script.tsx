@@ -21,8 +21,8 @@ const script: PagicPlugin = {
 
       pageProps.script = (
         <>
-          <script src="https://cdn.pagic.org/react@17.0.2/umd/react.production.min.js" />
-          <script src="https://cdn.pagic.org/react-dom@17.0.2/umd/react-dom.production.min.js" />
+          <script src="https://cdn.pagic.org/react@18.2.0/umd/react.production.min.js" />
+          <script src="https://cdn.pagic.org/react-dom@18.2.0/umd/react-dom.production.min.js" />
           <script type="module" src={`${pagic.config.root}index.js`} />
         </>
       );
