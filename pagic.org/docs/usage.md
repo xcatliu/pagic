@@ -26,7 +26,7 @@ deno install --allow-read --allow-write --allow-net --allow-run --allow-env --al
 If you need to install a specific version of Pagic, you can add the version in the URL:
 
 ```bash
-deno install --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.5.1/mod.ts
+deno install --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.0/mod.ts
 ```
 
 > Pagic will only require the necessary permissions. If you want to further restrict Pagic's runtime permissions, you can limit it by specifying the read and write directories:
