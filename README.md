@@ -69,7 +69,7 @@
 # Install deno https://deno.land/#installation
 curl -fsSL https://deno.land/x/install/install.sh | sh
 # Install Pagic
-deno install --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 ```
 
 ### Initialize the project

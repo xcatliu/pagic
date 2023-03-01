@@ -30,7 +30,7 @@ jobs:
       - name: Build gh-pages
         run: |
           deno --version
-          deno install --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.0/mod.ts
+          deno install --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.0/mod.ts
           pagic build
 
       - name: Deploy gh-pages
@@ -70,7 +70,7 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 /vercel/.deno/bin/deno install --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
 
 # Pagic build
-/vercel/.deno/bin/deno run --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run https://deno.land/x/pagic/mod.ts build
+/vercel/.deno/bin/deno run --allow-read --allow-write --allow-net --allow-env --allow-run https://deno.land/x/pagic/mod.ts build
 ```
 
 Configure script command in `package.json`:

@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run
+#!/usr/bin/env -S deno --allow-read --allow-write --allow-net --allow-env --allow-run
 export { React, ReactDOM, ReactDOMServer } from './deps.ts';
 export { t, Trans } from './src/plugins/i18n.tsx';
 

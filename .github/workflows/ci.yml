@@ -21,10 +21,10 @@ jobs:
           deno-version: v1.15.1
 
       - name: Run tests
-        run: deno test --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run src
+        run: deno test --allow-read --allow-write --allow-net --allow-env --allow-run src
 
       - name: Build gh-pages
-        run: deno run --allow-read --allow-write --allow-net --allow-run --allow-env --allow-run mod.ts build
+        run: deno run --allow-read --allow-write --allow-net --allow-env --allow-run mod.ts build
 
       - name: Deploy gh-pages
         if: |
