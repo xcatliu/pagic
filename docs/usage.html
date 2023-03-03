@@ -24,14 +24,14 @@
 <p>Other installation methods (PowerShell, Homebrew, etc.) can be found in <a href="https://deno.land/#installation">Deno official website</a>。</p>
 <h3 id="install-pagic">Install Pagic<a class="anchor" href="#install-pagic">§</a></h3>
 <p>Execute the following command to install the latest version of Pagic:</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 </code></pre>
 <p>If you need to install a specific version of Pagic, you can add the version in the URL:</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic@v1.6.0/mod.ts">https://deno.land/x/pagic@v1.6.0/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic@v1.6.1/mod.ts">https://deno.land/x/pagic@v1.6.1/mod.ts</a>
 </code></pre>
 <blockquote>
 <p>Pagic will only require the necessary permissions. If you want to further restrict Pagic's runtime permissions, you can limit it by specifying the read and write directories:</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 </code></pre>
 </blockquote>
 <h3 id="install-via-docker">Install via Docker<a class="anchor" href="#install-via-docker">§</a></h3>

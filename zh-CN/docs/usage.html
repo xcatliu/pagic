@@ -25,14 +25,14 @@
 <p>中国大陆用户可以<a href="https://x.deno.js.cn/">使用镜像加速</a>安装。</p>
 <h3 id="%E5%AE%89%E8%A3%85-pagic">安装 Pagic<a class="anchor" href="#%E5%AE%89%E8%A3%85-pagic">§</a></h3>
 <p>执行以下命令来安装最新版本的 Pagic：</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 </code></pre>
 <p>若需要安装指定版本的 Pagic，则可以在安装的 URL 中加入版本号：</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic@v1.6.0/mod.ts">https://deno.land/x/pagic@v1.6.0/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic@v1.6.1/mod.ts">https://deno.land/x/pagic@v1.6.1/mod.ts</a>
 </code></pre>
 <blockquote>
 <p>Pagic 只会要求必须用到的权限，如果你希望更进一步限制 Pagic 运行时的权限，可以通过指定读写目录的方式加以限制：</p>
-<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+<pre class="language-bash"><code class="language-bash">deno <span class="token function">install</span> --unstable --allow-read<span class="token operator">=</span>/home/xcatliu/site --allow-write<span class="token operator">=</span>/home/xcatliu/site --allow-net --allow-env --allow-run --name<span class="token operator">=</span>pagic <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 </code></pre>
 </blockquote>
 <h3 id="%E9%80%9A%E8%BF%87-docker-%E5%AE%89%E8%A3%85">通过 Docker 安装<a class="anchor" href="#%E9%80%9A%E8%BF%87-docker-%E5%AE%89%E8%A3%85">§</a></h3>

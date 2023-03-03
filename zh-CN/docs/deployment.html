@@ -39,7 +39,7 @@
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build gh<span class="token punctuation">-</span>pages
         <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string"></span>
           deno --version
-          deno install --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.0/mod.ts
+          deno install --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.1/mod.ts
           <span>pagic build</span>
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy gh<span class="token punctuation">-</span>pages
@@ -87,10 +87,10 @@
 <span class="token function">curl</span> -fsSL <a class="token url-link" href="https://deno.land/x/install/install.sh">https://deno.land/x/install/install.sh</a> <span class="token operator">|</span> <span class="token function">sh</span>
 
 <span class="token comment"># Install pagic</span>
-/vercel/.deno/bin/deno <span class="token function">install</span> --allow-read --allow-write --allow-net <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
+/vercel/.deno/bin/deno <span class="token function">install</span> --unstable --allow-read --allow-write --allow-net <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a>
 
 <span class="token comment"># Pagic build</span>
-/vercel/.deno/bin/deno run --allow-read --allow-write --allow-net --allow-env --allow-run <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a> build
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-env --allow-run <a class="token url-link" href="https://deno.land/x/pagic/mod.ts">https://deno.land/x/pagic/mod.ts</a> build
 </code></pre>
 <p>在 <code>package.json</code> 配置脚本命令：</p>
 <pre class="language-diff"><code class="language-diff">"scripts": {
