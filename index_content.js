@@ -126,7 +126,7 @@ const IndexPage = ({ config, language }) => {
             } },
             React.createElement("code", { dangerouslySetInnerHTML: {
                     __html: `# ${t('Install pagic')}
-deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
 
 # ${t('Create pagic.config.ts and README.md')}
 mkdir site && cd site && echo "export default {};" > pagic.config.ts && echo "# Hello world" > README.md
