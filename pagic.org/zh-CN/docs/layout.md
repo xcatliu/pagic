@@ -20,7 +20,7 @@ site/
 其中 `_layout.tsx` 的内容如下：
 
 ```tsx
-import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.6.0/mod.ts';
+import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.6.1/mod.ts';
 
 const Layout: PagicLayout = ({ title, content }) => (
   <html>
@@ -93,7 +93,7 @@ site/
 在上面的例子中，`hello.tsx` 会被构建为 `dist/hello.html`，而 `_sidebar.tsx` 由于是 `_` 开头，所以不会被构建为页面。这样就可以实现对 `_layout.tsx` 的拆分，将 `Sidebar` 组件拆分到 `_sidebar.tsx` 文件中，然后在 `_layout.tsx` 中引用即可：
 
 ```tsx {3,12}
-import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.6.0/mod.ts';
+import { React, PagicLayout } from 'https://deno.land/x/pagic@v1.6.1/mod.ts';
 
 import Sidebar from './_sidebar.tsx';
 
