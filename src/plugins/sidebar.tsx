@@ -10,6 +10,7 @@ export type OnePagicConfigSidebar = (
       text?: string;
       link?: string;
       children?: OnePagicConfigSidebar;
+      expanded?: boolean;
     }
   | string
 )[];
@@ -18,6 +19,7 @@ export type PagePropsSidebar = {
   text: string;
   link?: string;
   pagePath?: string;
+  expanded?: boolean;
   children?: PagePropsSidebar;
 }[];
 

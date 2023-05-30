@@ -1,10 +1,18 @@
 {
+  // 统一使用 \n 换行符
   "files.eol": "\n",
+  // 缩进宽度为 2
   "editor.tabSize": 2,
   // 保存时自动格式化
   "editor.formatOnSave": true,
   // 默认使用 Prettier 格式化
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   // ESLint 配置
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "editor.codeActionsOnSave": {
@@ -13,5 +21,11 @@
   },
   // 使用项目的 ts 版本
   "typescript.tsdk": "node_modules/typescript/lib",
-  "deno.enable": true
+  "deno.enable": true,
+  "deno.lint": false,
+  "deno.suggest.imports.hosts": {
+    "https://esm.sh": false,
+    "https://cdn.pagic.org": false,
+    "https://deno.land": false
+  }
 }

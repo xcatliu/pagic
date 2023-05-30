@@ -3,7 +3,6 @@ import { React } from '../../../deps.ts';
 import type { PagicLayout } from '../../Pagic.ts';
 import Head from './_head.tsx';
 import Aside from './_aside.tsx';
-import Footer from './_footer.tsx';
 import { classnames } from './_utils.tsx';
 
 const LayoutBase: PagicLayout<{ Main: PagicLayout }> = (props) => {
@@ -17,7 +16,7 @@ const LayoutBase: PagicLayout<{ Main: PagicLayout }> = (props) => {
       <body>
         <Aside {...props} isDark={isDark} setIsDark={setIsDark} />
         <props.Main {...props} />
-        <Footer {...props} />
+        {props.footer}
         {props.script}
       </body>
     </html>

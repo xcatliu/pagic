@@ -23,7 +23,7 @@ COPY --from=organizer /out /
 # Install
 WORKDIR /usr/src/install
 ENV PATH "/root/.deno/bin:$PATH"
-RUN deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic mod.ts \
+RUN deno install --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic mod.ts \
   # Install dependencies
   && deno cache --unstable $(find src -name "*.ts*" ! -name "*_test.ts*")
 

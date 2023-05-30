@@ -11,8 +11,12 @@ Deno.test('[serve]', async () => {
   asserts.assertEquals(await no_toc.text(), 'foo\n');
   const not_found = await fetch('http://127.0.0.1:8000/not_found');
   asserts.assertEquals(await not_found.status, 404);
-  asserts.assertEquals(await not_found.text(), 'Not found');
+  asserts.assertEquals(await not_found.text(), 'Not Found');
   server.close();
+  // Wait for 1 second to close server
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000);
+  });
 });
 
 Deno.test('[serve] root option', async () => {
@@ -24,4 +28,8 @@ Deno.test('[serve] root option', async () => {
   const no_toc = await fetch('http://127.0.0.1:8000/foo/no_toc.md');
   asserts.assertEquals(await no_toc.text(), 'foo\n');
   server.close();
+  // Wait for 1 second to close server
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000);
+  });
 });

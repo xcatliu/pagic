@@ -17,6 +17,7 @@ Deno.test('[tsx]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'README.md': {
       config: pagic.config,
@@ -27,14 +28,15 @@ Deno.test('[tsx]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
   await tsx.fn(pagic);
 
   const pageProps_hello = pagic.pagePropsMap['hello.tsx'];
   asserts.assertEquals(
-    ReactDOMServer.renderToString(pageProps_hello.content!),
-    '<h1 data-reactroot="">Hello world</h1>',
+    ReactDOMServer.renderToStaticMarkup(pageProps_hello.content!),
+    '<h1>Hello world</h1>',
   );
   asserts.assertEquals(pageProps_hello.outputPath, 'foo/bar.html');
 });

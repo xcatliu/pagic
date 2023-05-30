@@ -25,12 +25,12 @@ jobs:
       - name: Setup deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: v1.6.1
+          deno-version: v1.7.0
 
       - name: Build gh-pages
         run: |
           deno --version
-          deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.1.1/mod.ts
+          deno install --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.2/mod.ts
           pagic build
 
       - name: Deploy gh-pages
@@ -43,7 +43,18 @@ jobs:
 
 Be sure to replace `ts.xcatliu.com` in the last line with your own domain.
 
-If you don't have your own domain, you can also use the free domain `xxx.github.io` provided by GitHub, just delete the last line. Note that you may need to modify the `root` configuration in `pagic.config.ts` to support sub-paths. For details, please refer to the [Config](./config.md#root) chapter.
+If you don't have your own domain, you can also use the free domain `xxx.github.io` provided by GitHub, just delete the last line. Note that you may need to modify the `root` configuration in `pagic.config.ts` to support sub-paths.
+
+For example: if your github project name is: `my-site` , then you should change `root` to `/my-site/`.
+
+### Sub Directory
+
+If you want your `pagic` run in the project sub directory, you should edit the `ci.yml` configure:
+
+- Add `cd ./{sub-dir-name}` before `pagic build` in **Build gh-pages**.
+- Change `publish_dir` to `./{sub-dir-name}/dist`
+
+`{sub-dir-name}` is your sub-directory name.
 
 ## Vercel
 
@@ -59,7 +70,7 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 /vercel/.deno/bin/deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
 
 # Pagic build
-/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-run https://deno.land/x/pagic/mod.ts build
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-env --allow-run https://deno.land/x/pagic/mod.ts build
 ```
 
 Configure script command in `package.json`:

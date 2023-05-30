@@ -18,13 +18,13 @@ jobs:
       - name: Setup deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: v1.6.1
+          deno-version: v1.34.1
 
       - name: Run tests
-        run: deno test --unstable --allow-read --allow-write --allow-net --allow-run src
+        run: deno test --unstable --allow-read --allow-write --allow-net --allow-env --allow-run src
 
       - name: Build gh-pages
-        run: deno run --unstable --allow-read --allow-write --allow-net --allow-run mod.ts build
+        run: deno run --unstable --allow-read --allow-write --allow-net --allow-env --allow-run mod.ts build
 
       - name: Deploy gh-pages
         if: |
@@ -36,13 +36,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: pagic.org
-
-      - name: Deploy to CloudBase
-        if: |
-          matrix.os == 'ubuntu-latest' &&
-          github.event_name == 'push' &&
-          github.ref == 'refs/heads/master'
-        run: |
-          sudo npm i @cloudbase/cli -g
-          cloudbase login --apiKeyId ${{secrets.SECRETID}} --apiKey ${{secrets.SECRETKEY}}
-          cloudbase framework:deploy

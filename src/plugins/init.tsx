@@ -17,6 +17,7 @@ const init: PagicPlugin = {
         content: null,
         head: pagic.config.head ?? null,
         script: null,
+        footer: pagic.config.footer ?? null,
       };
     }
   },

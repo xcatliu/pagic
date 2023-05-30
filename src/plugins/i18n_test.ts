@@ -46,6 +46,7 @@ Deno.test('[i18n]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
     'zh-CN/README.md': {
       config: pagic.config,
@@ -56,6 +57,7 @@ Deno.test('[i18n]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
 
@@ -63,8 +65,8 @@ Deno.test('[i18n]', async () => {
   asserts.assertEquals(pagic.pagePropsMap['README.md'].language, { code: 'en', name: 'English', root: '/' });
   asserts.assertEquals(pagic.pagePropsMap['README.md'].config.blog, { root: '/blog/' });
   asserts.assertEquals(
-    ReactDOMServer.renderToString(pagic.pagePropsMap['README.md'].head!),
-    '<script type="module" src="/i18n.js" data-reactroot=""></script>',
+    ReactDOMServer.renderToStaticMarkup(pagic.pagePropsMap['README.md'].head!),
+    '<script type="module" src="/i18n.js"></script>',
   );
   asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].language, {
     code: 'zh-CN',
@@ -73,8 +75,8 @@ Deno.test('[i18n]', async () => {
   });
   asserts.assertEquals(pagic.pagePropsMap['zh-CN/README.md'].config.blog, { root: '/zh-CN/blog/' });
   asserts.assertEquals(
-    ReactDOMServer.renderToString(pagic.pagePropsMap['zh-CN/README.md'].head!),
-    '<script type="module" src="/i18n.js" data-reactroot=""></script>',
+    ReactDOMServer.renderToStaticMarkup(pagic.pagePropsMap['zh-CN/README.md'].head!),
+    '<script type="module" src="/i18n.js"></script>',
   );
 
   asserts.assert(await fs.exists('test/fixtures/test_i18n_dir/i18n.js'));

@@ -25,12 +25,12 @@ jobs:
       - name: Setup deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: v1.6.1
+          deno-version: v1.7.0
 
       - name: Build gh-pages
         run: |
           deno --version
-          deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic@v1.1.1/mod.ts
+          deno install --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic@v1.6.2/mod.ts
           pagic build
 
       - name: Deploy gh-pages
@@ -45,32 +45,16 @@ jobs:
 
 如果没有自己的域名的话，也可以使用 GitHub 提供的免费域名 `xxx.github.io`，此时只要将最后一行删除即可。注意此时需要修改 `pagic.config.ts` 中的 `root` 配置来支持子路径，详细可参考[配置文件](./config.md#root)章节。
 
-## CloudBase
+比如：你的项目名为 `my-site` ，你就需要将 `root` 设置为 `/my-site/`
 
-[云开发 CloudBase](https://www.cloudbase.net/) 是腾讯云提供的云原生一体化开发环境和工具平台，现[已支持一键部署 Pagic 应用](https://cloud.tencent.com/developer/news/680176)，还拥有免费的默认域名、CDN 加速等功能。
+### 子目录
 
-你可以通过以下步骤来使用：
+如果你希望你的 `pagic` 运行于仓库的子目录中，你需要对 `ci.yml` 进行简单编辑：
 
-1. 在[腾讯云 CloudBase 控制台][]免费开通 CloudBase
-2. 在[腾讯云 CloudBase 控制台][]新建一个环境
-3. 运行 `npm i -g @cloudbase/cli` 安装 CloudBase CLI
-4. 运行 `tcb login` 登录（会自动打开浏览器，在浏览器中授权）
-5. 进入你的项目的根目录
-6. 运行 `tcb init --without-template` 来初始化 CloudBase 的配置文件 `cloudbaserc.json`
-7. 运行 `tcb framework deploy` 来构建并部署 Pagic 应用（此过程会自动识别当前目录下的 `pagic.config.ts` 文件）
+- 在 `Build gh-pages` 中的 `pagic build` 前面添加 `cd ./{sub-dir-name}`
+- 将 `publish_dir` 更换为 `./{sub-dir-name}/dist`（加上子目录的路径）
 
-构建完成后，就可以访问部署到免费域名的静态网站了（例子：[使用 CloudBase 部署的 Pagic 官网][]），接下来你可以在[腾讯云 CloudBase 控制台][]中绑定自己的域名。
-
-参考：
-
-- [CloudBase 更新日志 - 特性预览 3: 自动检测和部署 Pagic 应用](https://cloud.tencent.com/developer/news/680176)
-- [CloudBase - 官网](https://www.cloudbase.net/)
-- [CloudBase - CLI 使用指南](https://cloud.tencent.com/document/product/876/41539)
-- [腾讯云 CloudBase 控制台][]
-- [使用 CloudBase 部署的 Pagic 官网][]
-
-[腾讯云 cloudbase 控制台]: https://console.cloud.tencent.com/tcb
-[使用 cloudbase 部署的 pagic 官网]: https://pagic-6grnrtmbb2b18dee-1256604818.tcloudbaseapp.com/
+`{sub-dir-name}` 就是你子目录的名称。
 
 ## Vercel
 
@@ -86,7 +70,7 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 /vercel/.deno/bin/deno install --unstable --allow-read --allow-write --allow-net https://deno.land/x/pagic/mod.ts
 
 # Pagic build
-/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-run https://deno.land/x/pagic/mod.ts build
+/vercel/.deno/bin/deno run --unstable --allow-read --allow-write --allow-net --allow-env --allow-run https://deno.land/x/pagic/mod.ts build
 ```
 
 在 `package.json` 配置脚本命令：

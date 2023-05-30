@@ -5,6 +5,7 @@ import markdownitTocDoneRight from '../vendors/markdown-it-toc-done-right/index.
 import markdownitReplaceLink from '../vendors/markdown-it-replace-link/index.js';
 import markdownitHighlightLines from '../vendors/markdown-it-highlight-lines/index.js';
 import markdownItKatex from '../vendors/markdown-it-katex/index.js';
+import markdownItDefList from '../vendors/markdown-it-deflist/index.js';
 
 import Prism from '../vendors/prism/mod.ts';
 import { replaceLink, getGitLog, substring } from '../utils/mod.ts';
@@ -30,6 +31,7 @@ const md: PagicPlugin = {
   fn: async (pagic) => {
     /** tocHTML is set in the markdownitTocDoneRight callback, and is used later */
     let tocHTML = '';
+    const tocEnabled = pagic.config.md?.tocEnabled ?? true;
 
     const mdRenderer = new MarkdownIt({
       html: true,
@@ -59,7 +61,7 @@ const md: PagicPlugin = {
         permalinkClass: 'anchor',
         permalinkSymbol: '§',
       })
-      .use(markdownitTocDoneRight, {
+      .use(tocEnabled ? markdownitTocDoneRight : () => {}, {
         containerClass: 'toc',
         level: pagic.config.md?.tocLevel ?? [2, 3],
         slugify,
@@ -69,7 +71,8 @@ const md: PagicPlugin = {
       })
       .use(markdownitReplaceLink)
       .use(markdownitHighlightLines)
-      .use(markdownItKatex);
+      .use(markdownItKatex)
+      .use(markdownItDefList);
 
     // If one of the content has KaTeX, then set contentHasKaTeX to true
     let contentHasKaTeX = false;
@@ -87,7 +90,9 @@ const md: PagicPlugin = {
        * Use markdown-it-title to get the title of the page
        * https://github.com/valeriangalliat/markdown-it-title
        */
-      const env: any = {};
+      const env: any = {
+        katexMacros: { ...pagic.config.md?.katexMacros },
+      };
       const contentHTML = mdRenderer
         .render(content, env)
         .replace(/<table[\s\S]*?<\/table>/g, '<div class="table_wrapper">$&</div>')
@@ -129,9 +134,9 @@ const md: PagicPlugin = {
         contentBody: <article dangerouslySetInnerHTML={{ __html: contentBodyHTML }} />,
         // Set to null if toc is empty
         toc:
-          tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>' ? null : (
-            <aside dangerouslySetInnerHTML={{ __html: tocHTML }} />
-          ),
+          tocHTML === '' || tocHTML === '<nav class="toc"></nav>' || tocHTML === '<nav class="toc"><ol></ol></nav>'
+            ? null
+            : reactHtmlParser(tocHTML)[0],
         author,
         contributors,
         date,

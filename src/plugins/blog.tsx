@@ -121,6 +121,7 @@ const blog: PagicPlugin = {
           outputPath: `${pagePath}index.html`,
           head: null,
           script: null,
+          footer: pagic.config.footer ?? null,
           title: name,
           content: null,
           blog: {
@@ -145,6 +146,7 @@ const blog: PagicPlugin = {
           outputPath: `${pagePath}index.html`,
           head: null,
           script: null,
+          footer: pagic.config.footer ?? null,
           title: name,
           content: null,
           blog: {

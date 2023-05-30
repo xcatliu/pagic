@@ -14,15 +14,21 @@ const Head: PagicLayout<{
       document.getElementById('prismTheme').href = "${config.root}assets/prism_tomorrow.css";
     }
   `;
+  const isNotIndexPage = outputPath !== 'index.html';
+  const pageTitle = title ? (isNotIndexPage ? `${title} · ${config.title}` : title) : config.title;
   return (
     <head>
       <Helmet>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <title>{title ? (outputPath !== 'index.html' ? `${title} · ${config.title}` : title) : config.title}</title>
+        <title>{pageTitle}</title>
         {config.description && <meta name="description" content={config.description} />}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <meta property="og:title" content={pageTitle} />
+        {config.description && <meta property="og:description" content={config.description} />}
+        <meta property="og:type" content={isNotIndexPage ? 'article' : 'website'} />
+        <meta name="twitter:card" content="summary" />
+        {config.blog?.social?.twitter && <meta name="twitter:site" content={`@${config.blog.social.twitter}`} />}
         <link rel="stylesheet" href={`${config.root}assets/index.css`} />
         <link
           id="prismTheme"

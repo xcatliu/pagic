@@ -28,6 +28,7 @@ Deno.test('[gitalk]', async () => {
       content: null,
       head: null,
       script: null,
+      footer: null,
     },
   };
 

@@ -269,7 +269,7 @@ export default {
 举个例子，增加一个自定义的 favicon：
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   head: <link rel="icon" type="image/png" href="/favicon.png" />,
@@ -279,7 +279,7 @@ export default {
 如果需要引入多个标签，则需要用 `<>` 标签包裹：
 
 ```tsx {5,8}
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   head: (
@@ -300,7 +300,7 @@ export default {
 导航栏配置，示例如下：
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   nav: [
@@ -361,6 +361,7 @@ export default {
       'about/README.md',
       {
         link: 'about/team.md',
+        expanded: false,
         children: ['about/xcatliu.md'],
       },
       {
@@ -379,6 +380,8 @@ export default {
 
 在上面的例子中，以 `/docs/` 开头的页面会展示 docs 侧边栏，以 `/about/` 开头的页面会展示 about 侧边栏，其他页面会命中 `/`，展示默认的侧边栏。
 
+侧边栏默认会全部展开，除非配置了 `expanded: false`。
+
 ### `md`
 
 - 类型：较复杂，见示例
@@ -391,6 +394,7 @@ export default {
 export default {
   md: {
     anchorLevel: [1, 2, 3, 4, 5, 6],
+    tocEnabled: true,
     tocLevel: [1, 2, 3, 4]
 };
 ```
@@ -398,7 +402,8 @@ export default {
 在上面的例子中：
 
 - `anchorLevel` 用来配置 Markdown 转成 HTML 时，各级标题是否需要渲染一个锚点链接。`[1, 2, 3, 4, 5, 6]` 表示 `h1` 到 `h6` 都得展示锚点链接。它的默认值是 `[2, 3, 4, 5, 6]`。
-- `tocLevel` 用来配置页面中的目录（Table of Content）需要包含的标题级别。`[1, 2, 3, 4]` 表示 `h1` 到 `h4` 的标题都会展示在目录中。它的默认值是 `[2, 3]`。
+- `tocEnabled` 用来配置是否展示页面中的目录（Table of Content）
+- `tocLevel` 用来配置页面中的目录需要包含的标题级别。`[1, 2, 3, 4]` 表示 `h1` 到 `h4` 的标题都会展示在目录中。它的默认值是 `[2, 3]`。
 
 ### `tocAd`
 
@@ -409,7 +414,7 @@ export default {
 展示在目录上方的广告，示例如下：
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   tocAd: (
@@ -447,6 +452,29 @@ export default {
     editOnGitHub: true,
     backToTop: true,
   },
+};
+```
+
+### `footer`
+
+- 类型：`ReactElement`
+- 支持的主题：全部
+- 依赖的插件：无
+
+页面底部，会展示在所有页面里，示例如下：
+
+```tsx
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+
+export default {
+  footer: (
+    <footer>
+      Powered by&nbsp;
+      <a href="https://github.com/xcatliu/pagic" target="_blank">
+        Pagic
+      </a>
+    </footer>
+  ),
 };
 ```
 
@@ -520,4 +548,4 @@ export default {
 
 指定本地服务的端口号。
 
-[glob 格式]: https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts
+[glob 格式]: https://doc.deno.land/https/deno.land/std@0.111.0/path/glob.ts

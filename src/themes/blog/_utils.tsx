@@ -19,7 +19,7 @@ export const dateFormatter = {
     const d = new Date(date);
     const yyyy = d.getFullYear().toString();
     const MM = `0${d.getMonth() + 1}`.slice(-2);
-    const dd = `0${d.getDate() + 1}`.slice(-2);
+    const dd = `0${d.getDate()}`.slice(-2);
     return `${yyyy}-${MM}-${dd}`;
   },
 };

@@ -268,7 +268,7 @@ Additional elements that need to be injected into the HTML `<head>` of the curre
 For example, add a custom favicon:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   head: <link rel="icon" type="image/png" href="/favicon.png" />,
@@ -278,7 +278,7 @@ export default {
 If you need to inject multiple elements, you need to wrap it with `<>` tags:
 
 ```tsx {5,8}
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   head: (
@@ -299,7 +299,7 @@ export default {
 Navigation configuration, an example is as follows:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   nav: [
@@ -360,6 +360,7 @@ export default {
       'about/README.md',
       {
         link: 'about/team.md',
+        expanded: false,
         children: ['about/xcatliu.md'],
       },
       {
@@ -378,6 +379,8 @@ export default {
 
 In the above example, the page starting with `/docs/` will display the docs sidebar, the page starting with `/about/` will display the about sidebar, and other pages will hit `/` to display the default sidebar.
 
+The sidebar will be fully expanded by default, unless `expanded: false` is configured.
+
 ### `md`
 
 - Type: complex, please see below
@@ -390,6 +393,7 @@ The configuration of how to parse markdown files, an example is as follows:
 export default {
    md: {
      anchorLevel: [1, 2, 3, 4, 5, 6],
+     tocEnabled: true,
      tocLevel: [1, 2, 3, 4]
 };
 ```
@@ -397,6 +401,7 @@ export default {
 In the above example:
 
 - `AnchorLevel` is used to configure which levels of titles need to render an anchor link when markdown is converted to HTML. `[1, 2, 3, 4, 5, 6]` means that the anchor link must be displayed from `h1` to `h6`. Its default value is `[2, 3, 4, 5, 6]`.
+- `tocEnabled` is used to enable toc (table of content).
 - `tocLevel` is used to configure which levels of titles need to be included in toc (table of content). `[1, 2, 3, 4]` means that titles from `h1` to `h4` will be included in toc. Its default value is `[2, 3]`.
 
 ### `tocAd`
@@ -408,7 +413,7 @@ In the above example:
 Ads displayed at the top of the table of content, an example is as follows:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.1.1/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
 
 export default {
   tocAd: (
@@ -446,6 +451,29 @@ export default {
     editOnGitHub: true,
     backToTop: true,
   },
+};
+```
+
+### `footer`
+
+- Type: `Record<string, any>`
+- Supported themes: all
+- Dependent plugins: none
+
+The footer of all pages, an example is as follows:
+
+```tsx
+import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+
+export default {
+  footer: (
+    <footer>
+      Powered by&nbsp;
+      <a href="https://github.com/xcatliu/pagic" target="_blank">
+        Pagic
+      </a>
+    </footer>
+  ),
 };
 ```
 
@@ -519,4 +547,4 @@ Start local service, preview static website.
 
 Specify the port of the local service.
 
-[in glob format]: https://doc.deno.land/https/deno.land/std@0.79.0/path/glob.ts
+[in glob format]: https://doc.deno.land/https/deno.land/std@0.111.0/path/glob.ts

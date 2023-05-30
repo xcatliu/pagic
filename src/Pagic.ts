@@ -1,6 +1,4 @@
-import type { React } from '../deps.ts';
-// eslint-disable-next-line no-duplicate-imports
-import { fs, path, colors } from '../deps.ts';
+import { React, fs, path, colors, EventEmitter } from '../deps.ts';
 
 import {
   pick,
@@ -45,6 +43,7 @@ export interface PagicConfig {
     backToTop: boolean;
   };
   branch?: string;
+  footer?: React.ReactElement;
 
   // plugins
   nav?: {
@@ -58,7 +57,9 @@ export interface PagicConfig {
   sidebar?: PagicConfigSidebar;
   md?: {
     anchorLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
+    tocEnabled?: boolean;
     tocLevel?: (1 | 2 | 3 | 4 | 5 | 6)[];
+    katexMacros?: Record<string, string>;
   };
   ga?: GaProps;
   gitalk?: GitalkProps;
@@ -116,6 +117,7 @@ export interface PageProps {
   outputPath: string;
   head: React.ReactElement | null;
   script: React.ReactElement | null;
+  footer: React.ReactElement | null;
 
   // script
   loading?: boolean;
@@ -133,7 +135,7 @@ export interface PageProps {
 }
 // #endregion
 
-export default class Pagic {
+export default class Pagic extends EventEmitter {
   // #region properties
   public static defaultConfig: PagicConfig = {
     srcDir: '.',
@@ -161,6 +163,19 @@ export default class Pagic {
     watch: false,
     serve: false,
     port: 8000,
+    footer: React.createElement(
+      'footer',
+      {},
+      'Powered by&nbsp;',
+      React.createElement(
+        'a',
+        {
+          href: 'https://github.com/xcatliu/pagic',
+          target: '_blank',
+        },
+        ['Pagic'],
+      ),
+    ),
   };
   // foo.md
   public static REGEXP_PAGE = /[\/\\][^_][^\/\\]*\.(md|tsx)$/;
@@ -190,6 +205,7 @@ export default class Pagic {
   // #endregion
 
   public constructor(config: Partial<PagicConfig> = {}) {
+    super();
     this.runtimeConfig = config;
   }
 
@@ -201,6 +217,8 @@ export default class Pagic {
     if (this.config.watch) {
       this.watch();
     }
+
+    this.emit('buildFinish');
   }
 
   public async generateThemeMod() {

@@ -8,16 +8,16 @@
   A static site generator powered by Deno + React
 </h3>
 <p align="center">
-  <a href="https://pagic.cn">简体中文</a> | <a href="https://pagic.org">Website</a> | <a href="https://pagic.org/docs/introduction.html">Docs</a> | <a href="https://pagic.org/docs/config.html">Config</a> | <a href="#demos">Demos</a> | <a href="https://pagic.org/themes/">Themes</a> | <a href="https://pagic.org/plugins/">Plugins</a> | <a href="https://pagic.org/blog/">Blog</a>
+  <a href="https://pagic.org/zh-CN/">简体中文</a> | <a href="https://pagic.org">Website</a> | <a href="https://pagic.org/docs/introduction.html">Docs</a> | <a href="https://pagic.org/docs/config.html">Config</a> | <a href="#demos">Demos</a> | <a href="https://pagic.org/themes/">Themes</a> | <a href="https://pagic.org/plugins/">Plugins</a> | <a href="https://pagic.org/blog/">Blog</a>
 </p>
 <p align="center">
   <a href="https://deno.land">
-    <img src="https://img.shields.io/badge/Deno-1.6.1-brightgreen.svg?logo=deno" alt="deno" />
+    <img src="https://img.shields.io/badge/Deno-1.34.1-brightgreen.svg?logo=deno" alt="deno" />
   </a>
   <a href="https://pagic.org">
-    <img src="https://img.shields.io/badge/Pagic-v1.1.1-orange.svg" alt="pagic" />
+    <img src="https://img.shields.io/badge/Pagic-v1.6.2-orange.svg" alt="pagic" />
   </a>
-  <a href="https://discord.com/channels/785366263823335424">
+  <a href="https://discord.gg/vn3VvdUycW">
     <img src="https://img.shields.io/discord/785366263823335424" alt="discord" />
   </a>
   <a href="https://github.com/xcatliu/pagic/actions">
@@ -55,6 +55,10 @@
 - [Deno 中文手册](https://manual.deno.js.cn/) ([GitHub](https://github.com/denocn/deno_manual))
 - [JavaScript 20 年](https://cn.history.js.org/) ([GitHub](https://github.com/doodlewind/jshistory-cn))
 - [ECMAScript+ 面试宝典](https://es-interview.js.org/) ([GitHub](https://github.com/hylerrix/es-interview))
+- [Blitz.js + React 全栈开发手册](https://blitzjs-tutorial.js.org/) ([GitHub](https://github.com/hylerrix/blitzjs-tutorial))
+- [自然醒的博客](https://blog.shenfq.com/)（[GitHub](https://github.com/Shenfq/blog)）
+- [Viktor's Docs](https://docs.itdongdong.com/)（[GitHub](https://github.com/ViktorWong/my-docs)）
+- [0xzhang 的博客](https://blog.0xzhang.com/)（[GitHub](https://github.com/0xzhang)）
 - [Add my site as a demo](https://github.com/xcatliu/pagic/issues/new?assignees=xcatliu&labels=demo&template=add-a-demo.md&title=Add+my+site+as+a+demo+https%3A%2F%2Fexample.com) 😝
 
 ## Get started
@@ -65,7 +69,7 @@
 # Install deno https://deno.land/#installation
 curl -fsSL https://deno.land/x/install/install.sh | sh
 # Install Pagic
-deno install --unstable --allow-read --allow-write --allow-net --allow-run --name=pagic https://deno.land/x/pagic/mod.ts
+deno install --unstable --allow-read --allow-write --allow-net --allow-env --allow-run --name=pagic https://deno.land/x/pagic@1.6.2/mod.ts
 ```
 
 ### Initialize the project

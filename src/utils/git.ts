@@ -3,9 +3,7 @@ import { unique } from './common.ts';
 const now = new Date();
 
 /** Get and parse messages from git log */
-export async function getGitLog(
-  pagePath: string,
-): Promise<{
+export async function getGitLog(pagePath: string): Promise<{
   date: Date;
   updated: Date | null;
   author: string | undefined;
