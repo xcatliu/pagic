@@ -14,12 +14,10 @@
     "prettier:fix": "prettier --write -l \"./**/*\"",
     "update": "pnpm update",
     "preversion": "run-s test",
-    "version": "run-s sed:README sed:pagic.org sed:pagic.cn sed:cloudbaserc.json && git add -A",
+    "version": "run-s sed:README sed:pagic.org && git add -A",
     "postversion": "git push --follow-tags",
     "sed:README": "sed -i \"\" \"s#Pagic-v.*-orange#Pagic-v$npm_package_version-orange#g\" README.md",
-    "sed:pagic.org": "find pagic.org -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\"",
-    "sed:pagic.cn": "find pagic.cn -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\"",
-    "sed:cloudbaserc.json": "sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\" cloudbaserc.json"
+    "sed:pagic.org": "find pagic.org -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\""
   },
   "author": "xcatliu <xcatliu@gmail.com>",
   "license": "MIT",

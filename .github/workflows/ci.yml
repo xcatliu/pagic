@@ -18,7 +18,7 @@ jobs:
       - name: Setup deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: v1.30.3
+          deno-version: v1.34.1
 
       - name: Run tests
         run: deno test --unstable --allow-read --allow-write --allow-net --allow-env --allow-run src
@@ -36,13 +36,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: pagic.org
-
-      - name: Deploy to CloudBase
-        if: |
-          matrix.os == 'ubuntu-latest' &&
-          github.event_name == 'push' &&
-          github.ref == 'refs/heads/master'
-        run: |
-          sudo npm i @cloudbase/cli -g
-          cloudbase login --apiKeyId ${{secrets.SECRETID}} --apiKey ${{secrets.SECRETKEY}}
-          cloudbase framework:deploy

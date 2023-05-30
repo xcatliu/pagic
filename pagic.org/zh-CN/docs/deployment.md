@@ -56,33 +56,6 @@ jobs:
 
 `{sub-dir-name}` 就是你子目录的名称。
 
-## CloudBase
-
-[云开发 CloudBase](https://www.cloudbase.net/) 是腾讯云提供的云原生一体化开发环境和工具平台，现[已支持一键部署 Pagic 应用](https://cloud.tencent.com/developer/news/680176)，还拥有免费的默认域名、CDN 加速等功能。
-
-你可以通过以下步骤来使用：
-
-1. 在[腾讯云 CloudBase 控制台][]免费开通 CloudBase
-2. 在[腾讯云 CloudBase 控制台][]新建一个环境
-3. 运行 `npm i -g @cloudbase/cli` 安装 CloudBase CLI
-4. 运行 `tcb login` 登录（会自动打开浏览器，在浏览器中授权）
-5. 进入你的项目的根目录
-6. 运行 `tcb init --without-template` 来初始化 CloudBase 的配置文件 `cloudbaserc.json`
-7. 运行 `tcb framework deploy` 来构建并部署 Pagic 应用（此过程会自动识别当前目录下的 `pagic.config.ts` 文件）
-
-构建完成后，就可以访问部署到免费域名的静态网站了（例子：[使用 CloudBase 部署的 Pagic 官网][]），接下来你可以在[腾讯云 CloudBase 控制台][]中绑定自己的域名。
-
-参考：
-
-- [CloudBase 更新日志 - 特性预览 3: 自动检测和部署 Pagic 应用](https://cloud.tencent.com/developer/news/680176)
-- [CloudBase - 官网](https://www.cloudbase.net/)
-- [CloudBase - CLI 使用指南](https://cloud.tencent.com/document/product/876/41539)
-- [腾讯云 CloudBase 控制台][]
-- [使用 CloudBase 部署的 Pagic 官网][]
-
-[腾讯云 cloudbase 控制台]: https://console.cloud.tencent.com/tcb
-[使用 cloudbase 部署的 pagic 官网]: https://pagic-6grnrtmbb2b18dee-1256604818.tcloudbaseapp.com/
-
 ## Vercel
 
 在项目根目录创建 `deploy-vercel.sh` 文件：
