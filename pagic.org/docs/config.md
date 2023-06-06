@@ -268,7 +268,7 @@ Additional elements that need to be injected into the HTML `<head>` of the curre
 For example, add a custom favicon:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.3/mod.ts';
 
 export default {
   head: <link rel="icon" type="image/png" href="/favicon.png" />,
@@ -278,7 +278,7 @@ export default {
 If you need to inject multiple elements, you need to wrap it with `<>` tags:
 
 ```tsx {5,8}
-import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.3/mod.ts';
 
 export default {
   head: (
@@ -299,7 +299,7 @@ export default {
 Navigation configuration, an example is as follows:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.3/mod.ts';
 
 export default {
   nav: [
@@ -413,7 +413,7 @@ In the above example:
 Ads displayed at the top of the table of content, an example is as follows:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.3/mod.ts';
 
 export default {
   tocAd: (
@@ -463,7 +463,7 @@ export default {
 The footer of all pages, an example is as follows:
 
 ```tsx
-import { React } from 'https://deno.land/x/pagic@v1.6.2/mod.ts';
+import { React } from 'https://deno.land/x/pagic@v1.6.3/mod.ts';
 
 export default {
   footer: (

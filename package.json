@@ -1,6 +1,6 @@
 {
   "name": "pagic",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "A static site generator powered by Deno + React",
   "main": "mod.ts",
   "scripts": {
