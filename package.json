@@ -16,7 +16,7 @@
     "preversion": "run-s test",
     "version": "run-s sed:README sed:pagic.org && git add -A",
     "postversion": "git push --follow-tags",
-    "sed:README": "sed -i \"\" \"s#pagic@v[^/]*#Pagic-v.*-orange#Pagic-v$npm_package_version-orange#g\" README.md",
+    "sed:README": "sed -i \"\" \"s#Pagic-v.*-orange#Pagic-v$npm_package_version-orange#g\" README.md",
     "sed:pagic.org": "find pagic.org -name \"*.md\" -type f -print0 | xargs -0 sed -i \"\" \"s#pagic@v[^/]*#pagic@v$npm_package_version#g\""
   },
   "author": "xcatliu <xcatliu@gmail.com>",
