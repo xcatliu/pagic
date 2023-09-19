@@ -27,14 +27,14 @@
 
 <span class="token key atrule">jobs</span><span class="token punctuation">:</span>
   <span class="token key atrule">build-and-deploy</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span><span class="token number">18.04</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
     <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v3
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup deno
-        <span class="token key atrule">uses</span><span class="token punctuation">:</span> denolib/setup<span class="token punctuation">-</span>deno@v2
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> denoland/setup<span class="token punctuation">-</span>deno@v1
         <span class="token key atrule">with</span><span class="token punctuation">:</span>
-          <span class="token key atrule">deno-version</span><span class="token punctuation">:</span> v1.7.0
+          <span class="token key atrule">deno-version</span><span class="token punctuation">:</span> vx.x.x
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build gh<span class="token punctuation">-</span>pages
         <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string"></span>
@@ -48,7 +48,8 @@
           <span class="token key atrule">github_token</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.GITHUB_TOKEN <span class="token punctuation">}</span><span class="token punctuation">}</span>
           <span class="token key atrule">publish_dir</span><span class="token punctuation">:</span> ./dist
           <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com
-</code></pre><p>注意替换掉最后一行的 <code>ts.xcatliu.com</code> 为你自己的域名。</p>
+</code></pre><p>请确认已经开启了 Actions 的读写权限，如果没有开启会导致构建失败，要开启它，请到 Settings - Actions - General - Workflow permissions 找到 Read and write permissions 选择并保存。</p>
+<p>注意替换掉最后一行的 <code>ts.xcatliu.com</code> 为你自己的域名。</p>
 <p>如果没有自己的域名的话，也可以使用 GitHub 提供的免费域名 <code>xxx.github.io</code>，此时只要将最后一行删除即可。注意此时需要修改 <code>pagic.config.ts</code> 中的 <code>root</code> 配置来支持子路径，详细可参考<a href="./config.html#root">配置文件</a>章节。</p>
 <p>比如：你的项目名为 <code>my-site</code> ，你就需要将 <code>root</code> 设置为 <code>/my-site/</code></p>
 <h3 id="%E5%AD%90%E7%9B%AE%E5%BD%95">子目录<a class="anchor" href="#%E5%AD%90%E7%9B%AE%E5%BD%95">§</a></h3>

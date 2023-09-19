@@ -27,14 +27,14 @@
 
 <span class="token key atrule">jobs</span><span class="token punctuation">:</span>
   <span class="token key atrule">build-and-deploy</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span><span class="token number">18.04</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
     <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v3
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup deno
-        <span class="token key atrule">uses</span><span class="token punctuation">:</span> denolib/setup<span class="token punctuation">-</span>deno@v2
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> denoland/setup<span class="token punctuation">-</span>deno@v1
         <span class="token key atrule">with</span><span class="token punctuation">:</span>
-          <span class="token key atrule">deno-version</span><span class="token punctuation">:</span> v1.7.0
+          <span class="token key atrule">deno-version</span><span class="token punctuation">:</span> vx.x.x
 
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build gh<span class="token punctuation">-</span>pages
         <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string"></span>
@@ -48,7 +48,8 @@
           <span class="token key atrule">github_token</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.GITHUB_TOKEN <span class="token punctuation">}</span><span class="token punctuation">}</span>
           <span class="token key atrule">publish_dir</span><span class="token punctuation">:</span> ./dist
           <span class="token key atrule">cname</span><span class="token punctuation">:</span> ts.xcatliu.com
-</code></pre><p>Be sure to replace <code>ts.xcatliu.com</code> in the last line with your own domain.</p>
+</code></pre><p>Be sure Actions read and write permissions are enabled, otherwise the build will fail, To open it, Go Settings - Actions - General - Workflow permissions Check Read and write permissions and save.</p>
+<p>Be sure to replace <code>ts.xcatliu.com</code> in the last line with your own domain.</p>
 <p>If you don't have your own domain, you can also use the free domain <code>xxx.github.io</code> provided by GitHub, just delete the last line. Note that you may need to modify the <code>root</code> configuration in <code>pagic.config.ts</code> to support sub-paths.</p>
 <p>For example: if your github project name is: <code>my-site</code> , then you should change <code>root</code> to <code>/my-site/</code>.</p>
 <h3 id="sub-directory">Sub Directory<a class="anchor" href="#sub-directory">§</a></h3>
