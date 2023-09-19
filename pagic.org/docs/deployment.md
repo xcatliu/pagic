@@ -18,14 +18,14 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup deno
-        uses: denolib/setup-deno@v2
+        uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.7.0
+          deno-version: vx.x.x
 
       - name: Build gh-pages
         run: |
@@ -40,6 +40,8 @@ jobs:
           publish_dir: ./dist
           cname: ts.xcatliu.com
 ```
+
+Be sure Actions read and write permissions are enabled, otherwise the build will fail, To open it, Go Settings - Actions - General - Workflow permissions Check Read and write permissions and save.
 
 Be sure to replace `ts.xcatliu.com` in the last line with your own domain.
 

@@ -18,14 +18,14 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup deno
-        uses: denolib/setup-deno@v2
+        uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.7.0
+          deno-version: vx.x.x
 
       - name: Build gh-pages
         run: |
@@ -40,6 +40,7 @@ jobs:
           publish_dir: ./dist
           cname: ts.xcatliu.com
 ```
+请确认已经开启了 Actions 的读写权限，如果没有开启会导致构建失败，要开启它，请到 Settings - Actions - General - Workflow permissions 找到 Read and write permissions 选择并保存。
 
 注意替换掉最后一行的 `ts.xcatliu.com` 为你自己的域名。
 
